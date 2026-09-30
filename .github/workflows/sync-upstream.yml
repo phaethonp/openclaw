@@ -1,0 +1,34 @@
+name: Sync main from upstream
+
+# phaethonp/openclaw is a fork kept as a safety copy of openclaw/openclaw.
+# `main` here mirrors upstream `main`: this job fast-forwards it every day and
+# copies the tags. Our own changes, if any, live on other branches of this
+# fork (this workflow runs from the default branch, `boostt`), so `main`
+# always fast-forwards. If upstream disappears, the last mirrored state stays.
+
+on:
+  schedule:
+    - cron: "17 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Fetch upstream
+        run: |
+          git remote add upstream https://github.com/openclaw/openclaw.git
+          git fetch upstream main --tags
+      - name: Fast-forward main and push tags
+        run: |
+          git merge --ff-only upstream/main
+          git push origin main
+          git push origin --tags
