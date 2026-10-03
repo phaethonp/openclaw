@@ -1,10 +1,13 @@
 {
-  "$comment": "Text that keeps upstream's name in the shipped image. A string or line containing any of these is left as written. Add an entry only with the reason.",
+  "$comment": "Text that keeps upstream's name in the shipped image. A string or line containing any of these is left as written. Add an entry only with the reason. The runtime-context header and event markers are NOT exempt: they are injected into every model turn, so they must say the product name; the emitter and the matcher are both string literals and are rewritten together. Transcripts written before the rename keep the old header, which the matcher no longer recognises; that only affects how those old lines are tidied on screen.",
   "literals": [
-    { "text": "OpenClaw Foundation", "why": "MIT copyright notice; the license requires it unchanged." },
-    { "text": "OpenClaw runtime context (internal):", "why": "Matches transcripts written before the rename (run-status-text, internal-runtime-context)." },
-    { "text": "OpenClaw runtime context for", "why": "Same: pre-rename transcript marker." },
-    { "text": "OpenClaw runtime event.", "why": "Same: pre-rename transcript marker." },
-    { "text": "CFBundleExecutable", "why": "Compares against the macOS worker app bundle's executable name." }
+    {
+      "text": "OpenClaw Foundation",
+      "why": "MIT copyright notice; the license requires it unchanged."
+    },
+    {
+      "text": "CFBundleExecutable",
+      "why": "Compares against the macOS worker app bundle's executable name."
+    }
   ]
 }
