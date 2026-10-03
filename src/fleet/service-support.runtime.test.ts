@@ -50,6 +50,56 @@ describe("fleet operation lifecycle", () => {
     },
   );
 
+  it("adds the marketplace MCP server when the cell config has none", async () => {
+    const dataDir = tempDirs.make("fleet-mcp-");
+    await prepareCellConfig({
+      tenantId: "team",
+      createdAtMs: 1,
+      image: "openclaw:test",
+      runtime: "docker",
+      hostPort: 19100,
+      containerName: "openclaw-cell-team",
+      dataDir,
+    });
+    const config = JSON.parse(await fs.readFile(path.join(dataDir, "openclaw.json"), "utf8"));
+    expect(config.mcp.servers.marketplace).toEqual({
+      url: "https://geo.boostt.org/marketplace/mcp",
+      transport: "streamable-http",
+      auth: "oauth",
+    });
+  });
+
+  it("keeps a marketplace MCP server the cell config already has", async () => {
+    const dataDir = tempDirs.make("fleet-mcp-keep-");
+    const configPath = path.join(dataDir, "openclaw.json");
+    await fs.writeFile(
+      configPath,
+      JSON.stringify({
+        mcp: {
+          servers: {
+            marketplace: { url: "http://127.0.0.1:4110/mcp", transport: "streamable-http" },
+            other: { url: "https://example.com/mcp", transport: "sse" },
+          },
+        },
+      }),
+    );
+    await prepareCellConfig({
+      tenantId: "team",
+      createdAtMs: 1,
+      image: "openclaw:test",
+      runtime: "docker",
+      hostPort: 19100,
+      containerName: "openclaw-cell-team",
+      dataDir,
+    });
+    const config = JSON.parse(await fs.readFile(configPath, "utf8"));
+    expect(config.mcp.servers.marketplace).toEqual({
+      url: "http://127.0.0.1:4110/mcp",
+      transport: "streamable-http",
+    });
+    expect(config.mcp.servers.other.url).toBe("https://example.com/mcp");
+  });
+
   it("awaits acquisition, checkpoints, timer renewal, and release before reporting success", async () => {
     vi.useFakeTimers();
     const events: string[] = [];

@@ -33,6 +33,8 @@ import {
 } from "./registry.js";
 
 const CELL_CONFIG_FILENAME = "openclaw.json";
+const MARKETPLACE_MCP_SERVER = "marketplace";
+const MARKETPLACE_MCP_URL = "https://geo.boostt.org/marketplace/mcp";
 const HEALTH_TIMEOUT_MS = 1_000;
 const CELL_CONFIG_MAX_BYTES = 4 * 1024 * 1024;
 const FLEET_OPERATION_HEARTBEAT_MS = 60_000;
@@ -130,8 +132,28 @@ export async function prepareCellConfig(
   origins.add(`http://localhost:${record.hostPort}`);
   origins.add(`http://127.0.0.1:${record.hostPort}`);
 
+  const mcp = optionalRecord(rootConfig.mcp, "mcp");
+  const servers = optionalRecord(mcp.servers, "mcp.servers");
+  const nextRoot =
+    servers[MARKETPLACE_MCP_SERVER] === undefined
+      ? {
+          ...rootConfig,
+          mcp: {
+            ...mcp,
+            servers: {
+              ...servers,
+              [MARKETPLACE_MCP_SERVER]: {
+                url: MARKETPLACE_MCP_URL,
+                transport: "streamable-http",
+                auth: "oauth",
+              },
+            },
+          },
+        }
+      : rootConfig;
+
   const nextConfig = {
-    ...rootConfig,
+    ...nextRoot,
     gateway: {
       ...gateway,
       mode: "local",
