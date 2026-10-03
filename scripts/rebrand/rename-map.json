@@ -1,0 +1,319 @@
+{
+  "$comment": "Urbicana rebrand map. The script walks rules top to bottom; the first rule whose match fits an occurrence decides it. An occurrence no rule explains stops the run. Add rules only after the change they describe has been verified, and record the evidence in 'verified'.",
+  "name": {
+    "original": "OpenClaw",
+    "replacement": "Urbicana"
+  },
+  "forms": {
+    "OpenClaw": "Urbicana",
+    "Openclaw": "Urbicana",
+    "openclaw": "urbicana",
+    "OPENCLAW": "URBICANA",
+    "open-claw": "urbicana",
+    "open_claw": "urbicana"
+  },
+  "roots": [
+    "src",
+    "extensions",
+    "packages",
+    "skills",
+    "custodian-skills",
+    "docs/reference/templates",
+    "ui/src",
+    "ui/index.html",
+    "ui/public/manifest.webmanifest",
+    "docker-entrypoint.mjs",
+    "openclaw.mjs"
+  ],
+  "skip": [
+    "node_modules",
+    "dist",
+    ".git",
+    ".artifacts",
+    "__snapshots__",
+    "fixtures",
+    ".i18n"
+  ],
+  "checks": [
+    "node scripts/rebrand/rebrand.mjs inventory --quiet",
+    "node --import ./scripts/tsx.mjs scripts/generate-prompt-snapshots.ts --check"
+  ],
+  "rules": [
+    {
+      "id": "mit-notice",
+      "match": {
+        "literal": "OpenClaw Foundation"
+      },
+      "action": "keep",
+      "why": "MIT copyright notice. The license requires it unchanged."
+    },
+    {
+      "id": "legacy-transcript-marker",
+      "match": {
+        "lineContains": "urbicana-legacy"
+      },
+      "action": "keep",
+      "why": "Lines marked urbicana-legacy keep the old wording on purpose: they match transcripts and runtime context written before the rename. Remove the marker and the rule together once old transcripts no longer matter."
+    },
+    {
+      "id": "macos-bundle-executable",
+      "match": {
+        "lineContains": "CFBundleExecutable"
+      },
+      "action": "keep",
+      "why": "Compares against the executable name inside the macOS worker app bundle. Changes only together with the native app's bundle identity."
+    },
+    {
+      "id": "identity-sentence",
+      "match": {
+        "literal": "You are a personal assistant running inside OpenClaw."
+      },
+      "action": "replace",
+      "to": "You are a personal assistant running inside Urbicana.",
+      "paired": [
+        "src/agents/agent-identity-line.ts",
+        "src/cli/capability-cli/model.ts"
+      ],
+      "verified": "2026-09-30: one definition in src/agents/agent-identity-line.ts; 419 tests across the five pinning files; core typecheck; prompt snapshot current"
+    },
+    {
+      "id": "codex-identity-sentence",
+      "match": {
+        "literal": "You are a personal agent running inside OpenClaw. OpenClaw has dynamic tools for OpenClaw-owned messaging, cron, sessions, media, gateway, and nodes."
+      },
+      "action": "replace",
+      "to": "You are a personal agent running inside Urbicana. Urbicana has dynamic tools for Urbicana-owned messaging, cron, sessions, media, gateway, and nodes.",
+      "paired": [
+        "extensions/codex/src/app-server/thread-prompt.ts"
+      ],
+      "verified": "2026-09-30: thread-prompt tests 34 pass; prompt snapshot regenerated and current. Full codex app-server folder had 10 failures in unrelated files, not yet compared against a clean tree."
+    },
+    {
+      "id": "url",
+      "match": {
+        "kind": [
+          "url"
+        ]
+      },
+      "action": "keep",
+      "why": "Web addresses of upstream's docs site, repository and registry. Product decision pending: where Urbicana's docs and plugin catalog live."
+    },
+    {
+      "id": "package-name",
+      "match": {
+        "kind": [
+          "package"
+        ]
+      },
+      "action": "keep",
+      "why": "npm package names (openclaw, @openclaw/*, openclaw/plugin-sdk). Interface to installed plugins; its own step with a compatibility plan."
+    },
+    {
+      "id": "env-var",
+      "match": {
+        "kind": [
+          "env"
+        ]
+      },
+      "action": "keep",
+      "why": "OPENCLAW_* settings are read by running cells and fleet. Own step with a migration (accept both names for one release)."
+    },
+    {
+      "id": "path",
+      "match": {
+        "kind": [
+          "path"
+        ]
+      },
+      "action": "keep",
+      "why": "~/.openclaw and openclaw.json exist on disk in every cell. Own step with a state-dir migration."
+    },
+    {
+      "id": "command",
+      "match": {
+        "kind": [
+          "command"
+        ]
+      },
+      "action": "keep",
+      "why": "The `openclaw` command and its subcommands; the binary name on the host and in the image. Own step together with the bin link and completions."
+    },
+    {
+      "id": "code-identifier",
+      "match": {
+        "kind": [
+          "identifier"
+        ]
+      },
+      "action": "keep",
+      "why": "Names inside code (types, functions, import paths). Invisible to users and the model; renaming them is a refactor, not a rebrand. Revisit only if an identifier leaks into shown text."
+    },
+    {
+      "id": "module-path",
+      "match": {
+        "kind": [
+          "module-path"
+        ]
+      },
+      "action": "keep",
+      "why": "Import paths to files and packages named openclaw-*. A file-rename refactor done per module together with its imports; not shown to anyone.",
+      "step": "pending"
+    },
+    {
+      "id": "custom-element",
+      "match": {
+        "kind": [
+          "custom-element"
+        ]
+      },
+      "action": "keep",
+      "why": "Custom element tags openclaw-*. Definition and every use change together; CSS and tests select on them.",
+      "step": "pending"
+    },
+    {
+      "id": "css-token",
+      "match": {
+        "kind": [
+          "css-token"
+        ]
+      },
+      "action": "keep",
+      "why": "CSS custom properties, keyframes and classes named openclaw-*. Definition and uses together.",
+      "step": "pending"
+    },
+    {
+      "id": "dotted-key",
+      "match": {
+        "kind": [
+          "dotted-key"
+        ]
+      },
+      "action": "keep",
+      "why": "Keys written to storage or passed between processes (openclaw.control.settings.v1, Symbol.for keys). Needs a read-both migration.",
+      "step": "pending"
+    },
+    {
+      "id": "event-name",
+      "match": {
+        "kind": [
+          "event-name"
+        ]
+      },
+      "action": "keep",
+      "why": "DOM and process event names openclaw:*. Emitter and listeners together.",
+      "step": "pending"
+    },
+    {
+      "id": "log-prefix",
+      "match": {
+        "kind": [
+          "log-prefix"
+        ]
+      },
+      "action": "keep",
+      "why": "The [openclaw] prefix on log lines and agent-facing results. Display text; replace once the tests that match on it are updated.",
+      "step": "pending"
+    },
+    {
+      "id": "id-literal",
+      "match": {
+        "kind": [
+          "id-literal"
+        ]
+      },
+      "action": "keep",
+      "why": "The bare string 'openclaw' used as an id (harness, provider, source, plugin). Compared by code and stored in data; needs a migration or an alias.",
+      "step": "pending"
+    },
+    {
+      "id": "tmp-dir",
+      "match": {
+        "kind": [
+          "tmp-dir"
+        ]
+      },
+      "action": "keep",
+      "why": "Temporary directory names in tests and helpers. Harmless either way; change when convenient.",
+      "step": "pending"
+    },
+    {
+      "id": "hyphenated-name",
+      "match": {
+        "kind": [
+          "hyphenated-name"
+        ]
+      },
+      "action": "keep",
+      "why": "Other openclaw-* names (bridge ids, worker paths). Classify each before changing.",
+      "step": "pending"
+    },
+    {
+      "id": "lowercase-comment",
+      "match": {
+        "form": "openclaw",
+        "kind": [
+          "comment"
+        ]
+      },
+      "action": "keep",
+      "why": "Lowercase name in code comments. Not shipped. Change with the identifier it describes.",
+      "step": "pending"
+    },
+    {
+      "id": "uppercase-comment",
+      "match": {
+        "form": "OPENCLAW",
+        "kind": [
+          "comment",
+          "text"
+        ]
+      },
+      "action": "keep",
+      "why": "OPENCLAW_* setting names quoted in comments and strings; follows the env-var step.",
+      "step": "pending"
+    },
+    {
+      "id": "lowercase-prose",
+      "match": {
+        "form": "openclaw",
+        "kind": [
+          "prose",
+          "text"
+        ]
+      },
+      "action": "keep",
+      "why": "Lowercase name in prose or free text not recognised as a command, path, url or key. Review each; most are command references missing a subcommand.",
+      "step": "pending"
+    },
+    {
+      "id": "openclaw-capitalised",
+      "match": {
+        "form": "Openclaw",
+        "kind": [
+          "text",
+          "prose",
+          "comment"
+        ]
+      },
+      "action": "replace",
+      "to": "Urbicana",
+      "verified": null,
+      "why": "Mis-cased product name in text."
+    },
+    {
+      "id": "display-text-camel",
+      "match": {
+        "form": "OpenClaw",
+        "kind": [
+          "text",
+          "comment",
+          "prose"
+        ]
+      },
+      "action": "replace",
+      "to": "Urbicana",
+      "verified": null,
+      "why": "The product name in shown or model-read text. NOT yet verified area by area; applying this rule is the bulk of the remaining work and must be done per area with the checks."
+    }
+  ]
+}
