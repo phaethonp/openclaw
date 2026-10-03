@@ -12,8 +12,11 @@ import { en } from "./locales/en.ts";
 function* leaves(map: TranslationMap, prefix = ""): Generator<[string, string]> {
   for (const [key, value] of Object.entries(map)) {
     const path = prefix ? `${prefix}.${key}` : key;
-    if (typeof value === "string") yield [path, value];
-    else yield* leaves(value, path);
+    if (typeof value === "string") {
+      yield [path, value];
+    } else {
+      yield* leaves(value, path);
+    }
   }
 }
 

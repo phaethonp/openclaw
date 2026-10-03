@@ -183,11 +183,11 @@ describe("native device settings pages", () => {
   it("switches Gateway hosting only when available and follows the native owner's result", async () => {
     const native = createCapability();
     const page = await mount("openclaw-device-page", native.capability);
-    const title = "Keep OpenClaw running when the app is closed";
+    const title = "Keep Urbicana running when the app is closed";
     const hosting = row(page, title);
     expect(hosting.previousElementSibling).toBe(row(page, "Launch at login"));
     expect(hosting.textContent).toContain(
-      "Runs the Gateway as a background service so channels and automations keep working after you quit OpenClaw.",
+      "Runs the Gateway as a background service so channels and automations keep working after you quit Urbicana.",
     );
     expect(hosting.querySelector<ToggleElement>("wa-switch")!.checked).toBe(false);
     toggle(page, title, true);
@@ -288,7 +288,7 @@ describe("native device settings pages", () => {
     "shows an app-only state without a bridge and waits for the initial snapshot on %s",
     async (tag) => {
       const browserPage = await mount(tag, null);
-      expect(browserPage.textContent).toContain("only available inside the OpenClaw app");
+      expect(browserPage.textContent).toContain("only available inside the Urbicana app");
       expect(browserPage.querySelector("wa-switch")).toBeNull();
       const { capability } = createCapability(null);
       const waitingPage = await mount(tag, capability);

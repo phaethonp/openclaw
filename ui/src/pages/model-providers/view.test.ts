@@ -795,7 +795,7 @@ describe("renderModelProviders", () => {
     ],
     [
       { id: "openclaw", kind: "api", label: "OpenClaw Default" },
-      "API · OpenClaw",
+      "API · Urbicana",
       "Uses the provider's API connection",
     ],
   ] as const)(

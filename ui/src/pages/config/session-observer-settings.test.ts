@@ -68,12 +68,12 @@ describe("session observer settings patches", () => {
     [
       "anthropic/claude-haiku-4-5",
       { id: "openclaw", kind: "api", label: "OpenClaw Default" },
-      "auto (anthropic/claude-haiku-4-5 · API · OpenClaw)",
+      "auto (anthropic/claude-haiku-4-5 · API · Urbicana)",
     ],
     [
       "openai/gpt-5-mini",
       { id: "openclaw", kind: "api", label: "OpenClaw Default" },
-      "auto (openai/gpt-5-mini · API · OpenClaw)",
+      "auto (openai/gpt-5-mini · API · Urbicana)",
     ],
     [
       "openai/gpt-5-mini",
@@ -88,7 +88,7 @@ describe("session observer settings patches", () => {
     [
       "haiku",
       { id: "openclaw", kind: "api", label: "OpenClaw Default" },
-      "auto (haiku · API · OpenClaw)",
+      "auto (haiku · API · Urbicana)",
     ],
     ["anthropic/claude-haiku-4-5", undefined, "auto (anthropic/claude-haiku-4-5)"],
   ] as const)("names the resolved small model's route for %s on %o", (model, runtime, expected) => {

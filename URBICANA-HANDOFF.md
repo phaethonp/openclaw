@@ -43,9 +43,28 @@ prompt is a plain source change: `src/agents/agent-identity-line.ts`.
 
 ### Syncing from upstream
 
-Merge `main` into `boostt`. Conflicts can only be in our own files. Rebuild; the
-build step covers whatever text upstream added. If `--check` fails, the new
-text contains the name in a place that needs an exception or a decision.
+Merge `main` into `boostt`. What the 2026-10-03 merge actually needed, in order:
+
+1. Conflicts in our own files resolve by policy (deleted stays deleted; `.i18n/`
+   takes theirs). Conflicts in upstream files that we also touched (e.g.
+   `ui/src/components/app-sidebar.ts`) are resolved by taking upstream's version
+   and removing our deletions again, never by keeping our old hunk.
+2. Upstream test fixtures may still name retired protocol fields (`mascot`,
+   `critters`, `avatarHat`); strip them (`src/gateway/server-methods/themes.test-support.ts`).
+3. `pnpm install --frozen-lockfile` before trusting a typecheck; stale
+   `node_modules` after a lockfile merge shows up as type errors in upstream code.
+4. Locales: upstream commits only `locales/en.ts` and lets its locale bot
+   translate after merge, so a merge brings keys whose translations exist only in
+   a later `upstream/main`. The fork has no bot. Import them:
+   for each `ui/src/i18n/.i18n/<loc>.meta.json` with `fallbackKeys`, append the
+   `upstream/main` `<loc>.tm.jsonl` lines whose `segment_id` is pending (cache
+   keys are content-addressed, so they match when the English text is unchanged),
+   set `fallbackKeys` to `[]` in the meta (the sync keeps a key flagged while the
+   previous meta lists it), then
+   `OPENCLAW_CONTROL_UI_I18N_AUTH_OPTIONAL=1 pnpm ui:i18n:sync` and `pnpm ui:i18n:check`.
+5. Rebuild; the build step covers whatever text upstream added. If `--check`
+   fails, the new text contains the name in a place that needs an exception or a
+   decision.
 
 ## What is where
 
@@ -56,8 +75,15 @@ text contains the name in a place that needs an exception or a decision.
 
 ## Local runtime
 
-Fork cell `urbicana-dev` on 127.0.0.1:19101 (image `localhost:5000/urbicana/agent:dev`, loopback registry `local-registry`). `boostt-first` on 19100 is upstream. Rebuild and redeploy:
+The host `openclaw` CLI is uninstalled; the fleet's `desktop` cell (upstream image,
+127.0.0.1:19102) is the only fleet cell running. The fork image is proven on a
+throwaway cell instead:
 
-    docker build -q -t localhost:5000/urbicana/agent:dev . && docker push -q localhost:5000/urbicana/agent:dev && openclaw fleet upgrade urbicana-dev --image localhost:5000/urbicana/agent:dev
+    docker build -t localhost:5000/urbicana/agent:dev . && scripts/rebrand/proof-cell.sh
+
+`proof-cell.sh` runs `urbicana-proof` on 127.0.0.1:19104 from that image with the
+same env and mounts fleet gives a cell, state in `~/.openclaw/fleet/cells/urbicana-proof`
+(its `openclaw.json` points at the local bridge provider). Remove it with
+`docker rm -f urbicana-proof` when done.
 
 Gateway tokens are never read by the agent; show one with `docker exec -it <cell> openclaw gateway auth-token --show` in a terminal tab.

@@ -134,10 +134,7 @@ class AppSidebar extends AppSidebarSessionNavigationElement implements SessionLi
     )
     .watchStore(() => this.context?.agentIdentity)
     .watchStore(() => this.context?.theme)
-    .watchStore(
-      () => this.context?.config,
-      (config, notify) => config.subscribe(notify),
-    )
+    .watchStore(() => this.context?.config)
     .watchStore(() => this.context?.plugins);
   private readonly nativeGatewaysChanged = () => this.sidebarMenus.closeSessionMenu();
   private readonly hiddenSessionCatalogsChanged = () => {
@@ -190,22 +187,6 @@ class AppSidebar extends AppSidebarSessionNavigationElement implements SessionLi
 
   protected override willUpdate(changed: PropertyValues<this>) {
     super.willUpdate(changed);
-    // Admit new geometry only between interactions; once shown it stays put.
-    // Popover focus can leave :focus-within false; inspect the owned DOM instead.
-    // Native drag can clear :hover, so retain the organizer's authoritative drag facts.
-    const currentResult =
-      this.sidebarAgentsMode === "roster"
-        ? this.rosterSessionSource?.result
-        : this.sessionData.sessionsResult;
-    this.sessionProjection.observeRows([
-      ...(currentResult ? [currentResult] : []),
-      ...Object.values(this.sessionData.sessionResultsByAgent),
-    ]);
-    this.sessionNavigationState = super.getSessionNavigationState();
-    this.projectedSessionRows = super.selectedAgentSessionRows(this.sessionNavigationState);
-    const catalogs = this.sidebarSessionCatalogs();
-    this.projectedSessionCatalogs = catalogs;
-    this.projectedSessionSections = super.zonedVisibleSections(this.projectedSessionRows, catalogs);
     // An open switcher tracks roster/reconnect updates; otherwise only hydrate
     // the active card and avoid background RPCs for every configured agent.
     const identityIds =

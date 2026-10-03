@@ -233,15 +233,15 @@ class I18nManager {
     if (typeof value !== "string") {
       return key;
     }
-    value = brandText(key, value);
+    const branded = brandText(key, value);
 
     if (params) {
       // ?? not ||: an empty-string param is a provided value (render empty),
       // while a missing param keeps the visible {placeholder} for debugging.
-      return value.replace(/\{(\w+)\}/g, (_, k) => params[k] ?? `{${k}}`);
+      return branded.replace(/\{(\w+)\}/g, (_, k) => params[k] ?? `{${k}}`);
     }
 
-    return value;
+    return branded;
   }
 }
 
