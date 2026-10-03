@@ -110,7 +110,7 @@ describe("internal history display projection", () => {
               type: "text",
               text: [
                 `[Inter-session message] sourceSession=agent:main:subagent:child sourceChannel=internal sourceTool=${sourceTool} isUser=false`,
-                "This content was routed by OpenClaw from another session or internal tool.",
+                "This content was routed by Urbicana from another session or internal tool.",
                 "<<<BEGIN_OPENCLAW_INTERNAL_CONTEXT>>>",
                 "subagent completion payload",
                 "<<<END_OPENCLAW_INTERNAL_CONTEXT>>>",

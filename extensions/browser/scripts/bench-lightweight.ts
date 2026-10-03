@@ -276,7 +276,7 @@ async function main() {
             engine === "lightpanda"
               ? ["serve", "--host", "127.0.0.1", "--port", String(port)]
               : [
-                  // Match OpenClaw's managed headless launch defaults, with a
+                  // Match Urbicana's managed headless launch defaults, with a
                   // scratch profile and the container-friendly no-sandbox flag.
                   "--headless=new",
                   "--disable-gpu",
@@ -590,7 +590,7 @@ async function main() {
         memoryMethod:
           "Maximum sampled Linux /proc descendant-tree PSS/RSS, not a true peak; sampling attempts every 50 ms plus task boundaries. Excludes controller. Null for external engines and unsupported hosts. Controller RSS is a separate end-of-workload sample, not incremental overhead or a peak.",
         workload:
-          "Local synthetic form through OpenClaw routes, no LLM. One first task includes initial page open/attachment; each measured warm task includes navigation, default efficient AI snapshot (Lightpanda selects aria refs), typing, exactly one submission, wait and text extraction. Capability/session checks run after measurement.",
+          "Local synthetic form through Urbicana routes, no LLM. One first task includes initial page open/attachment; each measured warm task includes navigation, default efficient AI snapshot (Lightpanda selects aria refs), typing, exactly one submission, wait and text extraction. Capability/session checks run after measurement.",
         engineOrder: runs.map((spec) => spec.engine),
         distributionOrder: runs.map((spec) => ("distribution" in spec ? spec.distribution : null)),
         results,

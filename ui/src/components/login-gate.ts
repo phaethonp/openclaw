@@ -1,18 +1,16 @@
-// Control UI component renders the login gate.
 import { html, nothing, type TemplateResult } from "lit";
 import { property, state } from "lit/decorators.js";
-import type { ThemeMascot } from "../../../packages/gateway-protocol/src/theme.ts";
-import { normalizeBasePath } from "../app-route-paths.ts";
 import { canReloadControlUiDocument } from "../app/document-reload-guard.ts";
 import { beginNativeWindowDrag } from "../app/native-window-drag.ts";
-import { controlUiPublicAssetPath } from "../app/public-assets.ts";
 import { retryStaleChunkReloadWhenReachable } from "../app/stale-chunk-reload.ts";
 import { t } from "../i18n/index.ts";
-import "../lib/toast.ts";
 import { registerLoginEnglish } from "../i18n/locales/en-login.ts";
+import "../lib/toast.ts";
 import { buildExternalLinkRel, EXTERNAL_LINK_TARGET } from "../lib/external-link.ts";
 import { formatGatewayHost } from "../lib/gateway-host.ts";
 import { classifyGatewaySecret } from "../lib/gateway-secret-shape.ts";
+// Control UI component renders the login gate.
+import { PRODUCT_NAME } from "../lib/product-name.ts";
 import { OpenClawLightDomContentsElement } from "../lit/openclaw-element.ts";
 import { PollController } from "../lit/poll-controller.ts";
 import { renderConnectCommand } from "./connect-command.ts";
@@ -28,7 +26,6 @@ import {
 registerLoginEnglish();
 
 type LoginGateProps = LoginFailureFeedbackParams & {
-  mascot?: ThemeMascot;
   resourceBasePath: string;
   gatewayUrl: string;
   secret: string;
@@ -361,8 +358,6 @@ function renderFormBody(params: { props: LoginGateProps; feedback: LoginFailureF
 }
 
 function renderLoginGate(props: LoginGateProps, refreshAction: RefreshAction) {
-  const resourceBasePath = normalizeBasePath(props.resourceBasePath);
-  const faviconSrc = controlUiPublicAssetPath("favicon.svg", resourceBasePath);
   const feedback = resolveLoginFailureFeedback(props);
   const body =
     feedback?.placement === "status"
@@ -381,14 +376,10 @@ function renderLoginGate(props: LoginGateProps, refreshAction: RefreshAction) {
       <openclaw-toast-host></openclaw-toast-host>
       <div class="login-gate__card" data-mode=${feedback?.placement ?? "form"}>
         <header class="login-gate__brand">
-          ${
-            props.mascot === "none"
-              ? html`<span class="login-gate__logo login-gate__logo--neutral" aria-hidden="true"
-                  >${icons.mark}</span
-                >`
-              : html`<img class="login-gate__logo" src=${faviconSrc} alt="" />`
-          }
-          <span class="login-gate__brand-name">OpenClaw</span>
+          <span class="login-gate__logo login-gate__logo--neutral" aria-hidden="true"
+            >${icons.mark}</span
+          >
+          <span class="login-gate__brand-name">${PRODUCT_NAME}</span>
         </header>
         ${body}
         ${

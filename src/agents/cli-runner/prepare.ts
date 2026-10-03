@@ -184,7 +184,7 @@ type PrivateCliBackendPreparedExecution = CliBackendPreparedExecution & {
 function unsupportedIsolatedCompletionError(backendId: string): Error & { code: "unsupported" } {
   return Object.assign(
     new Error(
-      `CLI backend "${backendId}" does not support isolated completion; OpenClaw did not start the run.`,
+      `CLI backend "${backendId}" does not support isolated completion; Urbicana did not start the run.`,
     ),
     { name: "IsolatedCompletionUnsupportedError", code: "unsupported" as const },
   );
@@ -196,7 +196,7 @@ function resolveClaudeCliContextModelId(modelId: string): string {
   return CLAUDE_CLI_CONTEXT_MODEL_ALIASES[lower] ?? trimmed;
 }
 type RunCliAgentPrepareParams = RunCliAgentParams & {
-  /** Ring-zero tool transport supplied only by the OpenClaw orchestrator. */
+  /** Ring-zero tool transport supplied only by the Urbicana orchestrator. */
   systemAgentTool?: import("../tools/system-agent-tool.js").SystemAgentToolOptions;
 };
 
@@ -542,7 +542,7 @@ async function prepareCliRunContextWithinReadFence(
     // Cron persists this verbatim and failure alerts truncate at 200 characters,
     // so keep the upgrade recovery and fail-closed outcome compact.
     throw new Error(
-      `CLI backend "${backendResolved.id}" cannot enforce this run's tool cap. Upgrade its plugin and retry; if current, ask its maintainer to add exact-cap support. OpenClaw did not start the run.`,
+      `CLI backend "${backendResolved.id}" cannot enforce this run's tool cap. Upgrade its plugin and retry; if current, ask its maintainer to add exact-cap support. Urbicana did not start the run.`,
     );
   }
   const sideQuestionDisablesNativeTools =
@@ -613,7 +613,7 @@ async function prepareCliRunContextWithinReadFence(
     throw new Error("This saved sign-in is inactive. Test and activate it in Model Setup.");
   }
   // Claude owns its native login and single-use refresh-token family. Never
-  // preflight, refresh, or forward OpenClaw's snapshot; the installed Claude
+  // preflight, refresh, or forward Urbicana's snapshot; the installed Claude
   // process validates and refreshes its own current login.
   const usesNativeAuthProfile =
     backendAuthPolicy?.nativeAuthProfileIds !== undefined &&
@@ -639,7 +639,7 @@ async function prepareCliRunContextWithinReadFence(
           ? `selected auth profile "${authProfileId}" resolved as "${resolvedProfileId}"`
           : `could not materialize selected auth profile "${authProfileId}"`;
       return new CliAuthProfilePreparationError({
-        message: `CLI backend "${backendResolved.id}" ${reason}. Re-authenticate with: ${loginCommand}. OpenClaw did not start the run.`,
+        message: `CLI backend "${backendResolved.id}" ${reason}. Re-authenticate with: ${loginCommand}. Urbicana did not start the run.`,
         profileId: authProfileId,
         provider,
         agentDir,
@@ -928,7 +928,7 @@ async function prepareCliRunContextWithinReadFence(
         }),
       });
   // Mirror the embedded runner's bootstrap routing for backends that transport
-  // OpenClaw's system prompt. Only a declared native-tool backend can complete
+  // Urbicana's system prompt. Only a declared native-tool backend can complete
   // the file-based ritual; other backends receive limited guidance.
   const canonicalWorkspace = resolveUserPath(
     resolveAgentWorkspaceDir(params.config ?? {}, workspaceResolution.agentId),
@@ -982,7 +982,7 @@ async function prepareCliRunContextWithinReadFence(
     previousSignature: params.bootstrapPromptWarningSignature,
   });
   const bootstrapTruncationNotice = buildBootstrapPromptWarningNotice(bootstrapPromptWarning.lines);
-  // Ring-zero OpenClaw runs replace the bundle MCP surface entirely: no
+  // Ring-zero Urbicana runs replace the bundle MCP surface entirely: no
   // loopback server, no plugin/user servers. A selectable backend also removes
   // its native tools, leaving only this openclaw stdio server.
   const systemAgentMcpConfig = internalParams.systemAgentTool
@@ -1000,7 +1000,7 @@ async function prepareCliRunContextWithinReadFence(
       await prepareDeps.ensureMcpLoopbackServer();
     } catch (error) {
       throw new Error(
-        `Bundled MCP is enabled, but the OpenClaw MCP loopback server failed to start: ${String(error)}`,
+        `Bundled MCP is enabled, but the Urbicana MCP loopback server failed to start: ${String(error)}`,
         { cause: error },
       );
     }
@@ -1008,7 +1008,7 @@ async function prepareCliRunContextWithinReadFence(
   }
   if (bundleMcpEnabled && !mcpLoopbackRuntime) {
     throw new Error(
-      "Bundled MCP is enabled, but the OpenClaw MCP loopback server did not publish a runtime after startup.",
+      "Bundled MCP is enabled, but the Urbicana MCP loopback server did not publish a runtime after startup.",
     );
   }
   const mcpDeliveryCaptureEnabled = bundleMcpEnabled && Boolean(mcpLoopbackRuntime);
@@ -1085,7 +1085,7 @@ async function prepareCliRunContextWithinReadFence(
       (backendResolved.nativeToolMode === "selectable" && !canEnforceExactToolAvailability))
   ) {
     throw new Error(
-      `CLI backend "${backendResolved.id}" cannot enforce before_prompt_build tool restrictions. Use a backend with exact tool availability or remove the hook restriction. OpenClaw did not start the run.`,
+      `CLI backend "${backendResolved.id}" cannot enforce before_prompt_build tool restrictions. Use a backend with exact tool availability or remove the hook restriction. Urbicana did not start the run.`,
     );
   }
   if (
@@ -1903,7 +1903,7 @@ async function prepareCliRunContextWithinReadFence(
       }
     }
     // Node placement keeps this: the history prompt is built from the
-    // gateway-side OpenClaw transcript, so a fresh remote CLI session still
+    // gateway-side Urbicana transcript, so a fresh remote CLI session still
     // receives prior conversation context via stdin.
     const shouldPrepareOpenClawHistoryPrompt =
       !skipsTurnPreparation && (!reusableCliSessionId || allowRawTranscriptReseed);

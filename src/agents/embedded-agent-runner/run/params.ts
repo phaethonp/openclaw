@@ -173,7 +173,7 @@ export type RunEmbeddedAgentParams = {
   agentHarnessId?: string;
   /** Locks the selected model against hooks and fallbacks; does not imply native model ownership. */
   modelSelectionLocked?: boolean;
-  /** Explicit runtime override selected for this turn. Unlike agentHarnessId, this may force OpenClaw. */
+  /** Explicit runtime override selected for this turn. Unlike agentHarnessId, this may force Urbicana. */
   agentHarnessRuntimeOverride?: string;
   /** Verified setup continuation: pin both the harness and its local implementation. */
   expectedAgentHarnessRuntimeArtifact?: ExpectedAgentHarnessRuntimeArtifact;

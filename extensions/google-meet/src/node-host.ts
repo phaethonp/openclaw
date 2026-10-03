@@ -46,7 +46,7 @@ export const handleGoogleMeetNodeHostCommand = MeetingPlatformAdapter.createNode
     buildProfileArgs: (profile) => ["--args", `--profile-directory=${profile}`],
     openedStatus: "chrome-opened",
     openedNotes: [
-      "Browser page control is handled by OpenClaw browser automation when using chrome-node.",
+      "Browser page control is handled by Urbicana browser automation when using chrome-node.",
     ],
   },
 });

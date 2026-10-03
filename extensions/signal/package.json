@@ -1,7 +1,7 @@
 {
   "name": "@openclaw/signal",
   "version": "2026.9.6",
-  "description": "OpenClaw Signal channel plugin",
+  "description": "Urbicana Signal channel plugin",
   "type": "module",
   "dependencies": {
     "@openclaw/fs-safe": "0.21.2",

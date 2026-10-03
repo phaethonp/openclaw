@@ -28,7 +28,7 @@ function resolveHelperIpcKey(): string {
     homedir(),
     "Library",
     "Application Support",
-    "OpenClaw",
+    "Urbicana",
     "FaceTime",
     "helper-ipc-key",
   );
@@ -39,7 +39,7 @@ function resolveHelperBuildStamp(): string {
     homedir(),
     "Library",
     "Application Support",
-    "OpenClaw",
+    "Urbicana",
     "FaceTime",
     "helper-build.sha256",
   );
@@ -142,7 +142,7 @@ export async function inspectFaceTimeArtifacts(params: {
         homedir(),
         "Library",
         "Caches",
-        "OpenClaw",
+        "Urbicana",
         "FaceTime",
         "driver",
         "OpenClawBridge.driver",

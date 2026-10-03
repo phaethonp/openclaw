@@ -168,6 +168,6 @@ function appendBoundedToolTranscriptText(
 }
 
 function toolTranscriptTruncationNotice(originalLength: number, nativeToolLabel: string): string {
-  const noticeText = `...(OpenClaw truncated ${nativeToolLabel} native tool output: original ${originalLength} chars, showing ${TOOL_TRANSCRIPT_OUTPUT_MAX_CHARS}; rerun with narrower args.)`;
+  const noticeText = `...(Urbicana truncated ${nativeToolLabel} native tool output: original ${originalLength} chars, showing ${TOOL_TRANSCRIPT_OUTPUT_MAX_CHARS}; rerun with narrower args.)`;
   return `\n${noticeText}`;
 }

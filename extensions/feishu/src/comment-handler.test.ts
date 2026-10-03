@@ -422,7 +422,7 @@ describe("handleFeishuCommentEvent", () => {
       file_type: "docx",
       comment_id: "comment_1",
       content: [
-        "OpenClaw: access not configured.",
+        "Urbicana: access not configured.",
         "",
         "Your Feishu user id: ou_sender",
         "Pairing code:",

@@ -78,7 +78,7 @@ const McpServerConfigSchema = z.object({
     .describe("Environment variables for the MCP server"),
 });
 
-/** Zod schema for validating raw ACPX plugin config from OpenClaw config. */
+/** Zod schema for validating raw ACPX plugin config from Urbicana config. */
 export const AcpxPluginConfigSchema = z.strictObject({
   nativeAgents: AcpxNativeAgentsSchema,
   cwd: nonEmptyTrimmedString("cwd must be a non-empty string").optional(),

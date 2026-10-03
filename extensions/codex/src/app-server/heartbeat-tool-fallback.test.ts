@@ -368,7 +368,7 @@ describe("inactive Codex heartbeat endpoint", () => {
 
     expect(result).toMatchObject({ success: false });
     expect(JSON.stringify(result.contentItems)).toContain(
-      `OpenClaw tool is not available for this turn: ${HEARTBEAT_RESPONSE_TOOL_NAME}`,
+      `Urbicana tool is not available for this turn: ${HEARTBEAT_RESPONSE_TOOL_NAME}`,
     );
     expect(result.terminate).toBeUndefined();
   });

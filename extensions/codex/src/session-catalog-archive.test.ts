@@ -217,7 +217,7 @@ describe("Codex supervision actions", () => {
     },
   );
 
-  it("rejects archive while another OpenClaw session owns the native thread", async () => {
+  it("rejects archive while another Urbicana session owns the native thread", async () => {
     const bindingStore = createCodexTestBindingStore();
     await bindingStore.mutate(
       { kind: "conversation", bindingId: "bound-chat" },
@@ -229,14 +229,14 @@ describe("Codex supervision actions", () => {
     const control = createEligibleControl();
 
     await expect(archiveTestSession({ bindingStore, control })).rejects.toThrow(
-      "attached to an OpenClaw session",
+      "attached to an Urbicana session",
     );
     expect(control.requireEligibleThread).toHaveBeenCalledWith("thread-1");
     expect(control.archiveThread).not.toHaveBeenCalled();
   });
 
   it.each([false, true])(
-    "rejects archive when a paginated spawned descendant has an OpenClaw owner (archived=%s)",
+    "rejects archive when a paginated spawned descendant has an Urbicana owner (archived=%s)",
     async (archived) => {
       const bindingStore = createCodexTestBindingStore();
       await bindingStore.mutate(
@@ -260,7 +260,7 @@ describe("Codex supervision actions", () => {
       });
 
       await expect(archiveTestSession({ bindingStore, control })).rejects.toThrow(
-        "spawned descendant is owned by an OpenClaw session",
+        "spawned descendant is owned by an Urbicana session",
       );
       expect(control.listDescendantPage).toHaveBeenCalledWith({
         ancestorThreadId: "thread-1",

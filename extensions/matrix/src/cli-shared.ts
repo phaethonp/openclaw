@@ -442,7 +442,7 @@ export function printMatrixVerificationSummary(summary: MatrixVerificationSummar
   console.log(`Other user: ${sanitizeMatrixCliText(summary.otherUserId)}`);
   console.log(`Other device: ${sanitizeMatrixCliText(summary.otherDeviceId ?? "unknown")}`);
   console.log(`Self-verification: ${summary.isSelfVerification ? "yes" : "no"}`);
-  console.log(`Initiated by OpenClaw: ${summary.initiatedByMe ? "yes" : "no"}`);
+  console.log(`Initiated by Urbicana: ${summary.initiatedByMe ? "yes" : "no"}`);
   console.log(`Phase: ${sanitizeMatrixCliText(summary.phaseName)}`);
   console.log(`Pending: ${summary.pending ? "yes" : "no"}`);
   console.log(`Completed: ${summary.completed ? "yes" : "no"}`);
@@ -530,7 +530,7 @@ function buildVerificationGuidance(
   }
   if (status.serverDeviceKnown === false) {
     nextSteps.add(
-      `This Matrix device is no longer listed on the homeserver. Create a new OpenClaw Matrix device with ${formatMatrixCliCommand("account add --homeserver <url> --user-id <@user:server> --password <password> --device-name OpenClaw-Gateway", accountId)}. If you use token auth, create a fresh Matrix access token in your Matrix client or admin UI, then run ${formatMatrixCliCommand("account add --homeserver <url> --access-token <token>", accountId)}.`,
+      `This Matrix device is no longer listed on the homeserver. Create a new Urbicana Matrix device with ${formatMatrixCliCommand("account add --homeserver <url> --user-id <@user:server> --password <password> --device-name Urbicana-Gateway", accountId)}. If you use token auth, create a fresh Matrix access token in your Matrix client or admin UI, then run ${formatMatrixCliCommand("account add --homeserver <url> --access-token <token>", accountId)}.`,
     );
   }
   for (const step of buildBackupGuidance(backup, accountId, {

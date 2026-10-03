@@ -46,7 +46,7 @@ export async function resolveNativeSessionBinding<TBinding>(
   return { binding, assertCurrent };
 }
 
-/** Let the authoritative OpenClaw generation adopt its predecessor or reclaim a stale row. */
+/** Let the authoritative Urbicana generation adopt its predecessor or reclaim a stale row. */
 export async function reclaimNativeSessionGeneration(
   params: NativeSessionGenerationParams & {
     generation: NativeSessionGenerationOperations;

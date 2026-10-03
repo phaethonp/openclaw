@@ -1,6 +1,6 @@
-# Vercel AI Gateway OpenClaw provider
+# Vercel AI Gateway Urbicana provider
 
-Official OpenClaw provider plugin for Vercel AI Gateway.
+Official Urbicana provider plugin for Vercel AI Gateway.
 
 ## Install
 
@@ -10,4 +10,4 @@ openclaw plugins install @openclaw/vercel-ai-gateway-provider
 
 ## Docs
 
-See `docs/providers/vercel-ai-gateway.md` in the OpenClaw repository, or the published docs at `https://docs.openclaw.ai/providers/vercel-ai-gateway`.
+See `docs/providers/vercel-ai-gateway.md` in the Urbicana repository, or the published docs at `https://docs.openclaw.ai/providers/vercel-ai-gateway`.

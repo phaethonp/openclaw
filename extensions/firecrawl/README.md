@@ -1,8 +1,8 @@
-# OpenClaw Firecrawl Plugin
+# Urbicana Firecrawl Plugin
 
-Official OpenClaw plugin for Firecrawl.
+Official Urbicana plugin for Firecrawl.
 
-Install from OpenClaw:
+Install from Urbicana:
 
 ```bash
 openclaw plugins install @openclaw/firecrawl-plugin

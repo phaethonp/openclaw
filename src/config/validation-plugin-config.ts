@@ -62,7 +62,7 @@ export function resolveDeferredChannelConfigWarning(params: {
 
 function formatRemovedPluginConfigWarning(pluginId: string): string {
   if (pluginId === "skill-workshop") {
-    return "plugin removed: skill-workshop (stale plugin config ignored; Skill Workshop is built into OpenClaw skills now. Use skills.workshop settings and openclaw skills workshop commands, then remove this plugins config entry)";
+    return "plugin removed: skill-workshop (stale plugin config ignored; Skill Workshop is built into Urbicana skills now. Use skills.workshop settings and openclaw skills workshop commands, then remove this plugins config entry)";
   }
   return `plugin removed: ${pluginId} (stale config entry ignored; remove it from plugins config)`;
 }
@@ -419,7 +419,7 @@ export function validateExplicitPluginConfig(params: {
           params.replacePluginEntryConfig(pluginId, nextValue);
         }
       } else if (record.format === "bundle") {
-        // Compatible bundles currently expose no native OpenClaw config schema.
+        // Compatible bundles currently expose no native Urbicana config schema.
         // Treat them as schema-less capability packs rather than failing validation.
       } else {
         issues.push({

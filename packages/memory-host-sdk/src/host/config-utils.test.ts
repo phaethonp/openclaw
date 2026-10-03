@@ -182,7 +182,7 @@ describe("resolveMemoryHostAgentWorkspaceDir", () => {
     });
     try {
       expect(() => resolveMemoryHostAgentWorkspaceDir({}, "main", {})).toThrow(
-        "Unable to resolve an OpenClaw home: set OPENCLAW_HOME, HOME, or USERPROFILE",
+        "Unable to resolve an Urbicana home: set OPENCLAW_HOME, HOME, or USERPROFILE",
       );
     } finally {
       cwd.mockRestore();

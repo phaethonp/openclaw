@@ -35,7 +35,7 @@ export type SystemPresence = {
   /** Server-owned timing for the person's current continuous live interval. */
   onlineSince?: number;
   lastActivityAt?: number;
-  /** Latest accepted OpenClaw interaction on this connection only. */
+  /** Latest accepted Urbicana interaction on this connection only. */
   connectionLastActivityAt?: number;
   text: string;
   /** Heartbeat freshness, independent of person activity and online duration. */

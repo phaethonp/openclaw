@@ -350,7 +350,7 @@ export function buildCodexOpenClawPromptContext(params: {
   }
   const sections = [
     params.workspacePromptContext?.trim()
-      ? ["## OpenClaw Workspace Context", "", params.workspacePromptContext.trim()].join("\n")
+      ? ["## Urbicana Workspace Context", "", params.workspacePromptContext.trim()].join("\n")
       : undefined,
     params.watchedSessionsContext?.trim() || undefined,
   ].filter(isNonEmptyString);
@@ -358,8 +358,8 @@ export function buildCodexOpenClawPromptContext(params: {
     return undefined;
   }
   return [
-    "OpenClaw runtime context for this turn:",
-    "Treat this OpenClaw-provided context as supporting project/user reference for the current request.",
+    "Urbicana runtime context for this turn:",
+    "Treat this Urbicana-provided context as supporting project/user reference for the current request.",
     "",
     ...sections,
   ].join("\n");
@@ -398,12 +398,12 @@ export function renderCodexSkillsInstructions(params: {
     return undefined;
   }
   return params.skillsPrompt?.trim()
-    ? ["## OpenClaw Skills", "", params.skillsPrompt.trim()].join("\n")
+    ? ["## Urbicana Skills", "", params.skillsPrompt.trim()].join("\n")
     : undefined;
 }
 
 /**
- * Prepends OpenClaw context while preserving leading delivery metadata as
+ * Prepends Urbicana context while preserving leading delivery metadata as
  * routing guidance instead of user request text.
  */
 export function prependCodexOpenClawPromptContext(
@@ -416,13 +416,13 @@ export function prependCodexOpenClawPromptContext(
     return prompt;
   }
   const promptSection = promptWithoutDeliveryHint.startsWith(
-    "OpenClaw assembled context for this turn:",
+    "Urbicana assembled context for this turn:",
   )
     ? promptWithoutDeliveryHint
     : ["Current user request:", promptWithoutDeliveryHint].join("\n");
   const deliverySection = deliveryHint
     ? [
-        "OpenClaw delivery metadata:",
+        "Urbicana delivery metadata:",
         "This delivery metadata is runtime routing guidance, not the user's request.",
         deliveryHint,
       ].join("\n")

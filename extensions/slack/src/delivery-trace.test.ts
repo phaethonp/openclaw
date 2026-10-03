@@ -854,7 +854,7 @@ describe("slack delivery trace goldens", () => {
       const terminal = events.findLast((event) => event.kind === "chat.update");
       expect(terminal?.data).toMatchObject({
         payload: {
-          text: `${title}\n\nOpen in OpenClaw`,
+          text: `${title}\n\nOpen in Urbicana`,
           blocks: expect.arrayContaining([
             { type: "section", text: { type: "mrkdwn", text: title } },
           ]),
@@ -919,7 +919,7 @@ describe("slack delivery trace goldens", () => {
                     id: "openclaw_summary",
                     title: "Completed",
                     status: "complete",
-                    sources: [{ type: "url_source", url, text: "Open in OpenClaw" }],
+                    sources: [{ type: "url_source", url, text: "Open in Urbicana" }],
                   }),
                 ]),
               }),

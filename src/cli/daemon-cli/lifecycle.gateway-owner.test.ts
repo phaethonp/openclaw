@@ -115,7 +115,7 @@ beforeEach(() => {
   service.readCommand.mockResolvedValue({
     programArguments: [
       "node",
-      "C:\\OpenClaw\\dist\\index.js",
+      "C:\\Urbicana\\dist\\index.js",
       "gateway",
       "--port",
       "18789",

@@ -306,7 +306,7 @@ describe("handleUpdateCommand", () => {
   it.each([true, false])(
     "preserves queued ack custody without a duplicate reply (%s)",
     async (ackQueued) => {
-      const acknowledgement = "⬆️ Updating OpenClaw 2026.9.1 → 2026.9.2.";
+      const acknowledgement = "⬆️ Updating Urbicana 2026.9.1 → 2026.9.2.";
       dispatch.mockResolvedValueOnce({
         ok: true,
         runId,

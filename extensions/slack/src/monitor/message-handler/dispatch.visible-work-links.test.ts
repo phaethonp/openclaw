@@ -42,7 +42,7 @@ const VISIBLE_WORK_SESSION_LINK_CASES = [
     links: [
       {
         url: "https://team.openclaw.ai/openclaw/chat/agent-1/slack/C123",
-        text: "Open in OpenClaw",
+        text: "Open in Urbicana",
       },
     ],
   },

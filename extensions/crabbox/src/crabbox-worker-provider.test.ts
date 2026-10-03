@@ -1073,7 +1073,7 @@ describe("Crabbox worker provider", () => {
 
   it.each([
     { name: "the direct-environment default", executionMode: undefined },
-    { name: "an OpenClaw worker turn", executionMode: "worker-turn" },
+    { name: "an Urbicana worker turn", executionMode: "worker-turn" },
     { name: "a Codex remote-exec turn", executionMode: "remote-exec" },
   ] as const)("returns the same enrolled node transport for $name", async ({ executionMode }) => {
     const calls: Array<{ argv: string[]; options: Parameters<CrabboxCommandRunner>[1] }> = [];

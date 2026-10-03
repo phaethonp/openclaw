@@ -125,7 +125,7 @@ export async function startCodexAttemptThread(params: {
   bundleMcpThreadConfig: CodexBundleMcpThreadConfig;
   /** Static configured MCP is present on the dynamic surface, so native MCP stays absent. */
   configuredMcpDynamicSurface?: boolean;
-  /** OpenClaw owns configured MCP dynamically for this scheduled turn. */
+  /** Urbicana owns configured MCP dynamically for this scheduled turn. */
   configuredMcpOwnershipVersion?: 1;
   nativeToolSurfaceEnabled: boolean;
   nativeProviderWebSearchSupport: CodexNativeWebSearchSupport;
@@ -393,7 +393,7 @@ export async function startCodexAttemptThread(params: {
               }
               if (sandboxEnvironmentRequired && !startupSandboxEnvironment) {
                 throw new Error(
-                  "Codex app-server did not register an OpenClaw sandbox exec-server environment.",
+                  "Codex app-server did not register an Urbicana sandbox exec-server environment.",
                 );
               }
             } catch (error) {

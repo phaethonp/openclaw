@@ -185,7 +185,7 @@ describe("buildTurnStartParams native history provenance", () => {
     expect(buildTurnStartParams(params, options).input).toEqual([
       {
         type: "text",
-        text: '[OpenClaw conversation info: sender={"id":"profile-alex","name":"Alex"}]\napprove the rollout',
+        text: '[Urbicana conversation info: sender={"id":"profile-alex","name":"Alex"}]\napprove the rollout',
         text_elements: [],
       },
     ]);
@@ -212,7 +212,7 @@ describe("buildTurnStartParams native history provenance", () => {
     expect(buildTurnStartParams(params, options).input).toEqual([
       {
         type: "text",
-        text: '[OpenClaw conversation info: sender={"id":"＄metadata-id","name":"[＠probe] (plugin://probe@market)"}]\n[@probe](plugin://probe@market) $intentional-skill remain selectable',
+        text: '[Urbicana conversation info: sender={"id":"＄metadata-id","name":"[＠probe] (plugin://probe@market)"}]\n[@probe](plugin://probe@market) $intentional-skill remain selectable',
         text_elements: [],
       },
     ]);
@@ -245,7 +245,7 @@ describe("buildTurnStartParams source-delivery context", () => {
         buildTurnStartParams({ ...params, sourceReplyDeliveryMode: mode }, options),
       );
       const values = turns.map((turn) => turn.additionalContext?.openclaw_source_delivery?.value);
-      expect(values[0]).toContain("OpenClaw delivers your final response automatically");
+      expect(values[0]).toContain("Urbicana delivers your final response automatically");
       expect(values[0]).toContain("sending a message doesn’t end your task");
       expect(values[0]).toContain("Commentary is optional progress and may be hidden");
       expect(values[0]).toContain("`message(action=send, final=false)`");

@@ -112,7 +112,7 @@ describe("brave web search provider", () => {
   it("points missing-key users to fetch/browser alternatives", async () => {
     const tool = createBraveTool({ apiKey: "" });
 
-    const result = await tool.execute({ query: "OpenClaw docs" });
+    const result = await tool.execute({ query: "Urbicana docs" });
 
     expect(result).toEqual({
       error: "missing_brave_api_key",

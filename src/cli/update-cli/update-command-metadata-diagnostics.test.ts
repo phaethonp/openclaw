@@ -213,7 +213,7 @@ it.each(["cause", "aggregate", "suppressed", "structured"] as const)(
       ]),
     });
     expect(printed.markdown).toContain("Lookup failed");
-    expect(printed.markdown).toContain("OpenClaw update failed");
+    expect(printed.markdown).toContain("Urbicana update failed");
     const recordedRun = ledger.listUpdateRuns()[0];
     const report = await prepareUpdateFailureReport({
       attemptId: recordedRun!.runId,

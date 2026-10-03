@@ -9,6 +9,7 @@ enum class AppearanceThemeFamily(
   val previewCanvasArgb: Long,
 ) {
   Claw("claw", "Claw", 0xFFFF5C5C, 0xFF14B8A6, 0xFF0E1015),
+  Urbicana("urbicana", "Urbicana", 0xFFE07A5F, 0xFF8FB07E, 0xFF1A1713),
   Knot("knot", "Knot", 0xFFE5243B, 0xFFB8BDC4, 0xFF080808),
   Dash("dash", "Dash", 0xFFCF8B4D, 0xFFDCB878, 0xFF1A1210),
   Absolutely("absolutely", "Absolutely", 0xFFD97757, 0xFFB8926A, 0xFF1C1C1A),

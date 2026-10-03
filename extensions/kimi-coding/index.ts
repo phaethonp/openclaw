@@ -1,5 +1,5 @@
 import { findNormalizedProviderValue } from "openclaw/plugin-sdk/provider-auth";
-// Kimi Coding plugin entrypoint registers its OpenClaw integration.
+// Kimi Coding plugin entrypoint registers its Urbicana integration.
 import { defineSingleProviderPluginEntry } from "openclaw/plugin-sdk/provider-entry";
 import { normalizeProviderId } from "openclaw/plugin-sdk/provider-model-shared";
 import { isRecord, normalizeOptionalString } from "openclaw/plugin-sdk/string-coerce-runtime";

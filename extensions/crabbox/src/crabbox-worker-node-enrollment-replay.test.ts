@@ -154,7 +154,7 @@ async function replay(
     },
   };
   const hostArguments = [
-    "/Applications/OpenClawCloudWorker.app/Contents/MacOS/OpenClaw",
+    "/Applications/OpenClawCloudWorker.app/Contents/MacOS/Urbicana",
     "--cloud-worker-host",
     "--node-executable",
     "/usr/bin/node",
@@ -176,7 +176,7 @@ async function replay(
       if (args[0] !== cli) {
         throw new Error("Unexpected runtime executable");
       }
-      return { status: 0, stdout: args[1] === "--version" ? "OpenClaw 2026.8.1" : "" };
+      return { status: 0, stdout: args[1] === "--version" ? "Urbicana 2026.8.1" : "" };
     }
     if (failure === "unavailable") {
       return { status: 1, stdout: "" };

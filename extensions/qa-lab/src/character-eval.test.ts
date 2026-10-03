@@ -544,28 +544,28 @@ describe("runQaCharacterEval", () => {
     {
       title: "marks raw provider error transcripts as failed output",
       transcript:
-        "USER Alice: Are you awake?\n\nASSISTANT OpenClaw QA: 400 model `qwen3.6-plus` is not supported.",
+        "USER Alice: Are you awake?\n\nASSISTANT Urbicana QA: 400 model `qwen3.6-plus` is not supported.",
       model: "qwen/qwen3.6-plus",
       expectedReason: "model unsupported error leaked into transcript",
     },
     {
       title: "marks generic channel fallback transcripts as failed output",
       transcript:
-        "ASSISTANT OpenClaw QA: ⚠️ Something went wrong while processing your request. Please try again, or use /new to start a fresh session.",
+        "ASSISTANT Urbicana QA: ⚠️ Something went wrong while processing your request. Please try again, or use /new to start a fresh session.",
       model: "qa/generic-fallback-model",
       expectedReason: "generic request failure leaked into transcript",
     },
     {
       title: "marks idle-timeout fallback transcripts as failed output",
       transcript:
-        "ASSISTANT OpenClaw QA: The model did not produce a response before the LLM idle timeout. Please try again, or increase `agents.defaults.llm.idleTimeoutSeconds` in your config.",
+        "ASSISTANT Urbicana QA: The model did not produce a response before the LLM idle timeout. Please try again, or increase `agents.defaults.llm.idleTimeoutSeconds` in your config.",
       model: "google/gemini-test",
       expectedReason: "LLM timeout leaked into transcript",
     },
     {
       title: "marks leaked harness coordination transcripts as failed output",
       transcript:
-        "ASSISTANT OpenClaw QA: checking thread context; then post a tight progress reply here.\nQA_LEAK_OK",
+        "ASSISTANT Urbicana QA: checking thread context; then post a tight progress reply here.\nQA_LEAK_OK",
       model: "codex/gpt-5.6-luna",
       expectedReason: "internal harness/meta text leaked into transcript",
     },
@@ -657,7 +657,7 @@ describe("runQaCharacterEval", () => {
 
   it("marks raw tool failure transcripts as failed output", async () => {
     const runSuite = makeRunSuite(
-      () => "ASSISTANT OpenClaw QA: ⚠️ ✍️ Write: to /tmp/precious.html failed",
+      () => "ASSISTANT Urbicana QA: ⚠️ ✍️ Write: to /tmp/precious.html failed",
     );
     const runJudge = makeRunJudge([
       { model: "qwen/qwen3.5-plus", rank: 1, score: 0.5, summary: "failed" },

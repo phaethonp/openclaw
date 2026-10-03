@@ -664,8 +664,8 @@ export async function buildGatewayInstallPlan(params: {
   if (wrapperPointsAtGeneratedScript) {
     params.warn?.(
       platform === "win32"
-        ? `Ignoring ${OPENCLAW_WRAPPER_ENV_KEY} because it points to the Windows task script; using the OpenClaw gateway entrypoint directly to avoid a recursive gateway.cmd wrapper.`
-        : `Ignoring ${OPENCLAW_WRAPPER_ENV_KEY} because it points to the generated LaunchAgent environment wrapper; using the OpenClaw gateway entrypoint directly to avoid a self-referencing wrapper.`,
+        ? `Ignoring ${OPENCLAW_WRAPPER_ENV_KEY} because it points to the Windows task script; using the Urbicana gateway entrypoint directly to avoid a recursive gateway.cmd wrapper.`
+        : `Ignoring ${OPENCLAW_WRAPPER_ENV_KEY} because it points to the generated LaunchAgent environment wrapper; using the Urbicana gateway entrypoint directly to avoid a self-referencing wrapper.`,
     );
   }
   const wrapperPath = wrapperPointsAtGeneratedScript

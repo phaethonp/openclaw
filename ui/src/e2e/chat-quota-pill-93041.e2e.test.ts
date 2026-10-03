@@ -606,7 +606,7 @@ suite.define(() => {
             };
           }),
         )
-        .toEqual({ name: "OpenClaw", avatar: null, renderedAvatar: null });
+        .toEqual({ name: "Urbicana", avatar: null, renderedAvatar: null });
       await gateway.emitGatewayEvent("presence", {
         presence: [
           {

@@ -26,7 +26,7 @@ describe("mock Responses input text", () => {
       laterInput: [
         makeUserInput(
           [
-            "OpenClaw runtime event.",
+            "Urbicana runtime event.",
             "This context is runtime-generated, not user-authored. Keep internal details private.",
             "<<<BEGIN_OPENCLAW_INTERNAL_CONTEXT>>>",
             "Runtime: synthetic metadata.",

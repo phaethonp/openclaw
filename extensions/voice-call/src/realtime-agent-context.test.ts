@@ -109,7 +109,7 @@ describe("buildRealtimeVoiceInstructions", () => {
       agentId: "voice",
     });
 
-    expect(instructions).toContain("Agent context: You speak for an OpenClaw agent");
+    expect(instructions).toContain("Agent context: You speak for an Urbicana agent");
     expect(instructions.match(/Agent context:/g)).toHaveLength(1);
     expect(instructions).toContain("Consult behavior:");
     expect(instructions).toContain("Call openclaw_agent_consult before answering requests");
@@ -202,7 +202,7 @@ describe("published 2026.9.6 voice context", () => {
       agentId: "voice",
     });
     expect(instructions).toContain("Consult behavior:");
-    expect(instructions).toContain("OpenClaw agent voice context:");
+    expect(instructions).toContain("Urbicana agent voice context:");
     expect(instructions).toContain("- Agent id: voice");
     expect(instructions).toContain("- Name: Claw Voice");
     expect(instructions).toContain("- Theme: bright");
@@ -211,7 +211,7 @@ describe("published 2026.9.6 voice context", () => {
     expect(instructions.indexOf("### VOICE.md")).toBeLessThan(instructions.indexOf("### SOUL.md"));
     expect(instructions).not.toContain("OUTSIDE_CONTEXT");
     expect(instructions).not.toContain("missing.md");
-    expect(instructions).not.toContain("Agent context: You speak for an OpenClaw agent");
+    expect(instructions).not.toContain("Agent context: You speak for an Urbicana agent");
   });
 
   it.each([
@@ -255,7 +255,7 @@ describe("published 2026.9.6 voice context", () => {
     });
     expect(instructions.includes("Configured identity:")).toBe(settings.identity);
     expect(instructions.includes("Legacy workspace persona.")).toBe(settings.workspace);
-    expect(instructions.includes("OpenClaw agent voice context:")).toBe(settings.enabled);
+    expect(instructions.includes("Urbicana agent voice context:")).toBe(settings.enabled);
     if (!settings.enabled) {
       expect(instructions).toBe("Base voice instructions.");
     }

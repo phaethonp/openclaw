@@ -200,7 +200,7 @@ describe("update-cli", () => {
 
   it("renders update status as a table", async () => {
     await updateStatusCommand({ json: false });
-    expect(getLogOutput()).toContain("OpenClaw update status");
+    expect(getLogOutput()).toContain("Urbicana update status");
     expect(checkUpdateStatus).toHaveBeenCalledWith(
       expect.objectContaining({ useDetachedDevUpstream: false }),
     );
@@ -809,7 +809,7 @@ describe("update-cli", () => {
     await expect(updateCommand({ channel: "dev" })).rejects.toEqual(new ExitError(1));
 
     const logs = getLogOutput();
-    expect(logs).toContain(`OpenClaw update ${status === "error" ? "failed" : "skipped"}: dirty.`);
+    expect(logs).toContain(`Urbicana update ${status === "error" ? "failed" : "skipped"}: dirty.`);
     expect(logs).toContain(
       "Local changes prevented this update before installation. Your checkout was preserved.",
     );

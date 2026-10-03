@@ -1,6 +1,6 @@
 # Microsoft Foundry
 
-Use model deployments in Microsoft Foundry from OpenClaw. The plugin supports
+Use model deployments in Microsoft Foundry from Urbicana. The plugin supports
 chat deployments and MAI image generation, with Microsoft Entra ID or API-key
 authentication.
 
@@ -8,7 +8,7 @@ authentication.
 
 Run `openclaw onboard` and choose **Microsoft Foundry**. Select Entra ID to use
 the Azure CLI, or provide an Azure OpenAI API key and your resource endpoint.
-The Entra ID path requires the Azure CLI on the OpenClaw host.
+The Entra ID path requires the Azure CLI on the Urbicana host.
 
 Choose a deployment from your resource. Model references use
 `microsoft-foundry/<deployment-name>`; public model names alone do not identify

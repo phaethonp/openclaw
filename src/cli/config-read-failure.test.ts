@@ -53,7 +53,7 @@ it.each(entrypoints)(
       const host = runtime();
       await expect(run(host)).rejects.toMatchObject({ name: "ExitError", code: 1 });
       const diagnostic = host.error.mock.calls.flat().join("\n");
-      expect(diagnostic).toContain("OpenClaw config could not be read");
+      expect(diagnostic).toContain("Urbicana config could not be read");
       expect(diagnostic).toContain("Failed to read include file: missing.json");
       expect(diagnostic).not.toContain("config is invalid");
       expect(diagnostic).not.toContain("doctor --fix");
@@ -74,7 +74,7 @@ it("retains read-failure classification in JSON readiness output", async () => {
     const output = JSON.parse(String(host.log.mock.calls[0]?.[0]));
     expect(output).toMatchObject({
       ok: false,
-      error: { message: expect.stringContaining("OpenClaw config could not be read") },
+      error: { message: expect.stringContaining("Urbicana config could not be read") },
       issues: [{ message: expect.stringContaining("Failed to read include file: missing.json") }],
     });
   });
@@ -86,7 +86,7 @@ it("keeps read-only remote commands available after a config read failure", asyn
     const host = runtime();
     await ensureConfigReady({ runtime: host, commandPath: ["gateway", "call"] });
     expect(host.exit).not.toHaveBeenCalled();
-    expect(host.error.mock.calls.flat().join("\n")).toContain("OpenClaw config could not be read");
+    expect(host.error.mock.calls.flat().join("\n")).toContain("Urbicana config could not be read");
   });
 });
 
@@ -105,7 +105,7 @@ it.each([
       }),
     ).rejects.toMatchObject({ name: "ExitError", code: 1 });
     const diagnostic = host.error.mock.calls.flat().join("\n");
-    expect(diagnostic).toContain("OpenClaw config is invalid");
+    expect(diagnostic).toContain("Urbicana config is invalid");
     expect(diagnostic).toContain("doctor --fix");
     expect(diagnostic).not.toContain("config could not be read");
     expect(await fs.readFile(state.configPath, "utf8")).toBe(raw);

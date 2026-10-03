@@ -15,7 +15,7 @@ import { deliverReplies, deliverStructuredReplies } from "./bot/delivery.replies
 import { resolveTelegramTestUpload } from "./send.telegram-http.test-support.js";
 
 const DELIVERY_WARNING =
-  "I couldn't confirm the reply reached Telegram. Check OpenClaw chat history for the answer before retrying the task.";
+  "I couldn't confirm the reply reached Telegram. Check Urbicana chat history for the answer before retrying the task.";
 const DELIVERY_WARNING_PREFIX = "I couldn't confirm the reply reached Telegram.";
 
 describe("Telegram progress custody and delivery outcomes through HTTP", () => {

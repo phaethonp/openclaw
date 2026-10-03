@@ -146,7 +146,7 @@ export function validateGatewayPasswordInput(value: unknown): string | undefined
   return undefined;
 }
 
-/** Prints the onboarding banner: pixel mascot beside the OPENCLAW wordmark. */
+/** Prints the onboarding banner: the OPENCLAW wordmark. */
 export async function printWizardHeader(runtime: RuntimeEnv): Promise<void> {
   await printClawBanner(runtime);
 }
@@ -231,7 +231,7 @@ async function assertFullResetPreservesOnboardingLock(workspaceDir: string): Pro
   ) {
     throw new Error(
       "Full reset workspace overlaps the active onboarding lock directory. " +
-        "Choose a workspace outside the OpenClaw state migration directory or use a narrower reset scope.",
+        "Choose a workspace outside the Urbicana state migration directory or use a narrower reset scope.",
     );
   }
 }

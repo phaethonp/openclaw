@@ -1,7 +1,7 @@
 /**
  * OpenResponses HTTP Handler
  *
- * Implements the OpenResponses `/v1/responses` endpoint for OpenClaw Gateway.
+ * Implements the OpenResponses `/v1/responses` endpoint for Urbicana Gateway.
  *
  * @see https://www.open-responses.com/
  */
@@ -581,7 +581,7 @@ export async function handleOpenResponsesHttpRequest(
         output.push(
           createAssistantOutputItem({
             id: outputItemId,
-            text: assistantText || "No response from OpenClaw.",
+            text: assistantText || "No response from Urbicana.",
             phase: toolCalls ? "commentary" : "final_answer",
             status,
           }),
@@ -683,7 +683,7 @@ export async function handleOpenResponsesHttpRequest(
         pending: pendingAssistantText,
         resultText: finalResultText,
         streamedText: streamedAssistantText.text,
-        fallbackText: finalToolCalls ? "" : "No response from OpenClaw.",
+        fallbackText: finalToolCalls ? "" : "No response from Urbicana.",
       });
       if (!finalText.startsWith(streamedAssistantText.text)) {
         finalizeUnrepresentableAssistantReplacement();

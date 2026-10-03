@@ -1,6 +1,6 @@
 ---
 name: visualize
-description: "Create inline visuals for code and explanations, or author persistent OpenClaw dashboard widgets with show_widget."
+description: "Create inline visuals for code and explanations, or author persistent Urbicana dashboard widgets with show_widget."
 ---
 
 # Visualize
@@ -38,7 +38,7 @@ widgets; follow the current tool schema instead of earlier delivery instructions
 ## Author the content
 
 Send the markup itself in `widget_code`. Use an HTML or SVG fragment, optionally
-including `<style>` and `<script>`; OpenClaw supplies the document shell, theme,
+including `<style>` and `<script>`; Urbicana supplies the document shell, theme,
 and host bridges. Do not send a file path, Markdown fence, full HTML document, or
 another application's visualization directive. `title` is host metadata: start
 with useful content rather than repeating the title or drawing dashboard chrome.
@@ -93,7 +93,7 @@ they affect interpretation. Preserve the last successful data when refresh fails
 Use a mockup's product context for its inner controls while retaining the host's
 theme for the surrounding surface.
 
-OpenClaw styles native headings, controls, tables, and code. It provides `.card`,
+Urbicana styles native headings, controls, tables, and code. It provides `.card`,
 `.row`, `.metric`, `.muted`, `.badge` with `.ok`/`.warn`/`.danger`/`.info`, and
 `button.primary`. Use these when they fit; do not assume another host's classes.
 Colors and typography use `--text`, `--text-strong`, `--muted`, `--surface`,

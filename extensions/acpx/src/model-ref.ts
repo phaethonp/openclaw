@@ -16,7 +16,7 @@ export function withAcpxSessionOptions(input: EnsureInput): DelegateEnsureInput 
 }
 
 // Try the exact harness id first. ACPX owns live catalog validation and vendor aliases;
-// only its typed rejection allows retrying an OpenClaw provider/model reference.
+// only its typed rejection allows retrying an Urbicana provider/model reference.
 export async function withOpenClawModelRef<T>(
   requested: string,
   apply: (model: string) => Promise<T>,

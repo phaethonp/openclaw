@@ -316,7 +316,7 @@ function writeProviderAcceptanceObserver<T extends object>(
   return options;
 }
 
-/** Attach an OpenClaw-internal provider acceptance observer to one model call. */
+/** Attach an Urbicana-internal provider acceptance observer to one model call. */
 export function withProviderAcceptanceObserver<T extends object>(
   options: T,
   observer: ProviderAcceptanceObserver,

@@ -1,8 +1,8 @@
-# OpenClaw Vydra Provider
+# Urbicana Vydra Provider
 
-Official OpenClaw provider plugin for Vydra image, video, and speech generation.
+Official Urbicana provider plugin for Vydra image, video, and speech generation.
 
-Install from OpenClaw:
+Install from Urbicana:
 
 ```bash
 openclaw plugins install @openclaw/vydra-provider

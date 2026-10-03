@@ -1,6 +1,6 @@
 # Policy
 
-Check an OpenClaw workspace against requirements you author in `policy.jsonc`.
+Check an Urbicana workspace against requirements you author in `policy.jsonc`.
 The plugin adds conformance findings to Doctor and provides commands for policy
 checks, comparisons, and attestation evidence.
 

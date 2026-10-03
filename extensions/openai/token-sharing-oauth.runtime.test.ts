@@ -296,7 +296,7 @@ describe("ChatGPT token-sharing authorization", () => {
       grantScope = "openid resource.invoke chatgpt.tokens.use.direct offline_access";
       const registered = await method.run(ctx);
       expect(authorization.searchParams.get("client_id")).toBe("dynamic_agent_client");
-      expect(authorization.searchParams.get("agent_name_hint")).toBe("OpenClaw");
+      expect(authorization.searchParams.get("agent_name_hint")).toBe("Urbicana");
       expect(authorization.searchParams.get("scope")).toBe(
         "openid email profile resource.invoke chatgpt.tokens.use.direct offline_access",
       );

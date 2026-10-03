@@ -128,7 +128,7 @@ const gatewayAttempts = fs.readFileSync(recordPath, "utf8").trim().split("\\n")
   .map((line) => JSON.parse(line)).filter((entry) => entry.kind === "gateway").length;
 if (gatewayAttempts === 1 && process.env.QA_STARTUP_RETRY) {
   process.stderr.write(process.env.QA_STARTUP_RETRY === "migration"
-    ? "OpenClaw plugin migration inputs changed during startup convergence; refusing readiness."
+    ? "Urbicana plugin migration inputs changed during startup convergence; refusing readiness."
     : "listen EADDRINUSE: address already in use");
   process.exit(18);
 }

@@ -19,7 +19,7 @@ function readNextCursor(value: unknown): string | undefined {
 
 /**
  * Native archive includes the spawned subtree. Enumerate that same subtree first so an
- * OpenClaw-owned descendant cannot be stopped as an undocumented side effect.
+ * Urbicana-owned descendant cannot be stopped as an undocumented side effect.
  */
 export async function assertCodexArchiveDescendantsUnowned(params: {
   bindingStore: CodexAppServerBindingStore;
@@ -69,7 +69,7 @@ export async function assertCodexArchiveDescendantsUnowned(params: {
       await params.assertDescendantIdle(descendantThreadId);
       if (await params.bindingStore.hasOtherThreadOwner(descendantThreadId)) {
         throw new Error(
-          "cannot archive a Codex thread while a spawned descendant is owned by an OpenClaw session",
+          "cannot archive a Codex thread while a spawned descendant is owned by an Urbicana session",
         );
       }
     }

@@ -416,7 +416,7 @@ async function sendQrPngToSupportedChannel(params: {
 export default definePluginEntry({
   id: "device-pair",
   name: "Device Pair",
-  description: "QR/bootstrap pairing helpers for OpenClaw devices",
+  description: "QR/bootstrap pairing helpers for Urbicana devices",
   register(api: OpenClawPluginApi) {
     let notifierService: ReturnType<NotifyModule["createPairingNotifierService"]> | undefined;
     api.registerService({
@@ -589,7 +589,7 @@ export default definePluginEntry({
                 api,
                 ctx,
                 target,
-                caption: ["Scan this QR code with the OpenClaw iOS app:", "", ...infoLines].join(
+                caption: ["Scan this QR code with the Urbicana iOS app:", "", ...infoLines].join(
                   "\n",
                 ),
                 qrFilePath,
@@ -647,7 +647,7 @@ export default definePluginEntry({
             }
             return {
               text: [
-                "Scan this QR code with the OpenClaw iOS app:",
+                "Scan this QR code with the Urbicana iOS app:",
                 "",
                 buildQrInfoLines({
                   payload,

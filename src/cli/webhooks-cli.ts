@@ -32,8 +32,8 @@ function addGmailDeliveryOptions(command: Command, defaults = false): Command {
       defaults ? DEFAULT_GMAIL_SUBSCRIPTION : undefined,
     )
     .option("--label <label>", "Gmail label to watch", defaults ? DEFAULT_GMAIL_LABEL : undefined)
-    .option("--hook-url <url>", "OpenClaw hook URL")
-    .option("--hook-token <token>", "OpenClaw hook token")
+    .option("--hook-url <url>", "Urbicana hook URL")
+    .option("--hook-token <token>", "Urbicana hook token")
     .option("--push-token <token>", "Push token for gog watch serve")
     .option(
       "--bind <host>",
@@ -85,7 +85,7 @@ export function registerWebhooksCli(program: Command) {
   addGmailDeliveryOptions(
     gmail
       .command("setup")
-      .description("Configure Gmail watch + Pub/Sub + OpenClaw hooks")
+      .description("Configure Gmail watch + Pub/Sub + Urbicana hooks")
       .requiredOption("--account <email>", "Gmail account to watch")
       .option("--project <id>", "GCP project id (OAuth client owner)")
       .option("--topic <name>", "Pub/Sub topic name", DEFAULT_GMAIL_TOPIC),

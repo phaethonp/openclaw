@@ -524,7 +524,7 @@ export async function fetchCdpChecked(
     const res = await withManagedProxyForCdpUrl(fetchUrl, () =>
       withNoProxyForCdpUrl(fetchUrl, async () => {
         const parsedUrl = new URL(fetchUrl);
-        // Loopback CDP is an OpenClaw control plane, not page navigation. Allow
+        // Loopback CDP is an Urbicana control plane, not page navigation. Allow
         // its exact host while preserving the caller's policy for remote hosts.
         const policy = isLoopbackHost(parsedUrl.hostname)
           ? withExactHostnamePolicy(ssrfPolicy, parsedUrl.hostname)

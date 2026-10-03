@@ -101,7 +101,7 @@ export function resolveCodexRunSessionBindingAuthority(params: {
   }).state;
 }
 
-/** Builds the terminal coordination error used when a newer OpenClaw session owns the binding. */
+/** Builds the terminal coordination error used when a newer Urbicana session owns the binding. */
 export function createCodexSessionGenerationSupersededError(
   sessionId: string,
 ): AgentHarnessSessionSupersededError {
@@ -316,7 +316,7 @@ type CodexSessionGenerationReclaimParams = {
   reclaimStale?: boolean;
 };
 
-/** Lets the authoritative OpenClaw session generation claim a stale stable binding row. */
+/** Lets the authoritative Urbicana session generation claim a stale stable binding row. */
 export async function reclaimCurrentCodexSessionGeneration(
   params: CodexSessionGenerationReclaimParams,
 ): Promise<boolean> {
@@ -561,7 +561,7 @@ export function createCodexAppServerBindingStore(
                   current.retired === true &&
                   current.sessionId === mutation.expectedPreviousSessionId
                 ) {
-                  // Reset boundaries now retain the OpenClaw session id. The
+                  // Reset boundaries now retain the Urbicana session id. The
                   // authoritative session-store check above proves this fence
                   // belongs to the previous in-place lifecycle, not live work.
                   return {

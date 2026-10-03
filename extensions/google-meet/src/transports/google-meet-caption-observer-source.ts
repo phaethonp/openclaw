@@ -17,7 +17,7 @@ export const GOOGLE_MEET_CAPTION_OBSERVER_SOURCE = `
     if (!captureCaptions) return undefined;
     const w = window;
     if (!inCall && !w.__openclawMeetCaptions) return undefined;
-    // A reused tab starts a fresh logical transcript for each OpenClaw session.
+    // A reused tab starts a fresh logical transcript for each Urbicana session.
     // Status refreshes omit the id, so they preserve the active page-owned buffer.
     if (!w.__openclawMeetCaptions || (captionSessionId && w.__openclawMeetCaptions.sessionId !== captionSessionId)) {
       if (w.__openclawMeetCaptions?.settleTimer !== undefined) {

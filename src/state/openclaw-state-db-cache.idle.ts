@@ -70,7 +70,7 @@ export function createStateDatabaseIdleRetirement(
         borrowers.get(database.db)?.retiring
       ) {
         throw new Error(
-          "OpenClaw state database idle retention requires its current canonical handle",
+          "Urbicana state database idle retention requires its current canonical handle",
         );
       }
       const references = idleReferences.get(database.db) ?? new Set<object>();

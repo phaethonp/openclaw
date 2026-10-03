@@ -92,7 +92,7 @@ export function resolveCodexNativeExecutionPolicy(params: {
     ...(effectiveExecHost === "node"
       ? {
           blockReason:
-            "OpenClaw exec host=node is active for this session. Codex app-server native execution cannot route shell, filesystem, MCP, or app-backed work through the selected OpenClaw node.",
+            "Urbicana exec host=node is active for this session. Codex app-server native execution cannot route shell, filesystem, MCP, or app-backed work through the selected Urbicana node.",
         }
       : {}),
   };
@@ -104,10 +104,10 @@ export function formatCodexNativeNodeExecBlock(params: {
   reason?: string;
 }): string {
   return [
-    `Codex-native ${params.surface} is unavailable because OpenClaw exec host=node is active for this session.`,
+    `Codex-native ${params.surface} is unavailable because Urbicana exec host=node is active for this session.`,
     params.reason ??
-      "Codex app-server native execution cannot route execution through the selected OpenClaw node.",
-    "Use a normal Codex harness turn so OpenClaw exec/process tools run on the node, or switch exec host to gateway for native Codex app-server execution.",
+      "Codex app-server native execution cannot route execution through the selected Urbicana node.",
+    "Use a normal Codex harness turn so Urbicana exec/process tools run on the node, or switch exec host to gateway for native Codex app-server execution.",
   ].join(" ");
 }
 

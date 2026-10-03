@@ -1,8 +1,8 @@
-# OpenClaw Perplexity Plugin
+# Urbicana Perplexity Plugin
 
-Official OpenClaw plugin for Perplexity.
+Official Urbicana plugin for Perplexity.
 
-Install from OpenClaw:
+Install from Urbicana:
 
 ```bash
 openclaw plugins install @openclaw/perplexity-plugin

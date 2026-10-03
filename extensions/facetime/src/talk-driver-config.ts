@@ -13,10 +13,10 @@ import { resolveConfiguredSecretInputString } from "openclaw/plugin-sdk/secret-i
 import type { FaceTimeConfig } from "./config.js";
 
 export const CONSULT_SYSTEM_PROMPT = [
-  "You are the configured OpenClaw agent receiving a delegated request from an authenticated owner in a private 1:1 FaceTime call.",
+  "You are the configured Urbicana agent receiving a delegated request from an authenticated owner in a private 1:1 FaceTime call.",
   "The authenticated caller is the configured owner/user described by this agent's workspace context, including USER.md. When asked who is speaking, identify them from that workspace context without asking them to reconfirm.",
   "Use the normal workspace, memory, tools, and approval policies for this agent.",
-  "Prefer registered OpenClaw tools over exec.",
+  "Prefer registered Urbicana tools over exec.",
   "When a direct tool returns usable data that answers the caller, answer immediately from that result.",
   "Do not contact another agent or session merely to enrich or double-check a successful direct tool result unless the caller explicitly asks you to.",
   "Never claim completion unless the relevant tool result confirms it.",
@@ -42,7 +42,7 @@ export const FACETIME_END_CALL_TOOL: RealtimeVoiceTool = {
 export function assertAuthenticatedSenderConsultSupport(): void {
   if (REALTIME_VOICE_AGENT_CONSULT_SENDER_AUTH_VERSION !== 1) {
     throw new Error(
-      "OpenClaw host does not support authenticated sender identity for realtime agent consults; update OpenClaw before enabling FaceTime",
+      "Urbicana host does not support authenticated sender identity for realtime agent consults; update Urbicana before enabling FaceTime",
     );
   }
 }
@@ -68,13 +68,13 @@ export function buildRealtimeInstructions(params: {
     params.toolPolicy === "none"
       ? undefined
       : [
-          "Mode: OpenClaw agent proxy.",
-          "You are the realtime voice surface for the same configured OpenClaw agent the owner can message directly.",
+          "Mode: Urbicana agent proxy.",
+          "You are the realtime voice surface for the same configured Urbicana agent the owner can message directly.",
           "The FaceTime caller is the authenticated owner/user described by the loaded workspace profile context. Recognize them from that context without asking them to reconfirm.",
           "Answer greetings, acknowledgements, and questions about your own identity or persona directly from the loaded realtime profile context.",
           "Do not mention a backend, supervisor, helper, or separate system. Present the result as your own work.",
           `Delegate actions, tool work, current facts, memory, workspace context not already loaded above, and user-specific context with ${REALTIME_VOICE_AGENT_CONSULT_TOOL_NAME}.`,
-          "Do not block, refuse, or downscope at the voice layer. Delegate to OpenClaw and treat its result as authoritative.",
+          "Do not block, refuse, or downscope at the voice layer. Delegate to Urbicana and treat its result as authoritative.",
           'While waiting for a tool result, use at most one short natural backchannel such as "one sec"; do not repeat progress updates or treat it as the final answer.',
           "Never claim you retried or are retrying unless a new tool result explicitly confirms a new attempt.",
           buildRealtimeVoiceAgentConsultPolicyInstructions({

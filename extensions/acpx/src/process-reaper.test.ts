@@ -334,7 +334,7 @@ describe("process reaper", () => {
     expect(killProcess).not.toHaveBeenCalled();
   });
 
-  it("does not kill a reused pid when the live command is not OpenClaw-owned", async () => {
+  it("does not kill a reused pid when the live command is not Urbicana-owned", async () => {
     const { deps, killed } = cleanupDeps([{ pid: 250, ppid: 1, command: "node unrelated.js" }]);
 
     const result = await cleanupOpenClawOwnedAcpxProcessTree({
@@ -390,7 +390,7 @@ describe("process reaper", () => {
     expect(killed).toStrictEqual([]);
   });
 
-  it("reaps stale OpenClaw-owned wrapper and adapter orphans on startup", async () => {
+  it("reaps stale Urbicana-owned wrapper and adapter orphans on startup", async () => {
     const { deps, killed } = cleanupDeps([
       { pid: 400, ppid: 1, command: CODEX_WRAPPER_COMMAND },
       { pid: 401, ppid: 400, command: PLUGIN_DEPS_CODEX_COMMAND },

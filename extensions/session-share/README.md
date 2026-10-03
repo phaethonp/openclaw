@@ -1,6 +1,6 @@
 # Session Share
 
-Let teammates read selected OpenClaw conversations from another Gateway.
+Let teammates read selected Urbicana conversations from another Gateway.
 Session Share publishes user and assistant text in a read-only session catalog;
 the source operator chooses which session groups to share.
 

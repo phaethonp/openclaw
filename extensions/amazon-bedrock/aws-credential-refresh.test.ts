@@ -214,7 +214,7 @@ describe("Bedrock shared credential rotation", () => {
           `[rotation]\naws_access_key_id = TEST_${generation}\naws_secret_access_key = synthetic-secret-${generation}\naws_session_token = synthetic-token-${generation}\n`,
         );
       await rotate("A");
-      // Prime the actual SDK's file cache, independently of OpenClaw's refresh helper.
+      // Prime the actual SDK's file cache, independently of Urbicana's refresh helper.
       expect((await defaultProvider()()).accessKeyId).toBe("TEST_A");
       const resolved: string[] = [];
       const pendingCredentials: Promise<void>[] = [];

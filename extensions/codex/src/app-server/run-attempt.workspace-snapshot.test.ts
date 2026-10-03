@@ -134,7 +134,7 @@ describe("Codex workspace instruction snapshots", () => {
   it("captures an empty legacy snapshot once and preserves it when AGENTS.md appears", async () => {
     const { params, agentsPath } = await workspace();
     const started = await attempt(params);
-    expect(started.instructions).not.toContain("OpenClaw Agent Workspace Instructions");
+    expect(started.instructions).not.toContain("Urbicana Agent Workspace Instructions");
     const binding = await readCodexAppServerBinding(params.sessionFile);
     assert(binding);
     await writeCodexAppServerBinding(params.sessionFile, {

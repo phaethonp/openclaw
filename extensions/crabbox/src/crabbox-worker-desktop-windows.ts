@@ -1,7 +1,7 @@
 import type { WorkerDesktopEndpoint } from "openclaw/plugin-sdk/plugin-entry";
 
 const WINDOWS_POWERSHELL = String.raw`C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe`;
-const WINDOWS_DESKTOP_ROOT = String.raw`C:\ProgramData\OpenClaw\cloud-workers`;
+const WINDOWS_DESKTOP_ROOT = String.raw`C:\ProgramData\Urbicana\cloud-workers`;
 const WINDOWS_CDP_PORT = 9222;
 
 function quote(value: string): string {
@@ -144,7 +144,7 @@ function Get-WorkerVnc([string]$sid, [int]$session) {
 }
 `;
 
-// Only OpenClaw's exclusive desktop leases hand VNC to the interactive account.
+// Only Urbicana's exclusive desktop leases hand VNC to the interactive account.
 // Service credentials stay in this administrative context, outside launcher requests.
 const prepareVnc = `${vncIdentity}
 if (-not (Test-Path -LiteralPath $vncExecutable -PathType Leaf)) { throw 'Crabbox TightVNC is unavailable; reprovision the Windows desktop worker' }
@@ -212,7 +212,7 @@ $source = $source.Replace('__CRABBOX_VNC_IDENTITY__', (ConvertTo-Json -InputObje
 
 function browserLauncher(leaseId: string): string {
   return `$ErrorActionPreference = 'Stop'
-if ($args.Count) { throw 'OpenClaw worker browser does not accept arguments' }
+if ($args.Count) { throw 'Urbicana worker browser does not accept arguments' }
 $profile = ${quote(`${desktopDirectory(leaseId)}\\browser-profile`)}
 $browser = '__CRABBOX_BROWSER_EXECUTABLE__'
 New-Item -ItemType Directory -Force -Path $profile | Out-Null
@@ -260,7 +260,7 @@ export function createCrabboxWindowsDesktopSetup(leaseId: string, wallpaperBase6
   const directory = desktopDirectory(leaseId);
   const browser = browserLauncher(leaseId);
   const terminal = `$ErrorActionPreference = 'Stop'
-if ($args.Count) { throw 'OpenClaw worker terminal does not accept arguments' }
+if ($args.Count) { throw 'Urbicana worker terminal does not accept arguments' }
 $child = Start-Process -FilePath ${quote(WINDOWS_POWERSHELL)} -ArgumentList '-NoLogo -NoProfile -NoExit' -WindowStyle Normal -PassThru
 Start-Sleep -Milliseconds 200
 if ($child.HasExited) { throw 'Cloud worker terminal exited before becoming ready' }`;

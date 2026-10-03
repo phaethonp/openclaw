@@ -1,4 +1,4 @@
-// OpenClaw state database tests cover state DB migrations and persistence.
+// Urbicana state database tests cover state DB migrations and persistence.
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import fs from "node:fs";
@@ -6593,7 +6593,7 @@ INSERT INTO macos_port_guardian_records VALUES (4242, 18789, '/usr/bin/ssh', 're
     });
     expect(repairOpenClawStateDatabaseSchema(options)).toEqual({
       changes: [
-        "Migrated shared state operator approvals → OpenClaw system changes",
+        "Migrated shared state operator approvals → Urbicana system changes",
         expect.stringMatching(/^Rebuilt canonical shared-state SQLite indexes \(\d+\)$/u),
       ],
       warnings: [],

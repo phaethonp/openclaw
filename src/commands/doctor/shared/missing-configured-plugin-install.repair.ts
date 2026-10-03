@@ -128,7 +128,7 @@ type PluginInstallRepairOptions = {
   baselineRecords?: Record<string, PluginInstallRecord>;
 };
 
-/** Repair missing installs inferred from the current OpenClaw config. */
+/** Repair missing installs inferred from the current Urbicana config. */
 export async function repairMissingConfiguredPluginInstalls(
   params: PluginInstallRepairOptions & { repairVersionDrift?: boolean },
 ): Promise<RepairMissingPluginInstallsResult> {

@@ -160,7 +160,7 @@ describe("normalization-core/string-normalization", () => {
   it.each([
     ["#Команда разработки", "команда-разработки"],
     ["@فريق التطوير", "فريق-التطوير"],
-    ["#OpenClaw中文群", "openclaw中文群"],
+    ["#Urbicana中文群", "openclaw中文群"],
   ])("preserves Unicode letters in normalizeAtHashSlug: %s", (input, expected) => {
     expect(normalizeAtHashSlug(input)).toBe(expected);
   });

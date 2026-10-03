@@ -440,7 +440,7 @@ describe("update run wire contract", () => {
       runId: run.runId,
       ackDelivered: true,
       ackQueued: true,
-      acknowledgement: "Updating OpenClaw.",
+      acknowledgement: "Updating Urbicana.",
     };
     expect(validateUpdateRunResult(acknowledged)).toBe(true);
     for (const invalid of [{ ackQueued: "true" }, { acknowledgement: false }]) {

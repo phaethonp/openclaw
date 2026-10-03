@@ -279,7 +279,7 @@ describe("runtime tool fixture", () => {
     );
   });
 
-  it("skips Codex-native fixtures when only OpenClaw dynamic exposure evidence is absent", async () => {
+  it("skips Codex-native fixtures when only Urbicana dynamic exposure evidence is absent", async () => {
     const env = await makeEnv({
       mock: { baseUrl: "http://127.0.0.1:9999" },
       gateway: {
@@ -429,7 +429,7 @@ describe("runtime tool fixture", () => {
       encode: (input: string) => input,
     },
     {
-      label: "OpenClaw input envelope",
+      label: "Urbicana input envelope",
       encode: (input: string) => ({ input }),
     },
     {
@@ -1024,7 +1024,7 @@ describe("runtime tool fixture", () => {
     {
       name: "unavailable-provider",
       toolName: "web_search",
-      happyArgs: { query: "OpenClaw runtime parity fixed query" },
+      happyArgs: { query: "Urbicana runtime parity fixed query" },
       happyOutput: "result",
       failureOutput: "web_search is disabled or no provider is available.",
     },
@@ -1049,7 +1049,7 @@ describe("runtime tool fixture", () => {
     {
       name: "unavailable-provider happy output",
       toolName: "web_search",
-      happyArgs: { query: "OpenClaw runtime parity fixed query" },
+      happyArgs: { query: "Urbicana runtime parity fixed query" },
       happyOutput: "web_search is disabled or no provider is available.",
       failureOutput: "web_search is disabled or no provider is available.",
       expectedError: "expected mock happy-path successful tool output for web_search",
@@ -1076,7 +1076,7 @@ describe("runtime tool fixture", () => {
     expect(details).toContain("read mock provider happy planned args");
   });
 
-  it("still fails required OpenClaw dynamic fixtures when the tool is absent", async () => {
+  it("still fails required Urbicana dynamic fixtures when the tool is absent", async () => {
     const env = await makeEnv();
 
     await expect(

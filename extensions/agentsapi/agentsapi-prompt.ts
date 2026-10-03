@@ -20,19 +20,19 @@ import {
 import type { AgentsApiEnvironment } from "./config.js";
 
 const OPENAI_HOSTED_ENVIRONMENT_INSTRUCTIONS = [
-  "You are the OpenClaw assistant. Use your hosted Linux workspace for commands and files.",
-  "OpenClaw functions run in the Gateway and use its workspace; your hosted VM owns shell commands and VM files.",
-  "Input attachments are mapped to hosted VM paths in each user message. Write deliverable files under /workspace/outputs; OpenClaw transfers them and attaches them to your final reply after your turn completes.",
+  "You are the Urbicana assistant. Use your hosted Linux workspace for commands and files.",
+  "Urbicana functions run in the Gateway and use its workspace; your hosted VM owns shell commands and VM files.",
+  "Input attachments are mapped to hosted VM paths in each user message. Write deliverable files under /workspace/outputs; Urbicana transfers them and attaches them to your final reply after your turn completes.",
   "Gateway messaging functions cannot open hosted VM paths. Finish your assistant turn to deliver hosted output attachments.",
 ].join("\n\n");
 
 const SELF_HOSTED_ENVIRONMENT_INSTRUCTIONS = [
-  "You are the OpenClaw assistant. Use your connected self-hosted executor for commands and workspace files.",
-  "OpenClaw functions run in the Gateway and use its workspace. Native shell commands and file operations run in your connected executor's workspace.",
-  "OpenClaw does not transfer input attachments or output files to or from this executor.",
+  "You are the Urbicana assistant. Use your connected self-hosted executor for commands and workspace files.",
+  "Urbicana functions run in the Gateway and use its workspace. Native shell commands and file operations run in your connected executor's workspace.",
+  "Urbicana does not transfer input attachments or output files to or from this executor.",
 ].join("\n\n");
 
-/** The native session owns this snapshot until OpenClaw resets its binding. */
+/** The native session owns this snapshot until Urbicana resets its binding. */
 export async function buildAgentsApiInstructions(
   params: AgentHarnessAttemptParamsV2,
   tools: readonly AgentToolParam.AgentToolConfigParamFunction[],
@@ -76,13 +76,13 @@ export async function buildAgentsApiInstructions(
       ? OPENAI_HOSTED_ENVIRONMENT_INSTRUCTIONS
       : `${SELF_HOSTED_ENVIRONMENT_INSTRUCTIONS}\n\nYour executor workspace directory is ${JSON.stringify(environment.workspace_directory)}.`,
     environment.type === "openai_hosted"
-      ? "OpenClaw workspace files below are Gateway-owned instruction and reference snapshots. Their paths identify their source, not files available in your hosted VM. Do not try to reread or edit those paths with hosted shell or file tools."
-      : "OpenClaw workspace files below are Gateway-owned instruction and reference snapshots. Their paths identify their source, not files available in your connected executor. Do not try to reread or edit those paths with executor shell or file tools.",
+      ? "Urbicana workspace files below are Gateway-owned instruction and reference snapshots. Their paths identify their source, not files available in your hosted VM. Do not try to reread or edit those paths with hosted shell or file tools."
+      : "Urbicana workspace files below are Gateway-owned instruction and reference snapshots. Their paths identify their source, not files available in your connected executor. Do not try to reread or edit those paths with executor shell or file tools.",
     workspace.instructionSnapshot.instructions,
     workspace.personaInstructions,
     workspace.promptContextFiles.length
       ? [
-          "## OpenClaw Workspace Context",
+          "## Urbicana Workspace Context",
           "Supporting project reference from the Gateway workspace:",
           ...workspace.promptContextFiles.map((file) => `### ${file.path}\n\n${file.content}`),
         ].join("\n\n")
@@ -90,7 +90,7 @@ export async function buildAgentsApiInstructions(
     workspace.memoryRecallInstructions,
     workspace.memoryReferenceFiles.length
       ? [
-          "## OpenClaw Workspace Memory",
+          "## Urbicana Workspace Memory",
           `MEMORY.md is a memory file, not an instruction file. Its contents are not embedded here. Use ${memoryToolNames.join(" or ")} when durable memory is relevant.`,
           ...workspace.memoryReferenceFiles.map((file) => `- ${file.path}`),
         ].join("\n\n")
@@ -119,7 +119,7 @@ export async function buildAgentsApiInstructions(
         })
       : undefined,
     // Without Gateway control tools, omit the shared builder's CLI setup hint:
-    // the hosted VM cannot configure the Gateway with a local OpenClaw CLI.
+    // the hosted VM cannot configure the Gateway with a local Urbicana CLI.
     buildCredentialSafetyPrompt(
       toolNames.has("openclaw") || toolNames.has("gateway")
         ? { controlToolsAvailable: true }
@@ -140,7 +140,7 @@ export function buildAgentsApiTurnContext(
   }
   const toolNames = new Set(tools.map((tool) => tool.name));
   return joinSections([
-    "OpenClaw runtime context for this turn (replaces earlier runtime facts):",
+    "Urbicana runtime context for this turn (replaces earlier runtime facts):",
     buildTemporalContextText({
       configuredTimezone: params.config?.agents?.defaults?.userTimezone,
       sessionStatusAvailable: toolNames.has("session_status"),

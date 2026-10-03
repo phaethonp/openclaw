@@ -173,7 +173,7 @@ describe("browser extension pairing Gateway URL", () => {
 
   it("repairs only the explicitly selected native target without profile discovery or pairing", async () => {
     const report = {
-      changes: ["Repaired Google Chrome OpenClaw native messaging registration."],
+      changes: ["Repaired Google Chrome Urbicana native messaging registration."],
       warnings: [],
       registrations: [],
       retainedNativeHostPaths: ["/new/native-host-entry.js"],
@@ -206,7 +206,7 @@ describe("browser extension pairing Gateway URL", () => {
       async (params: Parameters<typeof installChromeExtensionBootstrap>[0]) => {
         params.onProgress?.("Pre-registered the native host for Chromium.");
         params.onProgress?.(
-          "Native bootstrap is ready. Add OpenClaw from the Chrome Web Store. For development, load unpacked from /stable/openclaw-extension.",
+          "Native bootstrap is ready. Add Urbicana from the Chrome Web Store. For development, load unpacked from /stable/openclaw-extension.",
         );
         return {
           platform: "linux",

@@ -2,7 +2,7 @@
 
 Generate videos with Wan models on Alibaba Model Studio. The plugin supplies
 text-to-video, image-to-video, and reference-to-video capabilities through
-OpenClaw's shared video generation feature.
+Urbicana's shared video generation feature.
 
 ## Get started
 

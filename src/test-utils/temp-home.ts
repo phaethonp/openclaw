@@ -19,7 +19,7 @@ export type TempHomeEnv = {
   restore: () => Promise<void>;
 };
 
-/** Creates a temporary OpenClaw home and process env override for stateful tests. */
+/** Creates a temporary Urbicana home and process env override for stateful tests. */
 export async function createTempHomeEnv(prefix: string): Promise<TempHomeEnv> {
   const { cleanupSessionStateForTest } = await import("./session-state-cleanup.js");
   const home = await fs.mkdtemp(path.join(os.tmpdir(), prefix));

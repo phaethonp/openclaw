@@ -4,7 +4,7 @@ export const GATEWAY_STARTUP_MAINTENANCE_REQUIRED_REASON = "gateway.maintenance_
 
 const maintenanceReasons = {
   "state-migrations": "state migration",
-  "newer-schema": "a newer OpenClaw build",
+  "newer-schema": "a newer Urbicana build",
   "agent-media": "offline media migration",
   "agent-databases-composite-primary-key": "state database schema migration",
   "audit-events-v2": "state database schema migration",

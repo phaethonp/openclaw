@@ -1,6 +1,6 @@
 # @openclaw/zoom-meetings
 
-Official Zoom browser meeting participant plugin for OpenClaw.
+Official Zoom browser meeting participant plugin for Urbicana.
 
 This plugin registers the `zoom_meetings` tool so agents can join Zoom meetings
 as a Chrome browser guest.
@@ -25,4 +25,4 @@ and guest join setup:
 - Plugin id: `zoom-meetings`
 - Tool: `zoom_meetings`
 - Package: `@openclaw/zoom-meetings`
-- Minimum OpenClaw host: `2026.7.2`
+- Minimum Urbicana host: `2026.7.2`

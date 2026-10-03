@@ -61,7 +61,7 @@ type PreparedCliBundleMcpConfig = {
   env?: Record<string, string>;
 };
 
-/** A managed provider pin replaces native search without disabling OpenClaw's MCP tool. */
+/** A managed provider pin replaces native search without disabling Urbicana's MCP tool. */
 export function resolveCliNativeWebSearchEnabled(
   params: { config?: OpenClawConfig; toolOverrides?: SessionToolOverrides },
   backend: Pick<CliBackendPlugin, "bundleMcp" | "bundleMcpMode">,
@@ -122,7 +122,7 @@ function canonicalizeSystemAgentTurnStateForResume(
 }
 
 function canonicalizeBundleMcpConfigForResume(config: BundleMcpConfig): BundleMcpConfig {
-  // The OpenClaw loopback MCP port changes across runs. Replace it before
+  // The Urbicana loopback MCP port changes across runs. Replace it before
   // hashing so resume compatibility tracks config shape, not ephemeral ports.
   const canonicalServers = Object.fromEntries(
     Object.entries(config.mcpServers).map(([name, server]) => {
@@ -352,7 +352,7 @@ export async function prepareCliBundleMcpConfig(params: {
   additionalConfig?: BundleMcpConfig;
   /**
    * Serve exactly these servers, skipping user/plugin/additional merges.
-   * Ring-zero OpenClaw runs use this so the CLI harness sees only the
+   * Ring-zero Urbicana runs use this so the CLI harness sees only the
    * openclaw MCP server instead of the normal openclaw tool surface.
    */
   exclusiveConfig?: BundleMcpConfig;

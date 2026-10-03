@@ -1,6 +1,6 @@
 # Bonjour Gateway Discovery
 
-Help nearby OpenClaw apps and devices find your Gateway on the local network.
+Help nearby Urbicana apps and devices find your Gateway on the local network.
 This plugin advertises the Gateway using Bonjour/mDNS. Discovery provides a
 connection hint; the Gateway still needs a reachable address and authentication.
 

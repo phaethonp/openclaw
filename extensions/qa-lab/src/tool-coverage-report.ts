@@ -284,7 +284,7 @@ export function buildQaToolCoverageReport(params: {
 
 export function renderQaToolCoverageMarkdownReport(report: QaToolCoverageReport): string {
   const lines = [
-    `# OpenClaw Runtime Tool Coverage — ${report.runtimePair[0]} vs ${report.runtimePair[1]}`,
+    `# Urbicana Runtime Tool Coverage — ${report.runtimePair[0]} vs ${report.runtimePair[1]}`,
     "",
     `- Generated at: ${report.generatedAt}`,
     `- Mode: ${report.evaluated ? "runtime summary" : "catalog inventory"}`,
@@ -293,14 +293,14 @@ export function renderQaToolCoverageMarkdownReport(report: QaToolCoverageReport)
     `- Report-only tools: ${report.reportOnlyTools}`,
     `- Tracked issue rows: ${report.trackedTools}`,
     `- Codex-native workspace tools: ${report.nativeWorkspaceTools}`,
-    `- OpenClaw dynamic integration tools: ${report.dynamicIntegrationTools}`,
+    `- Urbicana dynamic integration tools: ${report.dynamicIntegrationTools}`,
     `- Searchable/deferred dynamic tools: ${report.searchableDynamicTools}`,
     `- Optional/profile/plugin-dependent tools: ${report.optionalTools}`,
     `- Passing tools: ${report.passingTools}`,
     `- Failing tools: ${report.failingTools}`,
     `- Verdict: ${report.pass ? "pass" : "fail"}`,
     "",
-    "| Tool | Bucket | Expected layer | Capability layer | Required | Fixtures | OpenClaw | Codex | Drift | Codex default impact | QA impact | Action | Tracking |",
+    "| Tool | Bucket | Expected layer | Capability layer | Required | Fixtures | Urbicana | Codex | Drift | Codex default impact | QA impact | Action | Tracking |",
     "| --- | --- | --- | --- | --- | ---: | --- | --- | --- | --- | --- | --- | --- |",
   ];
 

@@ -257,7 +257,7 @@ describe("openclaw acp abort causes", () => {
         const result = await prompt;
         timeline.push(result.stopReason);
 
-        expect(timeline).toContain(`[OpenClaw interruption] ${ABORT_CAUSE}`);
+        expect(timeline).toContain(`[Urbicana interruption] ${ABORT_CAUSE}`);
         expect(timeline.at(-1)).toBe("cancelled");
       } finally {
         for (const response of stalledResponses) {

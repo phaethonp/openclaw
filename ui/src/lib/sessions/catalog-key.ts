@@ -13,7 +13,7 @@ export type CatalogSessionKey = {
   sourceHomeId?: string;
 };
 
-/** Fired on `document` when a catalog session is adopted into an OpenClaw
+/** Fired on `document` when a catalog session is adopted into an Urbicana
     session, so the sidebar can bind the row to its session key immediately
     instead of waiting for the next catalog poll. */
 export const CATALOG_SESSION_CONTINUED_EVENT = "openclaw-session-catalog-continued";

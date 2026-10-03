@@ -74,7 +74,7 @@ async function prepare(
       model_provider: "openclaw_token_sharing",
       model_providers: {
         openclaw_token_sharing: {
-          name: "OpenClaw subscription sharing",
+          name: "Urbicana subscription sharing",
           base_url: prepared.route.baseUrl,
           wire_api: "responses",
           requires_openai_auth: true,

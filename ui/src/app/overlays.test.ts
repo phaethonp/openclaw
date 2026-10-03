@@ -509,7 +509,7 @@ describe("application approval overlays", () => {
     overlays.dispose();
   });
 
-  it("resolves OpenClaw changes through unified human approval", async () => {
+  it("resolves Urbicana changes through unified human approval", async () => {
     const request = vi.fn<RequestFn>(async (method) =>
       method.endsWith(".list") ? [] : { ok: true },
     );

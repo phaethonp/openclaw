@@ -367,7 +367,7 @@ function firstRunCliAgentArg(callIndex = 0) {
 }
 
 function firstEmbeddedAgentArg(callIndex = 0) {
-  return requireMockArg(runEmbeddedAgentMock, callIndex, "embedded OpenClaw agent argument");
+  return requireMockArg(runEmbeddedAgentMock, callIndex, "embedded Urbicana agent argument");
 }
 
 describe("CLI attempt execution", () => {
@@ -4478,7 +4478,7 @@ describe("embedded attempt harness pinning", () => {
     });
   });
 
-  it("honors a resolved persisted OpenClaw harness", async () => {
+  it("honors a resolved persisted Urbicana harness", async () => {
     const sessionEntry = makeSessionEntry("stale-agent-session", {
       agentHarnessId: "openclaw",
     });
@@ -4547,7 +4547,7 @@ describe("embedded attempt harness pinning", () => {
     },
   );
 
-  it("routes explicit OpenAI native runs with legacy Codex OAuth through OpenClaw", async () => {
+  it("routes explicit OpenAI native runs with legacy Codex OAuth through Urbicana", async () => {
     const sessionEntry = makeSessionEntry("explicit-agent-codex-oauth-session", {
       authProfileOverride: "openai:work",
       authProfileOverrideSource: "user",

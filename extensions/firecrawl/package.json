@@ -1,7 +1,7 @@
 {
   "name": "@openclaw/firecrawl-plugin",
   "version": "2026.9.6",
-  "description": "OpenClaw Firecrawl plugin.",
+  "description": "Urbicana Firecrawl plugin.",
   "repository": {
     "type": "git",
     "url": "https://github.com/openclaw/openclaw"

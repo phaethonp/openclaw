@@ -124,7 +124,7 @@ describe("codex conversation turn input", () => {
   it.each(localFileCases)(
     "decodes $scheme URLs from $field for local images",
     ({ scheme, field }) => {
-      const imagePath = path.resolve("OpenClaw QA", "photo #1?.png");
+      const imagePath = path.resolve("Urbicana QA", "photo #1?.png");
       const event = projectInboundEvent([
         {
           [field]: pathToFileURL(imagePath).href.replace(/^file:/, `${scheme}:`),
@@ -170,7 +170,7 @@ describe("codex conversation turn input", () => {
   );
 
   it("treats local media URLs as Codex local image input", () => {
-    const secondImagePath = path.resolve("OpenClaw QA", "second.jpg");
+    const secondImagePath = path.resolve("Urbicana QA", "second.jpg");
     const event = projectInboundEvent([
       { url: "/tmp/staged-photo.png", contentType: "image/png" },
       { url: pathToFileURL(secondImagePath).href, contentType: "image/jpeg" },
@@ -185,12 +185,12 @@ describe("codex conversation turn input", () => {
 
   it("treats Windows media paths as Codex local image input", () => {
     const event = projectInboundEvent([
-      { url: "C:\\OpenClaw QA\\photo.png", contentType: "image/png" },
+      { url: "C:\\Urbicana QA\\photo.png", contentType: "image/png" },
     ]);
 
     expect(buildInput(event)).toEqual([
       textInput,
-      { type: "localImage", path: "C:\\OpenClaw QA\\photo.png" },
+      { type: "localImage", path: "C:\\Urbicana QA\\photo.png" },
     ]);
   });
 });

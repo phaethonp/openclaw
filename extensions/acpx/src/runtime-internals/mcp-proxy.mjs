@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Stdio MCP proxy used by ACPX wrappers. It injects OpenClaw-provided MCP
+ * Stdio MCP proxy used by ACPX wrappers. It injects Urbicana-provided MCP
  * servers into session creation/load/fork requests before forwarding to target.
  */
 import { spawn } from "node:child_process";

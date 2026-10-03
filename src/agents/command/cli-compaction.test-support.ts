@@ -38,7 +38,7 @@ export const systemCompactionHost = {
 } satisfies Parameters<typeof runCliTurnCompactionLifecycle>[1];
 
 export async function writeSessionFile(params: { sessionFile: string; sessionId: string }) {
-  // The lifecycle compacts canonical OpenClaw session JSONL, so tests write the
+  // The lifecycle compacts canonical Urbicana session JSONL, so tests write the
   // same session/message envelope the real store appends.
   await fs.mkdir(path.dirname(params.sessionFile), { recursive: true });
   await fs.writeFile(

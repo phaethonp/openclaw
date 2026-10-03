@@ -1,6 +1,6 @@
 # Hugging Face
 
-Use hosted models through Hugging Face Inference Providers. OpenClaw connects to
+Use hosted models through Hugging Face Inference Providers. Urbicana connects to
 Hugging Face's router and discovers available models; it does not download or run
 the model weights locally.
 

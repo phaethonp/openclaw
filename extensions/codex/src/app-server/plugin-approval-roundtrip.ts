@@ -1,5 +1,5 @@
 /**
- * Routes Codex app-server plugin approval prompts through OpenClaw's gateway
+ * Routes Codex app-server plugin approval prompts through Urbicana's gateway
  * approval tool and maps gateway decisions back to Codex outcomes.
  */
 import type {
@@ -56,7 +56,7 @@ export type AppServerApprovalOutcome =
 
 export type PluginApprovalOutcome = AppServerApprovalOutcome | "timed-out";
 
-/** Starts a two-phase plugin approval request through the OpenClaw gateway. */
+/** Starts a two-phase plugin approval request through the Urbicana gateway. */
 export async function requestPluginApproval(params: {
   hostCapabilities: AgentHarnessHostCapabilities;
   signal?: AbortSignal;

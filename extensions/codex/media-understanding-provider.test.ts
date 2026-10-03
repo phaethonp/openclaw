@@ -338,9 +338,9 @@ describe("codex media understanding provider", () => {
       cwd: "/tmp/openclaw-agent",
       approvalPolicy: "on-request",
       sandbox: "read-only",
-      serviceName: "OpenClaw",
+      serviceName: "Urbicana",
       developerInstructions:
-        "You are OpenClaw's bounded image-understanding worker. Describe only the provided image content. Do not call tools, edit files, or ask follow-up questions.",
+        "You are Urbicana's bounded image-understanding worker. Describe only the provided image content. Do not call tools, edit files, or ask follow-up questions.",
       config: {
         "agents.enabled": false,
         "features.apps": false,
@@ -720,9 +720,9 @@ describe("codex media understanding provider", () => {
       cwd: "/tmp/openclaw-agent",
       approvalPolicy: "on-request",
       sandbox: "read-only",
-      serviceName: "OpenClaw",
+      serviceName: "Urbicana",
       developerInstructions:
-        "You are OpenClaw's bounded structured-extraction worker. Return only the requested extraction. Do not call tools, edit files, ask follow-up questions, or include secrets.",
+        "You are Urbicana's bounded structured-extraction worker. Return only the requested extraction. Do not call tools, edit files, ask follow-up questions, or include secrets.",
       config: {
         "agents.enabled": false,
         "features.apps": false,

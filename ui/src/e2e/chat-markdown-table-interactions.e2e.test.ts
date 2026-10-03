@@ -341,7 +341,7 @@ ${overflowTable}`,
                   cases: [
                     // Main is the only session and does not match this palette query.
                     {
-                      match: { search: "Ask OpenClaw" },
+                      match: { search: "Ask Urbicana" },
                       response: { count: 0, sessions: [] },
                     },
                   ],
@@ -374,8 +374,8 @@ ${overflowTable}`,
           await page
             .locator("openclaw-command-palette")
             .getByPlaceholder("Search or start a task…")
-            .fill("Ask OpenClaw");
-          await page.getByRole("option", { name: "Ask OpenClaw", exact: true }).click();
+            .fill("Ask Urbicana");
+          await page.getByRole("option", { name: "Ask Urbicana", exact: true }).click();
         }
         const bubble = page.locator(
           surface === "chat" ? '[data-entry-id="assistant-table"]' : ".custodian__messages",
@@ -872,7 +872,7 @@ ${overflowTable}`,
           await page.locator(".sidebar-footer-bar__home").click();
           await page
             .locator("openclaw-assistant-panel")
-            .getByRole("button", { name: "Ask OpenClaw", exact: true })
+            .getByRole("button", { name: "Ask Urbicana", exact: true })
             .click();
         }
       };

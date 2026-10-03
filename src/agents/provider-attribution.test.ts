@@ -337,7 +337,7 @@ describe("provider attribution", () => {
       })?.headers,
     ).toEqual({
       "HTTP-Referer": "https://openclaw.ai",
-      "X-OpenRouter-Title": "OpenClaw",
+      "X-OpenRouter-Title": "Urbicana",
       "X-OpenRouter-Categories": "personal-agent,cli-agent",
     });
   });
@@ -350,7 +350,7 @@ describe("provider attribution", () => {
       hook: "request-headers",
       reviewNote:
         "OpenAI native traffic supports hidden originator/User-Agent attribution. Verified against the Codex wire contract.",
-      product: "OpenClaw",
+      product: "Urbicana",
       version: "2026.3.22",
       headers: {
         originator: "openclaw",
@@ -360,7 +360,7 @@ describe("provider attribution", () => {
     });
   });
 
-  it("identifies OpenClaw only on native OpenCode Go routes", () => {
+  it("identifies Urbicana only on native OpenCode Go routes", () => {
     const nativeGo = resolveProviderRequestPolicy(
       {
         provider: "opencode-go",
@@ -711,7 +711,7 @@ describe("provider attribution", () => {
       }).attributionHeaders,
     ).toEqual({
       "HTTP-Referer": "https://openclaw.ai",
-      "X-OpenRouter-Title": "OpenClaw",
+      "X-OpenRouter-Title": "Urbicana",
       "X-OpenRouter-Categories": "personal-agent,cli-agent",
     });
 
@@ -736,7 +736,7 @@ describe("provider attribution", () => {
       }).attributionHeaders,
     ).toEqual({
       "HTTP-Referer": "https://openclaw.ai",
-      "X-Title": "OpenClaw",
+      "X-Title": "Urbicana",
     });
 
     expect(
@@ -794,7 +794,7 @@ describe("provider attribution", () => {
         capability: "llm",
       }).attributionHeaders,
     ).toEqual({
-      "X-BILLING-INVOKE-ORIGIN": "OpenClaw",
+      "X-BILLING-INVOKE-ORIGIN": "Urbicana",
     });
 
     expect(

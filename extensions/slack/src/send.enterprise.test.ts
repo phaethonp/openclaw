@@ -267,7 +267,7 @@ describe("sendMessageSlack Enterprise listener scope", () => {
         },
       },
       blocks: [{ type: "divider" }],
-      identity: { username: "OpenClaw" },
+      identity: { username: "Urbicana" },
     });
     expect(postMessage).toHaveBeenCalledTimes(2);
     for (const [payload] of postMessage.mock.calls) {

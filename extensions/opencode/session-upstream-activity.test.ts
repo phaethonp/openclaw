@@ -506,7 +506,7 @@ describe("OpenCode session upstream activity", () => {
   });
 
   itWithCli(
-    "keeps real text mixed with ignored text and suppresses OpenClaw self-echo",
+    "keeps real text mixed with ignored text and suppresses Urbicana self-echo",
     async () => {
       const session = openCodeSession(4, [
         {

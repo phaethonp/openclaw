@@ -34,7 +34,7 @@ async function retiredSourceWarnings(stateDir: string): Promise<string[]> {
       throw error;
     }
     warnings.push(
-      `Preserved retired iMessage state at ${sourcePath}. Install OpenClaw 2026.9.5, run "openclaw doctor --fix", then upgrade to latest. See https://docs.openclaw.ai/install/updating#upgrading-very-old-versions.`,
+      `Preserved retired iMessage state at ${sourcePath}. Install Urbicana 2026.9.5, run "openclaw doctor --fix", then upgrade to latest. See https://docs.openclaw.ai/install/updating#upgrading-very-old-versions.`,
     );
   }
   return warnings;

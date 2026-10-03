@@ -100,7 +100,7 @@ vi.mock("./lancedb-runtime.js", async (importOriginal) => {
   };
 });
 
-// Provenance marker OpenClaw appends to every injected inbound-context header.
+// Provenance marker Urbicana appends to every injected inbound-context header.
 // Detectors key on this marker, not label text. Keep byte-identical with
 // src/auto-reply/reply/inbound-context-marker.ts (extensions cannot import core).
 const CTX = "⟦openclaw:ctx⟧";
@@ -3851,7 +3851,7 @@ describe("memory plugin e2e", () => {
 
   test("looksLikeEnvelopeSludge detects marked inbound context headers", () => {
     // Detection keys on the provenance marker suffix, not label text: any header
-    // OpenClaw injects carries it, and it never collides with user prose.
+    // Urbicana injects carries it, and it never collides with user prose.
     expect(looksLikeEnvelopeSludge(ctxHeader("Conversation info:"))).toBe(true);
     expect(looksLikeEnvelopeSludge(ctxHeader("Sender:"))).toBe(true);
     expect(looksLikeEnvelopeSludge(`${ctxHeader("Sender:")}\nAlex\nI prefer dark mode`)).toBe(true);

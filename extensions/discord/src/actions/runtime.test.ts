@@ -975,7 +975,7 @@ describe("handleDiscordMessagingAction", () => {
     });
     fetchGuildInfoDiscord.mockResolvedValueOnce({
       id: "111",
-      name: "Friends of OpenClaw",
+      name: "Friends of Urbicana",
     });
     const cfg = discordGuildChannelsCfg({ "222": { enabled: true } }, "friends-of-openclaw");
 
@@ -1026,7 +1026,7 @@ describe("handleDiscordMessagingAction", () => {
     });
     fetchGuildInfoDiscord.mockResolvedValueOnce({
       id: "111",
-      name: "Friends of OpenClaw",
+      name: "Friends of Urbicana",
     });
     const cfg = discordGuildChannelsCfg({ "222": { enabled: true } }, "friends-of-openclaw");
 

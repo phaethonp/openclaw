@@ -353,7 +353,7 @@ export async function buildCodexAuthItems(params: {
         sensitive: true,
         reason: allowKeychainPrompt ? CODEX_REASON_AUTH_STORAGE_NOT_IMPORTABLE : undefined,
         message: allowKeychainPrompt
-          ? "No supported Codex credential could be imported. Continue with sign-in to connect OpenClaw."
+          ? "No supported Codex credential could be imported. Continue with sign-in to connect Urbicana."
           : "Codex credentials have not been inspected. Confirm credential import to check the current Codex sign-in.",
         details: {
           provider: OPENAI_PROVIDER_ID,

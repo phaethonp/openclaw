@@ -86,7 +86,7 @@ export function assertPluginNativeNamespaceHost(
     break;
   }
   throw new Error(
-    "Retained native directory does not resolve the selected OpenClaw host; repair the installed plugin's OpenClaw peer link before loading it.",
+    "Retained native directory does not resolve the selected Urbicana host; repair the installed plugin's Urbicana peer link before loading it.",
   );
 }
 

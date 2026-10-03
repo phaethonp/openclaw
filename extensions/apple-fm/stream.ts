@@ -9,7 +9,7 @@ import {
 } from "openclaw/plugin-sdk/provider-transport-runtime";
 import type { AppleFmNative } from "./native.js";
 
-/** Native tools propose calls; the OpenClaw agent loop validates and executes them. */
+/** Native tools propose calls; the Urbicana agent loop validates and executes them. */
 export function createAppleFmStream(native: Pick<AppleFmNative, "run">): StreamFn {
   return (model, context, options) => {
     const stream = createAssistantMessageEventStream();

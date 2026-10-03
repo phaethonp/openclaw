@@ -21,7 +21,7 @@ export type AcpRuntimeControl = "session/set_mode" | "session/set_config_option"
 /** Stable handle returned by ensureSession and passed back into all ACP runtime operations. */
 export type AcpRuntimeHandle = {
   sessionKey: string;
-  /** OpenClaw session-store owner; independent of the external harness. */
+  /** Urbicana session-store owner; independent of the external harness. */
   agentId?: string;
   backend: string;
   runtimeSessionName: string;

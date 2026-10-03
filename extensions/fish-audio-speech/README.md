@@ -1,6 +1,6 @@
 # Fish Audio speech plugin
 
-Official OpenClaw speech provider for Fish Audio's hosted S2.1 API.
+Official Urbicana speech provider for Fish Audio's hosted S2.1 API.
 
 Install it with:
 

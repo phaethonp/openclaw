@@ -1051,7 +1051,7 @@ describe("modelsAuthLoginCommand", () => {
       [
         "Scope: System / agent",
         "Agent: coder",
-        "Location: the machine running OpenClaw",
+        "Location: the machine running Urbicana",
         "For personal model accounts on a Gateway, run openclaw models accounts login --help.",
       ].join("\n"),
       "Provider sign-in",
@@ -1545,7 +1545,7 @@ describe("modelsAuthLoginCommand", () => {
     await expect(
       modelsAuthLoginCommand({ provider: "openai", force: true }, runtime),
     ).rejects.toThrow(
-      'Could not clear cached profiles for "openai" before re-login: auth store is busy; close other OpenClaw commands using this state directory and retry',
+      'Could not clear cached profiles for "openai" before re-login: auth store is busy; close other Urbicana commands using this state directory and retry',
     );
 
     expect(runtime.error).not.toHaveBeenCalled();
@@ -1619,7 +1619,7 @@ describe("modelsAuthLoginCommand", () => {
     await modelsAuthLoginCommand({ provider: "claude-cli" }, runtime);
 
     expect(prompter.note).toHaveBeenCalledWith(
-      'Provider "claude-cli" uses its own CLI login. Select a provider with an OpenClaw auth flow.',
+      'Provider "claude-cli" uses its own CLI login. Select a provider with an Urbicana auth flow.',
       "Provider auth",
     );
     expect(prompter.select).toHaveBeenCalledWith(
@@ -1703,13 +1703,13 @@ describe("modelsAuthLoginCommand", () => {
       agentDir: "/tmp/openclaw/agents/main",
     });
     expect(runtime.log).toHaveBeenCalledWith(
-      "Anthropic setup-token auth is supported in OpenClaw.",
+      "Anthropic setup-token auth is supported in Urbicana.",
     );
     expect(runtime.log).toHaveBeenCalledWith(
-      "OpenClaw prefers Claude CLI reuse when it is available on the host.",
+      "Urbicana prefers Claude CLI reuse when it is available on the host.",
     );
     expect(runtime.log).toHaveBeenCalledWith(
-      "Anthropic staff told us this OpenClaw path is allowed again.",
+      "Anthropic staff told us this Urbicana path is allowed again.",
     );
   });
 

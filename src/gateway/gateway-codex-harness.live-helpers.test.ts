@@ -535,7 +535,7 @@ describe("gateway codex harness live helpers", () => {
 
   it("accepts the current codex status prose from the live harness", () => {
     const text =
-      "OpenClaw is running on `openai/gpt-5.5` with low reasoning/text settings. Context is at `22k/272k` tokens, no compactions, and the current session is `agent:dev:live-codex-harness`.";
+      "Urbicana is running on `openai/gpt-5.5` with low reasoning/text settings. Context is at `22k/272k` tokens, no compactions, and the current session is `agent:dev:live-codex-harness`.";
 
     expect(
       EXPECTED_CODEX_STATUS_COMMAND_TEXT.some((expectedText) => text.includes(expectedText)),
@@ -545,7 +545,7 @@ describe("gateway codex harness live helpers", () => {
 
   it("accepts current status prose that reports session context without the session id", () => {
     const text = [
-      "OpenClaw is running on `openai/gpt-5.5` with low reasoning/text settings.",
+      "Urbicana is running on `openai/gpt-5.5` with low reasoning/text settings.",
       "",
       "Session context is light: `22k/272k` tokens used, `8%`, no compactions. There is 1 active task: `/codex status`.",
     ].join("\n");
@@ -563,7 +563,7 @@ describe("gateway codex harness live helpers", () => {
     expect(isExpectedCodexStatusCommandText(text)).toBe(true);
   });
 
-  it("accepts current app-server status prose without the OpenClaw prefix", () => {
+  it("accepts current app-server status prose without the Urbicana prefix", () => {
     const text = [
       "Status: running on `openai/gpt-5.5` in `/tmp/openclaw-live-codex-harness/workspace/dev`.",
       "",
@@ -648,7 +648,7 @@ describe("gateway codex harness live helpers", () => {
 
   it("accepts the OpenAI Codex status card emitted by the GPT-5.5 Docker harness", () => {
     const text = [
-      "OpenClaw 2026.4.30-beta.1 is running on `openai/gpt-5.5`.",
+      "Urbicana 2026.4.30-beta.1 is running on `openai/gpt-5.5`.",
       "",
       "Session is healthy:",
       "- Context: `21k/272k` used, `8%`",
@@ -663,7 +663,7 @@ describe("gateway codex harness live helpers", () => {
   });
 
   it("accepts the compact status-card pointer emitted by current codex", () => {
-    const text = "OpenClaw status shown above.";
+    const text = "Urbicana status shown above.";
 
     expect(
       EXPECTED_CODEX_STATUS_COMMAND_TEXT.some((expectedText) => text.includes(expectedText)),
@@ -695,7 +695,7 @@ describe("gateway codex harness live helpers", () => {
 
   it("rejects status prose for a different codex session", () => {
     const text =
-      "OpenClaw is running on `openai/gpt-5.5` with low reasoning/text settings. Context is at `22k/272k` tokens, no compactions, and the current session is `agent:dev:other`.";
+      "Urbicana is running on `openai/gpt-5.5` with low reasoning/text settings. Context is at `22k/272k` tokens, no compactions, and the current session is `agent:dev:other`.";
 
     expect(isExpectedCodexStatusCommandText(text)).toBe(false);
   });
@@ -809,7 +809,7 @@ describe("gateway codex harness live helpers", () => {
       "- In the sandbox, `codex models` failed because the kernel disallows unprivileged user namespaces.",
       "- Outside the sandbox, `codex` is not on `PATH`.",
       "",
-      "Current session model from OpenClaw status is `openai/gpt-5.5`.",
+      "Current session model from Urbicana status is `openai/gpt-5.5`.",
     ].join("\n");
 
     expectRecognizedCodexModelsCommandText(text);

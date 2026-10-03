@@ -310,7 +310,7 @@ export const imessagePlugin: ChannelPlugin<ResolvedIMessageAccount, IMessageProb
       },
       agentPrompt: {
         messageToolHints: () => [
-          "- iMessage current conversation: omit target, to, chatId, chatGuid, and chatIdentifier. OpenClaw resolves the trusted current chat server-side; never copy a redacted display value such as `***` into message actions.",
+          "- iMessage current conversation: omit target, to, chatId, chatGuid, and chatIdentifier. Urbicana resolves the trusted current chat server-side; never copy a redacted display value such as `***` into message actions.",
         ],
       },
       doctor: imessageDoctor,

@@ -22,7 +22,7 @@ import {
 import type { CodexAppServerClientOptions } from "./shared-client.js";
 import { createCodexTestOAuthProfile } from "./test-support.js";
 
-/** Keeps native Codex bindings reusable while omitting OpenClaw tools and search. */
+/** Keeps native Codex bindings reusable while omitting Urbicana tools and search. */
 function withPersistentCodexTestToolPolicy(
   params: EmbeddedRunAttemptParams,
 ): EmbeddedRunAttemptParams {
@@ -215,7 +215,7 @@ describe("Auth profile runtime contract - Codex app-server adapter", () => {
       expect(rejection).toMatchObject({
         code: "selected_auth_profile_unavailable",
         message: expect.stringContaining(
-          'auth profile "openai:missing" was not found in the OpenClaw credential store.',
+          'auth profile "openai:missing" was not found in the Urbicana credential store.',
         ),
       });
       expect(rejection).not.toHaveProperty("status");

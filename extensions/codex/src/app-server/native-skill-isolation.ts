@@ -183,7 +183,7 @@ async function collectPersonalSkillRealPaths(
   return { complete, skillPaths };
 }
 
-/** Resolves the native user-scope skills that an isolated OpenClaw thread must disable. */
+/** Resolves the native user-scope skills that an isolated Urbicana thread must disable. */
 export async function resolveCodexNativeSkillIsolation(params: {
   client: CodexAppServerClient;
   codexHome?: string;

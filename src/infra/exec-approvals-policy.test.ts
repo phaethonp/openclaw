@@ -756,7 +756,7 @@ describe("exec approvals policy helpers", () => {
     });
   });
 
-  it("reports askFallback from the OpenClaw default when approvals omit it", () => {
+  it("reports askFallback from the Urbicana default when approvals omit it", () => {
     const summary = summarizeExecPolicyScopeSnapshot({
       approvals: {
         version: 1,
@@ -768,7 +768,7 @@ describe("exec approvals policy helpers", () => {
 
     expect(summary.askFallback).toEqual({
       effective: "deny",
-      source: "OpenClaw default (deny)",
+      source: "Urbicana default (deny)",
     });
   });
 

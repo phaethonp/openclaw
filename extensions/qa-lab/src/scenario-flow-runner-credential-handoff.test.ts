@@ -294,7 +294,7 @@ describe("operator key handoff scenario assertions", () => {
 
   it("rejects a final reply sent before the config update even when edited later", async () => {
     await expect(runCredentialHandoffScenario("late-edited-final")).rejects.toThrow(
-      "The assistant did not update the OpenClaw embeddings API key before the final reply.",
+      "The assistant did not update the Urbicana embeddings API key before the final reply.",
     );
   });
 
@@ -326,7 +326,7 @@ describe("operator key handoff scenario assertions", () => {
     "unexpected-migration-marker",
   ] as const)("rejects an update that %s", async (replySequence) => {
     await expect(runCredentialHandoffScenario(replySequence)).rejects.toThrow(
-      "The assistant changed unrelated OpenClaw configuration while rotating the key.",
+      "The assistant changed unrelated Urbicana configuration while rotating the key.",
     );
   });
 
@@ -354,7 +354,7 @@ describe("operator key handoff scenario assertions", () => {
     );
   });
 
-  it("rejects a JSON array-root key file that OpenClaw cannot resolve", async () => {
+  it("rejects a JSON array-root key file that Urbicana cannot resolve", async () => {
     await expect(runCredentialHandoffScenario("array-root-file-ref")).rejects.toThrow(
       "The embeddings key file provider payload is not a JSON object.",
     );
@@ -383,7 +383,7 @@ describe("operator key handoff scenario assertions", () => {
 
   it("rejects a key file updated after the final reply", async () => {
     await expect(runCredentialHandoffScenario("late-file-write")).rejects.toThrow(
-      "The assistant did not update the OpenClaw embeddings API key before the final reply.",
+      "The assistant did not update the Urbicana embeddings API key before the final reply.",
     );
   });
 });

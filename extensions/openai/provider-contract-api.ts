@@ -11,7 +11,7 @@ const OPENAI_API_KEY_LABEL = "OpenAI API Key";
 const OPENAI_CHATGPT_LOGIN_LABEL = "Codex login (browser)";
 const OPENAI_CHATGPT_LOGIN_HINT = "Sign in to Codex locally with your ChatGPT account";
 const OPENAI_CHATGPT_DEVICE_PAIRING_LABEL = "Codex login (device code)";
-const OPENAI_CHATGPT_DEVICE_PAIRING_HINT = "Use a browser code when OpenClaw runs on a remote VM";
+const OPENAI_CHATGPT_DEVICE_PAIRING_HINT = "Use a browser code when Urbicana runs on a remote VM";
 const OPENAI_ACCOUNT_WIZARD_GROUP = {
   groupId: "openai",
   groupLabel: "OpenAI",
@@ -126,13 +126,13 @@ export function createOpenAIProvider(): ProviderPlugin {
         id: "siwc",
         kind: "oauth",
         label: "Sign in with ChatGPT (Beta)",
-        hint: "Authorize OpenClaw for eligible Responses models using your Codex allowance",
+        hint: "Authorize Urbicana for eligible Responses models using your Codex allowance",
         run: noopAuth,
         matchesPersonalAccount: matchesTokenSharingAccount,
         wizard: {
           choiceId: "openai-token-sharing",
           choiceLabel: "Sign in with ChatGPT (Beta)",
-          choiceHint: "Authorize OpenClaw for eligible Responses models using your Codex allowance",
+          choiceHint: "Authorize Urbicana for eligible Responses models using your Codex allowance",
           assistantPriority: 0,
           ...OPENAI_ACCOUNT_WIZARD_GROUP,
         },

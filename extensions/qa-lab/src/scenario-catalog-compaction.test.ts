@@ -81,7 +81,7 @@ describe("qa compaction scenario catalog", () => {
       faultMode: "reasoning-only-output-once",
       summaryMarker: "QA-COMPACTION-REASONING-RECOVERED-SUMMARY",
     },
-  ])("keeps $id on the OpenClaw compaction owner", ({ id, coverage, faultMode, summaryMarker }) => {
+  ])("keeps $id on the Urbicana compaction owner", ({ id, coverage, faultMode, summaryMarker }) => {
     const scenario = requireFlowScenario(readQaScenarioById(id));
     const flow = JSON.stringify(scenario.execution.flow);
     const serializedScenario = JSON.stringify(scenario);
@@ -117,7 +117,7 @@ describe("qa compaction scenario catalog", () => {
     expect(serializedScenario).not.toContain("codex");
   });
 
-  it("assigns compaction retry and pruning to OpenClaw with an early Codex gap", () => {
+  it("assigns compaction retry and pruning to Urbicana with an early Codex gap", () => {
     const scenario = requireFlowScenario(readQaScenarioById("compaction-retry-mutating-tool"));
     const flow = JSON.stringify(scenario.execution.flow);
     const serializedScenario = JSON.stringify(scenario);

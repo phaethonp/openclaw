@@ -1,4 +1,4 @@
-// Copilot plugin entrypoint registers its OpenClaw integration.
+// Copilot plugin entrypoint registers its Urbicana integration.
 import { definePluginEntry } from "openclaw/plugin-sdk/plugin-entry";
 import type { PluginStateKeyedStore } from "openclaw/plugin-sdk/plugin-state-runtime";
 import { isRecord } from "openclaw/plugin-sdk/string-coerce-runtime";

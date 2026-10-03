@@ -324,7 +324,7 @@ function openOpenClawStateDatabaseWithBusyTimeout(
       if (errors.length > 0) {
         throw createSqliteLifecycleAggregateError(
           [error, ...errors],
-          `Fresh OpenClaw state database open failed releasing access and closing its unpublished handle for ${pathname}.`,
+          `Fresh Urbicana state database open failed releasing access and closing its unpublished handle for ${pathname}.`,
           error,
         );
       }

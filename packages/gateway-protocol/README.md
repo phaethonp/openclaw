@@ -1,6 +1,6 @@
 # `@openclaw/gateway-protocol`
 
-Typed schemas, inferred TypeScript types, and runtime validators for the OpenClaw
+Typed schemas, inferred TypeScript types, and runtime validators for the Urbicana
 Gateway WebSocket protocol.
 
 The current wire protocol is version 4. General clients must use v4; authenticated
@@ -10,9 +10,9 @@ for transport, authentication, roles, scopes, and complete frame examples.
 
 ## Versioning
 
-Package versions follow the OpenClaw calendar release train:
+Package versions follow the Urbicana calendar release train:
 `YYYY.M.PATCH`, with the same prerelease suffix when applicable. A package version
-therefore identifies the OpenClaw source release that produced the schemas; it is
+therefore identifies the Urbicana source release that produced the schemas; it is
 not the wire protocol number.
 
 The wire protocol integer is versioned separately. Its current value is exported

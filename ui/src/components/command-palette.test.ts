@@ -984,7 +984,7 @@ describe("CommandPalette search", () => {
     expect(events[0]?.detail).toEqual({ open: true });
   });
 
-  it("hides Ask OpenClaw when unavailable", async () => {
+  it("hides Ask Urbicana when unavailable", async () => {
     const { gateway } = createGateway(true);
     const { palette } = await mountPalette(
       createContext(
@@ -997,10 +997,10 @@ describe("CommandPalette search", () => {
     await vi.advanceTimersByTimeAsync(200);
     await palette.updateComplete;
 
-    expect(findPaletteOption(palette, "Ask OpenClaw", true)).toBeUndefined();
+    expect(findPaletteOption(palette, "Ask Urbicana", true)).toBeUndefined();
   });
 
-  it("opens Ask OpenClaw from its palette action", async () => {
+  it("opens Ask Urbicana from its palette action", async () => {
     const { gateway } = createGateway(true);
     const { palette } = await mountPalette(
       createContext(
@@ -1017,7 +1017,7 @@ describe("CommandPalette search", () => {
       events.push(event as CustomEvent<CustodianPanelToggleDetail>);
     window.addEventListener(CUSTODIAN_PANEL_TOGGLE_EVENT, listener);
     try {
-      findPaletteOption(palette, "Ask OpenClaw", true)?.click();
+      findPaletteOption(palette, "Ask Urbicana", true)?.click();
     } finally {
       window.removeEventListener(CUSTODIAN_PANEL_TOGGLE_EVENT, listener);
     }

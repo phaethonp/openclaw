@@ -16,7 +16,7 @@ export const normalizeConfig = normalizeAnthropicProviderConfigForProvider<Model
 
 export { resolveFastModeSupport } from "./fast-mode-policy.js";
 
-/** Profile ids that native Claude auth has retired from OpenClaw ownership. */
+/** Profile ids that native Claude auth has retired from Urbicana ownership. */
 export const deprecatedProfileIds = [CLAUDE_CLI_PROFILE_ID] as const;
 
 /** Resolve Claude thinking profile for Anthropic or Claude CLI providers. */

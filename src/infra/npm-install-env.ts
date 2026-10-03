@@ -239,7 +239,7 @@ function resolveNpmFreshnessBypassMode(
 }
 
 /**
- * Builds npm args that bypass host freshness policies for OpenClaw-managed installs.
+ * Builds npm args that bypass host freshness policies for Urbicana-managed installs.
  * Existing npmrc policy decides whether `before` or `min-release-age` is safer.
  */
 export function createNpmFreshnessBypassArgs(

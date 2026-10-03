@@ -215,7 +215,7 @@ export function startAgentDatabaseOpenTiming(
     }
     // Registration is the final checkpoint; intermediate phases never emit a partial summary.
     if (phase === "registration" && elapsedMs >= OPENCLAW_AGENT_DB_SLOW_OPEN_MS) {
-      agentDbLog.warn("slow OpenClaw agent database open", {
+      agentDbLog.warn("slow Urbicana agent database open", {
         agentId,
         elapsedMs,
         path: pathname,

@@ -295,7 +295,7 @@ describe("backupVerifyCommand", () => {
         return archivePath;
       },
       detail:
-        "Archive is not a valid OpenClaw backup. Unrecognized archive format. Choose another archive or create a new one with `openclaw backup create`.",
+        "Archive is not a valid Urbicana backup. Unrecognized archive format. Choose another archive or create a new one with `openclaw backup create`.",
     },
   ])("reports an actionable failure for $name", async ({ prepare, detail }) => {
     const tempDir = tempDirs.make("openclaw-backup-verify-input-");
@@ -350,7 +350,7 @@ describe("backupVerifyCommand", () => {
     });
 
     expect(runtime.error).toHaveBeenCalledWith(
-      `Backup archive verification failed: ${archivePath}. Archive is not a valid OpenClaw backup. ${detail}. Choose another archive or create a new one with \`openclaw backup create\`.`,
+      `Backup archive verification failed: ${archivePath}. Archive is not a valid Urbicana backup. ${detail}. Choose another archive or create a new one with \`openclaw backup create\`.`,
     );
     expect(runtime.exit).toHaveBeenCalledWith(1);
     expect(runtime.log).not.toHaveBeenCalled();
@@ -883,7 +883,7 @@ describe("backupVerifyCommand", () => {
 
   it("rejects case-mangled canonical SQLite paths", async () => {
     const stateAssetArchivePath = `${TEST_ARCHIVE_ROOT}/payload/posix/tmp/.openclaw`;
-    const sqliteArchivePath = `${stateAssetArchivePath}/State/OpenClaw.SQLITE`;
+    const sqliteArchivePath = `${stateAssetArchivePath}/State/Urbicana.SQLITE`;
     const sqlitePayload = await createSqlitePayload((database) => {
       database.exec(`
         CREATE TABLE schema_meta (

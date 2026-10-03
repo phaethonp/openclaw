@@ -143,7 +143,7 @@ describe("CONSENT_UPLOAD_HOST_ALLOWLIST", () => {
 // ─── uploadToConsentUrl (integration with validation) ────────────────────────
 
 describe("uploadToConsentUrl", () => {
-  it("sends the OpenClaw User-Agent header with consent uploads", async () => {
+  it("sends the Urbicana User-Agent header with consent uploads", async () => {
     const fetchFn = vi.fn<typeof fetch>(async () => new Response(null, { status: 200 }));
 
     await uploadToConsentUrl({

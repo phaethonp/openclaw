@@ -1,7 +1,7 @@
 # Runway
 
 Generate or transform videos with Runway's hosted models. The plugin supports
-text-to-video, image-to-video, and video-to-video through OpenClaw's shared video
+text-to-video, image-to-video, and video-to-video through Urbicana's shared video
 generation feature.
 
 ## Get started

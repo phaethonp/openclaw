@@ -166,7 +166,7 @@ describe("runServiceRestart config pre-flight (#35862)", () => {
     expect(service.restart).not.toHaveBeenCalled();
     expectLatestRuntimeJson({
       action: "restart",
-      error: `Gateway restart blocked: Refusing to restart the gateway service because this OpenClaw binary (${VERSION}) is older than the config last written by OpenClaw 9999.1.1.`,
+      error: `Gateway restart blocked: Refusing to restart the gateway service because this Urbicana binary (${VERSION}) is older than the config last written by Urbicana 9999.1.1.`,
       hints: newerConfigHints,
       hintItems: newerConfigHintItems,
     });
@@ -277,7 +277,7 @@ describe("runServiceStop future-config guard", () => {
     expect(service.stop).not.toHaveBeenCalled();
     expectLatestRuntimeJson({
       action: "stop",
-      error: `Gateway stop blocked: Refusing to stop the gateway service because this OpenClaw binary (${VERSION}) is older than the config last written by OpenClaw 9999.1.1.`,
+      error: `Gateway stop blocked: Refusing to stop the gateway service because this Urbicana binary (${VERSION}) is older than the config last written by Urbicana 9999.1.1.`,
       hints: newerConfigHints,
       hintItems: newerConfigHintItems,
     });

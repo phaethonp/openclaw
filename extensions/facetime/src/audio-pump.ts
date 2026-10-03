@@ -45,8 +45,8 @@ const SOX_COMMAND =
     "/opt/homebrew/bin/sox",
     "/usr/local/bin/sox",
   ].find((path): path is string => Boolean(path && existsSync(path))) ?? "sox";
-export const FACETIME_FEED_DEVICE_NAME = "OpenClaw-Feed";
-export const FACETIME_MIC_DEVICE_NAME = "OpenClaw-Mic";
+export const FACETIME_FEED_DEVICE_NAME = "Urbicana-Feed";
+export const FACETIME_MIC_DEVICE_NAME = "Urbicana-Mic";
 const MAX_PLAYBACK_BUFFERED_BYTES = 2 * 1024 * 1024;
 
 type FaceTimeAudioPump = {
@@ -291,7 +291,7 @@ export function startFaceTimeAudioPump(params: {
   };
   const spawnOutput = () => {
     // Playback stays out of the capture helper: an in-process AVAudioEngine can
-    // rebind OpenClaw-Feed after FaceTime claims it and tear down the carrier.
+    // rebind Urbicana-Feed after FaceTime claims it and tear down the carrier.
     const proc = spawnFn(SOX_COMMAND, buildSoxOutputArguments(), {
       env: childEnv,
       stdio: ["pipe", "ignore", "pipe"],
@@ -389,7 +389,7 @@ export function startFaceTimeAudioPump(params: {
         captureSuppressionActive = true;
         settleCaptureReady();
       }
-      if (line.includes("verified OpenClaw-Mic input route")) {
+      if (line.includes("verified Urbicana-Mic input route")) {
         settleRouteReady();
       }
       const fatal = line.match(/facetime-audio-capture: fatal(?:-safety-retained)?:\s*(.*)$/u);

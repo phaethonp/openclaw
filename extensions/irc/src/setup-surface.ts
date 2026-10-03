@@ -300,7 +300,7 @@ export const ircSetupWizard: ChannelSetupWizard = {
       inputKey: "deviceName",
       message: t("wizard.irc.realNamePrompt"),
       initialValue: ({ cfg, accountId }) =>
-        resolveIrcAccount({ cfg: cfg as CoreConfig, accountId }).config.realname || "OpenClaw",
+        resolveIrcAccount({ cfg: cfg as CoreConfig, accountId }).config.realname || "Urbicana",
     }),
     {
       inputKey: "groupChannels",

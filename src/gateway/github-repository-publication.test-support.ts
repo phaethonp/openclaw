@@ -296,7 +296,7 @@ export async function createRepositoryPublicationFixture(
     if (endpoint.endsWith("/git/commits")) {
       expect(body.parents).toHaveLength(1);
       expect(body.parents[0] === baseCommit || commits.has(body.parents[0])).toBe(true);
-      expect(body.message).toContain("OpenClaw-Publication:");
+      expect(body.message).toContain("Urbicana-Publication:");
       const sha = git(["commit-tree", body.tree, "-p", body.parents[0]], body.message);
       const commit = {
         sha,

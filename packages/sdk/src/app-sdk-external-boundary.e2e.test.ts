@@ -111,7 +111,7 @@ describe("external preview App SDK boundary", () => {
         ];
       `);
       await consumer.run(`
-        import { GatewayClientTransport, OpenClaw, normalizeGatewayEvent } from "@openclaw/sdk";
+        import { GatewayClientTransport, Urbicana, normalizeGatewayEvent } from "@openclaw/sdk";
 
         if (typeof GatewayClientTransport !== "function") throw new Error("missing transport export");
         const event = normalizeGatewayEvent({
@@ -143,7 +143,7 @@ describe("external preview App SDK boundary", () => {
           },
         };
 
-        const client = new OpenClaw({ transport });
+        const client = new Urbicana({ transport });
         const agents = await client.agents.list();
         const run = await client.runs.wait("packed-run", { timeoutMs: 25 });
         const artifacts = await client.artifacts.list({ sessionKey: "agent:main:external" });

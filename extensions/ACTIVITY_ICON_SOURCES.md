@@ -115,7 +115,7 @@ Exa, Firecrawl, Tavily, and Voyage use the corresponding monochrome `exa.svg`, `
 
 TypeSafe AI preserves the single-path header mark from [typesafe.ai](https://typesafe.ai/), with its original `0 0 16.487 24` view box. The fill is normalized to `currentColor`; geometry is unchanged.
 
-## OpenClaw action glyphs
+## Urbicana action glyphs
 
 Browser, Canvas, Diffs, and the memory family preserve the approved shapes from [`icons-tools.ts`](../ui/src/components/icons-tools.ts). The optional overrides preserve Intent, memory store/forget, file fetch/write, and directory list/fetch geometry. Lobster preserves both progress-claw paths, with a solid fill and the jaw’s resting `rotate(-10 8.6 11)` transform from [`working-indicator.css`](../ui/src/styles/chat/working-indicator.css). Linux Node reuses the existing platform silhouette from [`brand-icons.ts`](../ui/src/pages/apps/brand-icons.ts).
 
@@ -125,7 +125,7 @@ Kie reuses the existing [Vydra video glyph](vydra/assets/activity.svg) byte-for-
 
 QuickJS Code Mode reuses the existing [mxc sandbox glyph](mxc/assets/activity.svg) byte-for-byte for its isolated executor.
 
-Other defaults are OpenClaw functional glyphs drawn for the 24-unit activity grid. They indicate the capability rather than reproducing a service’s larger app tile. Related actions deliberately share a visual family:
+Other defaults are Urbicana functional glyphs drawn for the 24-unit activity grid. They indicate the capability rather than reproducing a service’s larger app tile. Related actions deliberately share a visual family:
 
 | Capability              | Plugins                                                                                                          |
 | ----------------------- | ---------------------------------------------------------------------------------------------------------------- |

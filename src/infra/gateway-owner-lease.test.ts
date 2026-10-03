@@ -291,7 +291,7 @@ describe("Gateway owner lease", () => {
           env,
           port: 19483,
           mode: "supervised",
-          supervisor: { kind: "schtasks", name: "OpenClaw Gateway" },
+          supervisor: { kind: "schtasks", name: "Urbicana Gateway" },
         });
         await lease.ready;
         expect(readGatewayOwnerLease({ env })).toMatchObject({

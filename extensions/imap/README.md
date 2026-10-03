@@ -1,6 +1,6 @@
 # IMAP Email Trigger
 
-Let new email trigger a restricted OpenClaw reader agent. The plugin watches an
+Let new email trigger a restricted Urbicana reader agent. The plugin watches an
 existing IMAP mailbox, checks allowed senders and sender authentication, and
 starts an isolated session for each accepted message. It reads incoming mail;
 it does not send replies or process the mailbox's existing messages on first

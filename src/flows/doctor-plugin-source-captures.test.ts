@@ -283,7 +283,7 @@ it.each([
             : `PIDs: ${peer}`,
     );
     if (identity === "unclassified") {
-      expect(output).not.toContain("Other OpenClaw processes are still running");
+      expect(output).not.toContain("Other Urbicana processes are still running");
     }
   },
 );

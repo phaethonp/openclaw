@@ -2,7 +2,7 @@
   "id": "signal",
   "categories": ["channels"],
   "name": "Signal",
-  "description": "OpenClaw Signal channel plugin.",
+  "description": "Urbicana Signal channel plugin.",
   "doctorContract": {
     "configRepair": true
   },

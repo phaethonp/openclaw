@@ -160,7 +160,7 @@ export function createNativeModelOwnedRuntimeModel(params: {
   };
 }
 
-/** Resolves only OpenClaw-owned context policy; native model owners keep that policy private. */
+/** Resolves only Urbicana-owned context policy; native model owners keep that policy private. */
 export function resolveEmbeddedRuntimeModelPolicy(params: {
   cfg: OpenClawConfig | undefined;
   provider: string;

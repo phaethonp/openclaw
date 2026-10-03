@@ -1,4 +1,4 @@
-// Commander registration for live OpenClaw docs search.
+// Commander registration for live Urbicana docs search.
 import type { Command } from "commander";
 import { docsSearchCommand } from "../commands/docs.js";
 import { defaultRuntime } from "../runtime.js";
@@ -9,7 +9,7 @@ import { parseStrictPositiveIntOption } from "./program/helpers.js";
 export function registerDocsCli(program: Command) {
   program
     .command("docs")
-    .description("Search the live OpenClaw docs")
+    .description("Search the live Urbicana docs")
     .argument("[query...]", "Search query")
     .option("--json", "Output JSON", false)
     .option("--limit <count>", "Maximum results to return", (value: string) =>

@@ -461,7 +461,7 @@ describe("openshell backend manager", () => {
     },
   );
 
-  it("checks runtime status with config override from OpenClaw config", async () => {
+  it("checks runtime status with config override from Urbicana config", async () => {
     cliMocks.runOpenShellCli.mockResolvedValue({
       code: 0,
       stdout: JSON.stringify({ phase: "Ready" }),

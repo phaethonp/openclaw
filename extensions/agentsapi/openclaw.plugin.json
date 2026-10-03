@@ -36,7 +36,7 @@
         "type": "string",
         "enum": ["openai_hosted", "self_hosted"],
         "default": "openai_hosted",
-        "description": "Execution environment for new sessions. Self-hosted uses the prepared OpenClaw workspace and requires an externally connected executor. Reset existing sessions after changing this setting."
+        "description": "Execution environment for new sessions. Self-hosted uses the prepared Urbicana workspace and requires an externally connected executor. Reset existing sessions after changing this setting."
       },
       "openai_host": {
         "type": "object",
@@ -67,7 +67,7 @@
         "maxItems": 32,
         "uniqueItems": true,
         "items": { "type": "string", "pattern": "^(?:(?![\\s\\S]*/\\.{1,2}(?:/|(?![\\s\\S])))/|(?![\\s\\S]*[\\\\/]\\.{1,2}(?:[\\\\/]|(?![\\s\\S])))(?:[A-Za-z]:[\\\\/]|\\\\\\\\[^\\\\/]+[\\\\/][^\\\\/]+))" },
-        "description": "Unique absolute paths without . or .. path segments on the executor host machine that already contain the skill files and are available to the Agents API harness. OpenClaw does not copy or install these files. Gateway skill eligibility filters do not apply to these directories. Reset existing sessions after changing this list."
+        "description": "Unique absolute paths without . or .. path segments on the executor host machine that already contain the skill files and are available to the Agents API harness. Urbicana does not copy or install these files. Gateway skill eligibility filters do not apply to these directories. Reset existing sessions after changing this list."
       }
     }
   }

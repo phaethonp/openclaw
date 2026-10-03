@@ -32,9 +32,9 @@ export function registerServiceInspectionHintTests(params: {
     {
       platform: "win32",
       scope: "system",
-      label: "\\OpenClaw Node",
-      detail: "task: \\OpenClaw Node",
-      hints: ['schtasks /Query /TN "\\OpenClaw Node" /V /FO LIST'],
+      label: "\\Urbicana Node",
+      detail: "task: \\Urbicana Node",
+      hints: ['schtasks /Query /TN "\\Urbicana Node" /V /FO LIST'],
     },
   ] satisfies Array<ExtraGatewayService & { hints: string[] }>)(
     "requires inspection for a detected $scope $platform service",

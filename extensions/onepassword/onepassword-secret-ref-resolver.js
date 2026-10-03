@@ -107,7 +107,7 @@ function resolveStateDir() {
   if (profile && profile.toLowerCase() !== "default") {
     // Keep the static resolver aligned with the root CLI profile contract without importing core.
     if (!/^[A-Za-z0-9_-]+$/u.test(profile)) {
-      throw new Error("invalid OpenClaw profile name");
+      throw new Error("invalid Urbicana profile name");
     }
     return path.join(home, `.openclaw-${profile}`);
   }

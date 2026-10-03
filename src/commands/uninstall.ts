@@ -78,9 +78,9 @@ async function removeMacApp(runtime: RuntimeEnv, dryRun?: boolean): Promise<bool
     runtime.log("macOS app cleanup is not applicable on this platform.");
     return true;
   }
-  const result = await removePath("/Applications/OpenClaw.app", runtime, {
+  const result = await removePath("/Applications/Urbicana.app", runtime, {
     dryRun,
-    label: "/Applications/OpenClaw.app",
+    label: "/Applications/Urbicana.app",
   });
   return result.ok;
 }
@@ -122,7 +122,7 @@ export async function uninstallCommand(runtime: RuntimeEnv, opts: UninstallOptio
           {
             value: "app",
             label: "macOS app",
-            hint: "/Applications/OpenClaw.app",
+            hint: "/Applications/Urbicana.app",
           },
         ],
         initialValues: ["service"],

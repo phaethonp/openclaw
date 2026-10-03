@@ -1,4 +1,4 @@
-// Twitch plugin entrypoint registers its OpenClaw integration.
+// Twitch plugin entrypoint registers its Urbicana integration.
 import { defineBundledChannelEntry } from "openclaw/plugin-sdk/channel-entry-contract";
 
 export default defineBundledChannelEntry({

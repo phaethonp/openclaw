@@ -78,7 +78,7 @@ export function resolveInitialThinkLevel(params: {
   });
 }
 
-/** Marks only request parameters that OpenClaw applies to provider egress. */
+/** Marks only request parameters that Urbicana applies to provider egress. */
 export function resolveRequestStreamTransportOverrides(
   streamParams: RunEmbeddedAgentParams["streamParams"],
 ): "present" | undefined {

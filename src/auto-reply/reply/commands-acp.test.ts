@@ -1740,7 +1740,7 @@ describe("/acp command", () => {
           lastUpdatedAt: Date.now(),
         },
         lastError: [
-          "OpenClaw runtime context (internal):",
+          "Urbicana runtime context (internal):",
           "This context is runtime-generated, not user-authored. Keep internal details private.",
           "",
           "[Internal task completion event]",
@@ -1750,7 +1750,7 @@ describe("/acp command", () => {
     });
     hoisted.getStatusMock.mockResolvedValue({
       summary: [
-        "OpenClaw runtime context (internal):",
+        "Urbicana runtime context (internal):",
         "This context is runtime-generated, not user-authored. Keep internal details private.",
         "",
         "[Internal task completion event]",
@@ -1758,7 +1758,7 @@ describe("/acp command", () => {
       ].join("\n"),
       details: {
         payload: [
-          "OpenClaw runtime context (internal):",
+          "Urbicana runtime context (internal):",
           "This context is runtime-generated, not user-authored. Keep internal details private.",
           "",
           "[Internal task completion event]",
@@ -1770,7 +1770,7 @@ describe("/acp command", () => {
     const result = await runThreadAcpCommand("/acp status", baseCfg);
 
     expect(result?.reply?.text).toContain("ACP status:");
-    expect(result?.reply?.text).not.toContain("OpenClaw runtime context (internal):");
+    expect(result?.reply?.text).not.toContain("Urbicana runtime context (internal):");
     expect(result?.reply?.text).not.toContain("Internal task completion event");
   });
 

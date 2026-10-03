@@ -329,7 +329,7 @@ describe("printDaemonStatus", () => {
       report,
       testCase.warning
         ? "Foreign launchd jobs detected (macOS)."
-        : "Other OpenClaw launchd jobs (macOS)",
+        : "Other Urbicana launchd jobs (macOS)",
     );
     expectMockLineContains(report, job.label);
     expectMockLineContains(report, job.program);
@@ -359,7 +359,7 @@ describe("printDaemonStatus", () => {
       gateway,
     });
 
-    expectMockLineContains(runtime.error, "Stale OpenClaw updater launchd job(s) detected.");
+    expectMockLineContains(runtime.error, "Stale Urbicana updater launchd job(s) detected.");
     expectMockLineContains(runtime.error, "ai.openclaw.update.2026.5.12");
     expectMockLineContains(runtime.error, "ai.openclaw.manual-update.1717168800");
     expectMockLineContains(runtime.error, "launchctl remove <label>");

@@ -19,7 +19,7 @@ function createQaRunnerCliRegistration(
         .description(runner.description ?? `Run the ${runner.commandName} live QA lane`)
         .action(() => {
           throw new Error(
-            `QA runner "${runner.commandName}" is installed but not active. Enable or allow plugin "${runner.pluginId}" in your OpenClaw config, then try again.`,
+            `QA runner "${runner.commandName}" is installed but not active. Enable or allow plugin "${runner.pluginId}" in your Urbicana config, then try again.`,
           );
         });
     },

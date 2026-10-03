@@ -125,7 +125,7 @@ describe("models.list configured runtime choices", () => {
   );
 
   it.each([true, false])(
-    "isolates an OpenClaw alternative from native-first metadata (host donor: %s)",
+    "isolates an Urbicana alternative from native-first metadata (host donor: %s)",
     async (hostDonor) => {
       await withOpenClawTestState(
         { layout: "state-only", prefix: "model-picker-reverse-", agentEnv: "main" },

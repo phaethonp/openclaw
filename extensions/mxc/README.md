@@ -1,8 +1,8 @@
 # @openclaw/mxc-sandbox
 
-Official MXC sandbox execution plugin for OpenClaw.
+Official MXC sandbox execution plugin for Urbicana.
 
-This plugin lets OpenClaw run tool execution through MXC on Windows hosts with
+This plugin lets Urbicana run tool execution through MXC on Windows hosts with
 ProcessContainer support.
 
 ## Install
@@ -38,7 +38,7 @@ readiness behavior to change as MXC host support matures.
 
 - Plugin id: `mxc`
 - Package: `@openclaw/mxc-sandbox`
-- Minimum OpenClaw host: `2026.6.11`
+- Minimum Urbicana host: `2026.6.11`
 
 ## Plugin config
 
@@ -71,7 +71,7 @@ help stay in sync with plugin runtime validation.
     read-only mount of the real agent workspace whenever it differs from the
     sandbox workdir.
   - `rw`: the active agent workspace is mounted read-write. If protected
-    OpenClaw skill roots (`skills`, `.agents/skills`, or the materialized
+    Urbicana skill roots (`skills`, `.agents/skills`, or the materialized
     sandbox skills workspace) exist beneath it, MXC fails the command before
     launch because ProcessContainer cannot enforce a nested read-only grant
     beneath a writable parent. The filesystem bridge also rejects writes to
@@ -79,11 +79,11 @@ help stay in sync with plugin runtime validation.
   - Use policy `filesystem.additionalReadwritePaths` for additional explicit
     writable host paths shared by every MXC sandbox.
 - `scope` workspace selection:
-  - `session`, `agent`, and `shared` choose the OpenClaw workspace directory
+  - `session`, `agent`, and `shared` choose the Urbicana workspace directory
     passed to MXC.
 - SDK-only executor discovery from `@microsoft/mxc-sdk/bin/<arch>` or
   `@microsoft/mxc-sdk/bin`; use `mxcBinaryPath` only for an explicit override.
-- OpenClaw passes per-run command, environment, and filesystem config to the
+- Urbicana passes per-run command, environment, and filesystem config to the
   plugin's Node launcher through a short-lived local payload file, and deletes
   that file and its temp directory when the launcher or run finishes.
 - `@microsoft/mxc-sdk@0.7.0` then carries the full base64 request envelope on
@@ -103,7 +103,7 @@ help stay in sync with plugin runtime validation.
 
 ## Test setup
 
-Use an already configured OpenClaw installation with MXC installed and enabled
+Use an already configured Urbicana installation with MXC installed and enabled
 on a supported Windows host. These commands create a uniquely named test agent
 and a new temporary workspace, leaving existing agents and workspaces alone.
 [`openclaw config patch --stdin`](https://docs.openclaw.ai/cli/config#config-patch)
@@ -183,7 +183,7 @@ Example policy:
 {
   "filesystem": {
     "restrictToProjectDir": true,
-    "additionalReadonlyPaths": ["C:\\Tools\\OpenClaw\\shared-readonly"],
+    "additionalReadonlyPaths": ["C:\\Tools\\Urbicana\\shared-readonly"],
     "additionalReadwritePaths": ["D:\\OpenClawScratch"]
   },
   "process": {
@@ -211,7 +211,7 @@ Only the `filesystem` and `process` sections are supported. Unknown sections or
 unknown fields are rejected so policy files fail closed when they drift from the
 implemented MXC ProcessContainer surface.
 
-When multiple configured policy files exist, OpenClaw layers them
+When multiple configured policy files exist, Urbicana layers them
 deterministically in `mxcPolicyPaths` array order:
 
 - readonly and read-write path arrays are appended and de-duplicated while
@@ -220,7 +220,7 @@ deterministically in `mxcPolicyPaths` array order:
   policy files.
 - `restrictToProjectDir` remains enabled because the field is hardening-only.
 
-The filesystem bridge keeps protected OpenClaw skill overlays read-only. For
+The filesystem bridge keeps protected Urbicana skill overlays read-only. For
 command execution, MXC fails closed before launch when `workspaceAccess: "rw"`
 or a configured read-write path overlaps a protected skill root, because
 ProcessContainer cannot safely enforce the nested read-only grant.

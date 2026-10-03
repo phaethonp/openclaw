@@ -11,7 +11,7 @@ export function registerTelegramMiniAppCommand(
 ): void {
   api.registerCommand({
     name: "dashboard",
-    description: "Open the OpenClaw dashboard",
+    description: "Open the Urbicana dashboard",
     channels: ["telegram"],
     requireAuth: true,
     exposeSenderIsOwner: true,
@@ -36,7 +36,7 @@ export function registerTelegramMiniAppCommand(
         launchTicket: launchTickets.issue({ accountId, userId }),
       }).toString();
       return {
-        text: "Open OpenClaw dashboard.",
+        text: "Open Urbicana dashboard.",
         presentation: {
           blocks: [
             {

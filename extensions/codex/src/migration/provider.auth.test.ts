@@ -262,7 +262,7 @@ describe("Codex migration credential inspection and persistence", () => {
     },
   );
 
-  it("imports auth into the selected agent directory under the effective OpenClaw home", async () => {
+  it("imports auth into the selected agent directory under the effective Urbicana home", async () => {
     const fixture = await createCodexFixture();
     const effectiveHome = path.join(fixture.root, "openclaw-home");
     vi.stubEnv("OPENCLAW_HOME", effectiveHome);

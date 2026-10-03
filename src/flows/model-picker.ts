@@ -297,7 +297,7 @@ function resolveModelRouteHint(params: {
   return runtime === "codex"
     ? "Codex runtime route"
     : runtime === "openclaw"
-      ? "OpenClaw runtime route"
+      ? "Urbicana runtime route"
       : undefined;
 }
 

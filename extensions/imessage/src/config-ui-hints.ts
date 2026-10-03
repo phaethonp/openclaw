@@ -17,7 +17,7 @@ export const iMessageChannelConfigUiHints = {
   groupAllowFrom: { presentation: "phone-number" },
   "groups.*.requireMentionInBotThreads": {
     label: "iMessage Bot Thread Mention Requirement",
-    help: "Override mention gating in native reply threads started by this account. False allows unmentioned replies; true requires a mention and keeps threads quiet when mention patterns are disabled. Omit to preserve normal gating. Ownership uses the bounded cache of messages OpenClaw sent; sender restrictions still apply.",
+    help: "Override mention gating in native reply threads started by this account. False allows unmentioned replies; true requires a mention and keeps threads quiet when mention patterns are disabled. Omit to preserve normal gating. Ownership uses the bounded cache of messages Urbicana sent; sender restrictions still apply.",
   },
   "accounts.*.groups.*.requireMentionInBotThreads": {
     label: "iMessage Account Bot Thread Mention Requirement",

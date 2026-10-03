@@ -37,7 +37,7 @@ export const PresenceEntrySchema = closedObject({
   /** Server timestamps for the person's continuous online interval and last accepted activity. */
   onlineSince: Type.Optional(Type.Integer({ minimum: 0 })),
   lastActivityAt: Type.Optional(Type.Integer({ minimum: 0 })),
-  /** Latest accepted OpenClaw interaction on this connection, independent of person timing. */
+  /** Latest accepted Urbicana interaction on this connection, independent of person timing. */
   connectionLastActivityAt: Type.Optional(Type.Integer({ minimum: 0 })),
   deviceId: Type.Optional(NonEmptyString),
   roles: Type.Optional(Type.Array(NonEmptyString)),

@@ -74,7 +74,7 @@ describe("command ownership", () => {
   });
 });
 
-describe("OpenClaw process owners", () => {
+describe("Urbicana process owners", () => {
   it.each([
     ["agent exec", ["openclaw", "agent", "exec", "task"]],
     ["local TUI", ["node", "/srv/openclaw/openclaw.mjs", "tui", "--local"]],
@@ -150,7 +150,7 @@ describe("classifyOpenClawArgv", () => {
     "src/entry.ts",
     "src/index.ts",
     "scripts/run-node.mjs",
-  ])("distinguishes OpenClaw from an unrelated package using %s", (entry) => {
+  ])("distinguishes Urbicana from an unrelated package using %s", (entry) => {
     const owned = scriptFixture(entry);
     const other = scriptFixture(entry, "unrelated-service");
     expect(classifyOpenClawArgv(["node", entry], { cwd: owned.root })).toEqual({

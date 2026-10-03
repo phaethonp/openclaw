@@ -1,4 +1,4 @@
-// Shared types for grouped OpenClaw Claw manifests and read-only add plans.
+// Shared types for grouped Urbicana Claw manifests and read-only add plans.
 import type { AgentConfig } from "../config/types.agents.js";
 import type { CLAW_SCHEMA_VERSION, ClawDiagnostic } from "./manifest-contract.js";
 import type {

@@ -207,7 +207,7 @@ export async function readSystemProfileCookies(
   return { browser: source.browser, systemProfile: source.systemProfile, ...decrypted };
 }
 
-/** Import decrypted system-profile cookies into one managed OpenClaw profile. */
+/** Import decrypted system-profile cookies into one managed Urbicana profile. */
 export async function importSystemProfileCookies(
   params: ImportSystemProfileParams,
   runtime: {
@@ -244,7 +244,7 @@ export async function importSystemProfileCookies(
     profileCtx.profile.attachOnly
   ) {
     throw new Error(
-      `profile "${into}" is not a locally managed OpenClaw profile; import into a fresh profile name`,
+      `profile "${into}" is not a locally managed Urbicana profile; import into a fresh profile name`,
     );
   }
   for (let attempt = 0; attempt < 2; attempt += 1) {
@@ -261,12 +261,12 @@ export async function importSystemProfileCookies(
             path.resolve(runningUserDataDir) !== path.resolve(userDataDir)
           ) {
             throw new Error(
-              `managed profile "${into}" is not owned by this OpenClaw browser runtime; stop it and import into a fresh profile name`,
+              `managed profile "${into}" is not owned by this Urbicana browser runtime; stop it and import into a fresh profile name`,
             );
           }
           if (!usesOpenClawMockKeychain(userDataDir)) {
             throw new Error(
-              `managed profile "${into}" does not use the OpenClaw mock keychain; import into a fresh profile name`,
+              `managed profile "${into}" does not use the Urbicana mock keychain; import into a fresh profile name`,
             );
           }
 

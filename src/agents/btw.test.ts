@@ -691,7 +691,7 @@ describe("runBtwSideQuestion", () => {
     },
   );
 
-  it("keeps an unprofiled subscription token on the OpenClaw BTW path", async () => {
+  it("keeps an unprofiled subscription token on the Urbicana BTW path", async () => {
     const supports = vi.fn(supportsPreparedOpenAIAuth);
     const codexSideQuestionMock = registerCodexSideQuestionHarness({ supports });
     const subscriptionModel = createOpenAIModel(true);
@@ -706,7 +706,7 @@ describe("runBtwSideQuestion", () => {
       source: "models.json",
     });
     requireApiKeyMock.mockReturnValue("subscription-token");
-    mockDoneAnswer("OpenClaw side answer.");
+    mockDoneAnswer("Urbicana side answer.");
 
     await expect(
       runSideQuestion({
@@ -720,7 +720,7 @@ describe("runBtwSideQuestion", () => {
         provider: "openai",
         model: "gpt-5.5",
       }),
-    ).resolves.toEqual({ text: "OpenClaw side answer." });
+    ).resolves.toEqual({ text: "Urbicana side answer." });
 
     expect(codexSideQuestionMock).not.toHaveBeenCalled();
     expect(streamSimpleMock).toHaveBeenCalled();

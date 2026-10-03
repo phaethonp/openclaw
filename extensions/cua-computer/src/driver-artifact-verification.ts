@@ -140,7 +140,7 @@ export function inspectCuaDriverArtifacts(
     accepted = undefined;
   }
   if (!accepted) {
-    const fixHint = "Reinstall OpenClaw from a complete official package.";
+    const fixHint = "Reinstall Urbicana from a complete official package.";
     return failure(
       "COMPUTER_DRIVER_MANIFEST_INVALID",
       `the cua-computer artifact record for ${selected.key} is missing or invalid.`,
@@ -153,7 +153,7 @@ export function inspectCuaDriverArtifacts(
   const platformManifestPath = options.resolvePackageJson(platformPackage);
   if (!sdkManifestPath || !platformManifestPath) {
     const missing = sdkManifestPath ? platformPackage : DRIVER_PACKAGE;
-    const fixHint = `Reinstall OpenClaw on this node host so ${DRIVER_PACKAGE} ${accepted.version} and its native platform package are installed together.`;
+    const fixHint = `Reinstall Urbicana on this node host so ${DRIVER_PACKAGE} ${accepted.version} and its native platform package are installed together.`;
     return failure(
       "COMPUTER_DRIVER_PACKAGE_MISSING",
       `${missing} ${accepted.version} is not installed.`,
@@ -168,7 +168,7 @@ export function inspectCuaDriverArtifacts(
     platformIdentity = readPackageIdentity(platformManifestPath);
   } catch {
     const fixHint =
-      "Reinstall OpenClaw on this node host; do not repair native package files by hand.";
+      "Reinstall Urbicana on this node host; do not repair native package files by hand.";
     return failure(
       "COMPUTER_DRIVER_PACKAGE_MISSING",
       "the resolved CUA Driver package metadata cannot be read.",
@@ -182,7 +182,7 @@ export function inspectCuaDriverArtifacts(
     platformIdentity.version !== accepted.version
   ) {
     const observed = `${sdkIdentity.name ?? "unknown"}@${sdkIdentity.version ?? "unknown"} + ${platformIdentity.name ?? "unknown"}@${platformIdentity.version ?? "unknown"}`;
-    const fixHint = `Reinstall or update OpenClaw on this node host so both CUA Driver packages resolve to ${accepted.version}.`;
+    const fixHint = `Reinstall or update Urbicana on this node host so both CUA Driver packages resolve to ${accepted.version}.`;
     return failure(
       "COMPUTER_DRIVER_VERSION_MISMATCH",
       `expected ${DRIVER_PACKAGE} and ${platformPackage} ${accepted.version}, resolved ${observed}.`,
@@ -199,7 +199,7 @@ export function inspectCuaDriverArtifacts(
     try {
       stat = fs.lstatSync(pathname);
     } catch {
-      const fixHint = `Reinstall OpenClaw on this node host to restore ${platformPackage} ${accepted.version}.`;
+      const fixHint = `Reinstall Urbicana on this node host to restore ${platformPackage} ${accepted.version}.`;
       return failure(
         "COMPUTER_DRIVER_PACKAGE_MISSING",
         `${platformPackage} is missing ${filename}.`,
@@ -207,7 +207,7 @@ export function inspectCuaDriverArtifacts(
       );
     }
     if (!stat.isFile() || stat.isSymbolicLink()) {
-      const fixHint = "Reinstall OpenClaw; the native driver files must be regular package files.";
+      const fixHint = "Reinstall Urbicana; the native driver files must be regular package files.";
       return failure(
         "COMPUTER_DRIVER_DIGEST_MISMATCH",
         `${platformPackage}/${filename} is not a regular file.`,
@@ -218,7 +218,7 @@ export function inspectCuaDriverArtifacts(
     try {
       actualDigest = sha256FileSync(pathname).digest;
     } catch {
-      const fixHint = `Reinstall OpenClaw on this node host to restore ${platformPackage} ${accepted.version}.`;
+      const fixHint = `Reinstall Urbicana on this node host to restore ${platformPackage} ${accepted.version}.`;
       return failure(
         "COMPUTER_DRIVER_PACKAGE_MISSING",
         `${platformPackage}/${filename} cannot be read.`,
@@ -227,7 +227,7 @@ export function inspectCuaDriverArtifacts(
     }
     if (actualDigest !== expectedDigest) {
       const fixHint =
-        "Reinstall OpenClaw; do not run or replace the mismatched native package files.";
+        "Reinstall Urbicana; do not run or replace the mismatched native package files.";
       return failure(
         "COMPUTER_DRIVER_DIGEST_MISMATCH",
         `${platformPackage}/${filename} does not match the accepted ${accepted.version} digest.`,

@@ -1,8 +1,8 @@
 # Vault
 
-Resolve OpenClaw credentials from HashiCorp Vault using SecretRefs. Configuration
+Resolve Urbicana credentials from HashiCorp Vault using SecretRefs. Configuration
 stores references to Vault fields; resolved secrets stay in the active runtime
-snapshot instead of being written back into OpenClaw configuration.
+snapshot instead of being written back into Urbicana configuration.
 
 ## Get started
 

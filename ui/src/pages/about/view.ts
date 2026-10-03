@@ -1,14 +1,6 @@
-import { expectDefined } from "@openclaw/normalization-core";
 import { html, nothing, type TemplateResult } from "lit";
 import type { ControlUiBuildInfo } from "../../build-info.ts";
 import { icons } from "../../components/icons.ts";
-import {
-  canonicalLobsterLook,
-  lobsterLookStyle,
-  renderLobsterSvg,
-} from "../../components/lobster-pet-look.ts";
-import { LOBSTER_PET_PALETTES } from "../../components/lobster-pet-palettes.ts";
-import { currentThemeBranding } from "../../components/neutral-mark.ts";
 import {
   renderSettingsPage,
   renderSettingsRow,
@@ -19,7 +11,6 @@ import "../../components/tooltip.ts";
 import { i18n, t } from "../../i18n/index.ts";
 import { buildExternalLinkRel, EXTERNAL_LINK_TARGET } from "../../lib/external-link.ts";
 import { formatRelativeTimestamp } from "../../lib/format.ts";
-import { COMMUNITY_DISCORD_URL } from "../../lib/product-links.ts";
 import "../../styles/about.css";
 import { brandIcons } from "./brand-icons.ts";
 
@@ -30,13 +21,11 @@ type AboutProps = {
   gatewayVersion: string | null;
   copyState: AboutCommitCopyState;
   onCopyCommit: () => void;
-  clawdWaving: boolean;
-  onPokeClawd: () => void;
 };
 
 const SHORT_COMMIT_LENGTH = 12;
 
-// Docs-first where a docs page exists; GitHub/Discord match the native
+// Docs-first where a docs page exists; GitHub matches the native
 // macOS/iOS About screens (AboutSettings.swift, SettingsProTabSections.swift).
 const ABOUT_LINKS: ReadonlyArray<{ href: string; icon: TemplateResult; label: () => string }> = [
   { href: "https://openclaw.ai", icon: icons.globe, label: () => t("aboutPage.linkWebsite") },
@@ -45,11 +34,6 @@ const ABOUT_LINKS: ReadonlyArray<{ href: string; icon: TemplateResult; label: ()
     href: "https://github.com/openclaw/openclaw",
     icon: brandIcons.github,
     label: () => t("aboutPage.linkGitHub"),
-  },
-  {
-    href: COMMUNITY_DISCORD_URL,
-    icon: brandIcons.discord,
-    label: () => t("aboutPage.linkDiscord"),
   },
   {
     href: "https://x.com/openclaw",
@@ -153,28 +137,10 @@ function renderCommit(props: AboutProps) {
   `;
 }
 
-// The same canonical crimson Clawd as the chat welcome hero, rendered big.
-// The poke button replays the claw wave; ambient motion lives in about.css.
 function renderHero(props: AboutProps) {
-  const palette =
-    LOBSTER_PET_PALETTES.find((entry) => entry.id === "crimson") ??
-    expectDefined(LOBSTER_PET_PALETTES[0], "about lobster palette");
-  const look = canonicalLobsterLook(palette);
   return html`
     <section class="about-hero">
-      ${
-        currentThemeBranding().mascot === "none"
-          ? html`<span class="about-hero__mark--neutral" aria-hidden="true">${icons.mark}</span>`
-          : html`<button
-              type="button"
-              class="about-hero__clawd ${props.clawdWaving ? "about-hero__clawd--wave" : ""}"
-              style=${lobsterLookStyle(look)}
-              aria-label=${t("aboutPage.waveHello")}
-              @click=${props.onPokeClawd}
-            >
-              ${renderLobsterSvg(look)}
-            </button>`
-      }
+      <span class="about-hero__mark--neutral" aria-hidden="true">${icons.mark}</span>
       <h2 class="about-hero__name">${t("aboutPage.productName")}</h2>
       <p class="about-hero__tagline">${t("aboutPage.tagline")}</p>
       ${

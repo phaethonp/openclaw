@@ -25,7 +25,7 @@ function textPart(content: string): Record<string, unknown> {
   return { type: "text", content };
 }
 
-// Shared text-part reading for gen_ai message normalization: OpenClaw emits
+// Shared text-part reading for gen_ai message normalization: Urbicana emits
 // {type:"text", text}; some harness shapes carry {type:"text", content}.
 function textPartContent(part: Record<string, unknown>): string | undefined {
   if (part.type !== "text") {
@@ -172,7 +172,7 @@ function redactInternalReasoningFromMessage(value: unknown): unknown {
   }
   const redacted = { ...value };
   // Compatible provider replay payloads can attach reasoning beside `content`
-  // instead of using OpenClaw's normalized thinking blocks. Those fields are
+  // instead of using Urbicana's normalized thinking blocks. Those fields are
   // transport-private too and must not survive compatibility serialization.
   for (const field of INTERNAL_REASONING_MESSAGE_FIELDS) {
     delete redacted[field];

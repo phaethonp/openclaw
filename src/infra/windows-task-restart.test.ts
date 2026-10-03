@@ -151,7 +151,7 @@ describe("relaunchGatewayScheduledTask", () => {
   });
 
   beforeEach(() => {
-    process.argv = [process.execPath, "C:\\OpenClaw\\dist\\entry.js", "gateway", "--port", "18789"];
+    process.argv = [process.execPath, "C:\\Urbicana\\dist\\entry.js", "gateway", "--port", "18789"];
     spawnMock.mockReset();
     resolvePreferredOpenClawTmpDirMock.mockReset();
     resolvePreferredOpenClawTmpDirMock.mockReturnValue(os.tmpdir());
@@ -178,7 +178,7 @@ describe("relaunchGatewayScheduledTask", () => {
 
     expect(result.ok).toBe(true);
     expect(result.method).toBe("schtasks");
-    expect(result.tried).toContain('schtasks /Run /TN "OpenClaw Gateway (work)"');
+    expect(result.tried).toContain('schtasks /Run /TN "Urbicana Gateway (work)"');
     expect(result.tried).toContain(`${cmdExePath} /d /s /c ${seenCommandArg}`);
     const spawnCall = expectDefined(spawnMock.mock.calls[0], "restart helper spawn call");
     expect(spawnCall[0]).toBe(cmdExePath);
@@ -202,7 +202,7 @@ describe("relaunchGatewayScheduledTask", () => {
     expect(script).toContain("WaitForExit(180000)");
     expect(script).toContain("gateway-restart.log");
     expect(script).toContain(
-      'openclaw restart attempt source=windows-task-handoff target="OpenClaw Gateway (work)"',
+      'openclaw restart attempt source=windows-task-handoff target="Urbicana Gateway (work)"',
     );
     expect(script).not.toContain("Get-ScheduledTask");
     expect(script).toContain("Get-NetTCPConnection -LocalPort 18789 -State Listen");
@@ -210,9 +210,9 @@ describe("relaunchGatewayScheduledTask", () => {
     expect(script).toContain("$candidate.ExecutablePath -eq");
     expect(script).toContain("$candidate.CommandLine -match ($boundary + $entry + $boundary)");
     expect(script).not.toContain("findstr");
-    expect(script).toContain('schtasks /Run /TN "OpenClaw Gateway (work)" >>');
+    expect(script).toContain('schtasks /Run /TN "Urbicana Gateway (work)" >>');
     expect(script.indexOf("powershell.exe -NoProfile")).toBeLessThan(
-      script.indexOf('schtasks /Run /TN "OpenClaw Gateway (work)"'),
+      script.indexOf('schtasks /Run /TN "Urbicana Gateway (work)"'),
     );
     expect(script).toContain('del "%~f0" >nul 2>&1');
   });
@@ -267,7 +267,7 @@ describe("relaunchGatewayScheduledTask", () => {
   );
 
   it("retains the current Gateway when its listener cannot be identified", () => {
-    process.argv = [process.execPath, "C:\\OpenClaw\\dist\\entry.js", "gateway"];
+    process.argv = [process.execPath, "C:\\Urbicana\\dist\\entry.js", "gateway"];
     const result = relaunchGatewayScheduledTask({});
     expect(result.ok).toBe(false);
     expect(result.detail).toContain("Cannot identify the Gateway entrypoint and port");
@@ -300,7 +300,7 @@ describe("relaunchGatewayScheduledTask", () => {
 
     relaunchGatewayScheduledTask({
       OPENCLAW_PROFILE: "work",
-      OPENCLAW_WINDOWS_TASK_NAME: "OpenClaw Gateway (custom)",
+      OPENCLAW_WINDOWS_TASK_NAME: "Urbicana Gateway (custom)",
     });
 
     const scriptPath = expectDefined(
@@ -308,7 +308,7 @@ describe("relaunchGatewayScheduledTask", () => {
       "[...createdScriptPaths][0] test invariant",
     );
     const script = fs.readFileSync(scriptPath, "utf8");
-    expect(script).toContain('schtasks /Run /TN "OpenClaw Gateway (custom)" >>');
+    expect(script).toContain('schtasks /Run /TN "Urbicana Gateway (custom)" >>');
   });
 
   it("keeps custom task names out of the PowerShell observation commands", () => {
@@ -318,7 +318,7 @@ describe("relaunchGatewayScheduledTask", () => {
     });
 
     const observations: string[][] = [];
-    for (const taskName of ["OpenClaw Gateway", "OpenClaw Gateway (Bob's work)"]) {
+    for (const taskName of ["Urbicana Gateway", "Urbicana Gateway (Bob's work)"]) {
       const result = relaunchGatewayScheduledTask({
         // Log paths may contain the same text as the task name without affecting observation.
         OPENCLAW_STATE_DIR: path.join(os.tmpdir(), "Bob-restart-logs"),
@@ -422,7 +422,7 @@ describe("relaunchGatewayScheduledTask", () => {
 
     const result = relaunchGatewayScheduledTask({
       ...asciiPathEnv,
-      OPENCLAW_WINDOWS_TASK_NAME: "OpenClaw Gateway (隆)",
+      OPENCLAW_WINDOWS_TASK_NAME: "Urbicana Gateway (隆)",
     });
 
     expect(result.ok).toBe(true);
@@ -440,7 +440,7 @@ describe("relaunchGatewayScheduledTask", () => {
     expect(raw.toString("utf8")).not.toContain("隆");
     const script = decodeWindowsLauncherScript({ buffer: raw });
     expect(script.startsWith("@echo off\r\n")).toBe(true);
-    expect(script).toContain('schtasks /Run /TN "OpenClaw Gateway (隆)" >>');
+    expect(script).toContain('schtasks /Run /TN "Urbicana Gateway (隆)" >>');
     expect(script).toContain('del "%~f0" >nul 2>&1');
   });
 

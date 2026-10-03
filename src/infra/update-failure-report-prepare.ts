@@ -398,11 +398,11 @@ export async function prepareUpdateFailureReport(
     ]),
   ];
   const bodyWithoutMarker = [
-    "# OpenClaw update failure report",
+    "# Urbicana update failure report",
     "",
-    "This report was explicitly reviewed and confirmed in OpenClaw.",
+    "This report was explicitly reviewed and confirmed in Urbicana.",
     "",
-    `- OpenClaw version: ${version}`,
+    `- Urbicana version: ${version}`,
     `- Platform: ${platform}`,
     `- Node version: ${sanitizeReportField(process.versions.node ?? "unknown", context)}`,
     ...(action
@@ -443,8 +443,8 @@ export async function prepareUpdateFailureReport(
   const reconciliationMarker = `openclaw-update-report:${sha256Hex(`${input.attemptId}\0${bodyWithoutMarker}`)}`;
   const body = truncateUtf8Prefix(
     bodyWithoutMarker.replace(
-      "This report was explicitly reviewed and confirmed in OpenClaw.\n",
-      `This report was explicitly reviewed and confirmed in OpenClaw.\n\n<!-- ${reconciliationMarker} -->\n`,
+      "This report was explicitly reviewed and confirmed in Urbicana.\n",
+      `This report was explicitly reviewed and confirmed in Urbicana.\n\n<!-- ${reconciliationMarker} -->\n`,
     ),
     UPDATE_REPORT_BODY_MAX_BYTES,
   );

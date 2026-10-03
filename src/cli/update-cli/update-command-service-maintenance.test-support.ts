@@ -131,7 +131,7 @@ vi.mock("node:child_process", async (importOriginal) => ({
     pid: 0,
     output: [null, JSON.stringify({ state: mocks.taskState, lastRunResult: 0 }), ""],
     stdout: JSON.stringify({
-      taskPath: "\\OpenClaw Gateway",
+      taskPath: "\\Urbicana Gateway",
       state: mocks.taskState,
       lastRunResult: 0,
       actions: [{ type: 0, path: mocks.taskScriptPath, arguments: "", workingDirectory: "" }],

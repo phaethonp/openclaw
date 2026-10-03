@@ -664,7 +664,7 @@ describe("runCli exit behavior", () => {
     "parks the managed Gateway when a newer schema blocks %s",
     async (phase) => {
       const error = createNewerSqliteSchemaVersionError(
-        "OpenClaw state database",
+        "Urbicana state database",
         "/tmp/openclaw-startup/state/openclaw.sqlite",
         14,
         13,
@@ -699,7 +699,7 @@ describe("runCli exit behavior", () => {
     { label: "another command", args: ["status"] },
   ])("does not park the Gateway for a newer-schema failure during $label", async ({ args }) => {
     const error = createNewerSqliteSchemaVersionError(
-      "OpenClaw state database",
+      "Urbicana state database",
       "/tmp/openclaw-startup/state/openclaw.sqlite",
       14,
       13,
@@ -1556,7 +1556,7 @@ describe("runCli exit behavior", () => {
     const primary = "bad\u001b[31m-red\u001b[0m\nforged\tline";
 
     await expect(runCli(cliArgs(primary))).rejects.toThrow(
-      'OpenClaw does not know the command "bad-red\\nforged\\tline".',
+      'Urbicana does not know the command "bad-red\\nforged\\tline".',
     );
 
     expect(startProxyMock).not.toHaveBeenCalled();
@@ -1579,7 +1579,7 @@ describe("runCli exit behavior", () => {
     const message = (error as Error).message;
     const displayPrimary = `${"🦞".repeat(63)}…`;
     expect(displayPrimary.length).toBeLessThanOrEqual(128);
-    expect(message).toContain(`OpenClaw does not know the command "${displayPrimary}".`);
+    expect(message).toContain(`Urbicana does not know the command "${displayPrimary}".`);
     expect(message).not.toContain("�");
     expect(message.length).toBeLessThan(500);
     expect(startProxyMock).not.toHaveBeenCalled();
@@ -1686,7 +1686,7 @@ describe("runCli exit behavior", () => {
 
   it("rejects unowned command roots even when --help is appended (regression for #81077)", async () => {
     await expect(runCli(cliArgs("foo", "--help"))).rejects.toThrow(
-      'OpenClaw does not know the command "foo".',
+      'Urbicana does not know the command "foo".',
     );
 
     expect(startProxyMock).not.toHaveBeenCalled();
@@ -2256,7 +2256,7 @@ describe("runCli exit behavior", () => {
 
   it("rejects configured bare root TUI startup without an interactive TTY", async () => {
     await expectNonInteractiveBareCliError(
-      "OpenClaw TUI needs an interactive TTY. Use `openclaw agent --local ...` for automation.",
+      "Urbicana TUI needs an interactive TTY. Use `openclaw agent --local ...` for automation.",
       () => expect(runTuiMock).not.toHaveBeenCalled(),
     );
   });
@@ -2282,7 +2282,7 @@ describe("runCli exit behavior", () => {
       sourceConfig: { gateway: { mode: "local" } },
     });
     await expectNonInteractiveBareCliError(
-      "OpenClaw config is invalid. Run `openclaw doctor --fix` before onboarding.",
+      "Urbicana config is invalid. Run `openclaw doctor --fix` before onboarding.",
       () => expect(setupWizardCommandMock).not.toHaveBeenCalled(),
     );
   });
@@ -2370,7 +2370,7 @@ describe("runCli exit behavior", () => {
         loggingState.forceConsoleToStderr = machineOutput;
         expect(() => handler(new Error("boom"))).toThrow("process.exit(1)");
         expect(consoleErrorSpy).toHaveBeenCalledWith(
-          "[openclaw] OpenClaw hit an unexpected runtime error.",
+          "[openclaw] Urbicana hit an unexpected runtime error.",
         );
         expect(consoleErrorSpy).toHaveBeenCalledWith("[openclaw] Reason: boom");
         expect(restoreRuntimeTerminalStateMock).toHaveBeenCalledWith("uncaught exception", {
@@ -2498,7 +2498,7 @@ describe("runCli exit behavior", () => {
     await runCli(["node", "openclaw", "config"]);
 
     expect(createCliProgressMock).toHaveBeenCalledWith({
-      label: "Loading OpenClaw CLI…",
+      label: "Loading Urbicana CLI…",
       indeterminate: true,
       delayMs: 0,
     });
@@ -2522,7 +2522,7 @@ describe("runCli exit behavior", () => {
     await runCli(["node", "openclaw", "models", "aliases", "list", "--plain"]);
 
     expect(createCliProgressMock).toHaveBeenCalledWith({
-      label: "Loading OpenClaw CLI…",
+      label: "Loading Urbicana CLI…",
       indeterminate: true,
       delayMs: 0,
       enabled: false,

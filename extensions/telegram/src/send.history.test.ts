@@ -49,7 +49,7 @@ describe("Telegram outbound history over HTTP and SQLite", () => {
     message_id: 902,
     date: 1_779_394_740,
     chat: { id: chatId, type: chatId < 0 ? "supergroup" : "private" },
-    from: { id: 123456, is_bot: true, first_name: "OpenClaw" },
+    from: { id: 123456, is_bot: true, first_name: "Urbicana" },
     text,
     ...extra,
   });
@@ -240,7 +240,7 @@ describe("Telegram outbound history over HTTP and SQLite", () => {
       expect(history.messages).toMatchObject([
         {
           messageId: "902",
-          sender: "OpenClaw (you)",
+          sender: "Urbicana (you)",
           body: "authoritative edited response",
           timestamp: 1_779_394_740_000,
         },

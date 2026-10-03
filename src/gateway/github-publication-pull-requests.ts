@@ -218,7 +218,7 @@ export async function reconcileGitHubPublicationPullRequest(
     commit.tree.sha !== params.workspaceTree ||
     parents.length !== 1 ||
     parents[0] !== params.parentCommit ||
-    !commit.message.split(/\r?\n/u).includes(`OpenClaw-Publication: ${params.requestId}`)
+    !commit.message.split(/\r?\n/u).includes(`Urbicana-Publication: ${params.requestId}`)
   ) {
     return undefined;
   }

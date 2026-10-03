@@ -510,7 +510,7 @@ describe("config mutate helpers", () => {
 
       await expect(replaceConfigFile({ snapshot, nextConfig: {} })).rejects.toMatchObject({
         name: "Error",
-        message: `OpenClaw cannot write to the config directory ${configDir}. Fix its ownership or permissions, then try again. Underlying error: ${failure.message}`,
+        message: `Urbicana cannot write to the config directory ${configDir}. Fix its ownership or permissions, then try again. Underlying error: ${failure.message}`,
         cause: failure,
       });
     },
@@ -534,7 +534,7 @@ describe("config mutate helpers", () => {
       const snapshot = createSnapshot({ hash: "hash-1", path: configPath, sourceConfig: {} });
 
       await expect(replaceConfigFile({ snapshot, nextConfig: {} })).rejects.toMatchObject({
-        message: `OpenClaw cannot write to the config directory ${configuredDir}. Fix its ownership or permissions, then try again. Underlying error: ${failure.message}`,
+        message: `Urbicana cannot write to the config directory ${configuredDir}. Fix its ownership or permissions, then try again. Underlying error: ${failure.message}`,
         cause: failure,
       });
     },

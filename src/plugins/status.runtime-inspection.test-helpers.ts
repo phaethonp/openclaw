@@ -96,8 +96,8 @@ export function classifyConfigObservationError(error: unknown) {
     const message = error instanceof Error ? error.message : undefined;
     classified.messageKind =
       [
-        ["OpenClaw state database read admission is closed", "state-read-admission-closed"],
-        ["OpenClaw state database read admission changed", "state-read-admission-changed"],
+        ["Urbicana state database read admission is closed", "state-read-admission-closed"],
+        ["Urbicana state database read admission changed", "state-read-admission-changed"],
         ["Config health observation was superseded", "health-observation-superseded"],
       ].find(([knownMessage]) => knownMessage === message)?.[1] ?? "detail-withheld";
     const stack = error instanceof Error ? error.stack : undefined;

@@ -26,7 +26,7 @@ export async function runMatrixQaE2eeCliRecoveryKeySetupScenario(
   const accountId = "cli-recovery-key-setup";
   const account = await registerMatrixQaCliE2eeAccount({
     context,
-    deviceName: "OpenClaw Matrix QA CLI Recovery Key Owner",
+    deviceName: "Urbicana Matrix QA CLI Recovery Key Owner",
     scenarioId: "matrix-e2ee-cli-recovery-key-setup",
   });
   const owner = await createMatrixQaE2eeCliOwnerClient({
@@ -48,7 +48,7 @@ export async function runMatrixQaE2eeCliRecoveryKeySetupScenario(
     const cliDevice = await loginMatrixQaCliDevice(
       context.baseUrl,
       account,
-      "OpenClaw Matrix QA CLI Recovery Key Setup Device",
+      "Urbicana Matrix QA CLI Recovery Key Setup Device",
       "Matrix E2EE CLI recovery-key setup",
     );
     cliDeviceId = cliDevice.deviceId;
@@ -129,7 +129,7 @@ export async function runMatrixQaE2eeCliRecoveryKeyInvalidScenario(
   const invalidRecoveryKey = "not-a-valid-matrix-recovery-key";
   const account = await registerMatrixQaCliE2eeAccount({
     context,
-    deviceName: "OpenClaw Matrix QA CLI Invalid Recovery Key Owner",
+    deviceName: "Urbicana Matrix QA CLI Invalid Recovery Key Owner",
     scenarioId: "matrix-e2ee-cli-recovery-key-invalid",
   });
   const owner = await createMatrixQaE2eeCliOwnerClient({
@@ -150,7 +150,7 @@ export async function runMatrixQaE2eeCliRecoveryKeyInvalidScenario(
     const cliDevice = await loginMatrixQaCliDevice(
       context.baseUrl,
       account,
-      "OpenClaw Matrix QA CLI Invalid Recovery Key Device",
+      "Urbicana Matrix QA CLI Invalid Recovery Key Device",
       "Matrix E2EE CLI invalid recovery-key",
     );
     cliDeviceId = cliDevice.deviceId;

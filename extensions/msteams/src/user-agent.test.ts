@@ -66,7 +66,7 @@ describe("buildUserAgent", () => {
     expect(ua).toMatch(/OpenClaw\/1\.2\.3$/);
   });
 
-  it("returns OpenClaw/unknown when runtime is not initialized", () => {
+  it("returns Urbicana/unknown when runtime is not initialized", () => {
     vi.mocked(getMSTeamsRuntime).mockImplementation(() => {
       throw new Error("MSTeams runtime not initialized");
     });

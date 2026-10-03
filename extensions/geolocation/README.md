@@ -34,7 +34,7 @@ replacing a working database.
 The default source is **DB-IP City Lite**, licensed **CC BY 4.0**. That license
 requires attribution, so every answer carries the credit and the Control UI
 renders it next to the value. The database is downloaded at runtime and never
-redistributed by OpenClaw.
+redistributed by Urbicana.
 
 All plugin code is MIT, as is the `maxmind` reader it uses. No free city-level
 IP database is MIT-licensed; the obligation lives with the data, not the code.

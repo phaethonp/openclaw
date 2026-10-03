@@ -65,7 +65,7 @@ export function buildQaScenarioCommandSteps(
 
 export function resolveQaScriptRuntimeExecutable(): string {
   // Removal: run source QA producers directly on Bun after oven-sh/bun#35690 lets
-  // tsx's module hooks resolve OpenClaw's private local plugin-SDK aliases.
+  // tsx's module hooks resolve Urbicana's private local plugin-SDK aliases.
   return process.versions.bun ? "node" : process.execPath;
 }
 

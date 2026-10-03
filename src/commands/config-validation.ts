@@ -121,7 +121,7 @@ async function validateConfigFileSnapshot(
   return snapshot;
 }
 
-/** Read and return a valid OpenClaw config, or null after reporting validation errors. */
+/** Read and return a valid Urbicana config, or null after reporting validation errors. */
 export async function requireValidConfig(
   runtime: RuntimeEnv,
   opts?: ConfigValidationOptions,

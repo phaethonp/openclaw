@@ -146,7 +146,7 @@ export function createSessionSqliteMigrationFailureIssue(
       version: VERSION,
     });
   const body = [
-    "OpenClaw doctor generated this sanitized report from a local session SQLite migration recovery.",
+    "Urbicana doctor generated this sanitized report from a local session SQLite migration recovery.",
     "",
     reportBody,
   ].join("\n");
@@ -262,7 +262,7 @@ function renderFailureMarkdown(payload: {
     `- Run: ${payload.runId}`,
     `- Failed: ${payload.failedAt ?? "not recorded"}`,
     `- Generated: ${payload.generatedAt}`,
-    `- OpenClaw version: ${payload.version}`,
+    `- Urbicana version: ${payload.version}`,
     `- Reason: ${sanitizeFailureReportText(payload.reason)}`,
     `- Restore status: ${payload.restoreStatus}`,
     `- Recovery command: \`${payload.recoveryCommand}\``,

@@ -1406,7 +1406,7 @@ export function emitDiagnosticEvent(event: DiagnosticEventInput) {
   emitDiagnosticEventWithTrust(event, false);
 }
 
-/** Emits an untrusted event whose trace context came from OpenClaw-owned scope. */
+/** Emits an untrusted event whose trace context came from Urbicana-owned scope. */
 export function emitDiagnosticEventWithTrustedTraceContext(event: DiagnosticEventInput) {
   emitDiagnosticEventWithTrust(event, false, { trustedTraceContext: true });
 }

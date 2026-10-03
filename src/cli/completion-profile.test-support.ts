@@ -11,5 +11,5 @@ export function expectInstalledCompletionProfile(
     return;
   }
   const operand = `'${cachePath.replaceAll("\\", "\\\\").replaceAll("'", "\\'")}'`;
-  expect(profile).toBe(`# OpenClaw Completion\ntest -f ${operand}; and source ${operand}\n`);
+  expect(profile).toBe(`# Urbicana Completion\ntest -f ${operand}; and source ${operand}\n`);
 }

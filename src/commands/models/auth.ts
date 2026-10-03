@@ -818,9 +818,9 @@ export async function modelsAuthPasteTokenCommand(
   logConfigUpdated(runtime);
   runtime.log(`Auth profile: ${profileId} (${provider}/token)`);
   if (provider === "anthropic") {
-    runtime.log("Anthropic setup-token auth is supported in OpenClaw.");
-    runtime.log("OpenClaw prefers Claude CLI reuse when it is available on the host.");
-    runtime.log("Anthropic staff told us this OpenClaw path is allowed again.");
+    runtime.log("Anthropic setup-token auth is supported in Urbicana.");
+    runtime.log("Urbicana prefers Claude CLI reuse when it is available on the host.");
+    runtime.log("Anthropic staff told us this Urbicana path is allowed again.");
   }
 }
 
@@ -1080,7 +1080,7 @@ async function runModelsAuthLoginFlow(
   }
   if (useProviderPicker) {
     await prompter.note(
-      `Provider "${requestedProviderId}" uses its own CLI login. Select a provider with an OpenClaw auth flow.`,
+      `Provider "${requestedProviderId}" uses its own CLI login. Select a provider with an Urbicana auth flow.`,
       "Provider auth",
     );
   } else if (requestedProviderId && !requestedProvider) {
@@ -1091,7 +1091,7 @@ async function runModelsAuthLoginFlow(
       [
         "Scope: System / agent",
         `Agent: ${context.agentId}`,
-        "Location: the machine running OpenClaw",
+        "Location: the machine running Urbicana",
         `For personal model accounts on a Gateway, run ${formatCliCommand("openclaw models accounts login --help")}.`,
       ].join("\n"),
       "Provider sign-in",
@@ -1210,7 +1210,7 @@ async function runModelsAuthLoginFlow(
       });
       if (!clearedStore) {
         throw new Error(
-          "auth store is busy; close other OpenClaw commands using this state directory and retry",
+          "auth store is busy; close other Urbicana commands using this state directory and retry",
         );
       }
       forcePurgedProviderProfiles = true;

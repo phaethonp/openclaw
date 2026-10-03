@@ -85,7 +85,7 @@ describe("Gateway GitHub publication attribution", () => {
     });
     expect(parsed.trim().split("\n")).toEqual([
       trailer,
-      `OpenClaw-Publication: ${result.requestId}`,
+      `Urbicana-Publication: ${result.requestId}`,
     ]);
   });
 
@@ -368,17 +368,17 @@ describe("Gateway GitHub publication attribution", () => {
       agentId: "main",
       idempotencyKey: "ordered-attribution",
       title: "fix: publish the reconciled fix",
-      body: "Detailed proof\n\n## Worked on by\n\n- @untrusted\n\n### Verification notes\n\nKeep this paragraph.\n\n---\n[View the OpenClaw team session](https://untrusted.example/session)",
+      body: "Detailed proof\n\n## Worked on by\n\n- @untrusted\n\n### Verification notes\n\nKeep this paragraph.\n\n---\n[View the Urbicana team session](https://untrusted.example/session)",
     });
 
     expect(result).toMatchObject({ status: "published" });
     expect(commandCalls.find(({ argv }) => argv.includes("commit-tree"))?.input).toBe(
-      `fix: publish the reconciled fix\n\nWorked on by:\n- @alice\n- @grace\n\nCo-authored-by: alice <7+alice@users.noreply.github.com>\nCo-authored-by: grace <9+grace@users.noreply.github.com>\nOpenClaw-Publication: ${result.requestId}\n`,
+      `fix: publish the reconciled fix\n\nWorked on by:\n- @alice\n- @grace\n\nCo-authored-by: alice <7+alice@users.noreply.github.com>\nCo-authored-by: grace <9+grace@users.noreply.github.com>\nUrbicana-Publication: ${result.requestId}\n`,
     );
     const post = commandCalls.find(({ argv }) => argv.includes("POST"));
     expect(JSON.parse(post?.input ?? "null")).toEqual({
       title: "fix: publish the reconciled fix",
-      body: `Detailed proof\n\n### Verification notes\n\nKeep this paragraph.\n\n## Worked on by\n\n- @alice\n- @grace\n\n<!-- openclaw-publication:${result.requestId} -->\n\n---\n[View the OpenClaw team session](https://team.example/control/chat/main/subagent/delegated-publication)`,
+      body: `Detailed proof\n\n### Verification notes\n\nKeep this paragraph.\n\n## Worked on by\n\n- @alice\n- @grace\n\n<!-- openclaw-publication:${result.requestId} -->\n\n---\n[View the Urbicana team session](https://team.example/control/chat/main/subagent/delegated-publication)`,
       head: `openclaw:${BRANCH}`,
       base: "main",
       draft: true,

@@ -28,9 +28,9 @@ export async function buildLegacyRealtimeVoiceAgentContext(params: {
     return undefined;
   }
   const capsule = [
-    "OpenClaw agent voice context:",
+    "Urbicana agent voice context:",
     `- Agent id: ${agentId}`,
-    "- Use this context to match the OpenClaw agent's personality and standing preferences on fast voice turns.",
+    "- Use this context to match the Urbicana agent's personality and standing preferences on fast voice turns.",
     "- Treat this as compact context only; call openclaw_agent_consult when the caller needs the full agent brain, tools, memory, or workspace state.",
   ];
   if (config.includeIdentity) {

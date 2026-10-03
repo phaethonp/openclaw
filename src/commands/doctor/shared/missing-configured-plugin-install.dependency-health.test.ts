@@ -255,7 +255,7 @@ describe("configured npm dependency health and repair authority", () => {
             : path.join(parent, pluginId);
         const hostRoot = expectDefined(
           resolveOpenClawPackageRootSync({ moduleUrl: import.meta.url }),
-          "running OpenClaw package root",
+          "running Urbicana package root",
         );
         const dependencies = {
           "required-runtime": "1.0.0",

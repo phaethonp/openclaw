@@ -1,8 +1,8 @@
-# OpenClaw Groq Provider
+# Urbicana Groq Provider
 
-Official OpenClaw provider plugin for Groq.
+Official Urbicana provider plugin for Groq.
 
-Install from OpenClaw:
+Install from Urbicana:
 
 ```bash
 openclaw plugins install @openclaw/groq-provider

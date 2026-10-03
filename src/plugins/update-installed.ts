@@ -383,7 +383,7 @@ async function runInstalledPluginUpdate(
       if (retainOnUnavailable && installedPayloadRunnable) {
         const retainedMessage =
           `Retained "${pluginId}" at ${currentVersion}: target ${effectiveSpec}` +
-          `${params.coreVersion ? ` for OpenClaw ${params.coreVersion}` : ""} is unavailable. ${message} ` +
+          `${params.coreVersion ? ` for Urbicana ${params.coreVersion}` : ""} is unavailable. ${message} ` +
           `Retry "${formatCliCommand(`openclaw plugins update ${pluginId}`)}" after the target is published or registry access recovers.`;
         logger.warn?.(retainedMessage);
         outcomes.push({

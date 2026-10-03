@@ -170,7 +170,7 @@ export class CodexSandboxExecSession {
       default:
         throw new JsonRpcProtocolError(
           JSON_RPC_METHOD_NOT_FOUND,
-          `Unsupported OpenClaw sandbox exec-server method: ${method}`,
+          `Unsupported Urbicana sandbox exec-server method: ${method}`,
         );
     }
   }

@@ -1,4 +1,4 @@
-// Resolves OpenClaw update channels from config, tags, and versions.
+// Resolves Urbicana update channels from config, tags, and versions.
 import { normalizeOptionalLowercaseString } from "@openclaw/normalization-core/string-coerce";
 import { parse as parseSemver, type SemVer } from "semver";
 import { compareOpenClawReleaseVersions } from "./npm-registry-spec.js";
@@ -48,7 +48,7 @@ export function normalizeUpdateChannel(value?: string | null): UpdateChannel | n
   return null;
 }
 
-/** Maps an OpenClaw update channel to the npm dist-tag used for package lookups. */
+/** Maps an Urbicana update channel to the npm dist-tag used for package lookups. */
 export function channelToNpmTag(channel: UpdateChannel): string {
   return channel === "extended-stable" || channel === "beta" || channel === "dev"
     ? channel

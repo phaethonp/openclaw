@@ -238,11 +238,11 @@ export function createPolicyDoctorChecks(): readonly HealthCheck[] {
     ],
     [
       CHECK_IDS.policySecretsUnmanagedProvider,
-      "OpenClaw config SecretRefs use configured secret providers when policy requires managed providers.",
+      "Urbicana config SecretRefs use configured secret providers when policy requires managed providers.",
     ],
     [
       CHECK_IDS.policySecretsDeniedProviderSource,
-      "OpenClaw config secret providers and SecretRefs do not use sources denied by policy.",
+      "Urbicana config secret providers and SecretRefs do not use sources denied by policy.",
     ],
     [
       CHECK_IDS.policySecretsInsecureProvider,
@@ -250,11 +250,11 @@ export function createPolicyDoctorChecks(): readonly HealthCheck[] {
     ],
     [
       CHECK_IDS.policyAuthProfileInvalidMetadata,
-      "OpenClaw config auth profiles declare required provider and mode metadata.",
+      "Urbicana config auth profiles declare required provider and mode metadata.",
     ],
     [
       CHECK_IDS.policyAuthProfileUnapprovedMode,
-      "OpenClaw config auth profile modes stay within the policy allowlist.",
+      "Urbicana config auth profile modes stay within the policy allowlist.",
     ],
     [
       CHECK_IDS.policyExecApprovalsMissing,

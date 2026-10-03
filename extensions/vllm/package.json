@@ -2,7 +2,7 @@
   "name": "@openclaw/vllm-provider",
   "version": "2026.9.6",
   "private": true,
-  "description": "OpenClaw vLLM provider plugin",
+  "description": "Urbicana vLLM provider plugin",
   "type": "module",
   "devDependencies": {
     "@openclaw/plugin-sdk": "workspace:*"

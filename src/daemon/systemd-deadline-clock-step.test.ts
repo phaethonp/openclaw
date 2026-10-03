@@ -154,7 +154,7 @@ describe.skipIf(process.platform === "win32")("systemd budgets across a wall-clo
         unitPath,
         [
           "[Unit]",
-          "Description=OpenClaw Gateway (v2026.7.1-2)",
+          "Description=Urbicana Gateway (v2026.7.1-2)",
           "",
           "[Service]",
           "ExecStart=/usr/bin/openclaw gateway run",

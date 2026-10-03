@@ -567,7 +567,7 @@ export class AcpTranslatorPromptStream {
       await this.emitPromptChunk(
         pending,
         "agent_message_chunk",
-        `[OpenClaw interruption] ${options.interruption}`,
+        `[Urbicana interruption] ${options.interruption}`,
         false,
       );
     }
@@ -648,7 +648,7 @@ export class AcpTranslatorPromptStream {
       await this.emitPromptChunk(
         pending,
         "agent_message_chunk",
-        `[OpenClaw interruption] ${message}`,
+        `[Urbicana interruption] ${message}`,
         false,
       );
       await this.rejectPendingPrompt(pending, new Error(message), { claimed: true });
@@ -666,7 +666,7 @@ export class AcpTranslatorPromptStream {
     await this.emitPromptChunk(
       pending,
       "agent_message_chunk",
-      `[OpenClaw interruption] ${message}`,
+      `[Urbicana interruption] ${message}`,
       false,
     );
     await this.rejectPendingPrompt(pending, new Error(message), { claimed: true });
@@ -724,8 +724,8 @@ export class AcpTranslatorPromptStream {
     try {
       if (options.recordDisconnectNotice) {
         const text = pending.sendAccepted
-          ? "[OpenClaw interruption] The Gateway disconnected after accepting this message, so its final outcome is unknown. Check the session before retrying."
-          : "[OpenClaw interruption] The Gateway disconnected before OpenClaw could confirm whether this message was accepted, so its final outcome is unknown. Check the session before retrying.";
+          ? "[Urbicana interruption] The Gateway disconnected after accepting this message, so its final outcome is unknown. Check the session before retrying."
+          : "[Urbicana interruption] The Gateway disconnected before Urbicana could confirm whether this message was accepted, so its final outcome is unknown. Check the session before retrying.";
         await this.emitPromptChunk(pending, "agent_message_chunk", text, false);
       }
     } catch (noticeError) {

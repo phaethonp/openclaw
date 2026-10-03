@@ -4,8 +4,8 @@ import {
   patchSettings,
   type ChatFollowUpMode,
 } from "../../../app/settings.ts";
-import "../../../components/tooltip.ts";
 import { t } from "../../../i18n/index.ts";
+import "../../../components/tooltip.ts";
 import { registerChatGoalsEnglish } from "../../../i18n/locales/en-chat-goals.ts";
 import type { HumanMention } from "../../../lib/chat/chat-types.ts";
 import {
@@ -14,6 +14,7 @@ import {
   isModelIndependentChatCommand,
 } from "../../../lib/chat/commands.ts";
 import { updateHumanMentions } from "../../../lib/chat/human-mentions.ts";
+import { PRODUCT_NAME } from "../../../lib/product-name.ts";
 import { detectTextDirection } from "../../../lib/text-direction.ts";
 import { ComposerDictationController, insertComposerDictation } from "../composer-dictation.ts";
 import { normalizeChatComposerDraft } from "../composer-draft.ts";
@@ -118,7 +119,7 @@ export function renderChatComposer(props: ChatComposerProps) {
   if (state.composerTextarea?.isConnected && state.composerTextarea.value !== visibleDraft) {
     scheduleTextareaHeightAdjustment(state.composerTextarea);
   }
-  const assistantName = props.assistantName || "OpenClaw";
+  const assistantName = props.assistantName || PRODUCT_NAME;
   const inProgressLabel = props.waitingApproval
     ? t("chat.waitingForApproval")
     : submittedProgress?.sendState === "waiting-model"

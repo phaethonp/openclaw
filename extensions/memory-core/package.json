@@ -2,7 +2,7 @@
   "name": "@openclaw/memory-core",
   "version": "2026.9.6",
   "private": true,
-  "description": "OpenClaw core memory search plugin",
+  "description": "Urbicana core memory search plugin",
   "type": "module",
   "exports": {
     "./api.js": "./api.ts",

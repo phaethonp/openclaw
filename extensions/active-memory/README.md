@@ -1,6 +1,6 @@
 # Active Memory
 
-Bring relevant memories into a conversation before OpenClaw replies. Active
+Bring relevant memories into a conversation before Urbicana replies. Active
 Memory can search prior context and use a recall agent for questions that need
 deeper retrieval. Its default escalation mode reserves that extra recall step
 for questions about the past when simpler retrieval is insufficient.

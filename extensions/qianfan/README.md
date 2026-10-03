@@ -1,8 +1,8 @@
-# OpenClaw Qianfan Provider
+# Urbicana Qianfan Provider
 
-Official OpenClaw provider plugin for Qianfan.
+Official Urbicana provider plugin for Qianfan.
 
-Install from OpenClaw:
+Install from Urbicana:
 
 ```bash
 openclaw plugins install @openclaw/qianfan-provider

@@ -442,7 +442,7 @@ describe("runReplyAgent media path normalization", () => {
     },
   );
 
-  it("passes current inbound media paths as native OpenClaw images", async () => {
+  it("passes current inbound media paths as native Urbicana images", async () => {
     const tmpDir = tempDirs.make("openclaw-native-agent-media-");
     const imagePath = path.join(tmpDir, "photo.png");
     await writeFile(
@@ -492,7 +492,7 @@ describe("runReplyAgent media path normalization", () => {
     expect(call?.imageOrder).toEqual(["inline"]);
   });
 
-  it("does not pass recent history images as unlabeled native OpenClaw images", async () => {
+  it("does not pass recent history images as unlabeled native Urbicana images", async () => {
     const tmpDir = tempDirs.make("openclaw-native-agent-history-");
     const imagePath = path.join(tmpDir, "recent.png");
     await writeFile(

@@ -476,7 +476,7 @@ describe("relay command authorization", () => {
       expect(frames).toContainEqual({
         type: "error",
         seq: 31,
-        message: "tab 81 is paused for OpenClaw",
+        message: "tab 81 is paused for Urbicana",
       });
     });
 

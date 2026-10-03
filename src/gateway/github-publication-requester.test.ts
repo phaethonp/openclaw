@@ -758,7 +758,7 @@ describe("shared GitHub publication requester authority", () => {
                   sha: NEW_HEAD,
                   tree: { sha: outcome === "old-tree" ? "e".repeat(40) : WORKSPACE_TREE },
                   parents: [{ sha: OLD_HEAD }],
-                  message: `OpenClaw-Publication: ${outcome === "wrong-marker" ? "another-request" : requestId}`,
+                  message: `Urbicana-Publication: ${outcome === "wrong-marker" ? "another-request" : requestId}`,
                 }),
               );
         }

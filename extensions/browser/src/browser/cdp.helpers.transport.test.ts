@@ -37,7 +37,7 @@ async function startAuthenticatedCdpServer(params: {
       response.write('{"Browser":');
       return;
     }
-    response.end(JSON.stringify({ Browser: "OpenClaw transport fixture" }));
+    response.end(JSON.stringify({ Browser: "Urbicana transport fixture" }));
   });
   server.on("connection", (socket) => {
     sockets.add(socket);
@@ -188,7 +188,7 @@ describe("browser CDP authenticated HTTP transport", () => {
         url.password = "wrong-url-credential";
       }
       await expect(fetchJson(url.toString(), 1_000, { headers })).resolves.toEqual({
-        Browser: "OpenClaw transport fixture",
+        Browser: "Urbicana transport fixture",
       });
 
       expect(server.authorizations).toEqual([EXPECTED_AUTHORIZATION]);

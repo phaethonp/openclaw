@@ -1,4 +1,4 @@
-// Matrix plugin entrypoint registers its OpenClaw integration.
+// Matrix plugin entrypoint registers its Urbicana integration.
 import {
   defineBundledChannelEntry,
   type OpenClawPluginApi,

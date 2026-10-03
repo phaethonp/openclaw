@@ -154,7 +154,7 @@ function createReadCache<Input, Output>(
 }
 
 // Active panels check metadata on demand. Tool completion forces dirty stats;
-// a five-minute fallback observes working-tree edits made outside OpenClaw.
+// a five-minute fallback observes working-tree edits made outside Urbicana.
 function createReadCaches() {
   return {
     context: createReadCache(

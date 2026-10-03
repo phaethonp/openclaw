@@ -552,7 +552,7 @@ describe("assistant panel", () => {
     expect(panel.assistantPanelOpen).toBe(false);
   });
 
-  it("suppresses automatic Ask OpenClaw restores in Settings while keeping explicit opens usable", async () => {
+  it("suppresses automatic Ask Urbicana restores in Settings while keeping explicit opens usable", async () => {
     const { panel } = await mountPanel();
     panel.custodianSuppressed = false;
     await panel.updateComplete;
@@ -684,27 +684,5 @@ describe("assistant panel", () => {
     expect(store.activeVariant).toBe("onboarding");
     expect(request).toHaveBeenCalledOnce();
     expect(panel.textContent).toContain("Continue setup");
-  });
-
-  it("updates the panel mascot mood with shared sending state", async () => {
-    const { panel, store } = await mountPanel();
-    store.messages = [
-      { id: 1, role: "user", text: "Check this system", at: 1, question: null, step: null },
-    ];
-    panel.custodianSuppressed = false;
-    panel.minimizeRequestId = 1;
-    await panel.updateComplete;
-
-    store.sending = true;
-    store.setInput("status");
-    await panel.updateComplete;
-
-    expect(
-      (
-        panel.querySelector(".assistant-panel-title openclaw-mascot") as HTMLElement & {
-          mood: string;
-        }
-      ).mood,
-    ).toBe("thinking");
   });
 });

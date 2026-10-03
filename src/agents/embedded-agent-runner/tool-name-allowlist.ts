@@ -6,8 +6,8 @@ import type { AgentTool } from "../runtime/index.js";
 import type { ClientToolDefinition } from "./run/params.js";
 
 /**
- * OpenClaw built-in tools that remain present in the embedded runtime even when
- * OpenClaw routes execution through custom tool definitions.
+ * Urbicana built-in tools that remain present in the embedded runtime even when
+ * Urbicana routes execution through custom tool definitions.
  */
 export const AGENT_RESERVED_TOOL_NAMES = ["bash", "edit", "find", "grep", "ls", "read", "write"];
 

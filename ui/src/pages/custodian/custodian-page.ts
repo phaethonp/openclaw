@@ -4,7 +4,7 @@ import { html, nothing } from "lit";
 import { property, state } from "lit/decorators.js";
 import type { GatewayBrowserClient } from "../../api/gateway.ts";
 import { applicationContext, type ApplicationContext } from "../../app/context.ts";
-import "../../components/openclaw-mascot.ts";
+import { icons } from "../../components/icons.ts";
 import { t } from "../../i18n/index.ts";
 import { channelSnapshotHasActiveChannel } from "../../lib/channels/index.ts";
 import { isGatewayMethodAdvertised } from "../../lib/gateway-methods.ts";
@@ -220,12 +220,7 @@ export class CustodianPage extends OpenClawLightDomElement {
             this.onboarding
               ? nothing
               : html`<div class="custodian__identity">
-                  <div class="custodian__mark" aria-hidden="true">
-                    <openclaw-mascot
-                      .mood=${this.store.sending ? "thinking" : "idle"}
-                      .size=${38}
-                    ></openclaw-mascot>
-                  </div>
+                  <div class="custodian__mark" aria-hidden="true">${icons.mark}</div>
                   <div>
                     <h1>${t("custodian.title")}</h1>
                     <p>${t("custodian.subtitleCaretaker")}</p>

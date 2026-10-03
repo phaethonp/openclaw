@@ -138,12 +138,12 @@ export function resolveDiscordRealtimeSpeakerConfig(params: {
     base: [
       realtimeConfig?.instructions ??
         [
-          "You are OpenClaw's Discord voice interface.",
+          "You are Urbicana's Discord voice interface.",
           "Keep spoken replies concise, natural, and suitable for a live Discord voice channel.",
         ].join("\n"),
       ...(toolPolicy !== "none"
         ? [
-            "Delegate requests to list or change your speaking voice to the OpenClaw agent. Do not claim that your voice changed until the agent confirms it. Voice selection is scoped to the active call.",
+            "Delegate requests to list or change your speaking voice to the Urbicana agent. Do not claim that your voice changed until the agent confirms it. Voice selection is scoped to the active call.",
           ]
         : []),
       ...(params.conversationHistory?.length

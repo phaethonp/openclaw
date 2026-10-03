@@ -183,7 +183,7 @@ describe("legacy state migration ownership", () => {
         run,
       });
 
-      expect(result.warnings).toEqual([expect.stringContaining("OpenClaw state database is busy")]);
+      expect(result.warnings).toEqual([expect.stringContaining("Urbicana state database is busy")]);
       expect(result.warnings[0]).toContain("Stop the Gateway and node host, then retry.");
       expect(run).not.toHaveBeenCalled();
     } finally {

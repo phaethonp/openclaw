@@ -29,7 +29,7 @@ const defaults = {
 
 function preflight({
   output = defaults.output,
-  profiler = "        OpenClaw-Mic:\n        OpenClaw-Feed:\n",
+  profiler = "        Urbicana-Mic:\n        Urbicana-Feed:\n",
   ...overrides
 }: Partial<Parameters<typeof runFaceTimePreflight>[0]> & {
   output?: typeof defaults.output;
@@ -157,7 +157,7 @@ describe("FaceTime preflight", () => {
     },
     {
       name: "virtual output",
-      output: { isAggregate: false, name: "OpenClaw-Feed", uid: "feed" },
+      output: { isAggregate: false, name: "Urbicana-Feed", uid: "feed" },
       message: "virtual",
     },
   ])("rejects $name at the preflight boundary", async ({ output, message }) => {
@@ -179,11 +179,11 @@ describe("FaceTime preflight", () => {
             _name: "coreaudio_device",
             _items: [
               {
-                _name: "OpenClaw-Mic",
+                _name: "Urbicana-Mic",
                 coreaudio_device_transport: "coreaudio_device_type_virtual",
               },
               {
-                _name: "OpenClaw-Feed",
+                _name: "Urbicana-Feed",
                 coreaudio_device_transport: "coreaudio_device_type_virtual",
               },
               {

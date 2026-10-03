@@ -613,7 +613,7 @@ export {
 } from "../agents/harness/native-hook-relay.js";
 
 /**
- * Derive the same compact user-facing tool detail that embedded OpenClaw uses for progress logs.
+ * Derive the same compact user-facing tool detail that embedded Urbicana uses for progress logs.
  */
 export type ToolProgressDetailMode = "explain" | "raw";
 

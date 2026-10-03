@@ -1,6 +1,6 @@
 # Web Readability
 
-Extract an article's main content from HTML returned by OpenClaw's web fetch
+Extract an article's main content from HTML returned by Urbicana's web fetch
 feature. The plugin removes surrounding page markup and produces readable text
 or Markdown using Mozilla Readability.
 

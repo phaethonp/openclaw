@@ -89,7 +89,7 @@ describe("CUA Driver artifact verification", () => {
       name: "missing native package",
       options: { omitPlatformPackage: true },
       code: "COMPUTER_DRIVER_PACKAGE_MISSING",
-      diagnostic: "Reinstall OpenClaw on this node host",
+      diagnostic: "Reinstall Urbicana on this node host",
     },
     {
       name: "SDK and platform version skew",

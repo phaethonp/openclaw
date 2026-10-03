@@ -368,7 +368,7 @@ describe("fetchBrowserJson loopback auth", () => {
         "Retry the browser tool once",
         "If the same error persists",
       ],
-      omits: ["Can't reach the OpenClaw browser control service", "Do NOT retry the browser tool"],
+      omits: ["Can't reach the Urbicana browser control service", "Do NOT retry the browser tool"],
     });
   });
 
@@ -402,12 +402,12 @@ describe("fetchBrowserJson loopback auth", () => {
       {
         contains: [
           "Chrome CDP handshake timeout",
-          "browser profile is external to OpenClaw",
-          "Restarting the OpenClaw gateway will not launch it",
+          "browser profile is external to Urbicana",
+          "Restarting the Urbicana gateway will not launch it",
           "Retry the browser tool once",
           "If the same error persists",
         ],
-        omits: ["Restart the OpenClaw gateway", "Do NOT retry the browser tool"],
+        omits: ["Restart the Urbicana gateway", "Do NOT retry the browser tool"],
       },
     );
   });
@@ -430,10 +430,10 @@ describe("fetchBrowserJson loopback auth", () => {
     await expectThrownBrowserFetchError(() => fetchBrowserJson<{ ok: boolean }>("/tabs"), {
       contains: [
         "operation aborted",
-        "browser profile is external to OpenClaw",
-        "Restarting the OpenClaw gateway will not launch it",
+        "browser profile is external to Urbicana",
+        "Restarting the Urbicana gateway will not launch it",
       ],
-      omits: ["Restart the OpenClaw gateway", "Do NOT retry the browser tool"],
+      omits: ["Restart the Urbicana gateway", "Do NOT retry the browser tool"],
     });
   });
 
@@ -456,12 +456,12 @@ describe("fetchBrowserJson loopback auth", () => {
       {
         contains: [
           "timed out",
-          "browser profile is external to OpenClaw",
-          "Restarting the OpenClaw gateway will not launch it",
+          "browser profile is external to Urbicana",
+          "Restarting the Urbicana gateway will not launch it",
           "Retry the browser tool once",
           "If the same error persists",
         ],
-        omits: ["Restart the OpenClaw gateway", "Do NOT retry the browser tool"],
+        omits: ["Restart the Urbicana gateway", "Do NOT retry the browser tool"],
       },
     );
   });
@@ -489,7 +489,7 @@ describe("fetchBrowserJson loopback auth", () => {
           "Retry the browser tool once",
           "If the same error persists",
         ],
-        omits: ["browser profile is external to OpenClaw", "Do NOT retry the browser tool"],
+        omits: ["browser profile is external to Urbicana", "Do NOT retry the browser tool"],
       },
     );
   });
@@ -509,7 +509,7 @@ describe("fetchBrowserJson loopback auth", () => {
           "Retry the browser tool once",
           "If the same error persists",
         ],
-        omits: ["browser profile is external to OpenClaw", "Do NOT retry the browser tool"],
+        omits: ["browser profile is external to Urbicana", "Do NOT retry the browser tool"],
       },
     );
   });
@@ -537,7 +537,7 @@ describe("fetchBrowserJson loopback auth", () => {
           "Retry the browser tool once",
           "If the same error persists",
         ],
-        omits: ["browser profile is external to OpenClaw", "Do NOT retry the browser tool"],
+        omits: ["browser profile is external to Urbicana", "Do NOT retry the browser tool"],
       },
     );
   });
@@ -563,10 +563,10 @@ describe("fetchBrowserJson loopback auth", () => {
       {
         contains: [
           "Chrome CDP connection refused",
-          "browser profile is external to OpenClaw",
+          "browser profile is external to Urbicana",
           "Do NOT retry the browser tool",
         ],
-        omits: ["Restart the OpenClaw gateway"],
+        omits: ["Restart the Urbicana gateway"],
       },
     );
   });
@@ -576,7 +576,7 @@ describe("fetchBrowserJson loopback auth", () => {
 
     await expectThrownBrowserFetchError(() => fetchBrowserJson<{ ok: boolean }>("/tabs"), {
       contains: ["Chrome CDP connection refused", "Do NOT retry the browser tool"],
-      omits: ["Can't reach the OpenClaw browser control service"],
+      omits: ["Can't reach the Urbicana browser control service"],
     });
   });
 
@@ -621,7 +621,7 @@ describe("fetchBrowserJson loopback auth", () => {
 
     await expectThrownBrowserFetchError(() => fetchBrowserJson<{ ok: boolean }>("/tabs"), {
       contains: ["browser control disabled", "Do NOT retry the browser tool"],
-      omits: ["Retry the browser tool once", "Restart the OpenClaw gateway"],
+      omits: ["Retry the browser tool once", "Restart the Urbicana gateway"],
     });
   });
 
@@ -851,7 +851,7 @@ describe("fetchBrowserJson loopback auth", () => {
       () => fetchBrowserJson<{ ok: boolean }>("http://example.com/"),
       {
         contains: [
-          "Can't reach the OpenClaw browser control service",
+          "Can't reach the Urbicana browser control service",
           "Retry the browser tool once",
           "If the same error persists",
         ],

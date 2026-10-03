@@ -337,7 +337,7 @@ describe("CodexAppServerEventProjector native tool finalization", () => {
         status: "completed",
         isError: false,
         result: { status: "completed", exitCode: 0, durationMs: 42 },
-        output: expect.stringContaining("OpenClaw truncated Codex native tool output"),
+        output: expect.stringContaining("Urbicana truncated Codex native tool output"),
       }),
     );
     const trajectoryOutput = trajectoryRecorder.recordEvent.mock.calls.find(

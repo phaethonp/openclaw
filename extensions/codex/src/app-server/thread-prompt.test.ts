@@ -12,30 +12,30 @@ const delegationTools: CodexDynamicToolSpec[] = [
   {
     type: "function",
     name: "sessions_spawn",
-    description: "Spawn an OpenClaw session",
+    description: "Spawn an Urbicana session",
     inputSchema: { type: "object" },
   },
   {
     type: "function",
     name: "sessions_send",
-    description: "Send to an OpenClaw session",
+    description: "Send to an Urbicana session",
     inputSchema: { type: "object" },
   },
   {
     type: "function",
     name: "subagents",
-    description: "List OpenClaw subagents",
+    description: "List Urbicana subagents",
     inputSchema: { type: "object" },
   },
   {
     type: "namespace",
     name: CODEX_OPENCLAW_DIRECT_DYNAMIC_TOOL_NAMESPACE,
-    description: "Direct OpenClaw tools",
+    description: "Direct Urbicana tools",
     tools: [
       {
         type: "function",
         name: "sessions_yield",
-        description: "Yield for OpenClaw session events",
+        description: "Yield for Urbicana session events",
         inputSchema: { type: "object" },
       },
     ],
@@ -173,7 +173,7 @@ describe("buildDeveloperInstructions delegation guidance", () => {
     expect(instructions).toContain("spawn `sessions_spawn` with `visible=true`");
     expect(instructions).toContain("Announcing spawns notify when the run ends");
     expect(instructions).toContain(
-      "When a kept OpenClaw session stops before the requested outcome, continue it with `sessions_send`",
+      "When a kept Urbicana session stops before the requested outcome, continue it with `sessions_send`",
     );
     expect(instructions).toContain("Collectors require explicit result collection instead.");
     expect(instructions.indexOf("## Delegation")).toBeGreaterThan(
@@ -230,7 +230,7 @@ describe("buildDeveloperInstructions UI presentation guidance", () => {
         {
           type: "namespace",
           name: "openclaw",
-          description: "OpenClaw tools",
+          description: "Urbicana tools",
           tools: uiTools.map((tool) => ({ ...tool, deferLoading: true })),
         },
       ],
@@ -351,7 +351,7 @@ it("includes Codex app-server scoped plugin command guidance in developer instru
           text: "Unscoped structured command guidance.",
         },
         {
-          text: "OpenClaw main command guidance.",
+          text: "Urbicana main command guidance.",
           surfaces: ["openclaw_main"],
         },
       ],
@@ -361,7 +361,7 @@ it("includes Codex app-server scoped plugin command guidance in developer instru
     expect(instructions).toContain("Codex app-server command guidance.");
     expect(instructions).not.toContain("Legacy global command guidance.");
     expect(instructions).not.toContain("Unscoped structured command guidance.");
-    expect(instructions).not.toContain("OpenClaw main command guidance.");
+    expect(instructions).not.toContain("Urbicana main command guidance.");
   } finally {
     clearPluginCommands();
   }

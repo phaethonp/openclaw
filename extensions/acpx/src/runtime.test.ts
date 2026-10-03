@@ -255,7 +255,7 @@ describe("AcpxRuntime fresh reset wrapper", () => {
 
   it.each([
     {
-      name: "strips the OpenClaw Anthropic provider prefix for Claude ACP startup",
+      name: "strips the Urbicana Anthropic provider prefix for Claude ACP startup",
       model: "anthropic/claude-sonnet-4-6",
       expectedModel: "claude-sonnet-4-6",
     },
@@ -267,7 +267,7 @@ describe("AcpxRuntime fresh reset wrapper", () => {
     },
     {
       // Bare inference-profile ids and ARNs are native Bedrock values the SDK
-      // accepts as-is; only the documented OpenClaw prefixes may be stripped.
+      // accepts as-is; only the documented Urbicana prefixes may be stripped.
       name: "preserves native Bedrock inference-profile ids",
       model: "global.anthropic.claude-sonnet-5",
       expectedModel: "global.anthropic.claude-sonnet-5",
@@ -626,7 +626,7 @@ describe("AcpxRuntime fresh reset wrapper", () => {
     },
   );
 
-  it("disables delegate prompt timeout for OpenClaw-managed turns", async () => {
+  it("disables delegate prompt timeout for Urbicana-managed turns", async () => {
     const baseStore: TestSessionStore = {
       load: vi.fn(async () => ({
         acpxRecordId: "agent:codex:acp:test",
@@ -713,7 +713,7 @@ describe("AcpxRuntime fresh reset wrapper", () => {
     },
   );
 
-  it("keeps rejecting an unsupported model after retrying its OpenClaw reference", async () => {
+  it("keeps rejecting an unsupported model after retrying its Urbicana reference", async () => {
     const baseStore: TestSessionStore = makeEmptySessionStore();
     const { runtime, delegate } = makeRuntime(baseStore, {
       agentRegistry: {
@@ -909,7 +909,7 @@ describe("AcpxRuntime fresh reset wrapper", () => {
 
   it.each([
     {
-      name: "normalizes OpenClaw-qualified Codex ACP model controls",
+      name: "normalizes Urbicana-qualified Codex ACP model controls",
       value: "openai/gpt-5.4",
     },
     { name: "passes bare Codex ACP model controls through", value: "gpt-5.4" },

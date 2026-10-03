@@ -230,9 +230,9 @@ describe("SDK chat streaming", () => {
       );
       expect(seen.at(-1)?.data).toEqual({ text, delta: " 501" });
       await expect(run.events()[Symbol.asyncIterator]().next()).rejects.toThrow(
-        "OpenClaw SDK client is closed",
+        "Urbicana SDK client is closed",
       );
-      await expect(oc.connect()).rejects.toThrow("OpenClaw SDK client is closed");
+      await expect(oc.connect()).rejects.toThrow("Urbicana SDK client is closed");
     } finally {
       await iterator?.return?.();
       await oc.close();

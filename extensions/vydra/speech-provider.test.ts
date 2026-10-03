@@ -9,7 +9,7 @@ describe("vydra speech provider", () => {
 
   const provider = buildVydraSpeechProvider();
   const request = {
-    text: "OpenClaw test",
+    text: "Urbicana test",
     cfg: {},
     providerConfig: { apiKey: "vydra-test-key" },
     target: "audio-file",
@@ -42,7 +42,7 @@ describe("vydra speech provider", () => {
     expect(init.method).toBe("POST");
     expect(init.body).toBe(
       JSON.stringify({
-        text: "OpenClaw test",
+        text: "Urbicana test",
         voice_id: "21m00Tcm4TlvDq8ikWAM",
       }),
     );

@@ -279,7 +279,7 @@ test("retains a late lease receipt for exact cleanup after source read admission
             materializedPlans: [],
           }),
         }),
-      ).rejects.toThrow("OpenClaw state database read admission changed");
+      ).rejects.toThrow("Urbicana state database read admission changed");
       expect(revoked).toBe(true);
       expect(child?.threadId).toBe(-1);
       expect(loadSessionEntry(scope)).toEqual(entry);

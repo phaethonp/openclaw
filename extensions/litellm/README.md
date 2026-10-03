@@ -1,6 +1,6 @@
 # LiteLLM
 
-Connect OpenClaw to an existing LiteLLM proxy for model routing through a shared
+Connect Urbicana to an existing LiteLLM proxy for model routing through a shared
 endpoint. The plugin supports chat models and image generation when the proxy
 exposes the corresponding OpenAI-compatible routes.
 

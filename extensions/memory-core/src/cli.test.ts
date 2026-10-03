@@ -948,7 +948,7 @@ describe("memory cli", () => {
             indexIdentity: {
               status: "mismatched",
               reason:
-                "the index was written by a newer OpenClaw version; upgrade OpenClaw or reindex explicitly",
+                "the index was written by a newer Urbicana version; upgrade Urbicana or reindex explicitly",
               code: "provenance_version",
               owner: "openclaw",
               versionOrder: "newer",
@@ -961,7 +961,7 @@ describe("memory cli", () => {
     const log = spyRuntimeLogs(defaultRuntime);
     await runMemoryCli(["status", "--deep"]);
 
-    expectLogged(log, "upgrade OpenClaw or reindex explicitly");
+    expectLogged(log, "upgrade Urbicana or reindex explicitly");
     expectLogged(log, "Vector search: paused");
     expectNotLogged(log, "paused until memory is rebuilt");
     expectLogged(log, "openclaw memory status --index --agent main");
@@ -3262,7 +3262,7 @@ describe("memory cli", () => {
       await fs.writeFile(
         historyPath,
         [
-          "## OpenClaw / runtime / workflow preferences and corrections",
+          "## Urbicana / runtime / workflow preferences and corrections",
           "- Mariano explicitly said that when he tells Razor there has been an error, the default interpretation should be that he wants it fixed, not merely diagnosed or acknowledged.",
           "- Mariano clarified that the problem with cron output is overlapping, independently unreasonable crons converging into dumb sludge.",
           "",

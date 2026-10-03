@@ -99,7 +99,7 @@ type OpenClawExecServerLease = {
   cleanupTasks: Set<Promise<void>>;
 };
 
-/** Locally interpreted exec-server protocol backed by an OpenClaw sandbox. */
+/** Locally interpreted exec-server protocol backed by an Urbicana sandbox. */
 export type OpenClawExecServer = OpenClawExecServerLease & {
   processAuthorities?: Map<string, CodexNativeProcessClient>;
   backend: NonNullable<SandboxContext["backend"]>;

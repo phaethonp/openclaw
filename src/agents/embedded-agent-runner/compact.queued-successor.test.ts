@@ -656,7 +656,7 @@ describe("queued compaction successor ownership", () => {
           progressReset = backendParams.runtimeContext?.compactionTimeoutReset;
           const append = createBackendAppend(entryId);
           // Timer dispatch owns a different async context. Retain the backend's
-          // actual context without constructing any OpenClaw authority in the fixture.
+          // actual context without constructing any Urbicana authority in the fixture.
           const onAbort = AsyncLocalStorage.bind(() => {
             observed.resolve({
               callerAborted: caller.signal.aborted,

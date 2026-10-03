@@ -356,7 +356,7 @@ async function download(
       }
       if (name === "node:child_process") {
         return {
-          spawnSync: () => ({ status: 0, stdout: "OpenClaw 2026.8.1" }),
+          spawnSync: () => ({ status: 0, stdout: "Urbicana 2026.8.1" }),
           spawn: () => {
             installations.push(Date.now());
             const child = new EventEmitter();

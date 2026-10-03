@@ -78,7 +78,7 @@ describe("discordSetupWizard.groupAccess", () => {
       accountId: "default",
       resolved: [
         {
-          input: "OpenClaw/#triage",
+          input: "Urbicana/#triage",
           resolved: true,
           guildId: "guild-1",
           channelId: "channel-1",

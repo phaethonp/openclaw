@@ -233,7 +233,7 @@ vi.mock("./harness/builtin-openclaw.js", () => ({
   createOpenClawAgentHarness: (): AgentHarness => {
     const harness: AgentHarness = {
       id: "openclaw",
-      label: "OpenClaw embedded agent",
+      label: "Urbicana embedded agent",
       supports: () => ({ supported: true, priority: 0 }),
       runAttempt: vi.fn(),
     };

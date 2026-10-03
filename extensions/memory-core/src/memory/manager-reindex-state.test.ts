@@ -53,7 +53,7 @@ function isMemoryIndexIdentityDirty(
 }
 
 describe("memory reindex state", () => {
-  it("invalidates indexes with missing provenance version as OpenClaw-owned", () => {
+  it("invalidates indexes with missing provenance version as Urbicana-owned", () => {
     expect(
       resolveMemoryIndexIdentityState(
         createIdentityParams({ meta: createMeta({ provenanceVersion: undefined }) }),
@@ -87,7 +87,7 @@ describe("memory reindex state", () => {
     },
   );
 
-  it("classifies missing metadata as OpenClaw-owned", () => {
+  it("classifies missing metadata as Urbicana-owned", () => {
     expect(resolveMemoryIndexIdentityState(createIdentityParams({ meta: null }))).toEqual({
       status: "missing",
       reason: "index metadata is missing",

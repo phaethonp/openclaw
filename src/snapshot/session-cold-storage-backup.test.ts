@@ -156,9 +156,9 @@ async function captureFixture(
       databases: [{ path: sourcePath, identity: { role: "agent", agentId: "main" } }],
       gitEnv: {
         ...process.env,
-        GIT_AUTHOR_NAME: "OpenClaw Backup Test",
+        GIT_AUTHOR_NAME: "Urbicana Backup Test",
         GIT_AUTHOR_EMAIL: "backup@example.invalid",
-        GIT_COMMITTER_NAME: "OpenClaw Backup Test",
+        GIT_COMMITTER_NAME: "Urbicana Backup Test",
         GIT_COMMITTER_EMAIL: "backup@example.invalid",
       },
     });

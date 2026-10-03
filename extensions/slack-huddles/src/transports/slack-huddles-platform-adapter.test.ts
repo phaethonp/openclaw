@@ -34,7 +34,7 @@ describe("Slack huddle browser adapter", () => {
       category: "login-required",
       reason: "slack-login-required",
       message:
-        "Sign the OpenClaw Chrome profile into Slack as the claw's Slack account, then retry.",
+        "Sign the Urbicana Chrome profile into Slack as the claw's Slack account, then retry.",
     });
   });
 

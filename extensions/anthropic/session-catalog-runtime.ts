@@ -15,7 +15,7 @@ export function currentClaudeSessionCatalogConfig(api: OpenClawPluginApi): OpenC
 
 type BoundClaudeSource = { adopted: boolean; hostId: string; threadId: string };
 
-/** An OpenClaw session that drives a Claude thread. `adopted` marks the ones
+/** An Urbicana session that drives a Claude thread. `adopted` marks the ones
     this catalog owns; the rest merely route their turns through the Claude CLI. */
 export type BoundClaudeSession = { adopted: boolean; sessionKey: string };
 
@@ -40,7 +40,7 @@ function boundClaudeSource(
         : CLAUDE_LOCAL_SESSION_HOST_ID;
   // A CLI resume binding only records which Claude thread this session last
   // drove. Catalog ownership is what makes the session a Claude Code
-  // conversation, so the two are reported separately: an ordinary OpenClaw
+  // conversation, so the two are reported separately: an ordinary Urbicana
   // session routed to the Claude CLI is bound, never adopted.
   const adopted = entry.pluginOwnerId === pluginId;
   const bindings = isRecord(entry.cliSessionBindings) ? entry.cliSessionBindings : undefined;

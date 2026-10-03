@@ -111,7 +111,7 @@ describe("shared/node-match", () => {
   it.each([true, false, undefined])(
     "keeps the unique current client in an entirely legacy migration tie (connected=%s)",
     (connected) => {
-      const nodes = ["clawdbot-macos", "moldbot-macos", " OpenClaw-MacOS "].map(
+      const nodes = ["clawdbot-macos", "moldbot-macos", " Urbicana-MacOS "].map(
         (clientId, index) => ({
           nodeId: `node-${index}`,
           displayName: "Shared Desk",

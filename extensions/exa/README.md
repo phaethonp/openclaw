@@ -1,8 +1,8 @@
-# OpenClaw Exa Plugin
+# Urbicana Exa Plugin
 
-Official OpenClaw plugin for Exa.
+Official Urbicana plugin for Exa.
 
-Install from OpenClaw:
+Install from Urbicana:
 
 ```bash
 openclaw plugins install @openclaw/exa-plugin

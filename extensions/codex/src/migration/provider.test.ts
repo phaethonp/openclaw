@@ -1034,7 +1034,7 @@ describe("buildCodexMigrationProvider", () => {
       },
     ]);
     expect(plan.warnings).toEqual([
-      "Codex app-backed plugin migration requires the Codex app-server source account to be logged in with a ChatGPT subscription account. Log in to the Codex app with subscription auth; OpenClaw auth or API-key auth does not satisfy Codex app connector access.",
+      "Codex app-backed plugin migration requires the Codex app-server source account to be logged in with a ChatGPT subscription account. Log in to the Codex app with subscription auth; Urbicana auth or API-key auth does not satisfy Codex app connector access.",
     ]);
     expect(
       appServerRequest.mock.calls.filter(([arg]) => arg.method === "app/installed"),

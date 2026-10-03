@@ -55,8 +55,8 @@ function formatCliMachineOutput(humanOutput: string): string {
 
 function formatUnknownCommandMessage(command: string, commandPath: readonly string[]): string {
   return commandPath.length > 0
-    ? `OpenClaw ${commandPath.join(" ")} has no command ${quote(command)}.`
-    : `OpenClaw does not know the command ${quote(command)}.`;
+    ? `Urbicana ${commandPath.join(" ")} has no command ${quote(command)}.`
+    : `Urbicana does not know the command ${quote(command)}.`;
 }
 
 function formatCliUnknownCommandOutput(
@@ -114,7 +114,7 @@ function formatOrdinaryCliParseErrorMessage(message: string): string {
   const unknownOption = message.match(/^unknown option ['"`](.+?)['"`]/i);
   if (unknownOption) {
     const option = unknownOption[1] ?? "";
-    return `OpenClaw does not recognize option ${quote(option)}.`;
+    return `Urbicana does not recognize option ${quote(option)}.`;
   }
 
   const missingArgument = message.match(/^missing required argument ['"`](.+?)['"`]/i);
@@ -133,10 +133,10 @@ function formatOrdinaryCliParseErrorMessage(message: string): string {
     return "Too many arguments for this command.";
   }
 
-  return `OpenClaw could not parse this command: ${message}`;
+  return `Urbicana could not parse this command: ${message}`;
 }
 
-/** Convert Commander parse errors into OpenClaw-specific help and docs guidance. */
+/** Convert Commander parse errors into Urbicana-specific help and docs guidance. */
 export function formatCliParseErrorOutput(
   raw: string,
   options: FormatCliParseErrorOptions = {},

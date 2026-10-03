@@ -28,7 +28,7 @@ async function openSandboxSocket(sandbox: ReturnType<typeof createSandboxContext
   return socket;
 }
 
-describe("OpenClaw Codex sandbox exec-server filesystem", () => {
+describe("Urbicana Codex sandbox exec-server filesystem", () => {
   it("returns the required Codex file size in sandbox metadata", async () => {
     const sandbox = createSandboxContext({
       stat: async () => ({ type: "file", size: 1234, mtimeMs: 5678 }),

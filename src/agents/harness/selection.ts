@@ -137,7 +137,7 @@ export async function runAgentHarnessSettledTurnFinalization(
     throw new Error(`Agent harness ${harness.id} cannot safely finalize a settled tool turn.`);
   }
   if (internalParams.systemAgentTool && !isSystemAgentOnlyAllowlist(internalParams.toolsAllow)) {
-    throw new Error('OpenClaw host authority requires toolsAllow: ["openclaw"]');
+    throw new Error('Urbicana host authority requires toolsAllow: ["openclaw"]');
   }
   const builtIn = isBuiltInOpenClawAgentHarness(harness);
   const operatorAuthority = assertHarnessModelPolicySupport(harness, params);
@@ -286,7 +286,7 @@ export async function runAgentHarnessAttempt(
     };
   }
   if (internalParams.systemAgentTool && !isSystemAgentOnlyAllowlist(internalParams.toolsAllow)) {
-    throw new Error('OpenClaw host authority requires toolsAllow: ["openclaw"]');
+    throw new Error('Urbicana host authority requires toolsAllow: ["openclaw"]');
   }
   const ringZeroTools = internalParams.systemAgentTool
     ? [
@@ -507,7 +507,7 @@ async function runAgentHarnessOperation<T>(
   try {
     return await runWithDiagnosticTraceContext(harnessTrace, execute);
   } catch (error) {
-    log.warn(`${harness.label} failed; not falling back to embedded OpenClaw backend`, {
+    log.warn(`${harness.label} failed; not falling back to embedded Urbicana backend`, {
       harnessId: harness.id,
       provider: params.provider,
       modelId: params.modelId,

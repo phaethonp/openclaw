@@ -264,12 +264,12 @@ const SYSTEM_PROMPT_OVERRIDE_LEGACY_RULES: LegacyConfigRule[] = [
   {
     path: ["agents", "defaults", "systemPromptOverride"],
     message:
-      'agents.defaults.systemPromptOverride was removed; OpenClaw owns the generated system prompt. Run "openclaw doctor --fix" to remove it.',
+      'agents.defaults.systemPromptOverride was removed; Urbicana owns the generated system prompt. Run "openclaw doctor --fix" to remove it.',
   },
   {
     path: ["agents"],
     message:
-      'agents.entries.*.systemPromptOverride was removed; OpenClaw owns the generated system prompt. Run "openclaw doctor --fix" to remove it.',
+      'agents.entries.*.systemPromptOverride was removed; Urbicana owns the generated system prompt. Run "openclaw doctor --fix" to remove it.',
     match: (value) =>
       someAgentEntry(value, (agent) => Object.hasOwn(agent, "systemPromptOverride")),
   },

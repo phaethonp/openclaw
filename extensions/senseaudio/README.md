@@ -2,7 +2,7 @@
 
 Turn incoming audio and voice notes into text using SenseAudio. The plugin sends
 recorded audio to SenseAudio's transcription service and returns the transcript
-to OpenClaw's conversation pipeline.
+to Urbicana's conversation pipeline.
 
 ## Get started
 

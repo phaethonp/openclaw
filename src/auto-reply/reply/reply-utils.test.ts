@@ -637,8 +637,8 @@ describe("resolveResponsePrefixTemplate", () => {
       ["[{provider}]", { provider: "anthropic" }, "[anthropic]"],
       ["think:{thinkingLevel}", { thinkingLevel: "high" }, "think:high"],
       ["think:{think}", { thinkingLevel: "low" }, "think:low"],
-      ["[{identity.name}]", { identityName: "OpenClaw" }, "[OpenClaw]"],
-      ["[{identityName}]", { identityName: "OpenClaw" }, "[OpenClaw]"],
+      ["[{identity.name}]", { identityName: "Urbicana" }, "[Urbicana]"],
+      ["[{identityName}]", { identityName: "Urbicana" }, "[Urbicana]"],
       [
         "[{MODEL} | {ThinkingLevel}]",
         { model: "gpt-5.4", thinkingLevel: "low" },
@@ -647,12 +647,12 @@ describe("resolveResponsePrefixTemplate", () => {
       [
         "[{identity.name}] {provider}/{model} (think:{thinkingLevel})",
         {
-          identityName: "OpenClaw",
+          identityName: "Urbicana",
           provider: "anthropic",
           model: "claude-opus-4-6",
           thinkingLevel: "high",
         },
-        "[OpenClaw] anthropic/claude-opus-4-6 (think:high)",
+        "[Urbicana] anthropic/claude-opus-4-6 (think:high)",
       ],
     ]);
   });

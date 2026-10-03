@@ -312,7 +312,7 @@ export async function withMatrixQaIsolatedE2eeDriverRoom<T>(
   const originalGroupPolicy = accountConfig.groupPolicy;
   const driverAccount = await registerMatrixQaE2eeScenarioAccount({
     context,
-    deviceName: "OpenClaw Matrix QA Isolated E2EE Driver",
+    deviceName: "Urbicana Matrix QA Isolated E2EE Driver",
     localpartPrefix: "qa-e2ee-driver",
     scenarioId,
   });

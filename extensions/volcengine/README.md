@@ -1,9 +1,9 @@
-# OpenClaw Volcengine Provider
+# Urbicana Volcengine Provider
 
-Official OpenClaw provider plugin for Volcengine models, the Volcengine coding
+Official Urbicana provider plugin for Volcengine models, the Volcengine coding
 plan, and Volcengine Speech text-to-speech.
 
-Install from OpenClaw:
+Install from Urbicana:
 
 ```bash
 openclaw plugins install @openclaw/volcengine-provider

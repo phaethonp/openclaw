@@ -158,7 +158,7 @@ async function createMSTeamsApp(
   const { App, cloudFromName } = await loadSdkModules();
   const privateQaRuntime = resolveMSTeamsPrivateQaRuntime();
   // Tag outbound SDK HTTP calls with a User-Agent fragment so the Teams
-  // backend can identify OpenClaw traffic for usage telemetry. Teams SDK
+  // backend can identify Urbicana traffic for usage telemetry. Teams SDK
   // 2.0.11+ preserves both its own `teams.ts[apps]/<sdk-version>` identifier
   // and caller-provided User-Agent fragments when plain client headers are used.
   const cloud = options?.cloud ?? "Public";

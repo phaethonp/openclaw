@@ -1,6 +1,6 @@
 # Telegram
 
-Talk to OpenClaw through a Telegram bot in direct messages, groups, channels, and
+Talk to Urbicana through a Telegram bot in direct messages, groups, channels, and
 topics. The plugin supports media, voice notes, reactions, polls, and native
 commands.
 

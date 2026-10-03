@@ -1,7 +1,7 @@
 /**
  * Application keybinding definitions and user-config migration helpers.
  *
- * Wraps pi-tui keybindings with OpenClaw-specific actions and per-agent overrides.
+ * Wraps pi-tui keybindings with Urbicana-specific actions and per-agent overrides.
  */
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
@@ -16,7 +16,7 @@ import {
 import { isRecord } from "@openclaw/normalization-core/record-coerce";
 import { getAgentDir } from "../config.js";
 
-/** OpenClaw-specific key ids added to the shared pi-tui keybinding registry. */
+/** Urbicana-specific key ids added to the shared pi-tui keybinding registry. */
 type AppKeybindings = Record<Exclude<keyof typeof KEYBINDINGS, keyof typeof TUI_KEYBINDINGS>, true>;
 
 declare module "@earendil-works/pi-tui" {
@@ -279,7 +279,7 @@ function loadRawConfig(path: string): Record<string, unknown> | undefined {
   }
 }
 
-/** Keybinding manager that loads OpenClaw defaults plus optional user overrides. */
+/** Keybinding manager that loads Urbicana defaults plus optional user overrides. */
 export class KeybindingsManager extends TuiKeybindingsManager {
   private configPath: string | undefined;
 

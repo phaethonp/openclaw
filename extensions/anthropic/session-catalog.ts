@@ -111,7 +111,7 @@ function toGenericClaudeHost(
     ...(host.nodeId ? { nodeId: host.nodeId } : {}),
     sessions: host.sessions.flatMap((session) => {
       const boundSession = bound.get(adoptedSourceKey(host.hostId, session.threadId));
-      // An OpenClaw session that merely routes its turns through the Claude CLI
+      // An Urbicana session that merely routes its turns through the Claude CLI
       // writes a thread here, but it is not a Claude Code conversation: it owns a
       // sidebar row of its own. Listing it would hide that row inside this catalog
       // and pull the session out of the group the operator filed it under.

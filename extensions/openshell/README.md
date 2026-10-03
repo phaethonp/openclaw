@@ -1,8 +1,8 @@
 # @openclaw/openshell-sandbox
 
-Official NVIDIA OpenShell sandbox backend for OpenClaw.
+Official NVIDIA OpenShell sandbox backend for Urbicana.
 
-This plugin lets OpenClaw use OpenShell-managed local or remote sandboxes with
+This plugin lets Urbicana use OpenShell-managed local or remote sandboxes with
 SSH command execution. Choose `mirror` mode for a synchronized local workspace
 or `remote` mode for a remote-canonical workspace.
 
@@ -12,7 +12,7 @@ configured remote workspace, which defaults to `/sandbox`.
 
 Configuring an OpenShell workspace requires OpenShell `v0.0.88` or newer. The
 plugin supports OpenShell control-plane workspaces through
-`plugins.entries.openshell.config.workspace`; this is separate from OpenClaw's
+`plugins.entries.openshell.config.workspace`; this is separate from Urbicana's
 local/remote filesystem workspace mode. The setting applies to the whole plugin
 instance, not individual agents or sessions. When unset, the plugin preserves
 the OpenShell CLI's ambient `OPENSHELL_WORKSPACE` selection, or its `default`
@@ -29,7 +29,7 @@ Restart the Gateway after installing or updating the plugin.
 ## Configure
 
 Install and configure the OpenShell CLI before enabling the backend. As the same
-operating system user that runs the OpenClaw Gateway, verify:
+operating system user that runs the Urbicana Gateway, verify:
 
 ```bash
 openshell --version
@@ -38,7 +38,7 @@ openshell sandbox list
 ```
 
 Set `agents.defaults.sandbox.backend` to `"openshell"`, enable
-`plugins.entries.openshell`, and restart the OpenClaw Gateway. OpenShell
+`plugins.entries.openshell`, and restart the Urbicana Gateway. OpenShell
 settings belong under `plugins.entries.openshell.config`.
 
 The optional `policy` setting must be the path to a readable OpenShell policy
@@ -53,4 +53,4 @@ Use the OpenShell docs for credentials, workspace mirroring, runtime selection, 
 
 - Plugin id: `openshell`
 - Package: `@openclaw/openshell-sandbox`
-- Minimum OpenClaw host: `2026.5.12-beta.1`
+- Minimum Urbicana host: `2026.5.12-beta.1`

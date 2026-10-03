@@ -75,7 +75,7 @@ type InternalToolResultAcknowledgement = () => void;
 const toolResultAcknowledgementByValue = new WeakMap<object, InternalToolResultAcknowledgement>();
 const toolResultProvenanceByValue = new WeakMap<object, object>();
 
-/** Install OpenClaw-owned loop control without adding a plugin-facing Agent option. */
+/** Install Urbicana-owned loop control without adding a plugin-facing Agent option. */
 export function setInternalBeforeToolBatch(
   agent: object,
   hook: InternalBeforeToolBatchHook | undefined,
@@ -133,7 +133,7 @@ export function getInternalSyncSteeringGetter(
   return syncSteeringGetterByCallback.get(callback);
 }
 
-/** Attach OpenClaw-owned two-phase execution without changing the public AgentTool shape. */
+/** Attach Urbicana-owned two-phase execution without changing the public AgentTool shape. */
 export function attachInternalToolExecutionPreparer<T extends object>(
   tool: T,
   preparer: InternalToolExecutionPreparer,

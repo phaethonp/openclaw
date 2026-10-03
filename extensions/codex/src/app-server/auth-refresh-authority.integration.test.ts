@@ -306,7 +306,7 @@ describe("Codex app-server auth refresh authority", () => {
             error: {
               code: -32603,
               message: expect.stringContaining(
-                `auth profile "${PROFILE_ID}" is no longer an OpenAI OAuth credential in its persisted OpenClaw store.`,
+                `auth profile "${PROFILE_ID}" is no longer an OpenAI OAuth credential in its persisted Urbicana store.`,
               ),
             },
           });
@@ -354,7 +354,7 @@ describe("Codex app-server auth refresh authority", () => {
         error: {
           code: -32603,
           message: expect.stringContaining(
-            `auth profile "${PROFILE_ID}" could not resolve usable OAuth credentials from its OpenClaw credential store.`,
+            `auth profile "${PROFILE_ID}" could not resolve usable OAuth credentials from its Urbicana credential store.`,
           ),
         },
       });

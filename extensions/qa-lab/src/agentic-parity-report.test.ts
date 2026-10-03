@@ -503,7 +503,7 @@ Follow-up:
 
     const report = renderQaAgenticParityMarkdownReport(comparison);
 
-    expect(report).toContain("# OpenClaw Agentic Parity Report — candidate vs baseline");
+    expect(report).toContain("# Urbicana Agentic Parity Report — candidate vs baseline");
     expect(report).toContain("| Completion rate | 100.0% | 100.0% |");
     expect(report).toContain("### Approval turn tool followthrough");
     expect(report).toContain("- Verdict: pass");
@@ -836,7 +836,7 @@ Follow-up:
       }),
     );
 
-    expect(report).toContain("# OpenClaw Runtime Parity Report — openclaw vs codex");
+    expect(report).toContain("# Urbicana Runtime Parity Report — openclaw vs codex");
     expect(report).toContain("| Tool-call-shape drift | 1 |");
     expect(report).toContain("## Runtime Timing");
     expect(report).toContain("| openclaw | 40 ms | 20 ms | 20 ms |");

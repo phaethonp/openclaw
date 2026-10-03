@@ -38,7 +38,7 @@ async function initializeRepository(root: string, gitTemplate: string): Promise<
   const repo = path.join(root, "repo");
   await fs.mkdir(repo, { recursive: true });
   await git(repo, "init", "-b", "main", `--template=${gitTemplate}`);
-  await git(repo, "config", "user.name", "OpenClaw Test");
+  await git(repo, "config", "user.name", "Urbicana Test");
   await git(repo, "config", "user.email", "openclaw-test@example.invalid");
   // The template is copied recursively; background maintenance can unlink files mid-copy.
   await git(repo, "config", "maintenance.auto", "false");

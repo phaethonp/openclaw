@@ -453,7 +453,7 @@ export function pluginRegistryIssueToHealthFinding(
       return {
         checkId: PLUGIN_REGISTRY_CHECK_ID,
         severity: "warning",
-        message: `Managed npm package ${issue.packageName} has a broken OpenClaw peer link: ${issue.reason}.`,
+        message: `Managed npm package ${issue.packageName} has a broken Urbicana peer link: ${issue.reason}.`,
         path: issue.packageDir,
         target: issue.packageName,
         fixHint: "Run `openclaw doctor --fix` to relink managed npm plugin packages.",
@@ -462,7 +462,7 @@ export function pluginRegistryIssueToHealthFinding(
       return {
         checkId: PLUGIN_REGISTRY_CHECK_ID,
         severity: "warning",
-        message: `Registered plugin ${issue.packageName} has a broken OpenClaw host link: ${issue.reason}.`,
+        message: `Registered plugin ${issue.packageName} has a broken Urbicana host link: ${issue.reason}.`,
         path: issue.packageDir,
         target: issue.packageName,
         fixHint: "Run `openclaw doctor --fix` to relink the installed plugin package.",

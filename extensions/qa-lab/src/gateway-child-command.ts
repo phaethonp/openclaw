@@ -42,7 +42,7 @@ export function resolveQaGatewayChildCommand(repoRoot: string): QaGatewayChildCo
   }
 
   throw new Error(
-    "OpenClaw CLI entry not found: expected scripts/run-node.mjs or dist/index.(m)js",
+    "Urbicana CLI entry not found: expected scripts/run-node.mjs or dist/index.(m)js",
   );
 }
 
@@ -151,7 +151,7 @@ async function readQaGatewayCliCommand(
   const stdoutText = readQaChildOutput(stdout);
   if (failure || exitCode !== 0) {
     // Preserve the first failure's reason, but include output drained during shutdown.
-    const reason = failure?.message ?? `OpenClaw CLI exited ${exitCode}`;
+    const reason = failure?.message ?? `Urbicana CLI exited ${exitCode}`;
     const stderrText = formatQaChildOutputTail(stderr, "stderr");
     failure = createQaGatewayCliError(
       `${reason}: ${[stderrText, stdoutText].filter(Boolean).join("\n")}`,

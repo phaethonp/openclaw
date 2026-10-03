@@ -3,7 +3,7 @@ import { buildMistralModelDefinition, MISTRAL_DEFAULT_MODEL_ID } from "./model-d
 import { buildMistralProvider } from "./provider-catalog.js";
 
 describe("mistral model definitions", () => {
-  it("uses current OpenClaw pricing for the default model", () => {
+  it("uses current Urbicana pricing for the default model", () => {
     const model = buildMistralModelDefinition();
     expect(model.id).toBe(MISTRAL_DEFAULT_MODEL_ID);
     expect(model.contextWindow).toBe(262144);

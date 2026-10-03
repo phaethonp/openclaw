@@ -30,9 +30,9 @@ import { expectRecordFields, requireGatewayRecord } from "./test-helpers.asserti
 type AugmentCliHistoryParams = Parameters<typeof resolveChatHistoryWithCliSessionImports>[0];
 
 const CLAUDE_RESUME_DRIFT_NOTES = [
-  "OpenClaw resumed this CLI session after prompt content changed. Follow the current turn's instructions; changed=system-prompt.",
-  "OpenClaw resumed this CLI session after prompt content changed. Follow the current turn's instructions; changed=prompt-tools.",
-  "OpenClaw resumed this CLI session after prompt content changed. Follow the current turn's instructions; changed=system-prompt,prompt-tools.",
+  "Urbicana resumed this CLI session after prompt content changed. Follow the current turn's instructions; changed=system-prompt.",
+  "Urbicana resumed this CLI session after prompt content changed. Follow the current turn's instructions; changed=prompt-tools.",
+  "Urbicana resumed this CLI session after prompt content changed. Follow the current turn's instructions; changed=system-prompt,prompt-tools.",
 ] as const;
 
 function expectFields(value: unknown, expected: Record<string, unknown>): void {
@@ -722,7 +722,7 @@ describe("cli session history", () => {
   it.each([
     [
       "first sentence followed by user prose",
-      "OpenClaw resumed this CLI session after prompt content changed. This is my own note.\n\nhello",
+      "Urbicana resumed this CLI session after prompt content changed. This is my own note.\n\nhello",
     ],
     [
       "unknown reason",

@@ -11,6 +11,7 @@ import {
   GATEWAY_CLIENT_MODES,
   GATEWAY_CLIENT_NAMES,
 } from "../../../packages/gateway-protocol/src/client-info.js";
+import { AGENT_IDENTITY_LINE } from "../../agents/agent-identity-line.js";
 import { DEFAULT_PROVIDER } from "../../agents/defaults.js";
 import {
   normalizeThinkLevel,
@@ -28,7 +29,7 @@ import type { CapabilityEnvelope, CapabilityTransport } from "./metadata.js";
 import { formatEnvelopeForText, providerSummaryText } from "./output.js";
 import { registerLocalProvidersCommand, runCapabilityCommand } from "./providers-command.js";
 
-const LOCAL_MODEL_RUN_SYSTEM_PROMPT = "You are a personal assistant running inside OpenClaw.";
+const LOCAL_MODEL_RUN_SYSTEM_PROMPT = AGENT_IDENTITY_LINE;
 const HEIC_MODEL_RUN_MIMES = new Set([
   "image/heic",
   "image/heic-sequence",

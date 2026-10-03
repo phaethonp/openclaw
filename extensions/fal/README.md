@@ -1,7 +1,7 @@
 # fal
 
 Generate images, videos, and music with fal's hosted models. The plugin connects
-fal to OpenClaw's media generation tools. Image editing and reference inputs
+fal to Urbicana's media generation tools. Image editing and reference inputs
 depend on the selected model.
 
 ## Get started

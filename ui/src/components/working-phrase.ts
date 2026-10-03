@@ -24,7 +24,6 @@ const PHRASE_KEYS = [
   "nautiling",
   "krilling",
   "barnacling",
-  "lobstering",
   "tidepooling",
   "pearling",
   "snapping",

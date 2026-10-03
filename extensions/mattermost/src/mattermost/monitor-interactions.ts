@@ -62,7 +62,7 @@ function createMattermostQuestionInteractionHandler(
     const auth = await decide();
     if (!auth.ok) {
       // No Gateway I/O for a click current policy refuses; the prompt stays usable.
-      return { ephemeral_text: `OpenClaw ignored this action for ${auth.roomLabel}.` };
+      return { ephemeral_text: `Urbicana ignored this action for ${auth.roomLabel}.` };
     }
     try {
       const result = await questionGatewayRuntime.resolveOption({
@@ -76,7 +76,7 @@ function createMattermostQuestionInteractionHandler(
         authorize: async () => (await decide()).ok,
       });
       if (result.status === "denied") {
-        return { ephemeral_text: `OpenClaw ignored this action for ${auth.roomLabel}.` };
+        return { ephemeral_text: `Urbicana ignored this action for ${auth.roomLabel}.` };
       }
       if (result.status !== "answered") {
         return { ephemeral_text: "This question was already answered." };
@@ -152,7 +152,7 @@ export function registerMattermostInteractions(params: {
         return {
           ok: false,
           response: {
-            ephemeral_text: `OpenClaw ignored this action for ${decision.roomLabel}.`,
+            ephemeral_text: `Urbicana ignored this action for ${decision.roomLabel}.`,
           },
         };
       },

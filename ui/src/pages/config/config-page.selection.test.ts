@@ -119,7 +119,7 @@ function routeContext(): ApplicationContext {
     gateway,
     settingsAgentSelection: { state: { selectedId: "main" }, subscribe },
     config: {
-      current: { assistantIdentity: { name: "OpenClaw" }, serverVersion: "test" },
+      current: { assistantIdentity: { name: "Urbicana" }, serverVersion: "test" },
       subscribe,
     },
     runtimeConfig: {

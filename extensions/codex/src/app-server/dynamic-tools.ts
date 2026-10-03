@@ -391,8 +391,8 @@ export function createCodexDynamicToolBridge(params: {
       if (!toolEntry) {
         const executedArguments = asNonArrayRecord(call.arguments);
         const message = registeredToolNames.has(call.tool)
-          ? `OpenClaw tool is not available for this turn: ${call.tool}`
-          : `Unknown OpenClaw tool: ${call.tool}`;
+          ? `Urbicana tool is not available for this turn: ${call.tool}`
+          : `Unknown Urbicana tool: ${call.tool}`;
         const result = failedToolResult(message);
         presentTerminal(call.tool, result, true);
         notifyAgentToolResult(options?.onAgentToolResult, call.tool, result, true);
@@ -721,7 +721,7 @@ export function createCodexDynamicToolBridge(params: {
               : resolveToolExecutionErrorKind(error));
           const errorMessage = formatToolExecutionErrorMessage(
             error,
-            "OpenClaw dynamic tool call failed.",
+            "Urbicana dynamic tool call failed.",
           );
           const operatorHint = readToolOperatorHint(error);
           if (operatorHint) {
@@ -927,7 +927,7 @@ function convertToolContents(
   if (totalTextBudget <= maxChars) {
     return content.flatMap(convertToolContent);
   }
-  const noticeText = `...(OpenClaw truncated dynamic tool result: original ${totalTextChars} chars, weighted budget ${maxChars}; rerun with narrower args.)`;
+  const noticeText = `...(Urbicana truncated dynamic tool result: original ${totalTextChars} chars, weighted budget ${maxChars}; rerun with narrower args.)`;
   const notice = `\n${noticeText}`;
   const noticeChars = estimateToolResultTextChars(notice);
   const textBudget = Math.max(0, maxChars - noticeChars);

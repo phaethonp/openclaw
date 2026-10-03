@@ -1,7 +1,7 @@
 {
   "name": "@openclaw/file-transfer",
   "version": "2026.9.6",
-  "description": "OpenClaw file transfer plugin (file_fetch, dir_list, dir_fetch, file_write)",
+  "description": "Urbicana file transfer plugin (file_fetch, dir_list, dir_fetch, file_write)",
   "type": "module",
   "dependencies": {
     "@openclaw/fs-safe": "0.21.2",

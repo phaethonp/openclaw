@@ -1,8 +1,8 @@
-# OpenClaw Qwen Cloud Provider
+# Urbicana Qwen Cloud Provider
 
-Official OpenClaw provider plugin for Qwen Cloud.
+Official Urbicana provider plugin for Qwen Cloud.
 
-Install from OpenClaw:
+Install from Urbicana:
 
 ```bash
 openclaw plugins install @openclaw/qwen-provider

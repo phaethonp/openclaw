@@ -21,7 +21,7 @@ const LEGACY_OAUTH_SECRET_DIRNAME = "auth-profiles";
 const LEGACY_OAUTH_SECRET_VERSION = 1;
 const LEGACY_OAUTH_SECRET_ALGORITHM = "aes-256-gcm";
 const LEGACY_OAUTH_SECRET_KEY_ENV = "OPENCLAW_AUTH_PROFILE_SECRET_KEY";
-const LEGACY_OAUTH_SECRET_KEYCHAIN_SERVICE = "OpenClaw Auth Profile Secrets";
+const LEGACY_OAUTH_SECRET_KEYCHAIN_SERVICE = "Urbicana Auth Profile Secrets";
 const LEGACY_OAUTH_SECRET_KEYCHAIN_ACCOUNT = "oauth-profile-master-key";
 const LEGACY_OAUTH_SECRET_KEY_FILE_NAME = "auth-profile-secret-key";
 
@@ -117,7 +117,7 @@ function uniquePaths(paths: Array<string | undefined>): string[] {
 function resolveLegacyOAuthSecretKeyFileCandidates(env: NodeJS.ProcessEnv): string[] {
   const home = (process.platform === "win32" ? env.USERPROFILE : env.HOME)?.trim() || os.homedir();
   let root: string | undefined;
-  let directory = "OpenClaw";
+  let directory = "Urbicana";
   if (process.platform === "win32") {
     root = env.APPDATA?.trim() || (home ? path.join(home, "AppData", "Roaming") : undefined);
   } else if (process.platform === "darwin") {

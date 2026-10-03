@@ -96,7 +96,7 @@ export async function verifyBuzzAfterSetup(params: {
     );
   } catch (error) {
     if (isGatewayNotRunningError(error)) {
-      params.runtime.log("Buzz config was saved. Start OpenClaw to connect: openclaw gateway");
+      params.runtime.log("Buzz config was saved. Start Urbicana to connect: openclaw gateway");
       return;
     }
     const message = error instanceof Error ? error.message : String(error);

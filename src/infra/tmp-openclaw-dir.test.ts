@@ -1,4 +1,4 @@
-// Covers preferred OpenClaw temp directory resolution.
+// Covers preferred Urbicana temp directory resolution.
 import fs from "node:fs";
 import path from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";

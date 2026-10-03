@@ -2649,7 +2649,7 @@ describe("bridgeCodexAppServerStartOptions", () => {
     });
   });
 
-  it("does not inject native CLI OAuth without an OpenClaw profile", async () => {
+  it("does not inject native CLI OAuth without an Urbicana profile", async () => {
     const root = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-codex-app-server-"));
     const agentDir = path.join(root, "agent");
     const codexHome = path.join(root, "codex-cli");
@@ -2674,7 +2674,7 @@ describe("bridgeCodexAppServerStartOptions", () => {
     }
   });
 
-  it("does not borrow OS-home native OAuth for an isolated OpenClaw home", async () => {
+  it("does not borrow OS-home native OAuth for an isolated Urbicana home", async () => {
     const root = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-codex-app-server-"));
     const osHome = path.join(root, "os-home");
     const openClawHome = path.join(root, "openclaw-home");
@@ -2700,7 +2700,7 @@ describe("bridgeCodexAppServerStartOptions", () => {
     }
   });
 
-  it("requires an OpenClaw profile instead of refreshing the native CLI store", async () => {
+  it("requires an Urbicana profile instead of refreshing the native CLI store", async () => {
     const root = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-codex-app-server-"));
     const agentDir = path.join(root, "agent");
     const codexHome = path.join(root, "codex-cli");

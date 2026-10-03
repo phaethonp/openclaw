@@ -153,7 +153,7 @@ describe("Checkout chip state", () => {
           state: { label: worktree ? "New worktree from main" : "feature" },
           remotePlacement,
           repository,
-          folderLabel: "OpenClaw",
+          folderLabel: "Urbicana",
           worktree,
           worktreeAvailable: true,
           branches: {
@@ -211,7 +211,7 @@ describe("Checkout chip state", () => {
         container.querySelector("wa-popover")!.dispatchEvent(new CustomEvent("wa-after-hide"));
         expect(onConfirm).toHaveBeenCalledOnce();
         expect(container.textContent).toContain(
-          "Clones OpenClaw on the selected runner. No Gateway checkout is created.",
+          "Clones Urbicana on the selected runner. No Gateway checkout is created.",
         );
         return;
       }
@@ -289,7 +289,7 @@ describe("Checkout chip state", () => {
       } else {
         expect(container.querySelector(".new-session-page__menu-note")).toBeNull();
       }
-      expect(container.textContent?.includes("Syncs OpenClaw to the selected runner")).toBe(
+      expect(container.textContent?.includes("Syncs Urbicana to the selected runner")).toBe(
         remotePlacement,
       );
     },
@@ -306,7 +306,7 @@ describe("Checkout chip state", () => {
         renderCheckoutChip({
           state: { label: "New worktree from main" },
           remotePlacement: false,
-          folderLabel: "OpenClaw",
+          folderLabel: "Urbicana",
           worktree: true,
           worktreeAvailable: true,
           branches: {

@@ -976,7 +976,7 @@ it.each(["npm", "archive"] as const)(
           expect(createRequire(native)(path.join(path.dirname(native), "child.cjs"))).toBe("first");
           successor = withPluginCache(cache, () => capturePluginGenerationArtifact(fixture.root));
           expect(() => successor!.linkHost(hosts[1]!)).toThrow(
-            "does not resolve the selected OpenClaw host",
+            "does not resolve the selected Urbicana host",
           );
           expect(fs.realpathSync(path.join(fixture.installRoot, "node_modules", "openclaw"))).toBe(
             fs.realpathSync(hosts[0]!),

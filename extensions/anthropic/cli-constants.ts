@@ -1,19 +1,19 @@
 import manifest from "./openclaw.plugin.json" with { type: "json" };
 
 export const CLAUDE_CLI_BACKEND_ID = "claude-cli";
-/** Retired OpenClaw auth profile replaced by Claude CLI's native login. */
+/** Retired Urbicana auth profile replaced by Claude CLI's native login. */
 export const CLAUDE_CLI_PROFILE_ID = `anthropic:${CLAUDE_CLI_BACKEND_ID}`;
 /** Explicit thinking opt-out for Claude CLI routes unsupported by Claude Code. */
 export const CLAUDE_CLI_OFF_THINKING_PROFILE = {
   levels: [{ id: "off" }],
   defaultLevel: "off",
 } as const;
-/** Non-secret marker telling OpenClaw that the installed Claude CLI owns auth. */
+/** Non-secret marker telling Urbicana that the installed Claude CLI owns auth. */
 export const CLAUDE_CLI_NATIVE_AUTH_MARKER = ["openclaw", "claude-cli-native-auth"].join(":");
 
 // Claude Code honors provider-routing, auth, and config-root env before
 // consulting its local login state, so inherited shell overrides must not
-// steer OpenClaw-managed Claude CLI runs toward a different provider,
+// steer Urbicana-managed Claude CLI runs toward a different provider,
 // endpoint, token source, plugin source, or telemetry bootstrap mode. Claude's
 // config directory remains inherited because it owns the selected native login.
 export const CLAUDE_CLI_CLEAR_ENV = [
@@ -25,13 +25,13 @@ export const CLAUDE_CLI_CLEAR_ENV = [
   "ANTHROPIC_CUSTOM_HEADERS",
   "ANTHROPIC_OAUTH_TOKEN",
   "ANTHROPIC_UNIX_SOCKET",
-  // Re-injected per run from OpenClaw's canonical context budget.
+  // Re-injected per run from Urbicana's canonical context budget.
   "CLAUDE_CODE_AUTO_COMPACT_WINDOW",
   // Re-injected only for 200K runs. Claude's user settings `env` block has
   // higher precedence than the spawned process environment by design.
   "CLAUDE_CODE_DISABLE_1M_CONTEXT",
   "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING",
-  // Re-injected per run from OpenClaw's effective thinking level.
+  // Re-injected per run from Urbicana's effective thinking level.
   "MAX_THINKING_TOKENS",
   "CLAUDE_CODE_API_KEY_FILE_DESCRIPTOR",
   "CLAUDE_CODE_ENTRYPOINT",

@@ -365,8 +365,8 @@ describe("OpenResponses HTTP API (e2e)", () => {
   it.each([
     [false, [{ text: "SDK plain-text response", mediaUrl: null }], "SDK plain-text response"],
     [true, [{ text: "SDK plain-text response", mediaUrl: null }], "SDK plain-text response"],
-    [false, [{ text: "", mediaUrl: null }], "No response from OpenClaw."],
-    [true, [{ text: "", mediaUrl: null }], "No response from OpenClaw."],
+    [false, [{ text: "", mediaUrl: null }], "No response from Urbicana."],
+    [true, [{ text: "", mediaUrl: null }], "No response from Urbicana."],
     [
       false,
       [

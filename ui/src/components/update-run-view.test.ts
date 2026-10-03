@@ -160,7 +160,7 @@ describe("update run view", () => {
       "Preparing the updater",
     );
     expect(element.querySelector(".update-run-view__details")?.textContent).toContain(
-      "Keeping a copy of the current updater so it can finish safely while OpenClaw is replaced.",
+      "Keeping a copy of the current updater so it can finish safely while Urbicana is replaced.",
     );
   });
 
@@ -356,7 +356,7 @@ describe("update run view", () => {
     });
     await element.updateComplete;
     const report = element.querySelector('[aria-label="Update report"]');
-    expect(report?.textContent).toContain("✅ OpenClaw updated to 2026.9.2 (from 2026.9.1).");
+    expect(report?.textContent).toContain("✅ Urbicana updated to 2026.9.2 (from 2026.9.1).");
     expect(report?.textContent).toContain("service running; version verified; channels ready");
     expect(element.querySelectorAll('[data-state="pass"]')).toHaveLength(4);
     expect(element.querySelector('[data-step="repairing"]')).toBeNull();
@@ -385,7 +385,7 @@ describe("update run view", () => {
     );
     expect(element.querySelector("img")).toBeNull();
     expect(element.querySelector('[data-step="build"]')?.getAttribute("aria-label")).toBe(
-      "Building OpenClaw: Failed",
+      "Building Urbicana: Failed",
     );
   });
 });

@@ -139,7 +139,7 @@ registerOpenClawStateDatabaseLifecycleListener((event) => {
   } else {
     snapshotsByPath.set(event.path, {
       kind: "state-error",
-      error: new Error("OpenClaw state database closed before consent provenance verification."),
+      error: new Error("Urbicana state database closed before consent provenance verification."),
       knownAgentIds: knownAgentIds(previous),
       ownershipUnknown: isOwnershipUnknown(previous),
     });
@@ -265,7 +265,7 @@ function resolveSchemaVersionSnapshot(
   return previousAgentIds.size > 0 || (previous !== undefined && isOwnershipUnknown(previous))
     ? {
         kind: "state-error",
-        error: new Error("OpenClaw state database disappeared after Claw ownership was observed."),
+        error: new Error("Urbicana state database disappeared after Claw ownership was observed."),
         knownAgentIds: previousAgentIds,
         ownershipUnknown: true,
       }
@@ -316,7 +316,7 @@ export async function prepareClawInstallSchemaVersions(
       }
       try {
         if (resolveSnapshotPath(options) !== path) {
-          throw new Error("OpenClaw state location changed before consent provenance publication.");
+          throw new Error("Urbicana state location changed before consent provenance publication.");
         }
         assertCurrent?.();
       } catch (error) {

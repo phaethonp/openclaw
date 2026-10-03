@@ -37,7 +37,7 @@ function desktopFixture(readiness: Readiness) {
     fs.mkdirSync(directory, { recursive: true });
   }
   fs.writeFileSync(path.join(provider, "vnc.password"), "synthetic-vnc-password\n");
-  for (const suffix of ["Contents/MacOS/OpenClaw", "Contents/Resources/cua-driver"]) {
+  for (const suffix of ["Contents/MacOS/Urbicana", "Contents/Resources/cua-driver"]) {
     const executable = path.join(app, suffix);
     fs.mkdirSync(path.dirname(executable), { recursive: true });
     fs.writeFileSync(executable, "#!/bin/sh\nexit 99\n", { mode: 0o700 });
@@ -69,7 +69,7 @@ case "$FIXTURE_READINESS" in
   *) printf 'Authority=Developer ID Application: Fixture\\nTeamIdentifier=ABCDEFGHIJ\\n' ;;
 esac`,
     PlistBuddy: `case "$2" in
-  'Print :CFBundleExecutable') echo OpenClaw ;;
+  'Print :CFBundleExecutable') echo Urbicana ;;
   'Print :CFBundleIdentifier') echo ai.openclaw.cloud-worker ;;
   'Print :OpenClawCloudWorkerHostVersion') if [ "$FIXTURE_READINESS" = old-app ]; then echo 0; else echo 1; fi ;;
   *) exit 1 ;;
@@ -231,7 +231,7 @@ describe.skipIf(process.platform === "win32")("Crabbox macOS desktop setup", () 
     { readiness: "no-gui", error: "GUI session is unavailable" },
     { readiness: "invalid-signature", error: "signature is invalid" },
     { readiness: "ad-hoc", error: "needs a Developer ID Application signature" },
-    { readiness: "old-app", error: "Update the signed OpenClaw Cloud Worker app" },
+    { readiness: "old-app", error: "Update the signed Urbicana Cloud Worker app" },
     { readiness: "missing-team", error: "signing team is missing" },
     { readiness: "invalid-team", error: "signing team is missing" },
   ])(

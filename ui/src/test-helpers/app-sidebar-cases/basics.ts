@@ -19,45 +19,13 @@ import "../../components/app-sidebar.ts";
 await import("../../components/viewer-facepile.ts");
 
 describe("AppSidebar update card wiring", () => {
-  it("keeps OpenClaw out of the workspace sidebar", async () => {
+  it("keeps Urbicana out of the workspace sidebar", async () => {
     const gateway = createGateway({} as GatewayBrowserClient);
     const { sidebar } = await mountSidebar(gateway, createSessions("main", ["agent:main:main"]));
 
     expect(sidebar.querySelector('.nav-item[href="/custodian"]')).toBeNull();
     expect(sidebar.querySelector('.nav-item[href="/settings/secrets"]')).toBeNull();
   });
-});
-
-describe("AppSidebar invitation admission", () => {
-  it.each([
-    { field: "draggingSessionKey", value: "agent:main:task", finish: "finishSessionDrag" },
-    { field: "draggingSidebarSection", value: "ungrouped", finish: "finishSidebarSectionDrag" },
-    { field: "draggingSidebarEntry", value: "route:home", finish: "finishSidebarEntryDrag" },
-  ] as const)(
-    "waits for $field to finish even without hover or focus",
-    async ({ field, value, finish }) => {
-      const { sidebar, context } = await mountSidebar(
-        createGateway({} as GatewayBrowserClient),
-        createSessions("main", ["agent:main:main", "agent:main:task"]),
-      );
-      expect(sidebar.matches(":hover, :focus-within")).toBe(false);
-      sidebar.sessionOrganizer[field] = value;
-      const fetch = vi
-        .spyOn(globalThis, "fetch")
-        .mockResolvedValue(Response.json({ serverVersion: "test", communityInvite: true }));
-      try {
-        await context.config.refresh();
-        await sidebar.updateComplete;
-        expect(context.config.current.communityInvite).toBe(true);
-        expect(sidebar.querySelector(".community-invite-card")).toBeNull();
-        sidebar.sessionOrganizer[finish]();
-        await sidebar.updateComplete;
-        expect(sidebar.querySelector(".community-invite-card")).not.toBeNull();
-      } finally {
-        fetch.mockRestore();
-      }
-    },
-  );
 });
 
 describe("AppSidebar new session navigation", () => {
@@ -605,7 +573,7 @@ describe("AppSidebar agent chip", () => {
           {
             key,
             kind: scope === "global" ? "global" : "direct",
-            label: "[OpenClaw heartbeat poll]",
+            label: "[Urbicana heartbeat poll]",
             category: "Team",
             pinned,
             updatedAt: 5,

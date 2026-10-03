@@ -1,6 +1,6 @@
 # @openclaw/buzz
 
-Official Buzz channel plugin for OpenClaw. It connects an OpenClaw agent to approved Buzz rooms for text conversations and threaded replies.
+Official Buzz channel plugin for Urbicana. It connects an Urbicana agent to approved Buzz rooms for text conversations and threaded replies.
 
 ## Requirements
 
@@ -18,7 +18,7 @@ Use `wss://` outside local development.
 openclaw channels add --channel buzz
 ```
 
-OpenClaw installs the plugin if needed, asks for the relay URL, and generates a dedicated bot identity.
+Urbicana installs the plugin if needed, asks for the relay URL, and generates a dedicated bot identity.
 
 Give the displayed **public key only** to a Buzz owner or admin:
 
@@ -59,17 +59,17 @@ Send a test message:
 openclaw message send \
   --channel buzz \
   --target <ROOM_UUID> \
-  --message "Hello from OpenClaw"
+  --message "Hello from Urbicana"
 ```
 
 ## Security and scope
 
-- Never give OpenClaw a human owner's private key.
-- The generated bot private key is stored in OpenClaw configuration; only its public key is displayed.
+- Never give Urbicana a human owner's private key.
+- The generated bot private key is stored in Urbicana configuration; only its public key is displayed.
 - Treat Buzz messages as untrusted agent input.
 - Currently supported: text conversations, threads, typing, and directory
   lookup in group rooms.
-- Not yet supported: DMs, media, reactions, or creating rooms from OpenClaw.
+- Not yet supported: DMs, media, reactions, or creating rooms from Urbicana.
 
 Full documentation: https://docs.openclaw.ai/channels/buzz
 

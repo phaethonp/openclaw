@@ -775,7 +775,7 @@ suite.define(() => {
       methodResponses: {
         "agent.identity.get": {
           agentId: "main",
-          name: "OpenClaw",
+          name: "Urbicana",
           avatar: "/avatar/main?v=fixture",
           avatarStatus: "local",
         },

@@ -188,7 +188,7 @@ describe("nextcloud-talk doctor", () => {
     expect(hoisted.probeNextcloudTalkBotResponseFeature).not.toHaveBeenCalled();
 
     const message =
-      'Nextcloud Talk bot "OpenClaw" (1) is missing the response feature; outbound replies will fail.';
+      'Nextcloud Talk bot "Urbicana" (1) is missing the response feature; outbound replies will fail.';
     hoisted.probeNextcloudTalkBotResponseFeature.mockResolvedValueOnce({
       ok: false,
       code: "missing_response_feature",

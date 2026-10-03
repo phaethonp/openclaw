@@ -95,10 +95,10 @@ suite.define(() => {
         throw new Error("chat export did not provide a readable download");
       }
       const markdown = await text(stream);
-      expect(markdown).toContain("# Chat with OpenClaw");
+      expect(markdown).toContain("# Chat with Urbicana");
       expect(markdown).toContain("## Message");
       expect(markdown).toContain(question);
-      expect(markdown).toContain("## OpenClaw");
+      expect(markdown).toContain("## Urbicana");
       expect(markdown).toContain(answer);
       expect(await gateway.getRequests("chat.send")).toHaveLength(0);
     });
@@ -126,7 +126,7 @@ suite.define(() => {
           methodResponses: {
             "chat.startup": {
               agentsList: {
-                agents: [{ id: "main", name: "OpenClaw" }],
+                agents: [{ id: "main", name: "Urbicana" }],
                 defaultId: "main",
                 mainKey: "main",
                 scope: "agent",
@@ -251,7 +251,7 @@ suite.define(() => {
           methodResponses: {
             "chat.startup": {
               agentsList: {
-                agents: [{ id: "main", name: "OpenClaw" }],
+                agents: [{ id: "main", name: "Urbicana" }],
                 defaultId: "main",
                 mainKey: "main",
                 scope: "agent",

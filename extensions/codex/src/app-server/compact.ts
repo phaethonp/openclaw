@@ -362,7 +362,7 @@ export async function maybeCompactCodexAppServerSession(
               }
               if (usesSupervisionConnection) {
                 // A supervised thread is native user-home state, not an
-                // OpenClaw-owned remote binding. Keep the lifecycle fence held
+                // Urbicana-owned remote binding. Keep the lifecycle fence held
                 // rather than detach and permit a second writer.
                 throw new Error("cannot detach an unconfirmed supervised codex thread");
               }

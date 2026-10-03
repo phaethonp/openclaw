@@ -98,12 +98,9 @@ function catalogForPreferences(entries: Record<string, unknown>): ThemeCatalogEn
       id: `user/${localId}`,
       name: definition.name,
       description: definition.description,
-      ...(definition.mascot !== undefined ? { mascot: definition.mascot } : {}),
       ...(definition.workingPhrases !== undefined
         ? { workingPhrases: definition.workingPhrases }
         : {}),
-      ...(definition.critters !== undefined ? { critters: definition.critters } : {}),
-      ...(definition.avatarHat !== undefined ? { avatarHat: definition.avatarHat } : {}),
       source: "user",
       modes: (["light", "dark"] as const).filter((mode) => Boolean(definition[mode])),
       definition,
@@ -189,7 +186,6 @@ async function readThemes(
     current,
     theme: descriptor(theme),
     ...(theme.definition ? { definition: theme.definition } : {}),
-    ...(theme.artwork ? { artwork: theme.artwork } : {}),
   };
   return { owner, entries, catalog, result };
 }

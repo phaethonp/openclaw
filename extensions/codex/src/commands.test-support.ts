@@ -220,8 +220,8 @@ export function expectedDiagnosticsTargetBlock(params: {
   return [
     `Session ${params.index ?? 1}`,
     ...(params.channel ? [`Channel: ${params.channel}`] : []),
-    ...(params.sessionKey ? [`OpenClaw session key: \`${params.sessionKey}\``] : []),
-    ...(params.sessionId ? [`OpenClaw session id: \`${params.sessionId}\``] : []),
+    ...(params.sessionKey ? [`Urbicana session key: \`${params.sessionKey}\``] : []),
+    ...(params.sessionId ? [`Urbicana session id: \`${params.sessionId}\``] : []),
     `Codex thread id: \`${params.threadId}\``,
     `Inspect locally: \`codex resume ${params.threadId}\``,
   ];

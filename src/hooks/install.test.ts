@@ -382,7 +382,7 @@ describe("installHooksFromPath", () => {
   );
 
   it.each(["install", "update"] as const)(
-    "preserves the declared OpenClaw dependency during %s",
+    "preserves the declared Urbicana dependency during %s",
     async (mode) => {
       const pkgDir = makeTempDir();
       const hooksDir = path.join(makeTempDir(), "hooks");

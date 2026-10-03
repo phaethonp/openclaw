@@ -313,7 +313,7 @@ export abstract class MemorySearchOrchestration extends MemoryKeywordRetrieval {
           indexState,
         });
       }
-      // A pending OpenClaw chunking upgrade keeps the stored keyword rows
+      // A pending Urbicana chunking upgrade keeps the stored keyword rows
       // readable: the resolver only marks chunkingVersionOnly when every
       // corpus constraint still matches, so source or scope changes
       // still fail closed here.

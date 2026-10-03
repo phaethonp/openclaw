@@ -77,7 +77,7 @@ export const TEAMS_MEETINGS_PLATFORM_ADAPTER = MeetingPlatformAdapter.create<
     participantIdentity: (transport) =>
       transport === "chrome-node"
         ? "Microsoft Teams guest in Chrome on a paired node"
-        : "Microsoft Teams guest in the OpenClaw Chrome profile",
+        : "Microsoft Teams guest in the Urbicana Chrome profile",
   },
   nodeCommandName: "teamsmeetings.chrome",
   nodeConfigPath: "plugins.entries.teams-meetings.config.chromeNode.node",
@@ -118,7 +118,7 @@ export const TEAMS_MEETINGS_PLATFORM_ADAPTER = MeetingPlatformAdapter.create<
       category: "browser-control-unavailable",
       reason: "browser-control-unavailable",
       message:
-        "Open the OpenClaw browser profile, finish the Teams sign-in, admission, or permission prompt, then retry.",
+        "Open the Urbicana browser profile, finish the Teams sign-in, admission, or permission prompt, then retry.",
     }),
     buildLeaveScript: (meetingUrl) =>
       teamsMeetingLeaveScript({

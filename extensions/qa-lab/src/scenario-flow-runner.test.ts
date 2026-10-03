@@ -199,7 +199,7 @@ function createPlanningEvidenceFixture(
     return {
       scenario,
       outboundText: `Built ${artifactFile}`,
-      failureMessage: "missing OpenClaw progress_card signal",
+      failureMessage: "missing Urbicana progress_card signal",
       currentSummary: {
         eventCursor: 9,
         successfulToolCallCounts: { progress_card: 1 },

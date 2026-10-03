@@ -59,7 +59,7 @@ function approvalNotificationCopy(params: {
   const agent = params.agentLabel ? ` for ${params.agentLabel}` : "";
   if (params.terminal) {
     return {
-      title: `${label}OpenClaw approval updated`,
+      title: `${label}Urbicana approval updated`,
       body:
         params.preferences.detailLevel === "private"
           ? "This approval is no longer pending."
@@ -67,11 +67,11 @@ function approvalNotificationCopy(params: {
     };
   }
   return {
-    title: `${label}OpenClaw approval requested`,
+    title: `${label}Urbicana approval requested`,
     body:
       params.preferences.detailLevel === "private"
-        ? "Open OpenClaw to review this request."
-        : `Open OpenClaw to review an approval${agent}.`,
+        ? "Open Urbicana to review this request."
+        : `Open Urbicana to review an approval${agent}.`,
   };
 }
 

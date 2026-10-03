@@ -144,7 +144,7 @@ function createApprovalContainer(params: {
   const plugin = view.approvalKind === "plugin";
   const systemAgent = view.approvalKind === "system-agent";
   const pending = view.phase === "pending";
-  const approvalLabel = plugin ? "Plugin" : systemAgent ? "OpenClaw Change" : "Exec";
+  const approvalLabel = plugin ? "Plugin" : systemAgent ? "Urbicana Change" : "Exec";
   const { commandPreview, commandSecondaryPreview } = plugin
     ? {
         commandPreview: formatCommandPreview(view.title, 700),
@@ -174,7 +174,7 @@ function createApprovalContainer(params: {
     ? plugin
       ? "A plugin action needs your approval."
       : systemAgent
-        ? "An OpenClaw change needs your approval."
+        ? "An Urbicana change needs your approval."
         : "A command needs your approval."
     : view.phase === "expired"
       ? "This approval request has expired."

@@ -271,7 +271,7 @@ describe("publication stage input", () => {
         /^tree [a-f0-9]{40}\nauthor OpenClaw <openclaw@localhost> 0 \+0000\ncommitter OpenClaw <openclaw@localhost> 0 \+0000$/u,
       );
       expect(oldCommit.slice(separator + 2)).toBe(
-        "OpenClaw worker workspace result\nversion 2\n" +
+        "Urbicana worker workspace result\nversion 2\n" +
           "base-ref " +
           legacy.baseManifestRef +
           "\ncurrent-ref " +

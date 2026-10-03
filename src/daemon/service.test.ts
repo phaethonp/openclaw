@@ -154,7 +154,7 @@ describe("resolveGatewayService", () => {
     });
   });
 
-  it("guards mutating service adapters when config was written by a newer OpenClaw", async () => {
+  it("guards mutating service adapters when config was written by a newer Urbicana", async () => {
     const tempHome = await makeTempWorkspace("openclaw-service-future-config-");
     const stateDir = path.join(tempHome, ".openclaw");
     const configPath = path.join(stateDir, "openclaw.json");
@@ -532,8 +532,8 @@ describe("readGatewayServiceState", () => {
   );
 
   it.each([
-    { name: "system-scoped OpenClaw service", definition: true, installed: true },
-    { name: "missing OpenClaw service definition", definition: false, installed: false },
+    { name: "system-scoped Urbicana service", definition: true, installed: true },
+    { name: "missing Urbicana service definition", definition: false, installed: false },
     { name: "failed service definition inspection", failure: true, installed: false },
   ])("preserves installed ownership for a $name without command details", async (scenario) => {
     const hasInstalledDefinition = vi.fn(async () => {

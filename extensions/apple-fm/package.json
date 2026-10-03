@@ -2,7 +2,7 @@
   "name": "@openclaw/apple-fm-provider",
   "version": "2026.9.6",
   "private": true,
-  "description": "OpenClaw on-device Apple Foundation Models provider",
+  "description": "Urbicana on-device Apple Foundation Models provider",
   "type": "module",
   "dependencies": {
     "zod": "4.6.5"

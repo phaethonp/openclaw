@@ -1,4 +1,4 @@
-/** Capture OpenClaw wrapper cleanup ownership before a backend close can yield. */
+/** Capture Urbicana wrapper cleanup ownership before a backend close can yield. */
 import { renderAgentCommand, type AcpxAgentCommand } from "./command-line.js";
 import { readAcpxProcessLeaseIdentity, type AcpxProcessLeaseStore } from "./process-lease.js";
 import {

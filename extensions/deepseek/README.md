@@ -1,8 +1,8 @@
-# OpenClaw DeepSeek Provider
+# Urbicana DeepSeek Provider
 
-Official OpenClaw provider plugin for DeepSeek.
+Official Urbicana provider plugin for DeepSeek.
 
-Install from OpenClaw:
+Install from Urbicana:
 
 ```bash
 openclaw plugins install @openclaw/deepseek-provider

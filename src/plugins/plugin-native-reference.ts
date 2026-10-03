@@ -111,7 +111,7 @@ export function assertPluginNativeReferenceNamespace(
       }
     }
     if (expectedHost && resolveNativeHost(target) !== expectedHost) {
-      throw new Error("The native companion directory resolves a different OpenClaw host");
+      throw new Error("The native companion directory resolves a different Urbicana host");
     }
   } catch (cause) {
     throw new Error(

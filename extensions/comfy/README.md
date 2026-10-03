@@ -1,7 +1,7 @@
 # @openclaw/comfy-provider
 
 Official ComfyUI image, video, and music generation provider plugin for
-OpenClaw.
+Urbicana.
 
 ## Install
 
@@ -23,4 +23,4 @@ Full workflow, model, and provider configuration:
 
 - Plugin id: `comfy`
 - Package: `@openclaw/comfy-provider`
-- Minimum OpenClaw host: `2026.7.2`
+- Minimum Urbicana host: `2026.7.2`

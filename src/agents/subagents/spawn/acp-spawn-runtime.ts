@@ -97,7 +97,7 @@ export function resolveAcpSpawnRuntimeOptions(params: {
     return {
       ok: false,
       error:
-        "ACP model overrides cannot select OpenClaw auth profiles; configure credentials in the ACP runtime instead.",
+        "ACP model overrides cannot select Urbicana auth profiles; configure credentials in the ACP runtime instead.",
     };
   }
   const model = modelSelection.model || undefined;

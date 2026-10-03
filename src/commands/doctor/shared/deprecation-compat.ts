@@ -285,7 +285,7 @@ const DOCTOR_DEPRECATION_COMPAT_RECORDS = [
     replacement: "models.providers.<id>.timeoutSeconds",
     docsPath: "/gateway/config-agents",
     notes:
-      "Pre-June configs must pass through OpenClaw 2026.9.5 Doctor before upgrading; current Doctor no longer migrates this key.",
+      "Pre-June configs must pass through Urbicana 2026.9.5 Doctor before upgrading; current Doctor no longer migrates this key.",
   }),
   compatRecord("doctor-agent-runtime-embedded-harness", "removed", {
     owner: "agent-runtime",
@@ -298,7 +298,7 @@ const DOCTOR_DEPRECATION_COMPAT_RECORDS = [
     replacement: "models.providers.<provider>.agentRuntime or model-scoped agentRuntime",
     docsPath: "/plugins/sdk-agent-harness",
     notes:
-      "Pre-June embeddedHarness configs must pass through OpenClaw 2026.9.5 Doctor before upgrading. Separate agentRuntime pins retain the Codex installation opt-out shipped in 2026.8.1.",
+      "Pre-June embeddedHarness configs must pass through Urbicana 2026.9.5 Doctor before upgrading. Separate agentRuntime pins retain the Codex installation opt-out shipped in 2026.8.1.",
   }),
   compatRecord("doctor-agent-embedded-pi-config", "removed", {
     owner: "agent-runtime",
@@ -309,7 +309,7 @@ const DOCTOR_DEPRECATION_COMPAT_RECORDS = [
     replacement: "agents.defaults.embeddedAgent; agents.list[].embeddedAgent",
     docsPath: "/gateway/config-agents",
     notes:
-      "Pre-June configs must pass through OpenClaw 2026.9.5 Doctor before upgrading; current Doctor no longer migrates this key.",
+      "Pre-June configs must pass through Urbicana 2026.9.5 Doctor before upgrading; current Doctor no longer migrates this key.",
   }),
   compatRecord("doctor-agent-sandbox-persession", "removed", {
     owner: "agent-runtime",
@@ -320,7 +320,7 @@ const DOCTOR_DEPRECATION_COMPAT_RECORDS = [
     replacement: "agents.*.sandbox.scope",
     docsPath: "/cli/doctor",
     notes:
-      "Pre-June configs must pass through OpenClaw 2026.9.5 Doctor before upgrading; current Doctor no longer migrates this key.",
+      "Pre-June configs must pass through Urbicana 2026.9.5 Doctor before upgrading; current Doctor no longer migrates this key.",
   }),
   compatRecord("doctor-memory-search-owner-consolidation", "deprecated", {
     previousRemoveAfter: "2026-09-18",
@@ -349,7 +349,7 @@ const DOCTOR_DEPRECATION_COMPAT_RECORDS = [
     replacement: "agents.defaults.heartbeat and channels.defaults.heartbeat",
     docsPath: "/automation",
     notes:
-      "Pre-June configs must pass through OpenClaw 2026.9.5 Doctor before upgrading; current Doctor no longer migrates this key.",
+      "Pre-June configs must pass through Urbicana 2026.9.5 Doctor before upgrading; current Doctor no longer migrates this key.",
   }),
   compatRecord("doctor-mcp-server-type-alias", "removal-pending", {
     owner: "config",
@@ -360,7 +360,7 @@ const DOCTOR_DEPRECATION_COMPAT_RECORDS = [
     replacement: "mcp.servers.*.transport",
     docsPath: "/cli/mcp",
     notes:
-      "OpenClaw stores transport names; CLI backends receive their own type fields through runtime adapters.",
+      "Urbicana stores transport names; CLI backends receive their own type fields through runtime adapters.",
   }),
   compatRecord("doctor-gateway-bind-host-aliases", "removal-pending", {
     owner: "gateway",

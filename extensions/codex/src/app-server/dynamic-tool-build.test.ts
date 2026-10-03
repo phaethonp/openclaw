@@ -212,7 +212,7 @@ describe("Codex app-server dynamic tool build", () => {
     expect(shouldEnableCodexAppServerNativeToolSurface(params)).toBe(false);
   });
 
-  it("keeps policy-filterable OpenClaw coding replacements when native tools are disabled", () => {
+  it("keeps policy-filterable Urbicana coding replacements when native tools are disabled", () => {
     const tools = [
       "read",
       "write",
@@ -612,7 +612,7 @@ describe("Codex app-server dynamic tool build", () => {
     });
     const gatewayExec = expectDefined(
       tools.find((tool) => tool.name === "exec"),
-      `${testCase.mode} OpenClaw shell replacement`,
+      `${testCase.mode} Urbicana shell replacement`,
     );
     expect.soft(gatewayExec.parameters).not.toHaveProperty("properties.security");
     const result = await gatewayExec.execute(`${testCase.mode}-allowlisted`, {
@@ -949,7 +949,7 @@ describe("Codex app-server dynamic tool build", () => {
     },
   );
 
-  it("preserves the host-provided OpenClaw tool through the Codex allowlist", async () => {
+  it("preserves the host-provided Urbicana tool through the Codex allowlist", async () => {
     const workspaceDir = path.join(tempDir, "workspace");
     const params = createParams(path.join(tempDir, "session.jsonl"), workspaceDir);
     params.disableTools = false;
@@ -1467,7 +1467,7 @@ describe("Codex app-server dynamic tool build", () => {
 
     expect(shellTestToolNames(tools)).toEqual(["message", "gateway_exec", "gateway_process"]);
     const gatewayExec = tools.find((tool) => tool.name === "gateway_exec");
-    expect(gatewayExec?.description).toContain("OpenClaw-managed Gateway environment access");
+    expect(gatewayExec?.description).toContain("Urbicana-managed Gateway environment access");
     expect(tools.find((tool) => tool.name === "gateway_process")?.description).toContain(
       "gateway_exec",
     );
@@ -1778,7 +1778,7 @@ describe("Codex app-server dynamic tool build", () => {
     });
     expect(nodeList.success).toBe(false);
     expect(nodeList.contentItems).toEqual([
-      { type: "inputText", text: "Unknown OpenClaw tool: node_process" },
+      { type: "inputText", text: "Unknown Urbicana tool: node_process" },
     ]);
     const nodeExec = tools.find((tool) => tool.name === "node_exec");
     expect(nodeExec?.description).toContain(
@@ -1842,7 +1842,7 @@ describe("Codex app-server dynamic tool build", () => {
     expect(shellTestToolNames(allowlistedTools)).toEqual(["message"]);
   });
 
-  it("restores the policy-filtered OpenClaw shell when a finite allowlist disables native Code Mode", async () => {
+  it("restores the policy-filtered Urbicana shell when a finite allowlist disables native Code Mode", async () => {
     const execTool = createRuntimeDynamicTool("exec");
     const processTool = createRuntimeDynamicTool("process");
     const messageTool = createRuntimeDynamicTool("message");
@@ -2329,7 +2329,7 @@ describe("Codex app-server dynamic tool build", () => {
   );
 
   it.each(["ultra", "off"] as const)(
-    "passes active %s thinking and prepared model into shared OpenClaw tool construction",
+    "passes active %s thinking and prepared model into shared Urbicana tool construction",
     async (thinkLevel) => {
       const sessionFile = path.join(tempDir, "session.jsonl");
       const workspaceDir = path.join(tempDir, "workspace");
@@ -2568,7 +2568,7 @@ describe("Codex app-server dynamic tool build", () => {
     expect(shouldEnableCodexAppServerNativeToolSurface(runtimePolicyParams)).toBe(false);
   });
 
-  it("disables Codex native tool surfaces whenever an OpenClaw sandbox is active", () => {
+  it("disables Codex native tool surfaces whenever an Urbicana sandbox is active", () => {
     const workspaceDir = path.join(tempDir, "workspace");
     const params = createParams(path.join(tempDir, "session.jsonl"), workspaceDir);
     params.disableTools = false;

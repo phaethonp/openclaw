@@ -69,7 +69,7 @@ export function createContext(
       subscribe: options?.gatewaySubscribe ?? subscribe,
     },
     config: {
-      current: { assistantIdentity: { name: "OpenClaw" } },
+      current: { assistantIdentity: { name: "Urbicana" } },
       subscribe,
     },
     agents: {

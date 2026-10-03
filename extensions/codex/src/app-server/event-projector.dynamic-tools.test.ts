@@ -82,7 +82,7 @@ describe("CodexAppServerEventProjector dynamic tool projection", () => {
     },
   );
 
-  it("records dynamic OpenClaw tool calls in mirrored transcript snapshots", async () => {
+  it("records dynamic Urbicana tool calls in mirrored transcript snapshots", async () => {
     const projector = await createProjector(undefined, {
       resolveDynamicToolResultContentSource: (toolName) =>
         toolName === "browser" ? "network" : undefined,
@@ -418,11 +418,11 @@ describe("CodexAppServerEventProjector dynamic tool projection", () => {
         arguments: { action: "send", text: "hello" },
         executionStarted: false,
         outcome: "failure",
-        failure: { error: "Unknown OpenClaw tool: message" },
+        failure: { error: "Unknown Urbicana tool: message" },
       }),
       success: false,
       terminalType: "error",
-      contentItems: [{ type: "inputText", text: "Unknown OpenClaw tool: message" }],
+      contentItems: [{ type: "inputText", text: "Unknown Urbicana tool: message" }],
     });
 
     const result = projector.buildResult(buildEmptyToolTelemetry());

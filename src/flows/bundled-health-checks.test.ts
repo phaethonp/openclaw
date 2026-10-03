@@ -652,7 +652,7 @@ describe("registerBundledHealthChecks", () => {
     expect(mocks.registerCodexManagedAppServerDoctorChecks).not.toHaveBeenCalled();
   });
 
-  it("does not load managed Codex health for an OpenClaw route", () => {
+  it("does not load managed Codex health for an Urbicana route", () => {
     registerBundledHealthChecks({
       cfg: {
         agents: {

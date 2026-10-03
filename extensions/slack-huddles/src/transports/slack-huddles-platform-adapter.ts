@@ -70,7 +70,7 @@ export const SLACK_HUDDLES_PLATFORM_ADAPTER = MeetingPlatformAdapter.create<
     participantIdentity: (transport) =>
       transport === "chrome-node"
         ? "Slack user in Chrome on a paired node"
-        : "Slack user in the OpenClaw Chrome profile",
+        : "Slack user in the Urbicana Chrome profile",
   },
   nodeCommandName: "slackhuddles.chrome",
   nodeConfigPath: "plugins.entries.slack-huddles.config.chromeNode.node",
@@ -108,7 +108,7 @@ export const SLACK_HUDDLES_PLATFORM_ADAPTER = MeetingPlatformAdapter.create<
       category: "browser-control-unavailable",
       reason: "browser-control-unavailable",
       message:
-        "Open the OpenClaw browser profile, finish Slack sign-in, admission, or permission prompt, then retry.",
+        "Open the Urbicana browser profile, finish Slack sign-in, admission, or permission prompt, then retry.",
     }),
     buildLeaveScript: (meetingUrl) =>
       slackHuddleLeaveScript({

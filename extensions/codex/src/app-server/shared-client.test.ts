@@ -376,7 +376,7 @@ describe("shared Codex app-server client", () => {
   });
 
   it.each(["shared", "isolated"] as const)(
-    "opens a native %s catalog client without selecting an OpenClaw agent",
+    "opens a native %s catalog client without selecting an Urbicana agent",
     async (kind) => {
       const harness = createInitializingClientHarness();
       const startSpy = vi.spyOn(CodexAppServerClient, "start").mockResolvedValue(harness.client);
@@ -384,7 +384,7 @@ describe("shared Codex app-server client", () => {
         kind === "shared" ? getSharedCodexAppServerClient : createIsolatedCodexAppServerClient;
       await mocks.resolveDefaultAgentDir.withImplementation(
         () => {
-          throw new Error("An OpenClaw agent must be selected");
+          throw new Error("An Urbicana agent must be selected");
         },
         async () => {
           const client = await acquire({
@@ -785,7 +785,7 @@ describe("shared Codex app-server client", () => {
     });
     expect(desktop.process.stdin.destroyed).toBe(false);
     expect(mocks.embeddedAgentLog.warn).toHaveBeenCalledExactlyOnceWith(
-      "codex app-server is newer than OpenClaw's managed runtime; continuing with normal startup validation",
+      "codex app-server is newer than Urbicana's managed runtime; continuing with normal startup validation",
       {
         detectedVersion: desktopVersion,
         validatedVersion: CODEX_APP_SERVER_VERSION,

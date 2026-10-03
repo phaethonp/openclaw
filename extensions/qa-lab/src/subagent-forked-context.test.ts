@@ -27,7 +27,7 @@ function userInput(text: string) {
 // Mirror the runtime-owned projection, not a helper shared with the mock oracle.
 function projectedInput(history: string, current = childTask) {
   return userInput(
-    `OpenClaw assembled context for this turn:\n<conversation_context>\n${history}\n</conversation_context>\n\nCurrent user request:\n${current}`,
+    `Urbicana assembled context for this turn:\n<conversation_context>\n${history}\n</conversation_context>\n\nCurrent user request:\n${current}`,
   );
 }
 
@@ -256,7 +256,7 @@ async function runForkEvidence(
           cursor: 14,
           sessionId:
             evidence === "settled-wrong-parent" ? "another-parent-session" : "parent-session",
-          // Current OpenClaw settled batches omit the model-facing source header.
+          // Current Urbicana settled batches omit the model-facing source header.
           prompt: settledBatch
             ? settledInput(childResult)
                 .content[0].text.split("\n")

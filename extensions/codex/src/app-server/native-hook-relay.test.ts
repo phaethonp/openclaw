@@ -46,7 +46,7 @@ function expectedCommandHook(event: string, timeout = 10, commandTimeout = 9_000
           command: `openclaw hooks relay --provider codex --relay-id relay-1 --generation generation-1 --event ${event} --timeout ${commandTimeout}`,
           timeout,
           async: false,
-          statusMessage: "OpenClaw native hook relay",
+          statusMessage: "Urbicana native hook relay",
         },
       ],
     },
@@ -709,7 +709,7 @@ describe("Codex native hook relay config", () => {
     );
   });
 
-  it("projects canonical OpenClaw ids to Codex canonical and alias matcher names", () => {
+  it("projects canonical Urbicana ids to Codex canonical and alias matcher names", () => {
     const config = buildCodexNativeHookRelayConfig({
       relay: createRelay({
         matchers: {

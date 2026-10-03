@@ -1,4 +1,4 @@
-// Product/package naming constants that bridge current OpenClaw manifests with
+// Product/package naming constants that bridge current Urbicana manifests with
 // legacy Clawdbot keys still seen in older configs and packages.
 export const MANIFEST_KEY = "openclaw" as const;
 

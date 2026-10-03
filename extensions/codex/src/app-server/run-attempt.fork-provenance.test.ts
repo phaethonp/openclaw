@@ -58,7 +58,7 @@ describe("Codex submitted prompt provenance", () => {
       const sentText = sentInput
         .flatMap((item) => (item.type === "text" ? [item.text] : []))
         .join("\n");
-      expect(sentText).toContain('[OpenClaw conversation info: sender={"id":"profile-fork-test"');
+      expect(sentText).toContain('[Urbicana conversation info: sender={"id":"profile-fork-test"');
       expect(sentText).toContain(params.prompt);
       await vi.waitFor(() => {
         expect(recorder.getPersistedMessage?.()?.["__openclaw"]?.mirrorIdentity).toBe(

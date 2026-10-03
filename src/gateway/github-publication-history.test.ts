@@ -148,7 +148,7 @@ describe("GitHub publication branch history", () => {
     expect(await f.publish("initial")).toMatchObject({ status: "published", url });
     const human = "Co-authored-by: alice <7+alice@users.noreply.github.com>";
     const other = "Co-authored-by: example <99+example@users.noreply.github.com>";
-    const marker = "OpenClaw-Publication: previous-writer";
+    const marker = "Urbicana-Publication: previous-writer";
     const layouts = [
       `${human}\n\nWorked on by:\n- @alice\n\n${marker}`,
       `${human}\n\n${other}\n${marker}`,
@@ -169,7 +169,7 @@ describe("GitHub publication branch history", () => {
       f.calls.length = 0;
       const repaired = await f.publish(`repair-${index}`);
       expect(repaired).toMatchObject({ status: "published", url });
-      expect(await parsed()).toBe(`${human}\nOpenClaw-Publication: ${repaired.requestId}`);
+      expect(await parsed()).toBe(`${human}\nUrbicana-Publication: ${repaired.requestId}`);
       expect(await f.git("rev-parse", "HEAD^")).toBe(previous);
       expect(await f.git("rev-parse", "HEAD^{tree}")).toBe(tree);
       expect(await f.git("show", "-s", "--format=%B", previous)).toBe(message);

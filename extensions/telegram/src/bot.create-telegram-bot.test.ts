@@ -797,7 +797,7 @@ describe("createTelegramBot", () => {
     installTelegramTopicStateForTest();
     const chatId = nextForumCacheChatId();
     const topic = {
-      chat: { id: chatId, type: "supergroup", title: "OpenClaw Ops", is_forum: true },
+      chat: { id: chatId, type: "supergroup", title: "Urbicana Ops", is_forum: true },
       message_thread_id: 99,
       is_topic_message: true,
     };
@@ -856,7 +856,7 @@ describe("createTelegramBot", () => {
   ])("native stop preserves a pending fragment from $scope", async ({ senderId, threadId }) => {
     installTelegramTopicStateForTest();
     const chatId = nextForumCacheChatId();
-    const chat = { id: chatId, type: "supergroup", title: "OpenClaw Ops", is_forum: true };
+    const chat = { id: chatId, type: "supergroup", title: "Urbicana Ops", is_forum: true };
     loadConfig.mockReturnValue({
       commands: { native: true, allowFrom: { telegram: ["42"] } },
       messages: { inbound: { byChannel: { telegram: 3000 } } },
@@ -1526,7 +1526,7 @@ describe("createTelegramBot", () => {
         date: 1736380804,
         replayUpdate: "full",
         message: {
-          chat: { id: chatId, type: "supergroup", title: "OpenClaw Ops" },
+          chat: { id: chatId, type: "supergroup", title: "Urbicana Ops" },
           from: { id: 42, first_name: "Ada", is_bot: false },
         },
       });
@@ -1536,7 +1536,7 @@ describe("createTelegramBot", () => {
         ctx: {
           update: { update_id: 105 },
           message: {
-            chat: { id: chatId, type: "supergroup", title: "OpenClaw Ops" },
+            chat: { id: chatId, type: "supergroup", title: "Urbicana Ops" },
             text: "stop",
             date: 1736380805,
             message_id: 105,
@@ -1886,7 +1886,7 @@ describe("createTelegramBot", () => {
     expect(replySpy).not.toHaveBeenCalled();
     expect(sendMessageSpy).toHaveBeenCalledWith(
       1234,
-      "Only an OpenClaw owner can sign in here. Ask the owner to connect this provider or grant you owner access.",
+      "Only an Urbicana owner can sign in here. Ask the owner to connect this provider or grant you owner access.",
       {},
     );
   });
@@ -2126,16 +2126,16 @@ describe("createTelegramBot", () => {
         chat: { id: 1234, type: "private", first_name: "Harold" },
         message_id: 1884,
         date: 1736380800,
-        from: { id: 7, is_bot: true, first_name: "OpenClaw", username: "openclaw_bot" },
+        from: { id: 7, is_bot: true, first_name: "Urbicana", username: "openclaw_bot" },
         pinned_message: {
           message_id: 1883,
           date: 1736380799,
           chat: { id: 1234, type: "private", first_name: "Harold" },
-          from: { id: 7, is_bot: true, first_name: "OpenClaw", username: "openclaw_bot" },
+          from: { id: 7, is_bot: true, first_name: "Urbicana", username: "openclaw_bot" },
           text: "Binding: Review pull request 54118 (openclaw)",
         },
       },
-      me: { id: 7, is_bot: true, first_name: "OpenClaw", username: "openclaw_bot" },
+      me: { id: 7, is_bot: true, first_name: "Urbicana", username: "openclaw_bot" },
       getFile: async () => ({ download: async () => new Uint8Array() }),
     });
 

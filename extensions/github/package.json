@@ -2,9 +2,9 @@
   "name": "@openclaw/github",
   "version": "2026.9.6",
   "private": true,
-  "description": "OpenClaw GitHub link reader plugin",
+  "description": "Urbicana GitHub link reader plugin",
   "type": "module",
-  "author": { "name": "OpenClaw" },
+  "author": { "name": "Urbicana" },
   "homepage": "https://docs.openclaw.ai/plugins/github",
   "repository": {
     "type": "git",

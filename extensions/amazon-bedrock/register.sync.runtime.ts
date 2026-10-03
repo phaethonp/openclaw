@@ -192,7 +192,7 @@ function extractRegionFromArn(arn: string): string | undefined {
  * otherwise opaque.
  *
  * Region is extracted from the profile ARN itself to avoid mismatches when
- * the OpenClaw config region differs from the profile's home region.
+ * the Urbicana config region differs from the profile's home region.
  */
 type BedrockAppProfileTraits = {
   cacheEligible: boolean;

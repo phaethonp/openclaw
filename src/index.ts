@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { existsSync } from "node:fs";
-// Re-exports the OpenClaw CLI entry point for package execution.
+// Re-exports the Urbicana CLI entry point for package execution.
 // Package executable entrypoint that forwards to the CLI bootstrap.
 import process from "node:process";
 import { fileURLToPath } from "node:url";
@@ -25,7 +25,7 @@ if (
     await completePendingPackageLifecycle({ packageRoot: fileURLToPath(packageRootUrl) });
   } catch (error) {
     throw new Error(
-      `OpenClaw package lifecycle is incomplete. Reinstall with package scripts enabled, then retry. ${error instanceof Error ? error.message : String(error)}`,
+      `Urbicana package lifecycle is incomplete. Reinstall with package scripts enabled, then retry. ${error instanceof Error ? error.message : String(error)}`,
       { cause: error },
     );
   }
@@ -159,7 +159,7 @@ if (isMain && !handledRootVersion && !handledAdmission) {
       defaultRuntime.writeJson(formatCliJsonFailure(error));
     }
     for (const line of formatCliFailureLines({
-      title: "OpenClaw hit an unexpected runtime error.",
+      title: "Urbicana hit an unexpected runtime error.",
       error,
       argv: process.argv,
     })) {

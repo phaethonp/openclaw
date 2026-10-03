@@ -5,7 +5,6 @@ import { isRouteId, isSessionRouteId } from "../app-route-paths.ts";
 import { gatewayPresentationScope } from "../app/gateway-presentation-scope.ts";
 import type { NativeGateway, NativeGatewaysSnapshot } from "../app/native-gateways.runtime.ts";
 import { isHomePanelAvailable } from "../app/panel-availability.ts";
-import { controlUiPublicAssetPath } from "../app/public-assets.ts";
 import { CONTROL_UI_BUILD_INFO } from "../build-info.ts";
 import { t } from "../i18n/index.ts";
 import { normalizeAgentLabel, resolveAgentTextAvatar } from "../lib/agents/display.ts";
@@ -16,6 +15,7 @@ import {
   KEYBOARD_SHORTCUT_COMBOS,
 } from "../lib/keyboard-shortcut-contract.ts";
 import { shouldHandleNavigationClick } from "../lib/navigation-click.ts";
+import { PRODUCT_NAME } from "../lib/product-name.ts";
 import { isSessionRunActive } from "../lib/session-run-state.ts";
 import {
   resolveSessionPreferredFace,
@@ -115,7 +115,7 @@ function renderSidebarAgentCard(host: AppSidebarRenderHost) {
 }
 
 function renderSidebarWorkspaceHeader(host: AppSidebarRenderHost) {
-  const name = readSidebarNativeGateway()?.name.trim() || "OpenClaw";
+  const name = readSidebarNativeGateway()?.name.trim() || PRODUCT_NAME;
   const menuOpen = host.sidebarMenus.agentMenuPosition !== null;
   return html`
     <div class="sidebar-workspace-header">
@@ -145,20 +145,11 @@ function renderSidebarWorkspaceHeader(host: AppSidebarRenderHost) {
           }
         }}
       >
-        ${
-          host.sessionDataContext?.theme.branding.mascot === "none"
-            ? html`<span
-                class="sidebar-workspace-header__mark sidebar-workspace-header__mark--neutral"
-                aria-hidden="true"
-                >${icons.mark}</span
-              >`
-            : html`<img
-                class="sidebar-workspace-header__mark"
-                src=${controlUiPublicAssetPath("favicon.svg", host.basePath)}
-                alt=""
-                aria-hidden="true"
-              />`
-        }
+        <span
+          class="sidebar-workspace-header__mark sidebar-workspace-header__mark--neutral"
+          aria-hidden="true"
+          >${icons.mark}</span
+        >
         <span class="sidebar-agent-card__text">
           <span class="sidebar-agent-card__name">
             ${renderHoverMarquee(name, "sidebar-agent-card__name-text", { loop: true, delay: 300, speed: 35 })}

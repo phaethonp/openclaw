@@ -64,7 +64,7 @@ export async function writeWorkspaceGitInput(params: {
       yield Buffer.from("\n");
     }
     yield Buffer.from(
-      `commit ${params.ref}\nauthor OpenClaw <openclaw@localhost> 0 +0000\ncommitter OpenClaw <openclaw@localhost> 0 +0000\ndata ${params.message?.byteLength ?? 0}\n`,
+      `commit ${params.ref}\nauthor Urbicana <openclaw@localhost> 0 +0000\ncommitter Urbicana <openclaw@localhost> 0 +0000\ndata ${params.message?.byteLength ?? 0}\n`,
     );
     yield* params.message?.chunks ?? [];
     yield Buffer.from("\ndeleteall\n");

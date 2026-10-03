@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/** ACP stdio server that bridges Agent Client Protocol clients to the OpenClaw Gateway. */
+/** ACP stdio server that bridges Agent Client Protocol clients to the Urbicana Gateway. */
 import { Readable, Writable } from "node:stream";
 import { fileURLToPath } from "node:url";
 import {

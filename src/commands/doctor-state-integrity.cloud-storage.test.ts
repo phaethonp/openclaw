@@ -25,7 +25,7 @@ describe("detectMacCloudSyncedStateDir", () => {
       "Library",
       "Mobile Documents",
       "com~apple~CloudDocs",
-      "OpenClaw",
+      "Urbicana",
       ".openclaw",
     );
 
@@ -41,7 +41,7 @@ describe("detectMacCloudSyncedStateDir", () => {
   });
 
   it("detects state dir under Library/CloudStorage", () => {
-    const stateDir = path.join(home, "Library", "CloudStorage", "Dropbox", "OpenClaw", ".openclaw");
+    const stateDir = path.join(home, "Library", "CloudStorage", "Dropbox", "Urbicana", ".openclaw");
 
     const result = detectMacCloudSyncedStateDir(stateDir, {
       platform: "darwin",
@@ -61,7 +61,7 @@ describe("detectMacCloudSyncedStateDir", () => {
       "Library",
       "CloudStorage",
       "OneDrive-Personal",
-      "OpenClaw",
+      "Urbicana",
       ".openclaw",
     );
 
@@ -83,7 +83,7 @@ describe("detectMacCloudSyncedStateDir", () => {
       "Library",
       "CloudStorage",
       "OneDrive-Personal",
-      "OpenClaw",
+      "Urbicana",
       ".openclaw",
     );
     const resolvedLocalPath = path.join(home, ".openclaw");
@@ -107,7 +107,7 @@ describe("detectMacCloudSyncedStateDir", () => {
     const syncedLink = path.join(cloudStorage, "OneDrive-Personal");
     fs.symlinkSync(localTarget, syncedLink, process.platform === "win32" ? "junction" : "dir");
 
-    const stateDir = path.join(syncedLink, "OpenClaw", ".openclaw");
+    const stateDir = path.join(syncedLink, "Urbicana", ".openclaw");
     expect(fs.existsSync(stateDir)).toBe(false);
 
     expect(
@@ -126,7 +126,7 @@ describe("detectMacCloudSyncedStateDir", () => {
       "Library",
       "CloudStorage",
       "OneDrive-Personal",
-      "OpenClaw",
+      "Urbicana",
     );
     fs.mkdirSync(syncedDir, { recursive: true });
 
@@ -174,7 +174,7 @@ describe("detectMacCloudSyncedStateDir", () => {
       "Library",
       "Mobile Documents",
       "com~apple~CloudDocs",
-      "OpenClaw",
+      "Urbicana",
       ".openclaw",
     );
 
@@ -203,7 +203,7 @@ describe("detectWindowsCloudSyncedStateDir", () => {
     { key: "onedriveconsumer", root: oneDriveRoot, storage: "OneDrive" },
     { key: "oNeDrIvEcOmMeRcIaL", root: oneDriveBusinessRoot, storage: "OneDrive for Business" },
   ])("detects $key from a frozen environment snapshot", ({ key, root, storage }) => {
-    const stateDir = path.join(root, "OpenClaw", ".openclaw");
+    const stateDir = path.join(root, "Urbicana", ".openclaw");
     const env = Object.freeze({ [key]: root });
 
     expect(detectWindowsCloudSyncedStateDir(stateDir, { platform: "win32", env })).toEqual({
@@ -214,7 +214,7 @@ describe("detectWindowsCloudSyncedStateDir", () => {
   });
 
   it("matches sync roots case-insensitively", () => {
-    const stateDir = path.join(oneDriveRoot, "OpenClaw", ".openclaw").toUpperCase();
+    const stateDir = path.join(oneDriveRoot, "Urbicana", ".openclaw").toUpperCase();
 
     const result = detectWindowsCloudSyncedStateDir(stateDir, {
       platform: "win32",
@@ -228,7 +228,7 @@ describe("detectWindowsCloudSyncedStateDir", () => {
   });
 
   it("ignores cloud-synced junction prefix when resolved target is local", () => {
-    const junctionPath = path.join(oneDriveRoot, "OpenClaw", ".openclaw");
+    const junctionPath = path.join(oneDriveRoot, "Urbicana", ".openclaw");
     const resolvedLocalPath = path.join(home, ".openclaw");
 
     const result = detectWindowsCloudSyncedStateDir(junctionPath, {
@@ -244,7 +244,7 @@ describe("detectWindowsCloudSyncedStateDir", () => {
     // A fresh install has not created the leaf, so realpath on the state dir
     // itself fails. Resolving only the existing ancestor still follows the
     // junction out of OneDrive, so no warning should fire.
-    const junctionRoot = path.join(oneDriveRoot, "OpenClaw");
+    const junctionRoot = path.join(oneDriveRoot, "Urbicana");
     const stateDir = path.join(junctionRoot, ".openclaw");
     const resolvedLocalRoot = path.join(home, "local-openclaw");
 
@@ -258,7 +258,7 @@ describe("detectWindowsCloudSyncedStateDir", () => {
   });
 
   it("still warns when a missing leaf resolves to a path inside OneDrive", () => {
-    const junctionRoot = path.join(oneDriveRoot, "OpenClaw");
+    const junctionRoot = path.join(oneDriveRoot, "Urbicana");
     const stateDir = path.join(junctionRoot, ".openclaw");
 
     const result = detectWindowsCloudSyncedStateDir(stateDir, {
@@ -274,7 +274,7 @@ describe("detectWindowsCloudSyncedStateDir", () => {
   });
 
   it("returns null when no OneDrive environment variables are set", () => {
-    const stateDir = path.join(oneDriveRoot, "OpenClaw", ".openclaw");
+    const stateDir = path.join(oneDriveRoot, "Urbicana", ".openclaw");
 
     const result = detectWindowsCloudSyncedStateDir(stateDir, {
       platform: "win32",
@@ -285,7 +285,7 @@ describe("detectWindowsCloudSyncedStateDir", () => {
   });
 
   it("returns null outside win32", () => {
-    const stateDir = path.join(oneDriveRoot, "OpenClaw", ".openclaw");
+    const stateDir = path.join(oneDriveRoot, "Urbicana", ".openclaw");
 
     const result = detectWindowsCloudSyncedStateDir(stateDir, {
       platform: "linux",
@@ -298,8 +298,8 @@ describe("detectWindowsCloudSyncedStateDir", () => {
 
 describe("formatWindowsCloudSyncedStateDirWarning", () => {
   const warning = () =>
-    formatWindowsCloudSyncedStateDirWarning("%USERPROFILE%\\OneDrive\\OpenClaw\\.openclaw", {
-      path: "C:\\Users\\tester\\OneDrive\\OpenClaw\\.openclaw",
+    formatWindowsCloudSyncedStateDirWarning("%USERPROFILE%\\OneDrive\\Urbicana\\.openclaw", {
+      path: "C:\\Users\\tester\\OneDrive\\Urbicana\\.openclaw",
       storage: "OneDrive",
     });
 

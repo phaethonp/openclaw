@@ -376,7 +376,7 @@ function buildApprovalResponse(
   }
   return {
     decision: "decline",
-    reason: "OpenClaw codex app-server bridge does not grant native approvals yet.",
+    reason: "Urbicana codex app-server bridge does not grant native approvals yet.",
   };
 }
 
@@ -545,7 +545,7 @@ async function runOpenClawToolPolicyForApprovalRequest(params: {
     return {
       outcome: "denied",
       reason:
-        "OpenClaw tool policy rewrote Codex app-server approval params; refusing original request.",
+        "Urbicana tool policy rewrote Codex app-server approval params; refusing original request.",
     };
   }
   if (outcome.approvalResolution) {
@@ -665,7 +665,7 @@ async function runNativeRelayToolPolicyForApprovalRequest(params: {
     return {
       handled: true,
       blocked: true,
-      reason: `OpenClaw native hook relay unavailable for Codex app-server approval: ${formatCodexDisplayText(
+      reason: `Urbicana native hook relay unavailable for Codex app-server approval: ${formatCodexDisplayText(
         coerceErrorMessage(error),
       )}`,
       failureDisposition: "failed",
@@ -712,7 +712,7 @@ function readNativeRelayPreToolUseDecision(response: NativeHookRelayProcessRespo
       reason:
         sanitizeRelayDecisionReason(response?.stderr) ||
         sanitizeRelayDecisionReason(response?.stdout) ||
-        "OpenClaw native hook relay failed for Codex app-server approval.",
+        "Urbicana native hook relay failed for Codex app-server approval.",
       failureDisposition: response?.failureDisposition ?? "failed",
     };
   }
@@ -730,7 +730,7 @@ function readNativeRelayPreToolUseDecision(response: NativeHookRelayProcessRespo
       blocked: true,
       reason:
         readString(output, "permissionDecisionReason") ||
-        "OpenClaw native hook policy denied Codex app-server approval.",
+        "Urbicana native hook policy denied Codex app-server approval.",
       ...(response.failureDisposition ? { failureDisposition: response.failureDisposition } : {}),
     };
   }
@@ -739,8 +739,8 @@ function readNativeRelayPreToolUseDecision(response: NativeHookRelayProcessRespo
   return {
     blocked: true,
     reason: output
-      ? "OpenClaw native hook relay returned a non-deny Codex app-server approval decision."
-      : "OpenClaw native hook relay returned an unreadable Codex app-server approval result.",
+      ? "Urbicana native hook relay returned a non-deny Codex app-server approval decision."
+      : "Urbicana native hook relay returned an unreadable Codex app-server approval result.",
     failureDisposition: "failed",
   };
 }

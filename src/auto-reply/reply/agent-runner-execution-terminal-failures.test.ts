@@ -523,7 +523,7 @@ describe("executeAgentTurn: terminal failures", () => {
       code: "cli_max_turns",
       recoveryText:
         "Claude CLI stopped after reaching the maximum number of turns (limit: 1). " +
-        "OpenClaw run: run-max-turns. OpenClaw session: session-1. Claude session: claude-session-1. " +
+        "Urbicana run: run-max-turns. Urbicana session: session-1. Claude session: claude-session-1. " +
         "Tool actions may already have run; verify their effects before retrying. " +
         "Retry with a higher --max-turns value or a narrower task.",
     },
@@ -532,7 +532,7 @@ describe("executeAgentTurn: terminal failures", () => {
       code: "cli_turn_stopped",
       recoveryText:
         "Claude CLI ended the turn without a reply (terminal_reason: hook_stopped, stop_reason: tool_use). " +
-        "OpenClaw run: run-hook-stopped. OpenClaw session: session-1. Claude session: claude-session-1. " +
+        "Urbicana run: run-hook-stopped. Urbicana session: session-1. Claude session: claude-session-1. " +
         "Tool actions may already have run; verify their effects before retrying. " +
         "A Claude Code hook stopped this turn; user-scope hooks (including plugin hooks) " +
         "apply to headless runs — move or disable that hook.",
@@ -644,7 +644,7 @@ describe("executeAgentTurn: terminal failures", () => {
       expect(result.payload.text).toContain("gateway is unaffected");
       if (mode === "overall") {
         expect(result.payload.text).toContain("overall turn limit");
-        expect(result.payload.text).toContain("detached OpenClaw sub-agent");
+        expect(result.payload.text).toContain("detached Urbicana sub-agent");
         expect(result.payload.text).toContain("agents.defaults.timeoutSeconds");
         expect(result.payload.text).not.toContain("noOutputTimeoutMs");
       } else {

@@ -424,7 +424,7 @@ describe("Telegram admitted model input", () => {
           ],
         },
         { type: "mathematical_expression", expression: "a^2+b^2=c^2" },
-        { type: "photo", photo, caption: { text: "Chart", credit: "OpenClaw" } },
+        { type: "photo", photo, caption: { text: "Chart", credit: "Urbicana" } },
         {
           type: "table",
           caption: ["Total ", { type: "bold", text: "Q1" }],
@@ -439,7 +439,7 @@ describe("Telegram admitted model input", () => {
     });
     const input = harness.replySpy.mock.calls[0]?.[0];
     expect(input?.BodyForAgent).toBe(
-      "@openclaw_bot review\nRun summary\n1.\nCI clean\na^2+b^2=c^2\nChart\nOpenClaw\nTotal Q1\n42",
+      "@openclaw_bot review\nRun summary\n1.\nCI clean\na^2+b^2=c^2\nChart\nUrbicana\nTotal Q1\n42",
     );
     expect(input?.Body).toContain("Alice (42001): @openclaw_bot review");
   });

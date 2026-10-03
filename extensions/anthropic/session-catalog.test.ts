@@ -774,7 +774,7 @@ describe("Claude session catalog", () => {
     expect(createSessionEntry).toHaveBeenCalledWith(
       expect.objectContaining({
         // Adoption shows the user's /rename via displayName; labels stay unseeded
-        // because OpenClaw labels are unique and duplicate CLI titles must adopt.
+        // because Urbicana labels are unique and duplicate CLI titles must adopt.
         displayName: "Renamed source",
         spawnedCwd: "/work/source",
         initialEntry: expect.objectContaining({
@@ -982,10 +982,10 @@ describe("Claude session catalog", () => {
     expect(hosts?.[0]?.sessions[0]?.sessionKey).toBe("agent:main:claude-bound");
   });
 
-  // An OpenClaw session that merely routes its turns through the Claude CLI keeps
+  // An Urbicana session that merely routes its turns through the Claude CLI keeps
   // its own sidebar row, in whatever group the operator filed it under. Listing
   // its thread here would hide that row inside the Claude catalog instead.
-  it("omits a thread an unadopted OpenClaw session drives through the Claude CLI", async () => {
+  it("omits a thread an unadopted Urbicana session drives through the Claude CLI", async () => {
     const hosts = await listCatalogWithBoundSession((sessionId) => ({
       cliSessionBindings: { "claude-cli": { sessionId } },
       category: "Home Assistant",

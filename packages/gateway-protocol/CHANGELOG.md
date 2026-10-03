@@ -1,6 +1,6 @@
 # Changelog — @openclaw/gateway-protocol
 
-Wire-protocol and schema contracts for the OpenClaw Gateway (WebSocket JSON-RPC-style
+Wire-protocol and schema contracts for the Urbicana Gateway (WebSocket JSON-RPC-style
 frames, handshake, and method/event payload schemas). Protocol version is negotiated
 per connection via `minProtocol`/`maxProtocol`. This log covers the wire protocol
 version and schema surface, including removals and semantic changes. Dates are
@@ -87,7 +87,7 @@ the old tree.
 - Add browser realtime Talk and transports — origin of the talk/voice families.
 - Add Control UI PWA web push support (#44590).
 - Add plugins and artifacts schema modules.
-- Add OpenClaw SDK package and authenticated iOS background presence beacon (#73330).
+- Add Urbicana SDK package and authenticated iOS background presence beacon (#73330).
 
 ### 2026-05
 

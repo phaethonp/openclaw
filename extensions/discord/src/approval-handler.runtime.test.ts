@@ -312,7 +312,7 @@ describe("discordApprovalNativeRuntime", () => {
         accent_color: scenario.accentColor,
         components: expect.arrayContaining([
           {
-            content: `## ${plugin ? "Plugin" : systemAgent ? "OpenClaw Change" : "Exec"} Approval: ${scenario.label}`,
+            content: `## ${plugin ? "Plugin" : systemAgent ? "Urbicana Change" : "Exec"} Approval: ${scenario.label}`,
             type: 10,
           },
           {

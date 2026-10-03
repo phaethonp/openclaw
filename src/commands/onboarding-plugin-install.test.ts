@@ -1458,7 +1458,7 @@ describe("ensureOnboardingPluginInstalled", () => {
 
   it.each([
     {
-      name: "non-OpenClaw package",
+      name: "non-Urbicana package",
       npmSpec: "@someone-else/demo-plugin@2026.5.2",
       code: "artifact_download_unavailable",
       error: "ClawHub ClawPack artifact is unavailable.",

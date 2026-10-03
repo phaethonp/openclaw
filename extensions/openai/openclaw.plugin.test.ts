@@ -146,7 +146,7 @@ describe("OpenAI plugin manifest", () => {
     expect(openAiLogin?.groupHint).toBe("Codex login, Sign in with ChatGPT (Beta), or API key");
     expect(openAiDeviceCode?.choiceLabel).toBe("Codex login (device code)");
     expect(openAiDeviceCode?.choiceHint).toBe(
-      "Use a browser code when OpenClaw runs on a remote VM",
+      "Use a browser code when Urbicana runs on a remote VM",
     );
     expect(openAiDeviceCode && "assistantVisibility" in openAiDeviceCode).toBe(false);
     expect(openAiDeviceCode?.onboardingFeatured).toBe(true);
@@ -158,7 +158,7 @@ describe("OpenAI plugin manifest", () => {
     );
     expect(signInWithChatGpt?.choiceLabel).toBe("Sign in with ChatGPT (Beta)");
     expect(signInWithChatGpt?.choiceHint).toBe(
-      "Authorize OpenClaw for eligible Responses models using your Codex allowance",
+      "Authorize Urbicana for eligible Responses models using your Codex allowance",
     );
     expect(
       choices

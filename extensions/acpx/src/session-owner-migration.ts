@@ -174,7 +174,7 @@ function sessionDirectory(
 ): string {
   if (!input.serviceWorkspaceDir) {
     throw new Error(
-      "ACP ownership repair requires the Gateway service workspace; upgrade OpenClaw Doctor.",
+      "ACP ownership repair requires the Gateway service workspace; upgrade Urbicana Doctor.",
     );
   }
   return path.join(
@@ -509,7 +509,7 @@ export const acpxSessionOwnerMigration: PluginDoctorStateMigration = {
       ) {
         return {
           preview: [
-            "ACPX session state in <workspace>/state will be migrated automatically to the OpenClaw state directory.",
+            "ACPX session state in <workspace>/state will be migrated automatically to the Urbicana state directory.",
           ],
         };
       }

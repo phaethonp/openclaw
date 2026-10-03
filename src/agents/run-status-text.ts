@@ -21,18 +21,26 @@ function stripInlineLeakedInternalContext(value: string): string {
   if (
     beginIndex !== -1 &&
     (value.includes(INTERNAL_RUNTIME_CONTEXT_END) ||
-      value.includes("OpenClaw runtime context (internal):") ||
+      value.includes("Urbicana runtime context (internal):") ||
+      value.includes("OpenClaw runtime context (internal):") || // urbicana-legacy
       value.includes("[Internal task completion event]"))
   ) {
     return value.slice(0, beginIndex);
   }
-  const legacyHeaderIndex = value.indexOf("OpenClaw runtime context (internal):");
+  const currentHeaderIndex = value.indexOf("Urbicana runtime context (internal):");
+  const legacyHeaderIndex = value.indexOf("OpenClaw runtime context (internal):"); // urbicana-legacy
+  const headerIndex =
+    currentHeaderIndex === -1
+      ? legacyHeaderIndex
+      : legacyHeaderIndex === -1
+        ? currentHeaderIndex
+        : Math.min(currentHeaderIndex, legacyHeaderIndex);
   if (
-    legacyHeaderIndex !== -1 &&
+    headerIndex !== -1 &&
     (value.includes("Keep internal details private.") ||
       value.includes("[Internal task completion event]"))
   ) {
-    return value.slice(0, legacyHeaderIndex);
+    return value.slice(0, headerIndex);
   }
   return value;
 }

@@ -49,17 +49,17 @@ describe("resolveGatewayNativeServiceIdentityConflict", () => {
     {
       platform: "win32" as const,
       envKey: "OPENCLAW_WINDOWS_TASK_NAME",
-      value: "OpenClaw Gateway",
+      value: "Urbicana Gateway",
     },
     {
       platform: "win32" as const,
       envKey: "OPENCLAW_WINDOWS_TASK_NAME",
-      value: "\\Nested\\OpenClaw Gateway (work)",
+      value: "\\Nested\\Urbicana Gateway (work)",
     },
     {
       platform: "win32" as const,
       envKey: "OPENCLAW_WINDOWS_TASK_NAME",
-      value: "\\OpenClaw Gateway (other)",
+      value: "\\Urbicana Gateway (other)",
     },
   ])("rejects $envKey overrides for named profiles on $platform", ({ platform, envKey, value }) => {
     expect(
@@ -81,7 +81,7 @@ describe("resolveGatewayNativeServiceIdentityConflict", () => {
       platform: "linux",
       env: { OPENCLAW_SYSTEMD_UNIT: "custom-gateway.service" },
     },
-    ...["OpenClaw Gateway (work)", "\\OpenClaw Gateway (work)", "\\OPENCLAW GATEWAY (WORK)"].map(
+    ...["Urbicana Gateway (work)", "\\Urbicana Gateway (work)", "\\OPENCLAW GATEWAY (WORK)"].map(
       (taskName) => ({
         name: `native Windows identity ${taskName}`,
         platform: "win32" as const,
@@ -112,14 +112,14 @@ describe("resolveGatewayProfileSuffix", () => {
 describe("resolveGatewayServiceDescription", () => {
   it("includes profile when set", () => {
     expect(resolveGatewayServiceDescription({ env: { OPENCLAW_PROFILE: "work" } })).toBe(
-      "OpenClaw Gateway (profile: work)",
+      "Urbicana Gateway (profile: work)",
     );
   });
 
   it("ignores legacy install-time version metadata", () => {
     expect(
       resolveGatewayServiceDescription({ env: { OPENCLAW_SERVICE_VERSION: "2026.1.10" } }),
-    ).toBe("OpenClaw Gateway");
+    ).toBe("Urbicana Gateway");
   });
 
   it("prefers explicit description override", () => {

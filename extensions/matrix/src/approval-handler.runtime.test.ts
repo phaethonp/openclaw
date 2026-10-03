@@ -514,7 +514,7 @@ describe("matrixApprovalNativeRuntime", () => {
           approvalKind: "system-agent",
           id: "system-agent:change-1",
           request: {
-            title: "OpenClaw change",
+            title: "Urbicana change",
             description: "restart the Gateway",
             command: "restart the Gateway",
             proposalHash: "a".repeat(64),
@@ -535,7 +535,7 @@ describe("matrixApprovalNativeRuntime", () => {
           approvalKind: "system-agent",
           approvalId: "system-agent:change-1",
           phase: "resolved",
-          title: "OpenClaw change",
+          title: "Urbicana change",
           metadata: [],
           commandText: "restart the Gateway",
           operationSummary: "restart the Gateway",
@@ -548,7 +548,7 @@ describe("matrixApprovalNativeRuntime", () => {
 
       expect(result).toEqual({
         kind: "update",
-        payload: `OpenClaw change: ${label}\n\nChange\n\`\`\`\nrestart the Gateway\n\`\`\``,
+        payload: `Urbicana change: ${label}\n\nChange\n\`\`\`\nrestart the Gateway\n\`\`\``,
       });
     },
   );

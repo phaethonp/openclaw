@@ -257,7 +257,7 @@ describe("Codex plugin status command", () => {
   it("keeps hosted management separate from local permission and callable tools", async () => {
     const test = fixture({ disabled: true });
     const result = await test.status();
-    expect(result.text).toContain("OpenClaw app access: disabled");
+    expect(result.text).toContain("Urbicana app access: disabled");
     expect(result.text).toContain("/codex plugins enable notes@company-tools");
     expect(result.text).toContain("enabled: true; callable: true");
     expect(result.text).toContain("https://chatgpt.com/apps/app-0");

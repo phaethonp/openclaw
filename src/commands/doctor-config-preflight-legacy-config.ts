@@ -122,7 +122,7 @@ function assertPreJuneConfigMigrated(config: unknown): void {
   if (retired.length > 0) {
     throw new Error(
       `Config contains retired pre-June keys: ${retired.join(", ")}. Doctor cannot remove these settings safely. ` +
-        `Install OpenClaw 2026.9.5, run "${formatCliCommand("openclaw doctor --fix")}", then upgrade to latest. ` +
+        `Install Urbicana 2026.9.5, run "${formatCliCommand("openclaw doctor --fix")}", then upgrade to latest. ` +
         "See https://docs.openclaw.ai/install/updating#upgrading-very-old-versions.",
     );
   }

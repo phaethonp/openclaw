@@ -100,7 +100,7 @@ function extractTranscriptToolCalls(message: Record<string, unknown>): Record<st
           normalizeOptionalString(block.toolCallId) ??
           normalizeOptionalString(block.toolUseId),
         name: tool,
-        // OpenClaw mirrors provider arguments separately; a placeholder input
+        // Urbicana mirrors provider arguments separately; a placeholder input
         // can be empty even though arguments contains the executed patch.
         arguments: block.arguments ?? block.input ?? block.args ?? block.payload ?? null,
       });

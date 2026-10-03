@@ -198,7 +198,7 @@ export function meetStatusScript(params: {
         audioInputRouteError = 'A supported virtual microphone was not visible to Meet.';
         return;
       }
-      audioInputDeviceLabel = input.label || 'OpenClaw meeting audio';
+      audioInputDeviceLabel = input.label || 'Urbicana meeting audio';
       const inputFamily = audioDeviceFamily(audioInputDeviceLabel);
       if (audioDeviceFamily(selectedMicrophoneLabel()) === inputFamily) {
         audioInputRouted = true;
@@ -325,7 +325,7 @@ export function meetStatusScript(params: {
         }
       }
       audioOutputRouted = mediaElements.some((element) => element.sinkId === output.deviceId);
-      audioOutputDeviceLabel = output.label || "OpenClaw meeting audio";
+      audioOutputDeviceLabel = output.label || "Urbicana meeting audio";
       if (!readOnly && audioOutputRouted) {
         notes.push(
           routed > 0
@@ -349,20 +349,20 @@ export function meetStatusScript(params: {
     : undefined;
   let manualAction;
   if (!inCall && (host === "accounts.google.com" || /use your google account|to continue to google meet|choose an account|sign in to (join|continue)/i.test(pageText))) {
-    manualAction = manualActionFor("google-login-required", "Sign in to Google in the OpenClaw browser profile, then retry the Meet join.");
+    manualAction = manualActionFor("google-login-required", "Sign in to Google in the Urbicana browser profile, then retry the Meet join.");
   } else if (!inCall && joinElsewhere) {
     manualAction = manualActionFor("meet-session-conflict", "Meet is already active in another tab or device. Leave that session or reuse an English-pinned tab before retrying.");
   } else if (!inCall && /asking to be let in|you.?ll join when someone lets you in|waiting to be let in|ask to join/i.test(pageText)) {
-    manualAction = manualActionFor("meet-admission-required", "Admit the OpenClaw browser participant in Google Meet, then retry speech.");
+    manualAction = manualActionFor("meet-admission-required", "Admit the Urbicana browser participant in Google Meet, then retry speech.");
   } else if (permissionNeeded) {
-    manualAction = manualActionFor("meet-permission-required", allowMicrophone ? "Allow microphone/camera/speaker permissions for Meet in the OpenClaw browser profile, then retry." : "Join without microphone/camera permissions in the OpenClaw browser profile, then retry.");
+    manualAction = manualActionFor("meet-permission-required", allowMicrophone ? "Allow microphone/camera/speaker permissions for Meet in the Urbicana browser profile, then retry." : "Join without microphone/camera permissions in the Urbicana browser profile, then retry.");
   } else if (inCall && allowMicrophone && (audioInputRouted !== true || audioOutputRouted !== true)) {
     manualAction = manualActionFor(
       "meet-audio-choice-required",
-      "Select BlackHole 2ch or OpenClaw Meeting Audio as both the Meet microphone and speaker, then retry."
+      "Select BlackHole 2ch or Urbicana Meeting Audio as both the Meet microphone and speaker, then retry."
     );
   } else if (!inCall && (allowMicrophone ? !microphoneChoice : !noMicrophoneChoice) && /do you want people to hear you in the meeting/i.test(pageText)) {
-    manualAction = manualActionFor("meet-audio-choice-required", allowMicrophone ? "Meet is showing the microphone choice. Click Use microphone in the OpenClaw browser profile, then retry." : "Meet is showing the microphone choice. Choose the no-microphone option in the OpenClaw browser profile, then retry.");
+    manualAction = manualActionFor("meet-audio-choice-required", allowMicrophone ? "Meet is showing the microphone choice. Click Use microphone in the Urbicana browser profile, then retry." : "Meet is showing the microphone choice. Choose the no-microphone option in the Urbicana browser profile, then retry.");
   }
   return JSON.stringify({
     clickedJoin: Boolean(join),

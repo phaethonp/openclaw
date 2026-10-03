@@ -604,7 +604,7 @@ export async function promptSingleChannelSecretInput(params: {
     copy: {
       modeMessage: `How do you want to provide this ${params.credentialLabel}?`,
       plaintextLabel: `Enter ${params.credentialLabel}`,
-      plaintextHint: "Stores the credential directly in OpenClaw config",
+      plaintextHint: "Stores the credential directly in Urbicana config",
       refLabel: "Use external secret provider",
       refHint: "Stores a reference to env or configured external secret providers",
     },
@@ -632,7 +632,7 @@ export async function promptSingleChannelSecretInput(params: {
     const token = (
       await params.prompter.text({
         message: params.inputPrompt,
-        // Credential input: masked in terminal prompts, and the OpenClaw
+        // Credential input: masked in terminal prompts, and the Urbicana
         // chat bridge relies on this flag to refuse plain-text secret entry.
         sensitive: true,
         validate: (value) => (value?.trim() ? undefined : "Required"),

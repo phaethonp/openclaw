@@ -167,7 +167,7 @@ async function publicationCommitMatches(
     params.run(["git", "rev-parse", `${headCommit}^{tree}`], { cwd: params.cwd }),
   ]);
   return (
-    message.split(/\r?\n/u).includes(`OpenClaw-Publication: ${params.requestId}`) &&
+    message.split(/\r?\n/u).includes(`Urbicana-Publication: ${params.requestId}`) &&
     parent === params.sourceHeadCommit &&
     tree === params.workspaceTree
   );

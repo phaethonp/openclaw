@@ -1,5 +1,5 @@
 /**
- * Gemini Interactions API adapter and lifecycle for OpenClaw.
+ * Gemini Interactions API adapter and lifecycle for Urbicana.
  * POST /v1beta/interactions
  */
 

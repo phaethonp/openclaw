@@ -1,4 +1,4 @@
-/** Installs native Node resolution aliases so plugins can import the OpenClaw SDK in dev and tests. */
+/** Installs native Node resolution aliases so plugins can import the Urbicana SDK in dev and tests. */
 import fs from "node:fs";
 import Module from "node:module";
 import path from "node:path";

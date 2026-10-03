@@ -171,7 +171,7 @@ it.each(refusalScenarios)(
       .slice(-40)
       .join("\n");
     expect(parentOutput).toContain(
-      "Doctor refused update-time schema repair driven by OpenClaw 2026.9.4:",
+      "Doctor refused update-time schema repair driven by Urbicana 2026.9.4:",
     );
     expect(parentOutput).toContain("openclaw gateway stop && npm install -g openclaw@");
     expect(parentOutput).toContain(

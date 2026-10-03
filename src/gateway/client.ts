@@ -1,5 +1,5 @@
-// OpenClaw Gateway client facade.
-// Injects OpenClaw host dependencies into the shared gateway-client package.
+// Urbicana Gateway client facade.
+// Injects Urbicana host dependencies into the shared gateway-client package.
 import { parseHostForAddressChecks } from "../../packages/gateway-client/src/client-address-utils.js";
 import { GatewayClient as BaseGatewayClient } from "../../packages/gateway-client/src/index.js";
 import type {
@@ -163,7 +163,7 @@ function createOpenClawGatewayClientHostDeps(
     ? { ...deviceAuthDeps, loadDeviceAuthToken: () => preparedDeviceAuth }
     : deviceAuthDeps;
   return {
-    // This wrapper is the only place the package reaches into OpenClaw runtime
+    // This wrapper is the only place the package reaches into Urbicana runtime
     // state. Keep device identity, token storage, proxy, and redaction here.
     loadOrCreateDeviceIdentity,
     signDevicePayload,

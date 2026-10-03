@@ -625,7 +625,7 @@ describe("registerSlackInteractionEvents", () => {
     });
   });
 
-  it("registers a matcher that accepts plugin action ids beyond the OpenClaw prefix", () => {
+  it("registers a matcher that accepts plugin action ids beyond the Urbicana prefix", () => {
     const { ctx, getActionMatcher } = createContext();
     registerSlackInteractionEvents({ ctx: ctx as never });
 
@@ -1373,7 +1373,7 @@ describe("registerSlackInteractionEvents", () => {
       const header = {
         type: "section",
         block_id: "openclaw_approval_header",
-        text: { type: "mrkdwn", text: "OpenClaw change approval required" },
+        text: { type: "mrkdwn", text: "Urbicana change approval required" },
       };
       const currentBlocks =
         current === "no-blocks"
@@ -1506,7 +1506,7 @@ describe("registerSlackInteractionEvents", () => {
         container: { channel_id: "C1", message_ts: "100.200", thread_ts: "100.100" },
         message: {
           ts: "100.200",
-          text: "OpenClaw change approval required",
+          text: "Urbicana change approval required",
           blocks: [
             {
               type: "actions",

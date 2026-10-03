@@ -38,7 +38,7 @@ describe("Git checkout execution", () => {
     remote = path.join(directory, "remote");
     await fs.mkdir(remote);
     await git(remote, "init", "--initial-branch=main");
-    await git(remote, "config", "user.name", "OpenClaw Test");
+    await git(remote, "config", "user.name", "Urbicana Test");
     await git(remote, "config", "user.email", "openclaw@example.com");
     await fs.writeFile(
       path.join(remote, "package.json"),
@@ -58,7 +58,7 @@ describe("Git checkout execution", () => {
     await git(remote, "commit", "-m", "base");
     beforeSha = await git(remote, "rev-parse", "HEAD");
     await git(directory, "clone", "--quiet", remote, root);
-    await git(root, "config", "user.name", "OpenClaw Test");
+    await git(root, "config", "user.name", "Urbicana Test");
     await git(root, "config", "user.email", "openclaw@example.com");
     await writeRuntime(root, beforeSha, path.join(directory, "shared-store"), "node_modules/.pnpm");
     events = [];

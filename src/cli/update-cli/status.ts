@@ -298,7 +298,7 @@ export async function updateStatusCommand(opts: UpdateStatusOptions): Promise<vo
     },
   ];
 
-  defaultRuntime.log(theme.heading("OpenClaw update status"));
+  defaultRuntime.log(theme.heading("Urbicana update status"));
   defaultRuntime.log("");
   for (const finding of runtimeFindings) {
     const color =

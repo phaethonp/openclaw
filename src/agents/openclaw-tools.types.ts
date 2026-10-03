@@ -16,7 +16,7 @@ import type { ToolFsPolicy } from "./tool-fs-policy.js";
 import type { CronToolOptions } from "./tools/cron-tool.types.js";
 import type { QuestionPromptDelivery } from "./tools/question-prompt-send.js";
 
-/** Options shared by the coding-tool factory and its OpenClaw tool surface. */
+/** Options shared by the coding-tool factory and its Urbicana tool surface. */
 export type OpenClawSharedToolsOptions = {
   /**
    * How this run shows a blocking question tool's prompt. Harnesses that run tools

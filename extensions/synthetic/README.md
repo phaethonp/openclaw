@@ -1,9 +1,9 @@
-# OpenClaw Synthetic Provider
+# Urbicana Synthetic Provider
 
-Official OpenClaw provider plugin for Synthetic's hosted Anthropic-compatible
+Official Urbicana provider plugin for Synthetic's hosted Anthropic-compatible
 API.
 
-Install from OpenClaw:
+Install from Urbicana:
 
 ```bash
 openclaw plugins install @openclaw/synthetic-provider

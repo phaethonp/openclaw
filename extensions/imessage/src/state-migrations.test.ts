@@ -47,7 +47,7 @@ describe("iMessage retired state", () => {
       await fs.writeFile(sourcePath, bytes);
       const input = migrationInput(stateDir);
       const advice = expect.stringContaining(
-        'Install OpenClaw 2026.9.5, run "openclaw doctor --fix", then upgrade to latest.',
+        'Install Urbicana 2026.9.5, run "openclaw doctor --fix", then upgrade to latest.',
       );
       const detected = await migration.detectLegacyState(input);
       expect(detected).toEqual({ preview: [advice] });

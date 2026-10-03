@@ -257,7 +257,7 @@ export async function prepareCodexAttemptConnection({ params, options }: CodexRu
   const usesSupervisionConnection = startupBinding?.connectionScope === "supervision";
   if (usesSupervisionConnection && isCodexResponsesOAuthRun(params)) {
     throw new Error(
-      "ChatGPT subscription sharing requires an OpenClaw-owned Codex session; detach from native supervision first.",
+      "ChatGPT subscription sharing requires an Urbicana-owned Codex session; detach from native supervision first.",
     );
   }
   if (usesSupervisionConnection) {

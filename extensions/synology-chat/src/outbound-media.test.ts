@@ -80,7 +80,7 @@ function createAccount(overrides: Partial<ResolvedSynologyChatAccount> = {}) {
     dmPolicy: "allowlist" as const,
     allowedUserIds: ["42"],
     rateLimitPerMinute: 30,
-    botName: "OpenClaw",
+    botName: "Urbicana",
     allowInsecureSsl: false,
     ...overrides,
   } satisfies ResolvedSynologyChatAccount;

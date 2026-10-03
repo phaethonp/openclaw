@@ -325,10 +325,10 @@ describe("Gateway state ownership", () => {
     const error = new GatewayStateOwnerContentionError(databasePath, cause);
     expect(error.databasePath).toBe(databasePath);
     expect(error.cause).toBe(cause);
-    expect(error.message).toContain(`OpenClaw state database is busy at ${databasePath}.`);
-    expect(error.message).toContain("Wait for the other OpenClaw process to finish, then retry.");
+    expect(error.message).toContain(`Urbicana state database is busy at ${databasePath}.`);
+    expect(error.message).toContain("Wait for the other Urbicana process to finish, then retry.");
     expect(error.message).toContain(
-      "If it persists, run `openclaw gateway status` and check for other OpenClaw processes using the same state directory.",
+      "If it persists, run `openclaw gateway status` and check for other Urbicana processes using the same state directory.",
     );
     expect(error.message).toContain(
       "A running Gateway can hold this ownership until it stops; stop it through its service manager or original terminal before retrying.",

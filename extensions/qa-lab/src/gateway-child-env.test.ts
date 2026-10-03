@@ -42,7 +42,7 @@ describe("QA child service identity", () => {
         INVOCATION_ID: "synthetic-parent-invocation",
         SYSTEMD_EXEC_PID: "1234",
         JOURNAL_STREAM: "8:1234",
-        OPENCLAW_WINDOWS_TASK_NAME: "OpenClaw Gateway",
+        OPENCLAW_WINDOWS_TASK_NAME: "Urbicana Gateway",
         OPENCLAW_SERVICE_MARKER: "openclaw",
         OPENCLAW_SERVICE_KIND: "gateway",
       };

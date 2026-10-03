@@ -1,5 +1,5 @@
 // Logbook node-host command: screen capture for headless node hosts (macOS).
-// Nodes without the OpenClaw app (plain `openclaw node host run`) advertise
+// Nodes without the Urbicana app (plain `openclaw node host run`) advertise
 // logbook.snapshot so capture works anywhere the plugin is enabled.
 import { randomUUID } from "node:crypto";
 import { chmod, mkdir, readFile, rm, writeFile } from "node:fs/promises";
@@ -27,7 +27,7 @@ export async function handleLogbookSnapshot(rawParams: unknown): Promise<Logbook
     Math.max(10, Math.round((quality && quality > 0 && quality <= 1 ? quality : 0.6) * 100)),
   );
   // The shared helper rejects unsafe temp roots; the private subdirectory
-  // keeps captures out of the broader OpenClaw temp namespace.
+  // keeps captures out of the broader Urbicana temp namespace.
   const captureDir = path.join(resolvePreferredOpenClawTmpDir(), "logbook");
   await mkdir(captureDir, { recursive: true, mode: 0o700 });
   await chmod(captureDir, 0o700);

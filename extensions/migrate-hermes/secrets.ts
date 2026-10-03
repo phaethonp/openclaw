@@ -129,7 +129,7 @@ async function buildOpenCodeSecretCandidates(
     if (!isRecord(entry) || !normalizeOptionalString(entry[secretField])) {
       continue;
     }
-    // OpenClaw's Copilot token profile cannot preserve OpenCode enterprise routing yet.
+    // Urbicana's Copilot token profile cannot preserve OpenCode enterprise routing yet.
     if (provider === "github-copilot" && normalizeOptionalString(entry.enterpriseUrl)) {
       continue;
     }

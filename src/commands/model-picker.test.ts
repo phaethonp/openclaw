@@ -437,7 +437,7 @@ describe("promptDefaultModel", () => {
     const options = pickerOptions(select as MockCallSource);
     const canonical = requireOption(options, "openai/gpt-5.5");
     expect(canonical.hint).toContain("Codex runtime route");
-    expect(canonical.hint).not.toContain("OpenClaw runtime route");
+    expect(canonical.hint).not.toContain("Urbicana runtime route");
   });
 
   it.each([
@@ -447,7 +447,7 @@ describe("promptDefaultModel", () => {
       { models: { "openai/gpt-5.5": { params: { text_verbosity: "low" } } } },
     ],
   ] as const)(
-    "labels official OpenAI with %s as an OpenClaw runtime route",
+    "labels official OpenAI with %s as an Urbicana runtime route",
     async (_label, defaults) => {
       loadModelCatalog.mockResolvedValue([
         {
@@ -466,7 +466,7 @@ describe("promptDefaultModel", () => {
       });
 
       const option = requireOption(pickerOptions(select as MockCallSource), "openai/gpt-5.5");
-      expect(option.hint).toContain("OpenClaw runtime route");
+      expect(option.hint).toContain("Urbicana runtime route");
       expect(option.hint).not.toContain("Codex runtime route");
     },
   );
@@ -474,7 +474,7 @@ describe("promptDefaultModel", () => {
   it.each([
     ["custom endpoint", "openai-responses", "https://example.test/v1"],
     ["authored Completions", "openai-completions", "https://api.openai.com/v1"],
-  ] as const)("labels an OpenAI %s as an OpenClaw runtime route", async (_label, api, baseUrl) => {
+  ] as const)("labels an OpenAI %s as an Urbicana runtime route", async (_label, api, baseUrl) => {
     loadModelCatalog.mockResolvedValue([
       { provider: "openai", id: "gpt-5.5", name: "GPT-5.5", api, baseUrl },
     ]);
@@ -494,7 +494,7 @@ describe("promptDefaultModel", () => {
     });
 
     const option = requireOption(pickerOptions(select as MockCallSource), "openai/gpt-5.5");
-    expect(option.hint).toContain("OpenClaw runtime route");
+    expect(option.hint).toContain("Urbicana runtime route");
     expect(option.hint).not.toContain("Codex runtime route");
   });
 

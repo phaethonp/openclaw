@@ -1,5 +1,5 @@
 /**
- * Blocks direct Codex app-server requests that would bypass OpenClaw sandbox or
+ * Blocks direct Codex app-server requests that would bypass Urbicana sandbox or
  * node-exec routing guarantees.
  */
 import { tryResolveDefaultAgentId } from "openclaw/plugin-sdk/agent-scope-runtime";
@@ -50,7 +50,7 @@ const ALLOWED_CONTROL_PLANE_METHODS = new Set([
   "turn/steer",
 ]);
 
-/** Returns a block message when a direct app-server method would bypass OpenClaw execution policy. */
+/** Returns a block message when a direct app-server method would bypass Urbicana execution policy. */
 export function resolveCodexAppServerDirectSandboxBypassBlock(params: {
   method: string;
   requestParams?: unknown;
@@ -164,8 +164,8 @@ function hasOpenClawSandboxEnvironmentSelection(value: unknown): boolean {
 
 function formatCodexNativeSandboxBlock(params: { surface: string }): string {
   return [
-    `Codex-native ${params.surface} is unavailable because OpenClaw sandboxing is active for this session.`,
-    "This mode cannot route execution through the OpenClaw sandbox backend.",
+    `Codex-native ${params.surface} is unavailable because Urbicana sandboxing is active for this session.`,
+    "This mode cannot route execution through the Urbicana sandbox backend.",
     "Use a normal Codex harness turn, or run an intentionally unsandboxed session.",
   ].join(" ");
 }

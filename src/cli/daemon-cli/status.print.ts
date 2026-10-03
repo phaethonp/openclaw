@@ -356,7 +356,7 @@ export function printDaemonStatus(status: DaemonStatus, opts: { json: boolean; d
     }
     defaultRuntime.log(
       warnText(
-        "If logs show protocol mismatch after rollback, stop stale OpenClaw client processes listed here and re-run gateway status.",
+        "If logs show protocol mismatch after rollback, stop stale Urbicana client processes listed here and re-run gateway status.",
       ),
     );
     spacer();
@@ -466,7 +466,7 @@ export function printDaemonStatus(status: DaemonStatus, opts: { json: boolean; d
       printWarning("Foreign launchd jobs detected (macOS).");
       printWarning(formatForeignLaunchdJobs(service.foreignLaunchdJobs));
     } else {
-      defaultRuntime.log(infoText("Other OpenClaw launchd jobs (macOS)"));
+      defaultRuntime.log(infoText("Other Urbicana launchd jobs (macOS)"));
       defaultRuntime.log(infoText(formatForeignLaunchdJobs(service.foreignLaunchdJobs)));
     }
     const restarts = service.forcedRestartSummary;
@@ -487,7 +487,7 @@ export function printDaemonStatus(status: DaemonStatus, opts: { json: boolean; d
     (job) => !service.foreignLaunchdJobs?.some((foreign) => foreign.label === job.label),
   );
   if (staleUpdateLaunchdJobs?.length) {
-    printError("Stale OpenClaw updater launchd job(s) detected.");
+    printError("Stale Urbicana updater launchd job(s) detected.");
     for (const job of staleUpdateLaunchdJobs) {
       const exitStatus =
         job.lastExitStatus !== undefined ? `, last exit ${job.lastExitStatus}` : "";

@@ -245,7 +245,7 @@ export async function runAgentsApiAttempt(
         binding.authFingerprint !== toolsFingerprint
       ) {
         throw new Error(
-          "Agents API model, credential, environment, or MCP configuration changed; reset the OpenClaw session before continuing",
+          "Agents API model, credential, environment, or MCP configuration changed; reset the Urbicana session before continuing",
         );
       }
       await bind({ sessionId: binding.sessionId, authFingerprint: fingerprint });

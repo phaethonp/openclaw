@@ -2303,7 +2303,7 @@ describe("createTelegramBot", () => {
         telegramTransport: makeTelegramTransport(mediaFetch as typeof fetch),
       });
       const baseCtx = {
-        me: { id: 999, is_bot: true, first_name: "OpenClaw", username: "openclaw_bot" },
+        me: { id: 999, is_bot: true, first_name: "Urbicana", username: "openclaw_bot" },
         getFile: getEmptyTelegramFile,
       };
       const chat = { id: chatId, type: "group", title: "Ops" };
@@ -2321,7 +2321,7 @@ describe("createTelegramBot", () => {
             message_id: 101,
             text: "Done, here is the image",
             date: 1736380700,
-            from: { id: 999, is_bot: true, first_name: "OpenClaw" },
+            from: { id: 999, is_bot: true, first_name: "Urbicana" },
             photo: [
               {
                 file_id: "generated-photo-1",
@@ -2375,7 +2375,7 @@ describe("createTelegramBot", () => {
     };
     expect(payload.ReplyChain?.map((entry) => entry.messageId)).toEqual(["102", "101"]);
     expect(payload.ReplyChain?.[1]).toMatchObject({
-      sender: "OpenClaw (you)",
+      sender: "Urbicana (you)",
       body: "Done, here is the image",
     });
     if (expectHydrated) {
@@ -2388,7 +2388,7 @@ describe("createTelegramBot", () => {
     const messages = latestConversationContextMessages();
     const messagesById = new Map(messages.map((message) => [message.message_id, message]));
     expect(messagesById.get("101")).toMatchObject({
-      sender: "OpenClaw (you)",
+      sender: "Urbicana (you)",
       body: "Done, here is the image",
       is_reply_target: true,
     });

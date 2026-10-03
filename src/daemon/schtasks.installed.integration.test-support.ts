@@ -98,7 +98,7 @@ export async function runInstalledLifecycle(
   await fs.mkdir(path.dirname(proofPath), { recursive: true });
   const admissions: Array<Record<string, unknown>> = [];
   const results: Array<Record<string, unknown>> = [];
-  const defaultBefore = await owners.readTaskDefinitionSnapshot("OpenClaw Gateway");
+  const defaultBefore = await owners.readTaskDefinitionSnapshot("Urbicana Gateway");
   const admissionPath = path.join(path.dirname(proofPath), "installed-cleanup.json");
   let failure: Error | undefined;
   const rootDir = path.join(input.stateRoot, key);
@@ -653,7 +653,7 @@ export async function runInstalledLifecycle(
     assert.equal(remaining.ok, true);
     assert.equal(remaining.truncated, false);
     assert.deepEqual(remaining.processes, []);
-    assert.deepEqual(await owners.readTaskDefinitionSnapshot("OpenClaw Gateway"), defaultBefore);
+    assert.deepEqual(await owners.readTaskDefinitionSnapshot("Urbicana Gateway"), defaultBefore);
     await recordCapacityBoundary(inputPath, input, key, "after-native-cleanup");
   } catch (error) {
     cellFailure = new AggregateError(

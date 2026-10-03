@@ -52,7 +52,7 @@ it("reads task state when PowerShell rejects a no-console launch", () => {
     };
   });
 
-  expect(probeScheduledTaskState("OpenClaw Gateway")).toEqual({
+  expect(probeScheduledTaskState("Urbicana Gateway")).toEqual({
     status: "found",
     state: 4,
     lastRunResult: "267009",
@@ -69,7 +69,7 @@ it.each(["", " \r\n"])("explains an empty exit-2 result: %j", (output) => {
     status: 2,
     signal: null,
   });
-  expect(probeScheduledTaskState("OpenClaw Gateway")).toEqual({
+  expect(probeScheduledTaskState("Urbicana Gateway")).toEqual({
     status: "unknown",
     detail: "Scheduled Task probe failed (exit 2): no output from PowerShell.",
     diagnostic: { kind: "native", exitCode: 2 },
@@ -89,13 +89,13 @@ describe("Scheduled Task probe timeout", () => {
         signal: null,
       });
 
-      expect(probeScheduledTaskState("OpenClaw Gateway", timeoutMs)).toEqual({
+      expect(probeScheduledTaskState("Urbicana Gateway", timeoutMs)).toEqual({
         status: "unknown",
         detail: "Scheduled Task inspection deadline expired.",
         timeoutMs: 0,
         diagnostic: { kind: "timeout", timeoutMs: 0 },
       });
-      expect(probeScheduledTaskExists("OpenClaw Gateway", timeoutMs)).toBeNull();
+      expect(probeScheduledTaskExists("Urbicana Gateway", timeoutMs)).toBeNull();
       expect(spawnSync).not.toHaveBeenCalled();
     },
   );
@@ -129,7 +129,7 @@ describe("Scheduled Task probe timeout", () => {
       };
     });
 
-    const result = probeScheduledTaskState("OpenClaw Gateway", budget);
+    const result = probeScheduledTaskState("Urbicana Gateway", budget);
 
     expect(vi.mocked(spawnSync).mock.calls[0]?.[2]?.timeout).toBe(expected);
     expect(result).toEqual({

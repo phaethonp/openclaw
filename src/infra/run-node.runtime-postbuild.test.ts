@@ -409,7 +409,7 @@ describe("run-node script", () => {
     );
   });
 
-  it("does not require OpenClaw SDK alias outputs when dist extensions are absent", async ({
+  it("does not require Urbicana SDK alias outputs when dist extensions are absent", async ({
     tmp,
   }) => {
     await setupStampedProject(tmp, {
@@ -429,7 +429,7 @@ describe("run-node script", () => {
     });
   });
 
-  it("reports missing OpenClaw SDK alias outputs when runtime stamps match HEAD", async ({
+  it("reports missing Urbicana SDK alias outputs when runtime stamps match HEAD", async ({
     tmp,
   }) => {
     await setupTrackedProject(tmp, {
@@ -463,7 +463,7 @@ describe("run-node script", () => {
     });
   });
 
-  it("does not require private OpenClaw SDK dist files that package exports omit", async ({
+  it("does not require private Urbicana SDK dist files that package exports omit", async ({
     tmp,
   }) => {
     await setupStampedProject(tmp, {

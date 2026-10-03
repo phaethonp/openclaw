@@ -1,6 +1,6 @@
-# OpenClaw Radius Provider
+# Urbicana Radius Provider
 
-Connect OpenClaw to Earendil's Radius gateway with browser sign-in or an
+Connect Urbicana to Earendil's Radius gateway with browser sign-in or an
 organization API key. The plugin discovers account-visible models and supports
 native Pi message streaming, reasoning, images on supported models, and tool calls.
 

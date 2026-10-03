@@ -14,7 +14,7 @@ Use only `facetime_call`. Do not use shell commands or another call tool.
   returned fields as internal stages. Never infer that a remote participant
   answered, heard audio, or can hear audio from readiness flags.
 - Use `initiate_call` only for the exact owner handle the user requested.
-  Default to `audio`; use `video` only on an explicit request. OpenClaw obtains
+  Default to `audio`; use `video` only on an explicit request. Urbicana obtains
   one-shot approval before dialing.
 - Report only the returned `pending` or `ringing` state. Do not invent a later
   carrier state.

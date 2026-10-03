@@ -24,7 +24,7 @@ ${desktopTarget === "windows/normal" ? createCrabboxWindowsDesktopNodeLauncher()
     const cwd = output?.split("\\n").filter((line) => line.startsWith("n"));
     return cwd?.length === 1 && fs.realpathSync(cwd[0].slice(1)) === runtimeDir;
   };
-  const macosHostPath = ${JSON.stringify(`${CRABBOX_MACOS_APP_PATH}/Contents/MacOS/OpenClaw`)};
+  const macosHostPath = ${JSON.stringify(`${CRABBOX_MACOS_APP_PATH}/Contents/MacOS/Urbicana`)};
   const macosDesktopDirectory = ${JSON.stringify(desktopTarget === "macos" ? crabboxMacosDesktopDirectory(leaseId) : undefined)};
   const macosGuiLaunchScript = ${JSON.stringify(desktopTarget === "macos" ? createCrabboxMacosGuiLaunchScript() : undefined)};
   const macosHostArgs = (enrollmentMode) => ["--cloud-worker-host", "--node-executable", process.execPath, "--runtime-dir", runtimeDir, "--state-dir", stateDir, "--desktop-dir", macosDesktopDirectory, "--lease-id", leaseId, "--display-name", displayName, "--enrollment-mode", enrollmentMode];
@@ -105,7 +105,7 @@ ${desktopTarget === "windows/normal" ? createCrabboxWindowsDesktopNodeLauncher()
       if (process.platform === "linux") {
         const args = fs.readFileSync(path.join("/proc", pidText, "cmdline"), "utf8").split("\\0");
         const env = fs.readFileSync(path.join("/proc", pidText, "environ"), "utf8").split("\\0");
-        // OpenClaw changes process.title; the immutable install cwd survives that argv rewrite.
+        // Urbicana changes process.title; the immutable install cwd survives that argv rewrite.
         const title = args[0];
         const nodeInvocation = args[1] === cli || ["openclaw", "openclaw-connect", "openclaw-node"].includes(title);
         verified = nodeInvocation && fs.realpathSync(path.join("/proc", pidText, "cwd")) === runtimeDir && env.includes("OPENCLAW_STATE_DIR=" + stateDir);

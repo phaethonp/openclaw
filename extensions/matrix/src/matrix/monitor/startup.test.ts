@@ -204,7 +204,7 @@ describe("runMatrixStartupMaintenance", () => {
     vi.mocked(deps.summarizeMatrixDeviceHealth).mockReturnValue({
       currentDeviceId: null,
       staleOpenClawDevices: [
-        { deviceId: "DEV123", displayName: "OpenClaw Device", current: false },
+        { deviceId: "DEV123", displayName: "Urbicana Device", current: false },
       ],
       currentOpenClawDevices: [],
     });
@@ -214,7 +214,7 @@ describe("runMatrixStartupMaintenance", () => {
     await runMatrixStartupMaintenance(params, deps);
 
     expect(params.logger.warn).toHaveBeenCalledWith(
-      "matrix: stale OpenClaw devices detected for @bot:example.org: DEV123. Run 'openclaw matrix devices prune-stale --account ops' to keep encrypted-room trust healthy.",
+      "matrix: stale Urbicana devices detected for @bot:example.org: DEV123. Run 'openclaw matrix devices prune-stale --account ops' to keep encrypted-room trust healthy.",
     );
     expect(params.logger.info).toHaveBeenCalledWith(
       "matrix: device not verified — run 'openclaw matrix verify device <key>' to enable E2EE",

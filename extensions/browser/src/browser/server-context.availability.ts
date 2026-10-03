@@ -87,16 +87,16 @@ const MANAGED_LAUNCH_COOLDOWN_MAX_MS = 5 * 60_000;
 
 function formatLocalPortOwnershipHint(profile: ResolvedBrowserProfile): string {
   const resetHint =
-    `If OpenClaw should own this local profile, run action=reset-profile profile=${profile.name} ` +
+    `If Urbicana should own this local profile, run action=reset-profile profile=${profile.name} ` +
     "to stop the conflicting process.";
   if (!profile.cdpIsLoopback) {
     return resetHint;
   }
   return (
     `${resetHint} If this port is an externally managed CDP service such as Browserless, ` +
-    `set browser.profiles.${profile.name}.attachOnly=true so OpenClaw attaches without trying ` +
+    `set browser.profiles.${profile.name}.attachOnly=true so Urbicana attaches without trying ` +
     "to manage the local process. For Browserless Docker, set EXTERNAL to the same WebSocket " +
-    "endpoint OpenClaw can reach via browser.profiles.<name>.cdpUrl."
+    "endpoint Urbicana can reach via browser.profiles.<name>.cdpUrl."
   );
 }
 
@@ -516,7 +516,7 @@ export function createProfileAvailability({
           return;
         }
       }
-      // Browser control service can restart while a loopback OpenClaw browser is still
+      // Browser control service can restart while a loopback Urbicana browser is still
       // alive. Give that pre-existing browser one longer probe window before falling
       // back to local executable resolution.
       if (!attachOnly && !remoteCdp && profile.cdpIsLoopback) {
@@ -532,7 +532,7 @@ export function createProfileAvailability({
         if (capabilities.mode === "local-extension") {
           const { EXTENSION_PAIRING_HINT } = await getExtensionRelayModule();
           throw new BrowserProfileUnavailableError(
-            `The OpenClaw Chrome extension is not connected for profile "${profile.name}". ` +
+            `The Urbicana Chrome extension is not connected for profile "${profile.name}". ` +
               `Open Chrome on this machine and check the extension popup shows "Connected". ${EXTENSION_PAIRING_HINT}`,
           );
         }
@@ -584,7 +584,7 @@ export function createProfileAvailability({
       if (capabilities.mode === "local-extension") {
         const { EXTENSION_PAIRING_HINT } = await getExtensionRelayModule();
         throw new BrowserProfileUnavailableError(
-          `The extension relay for profile "${profile.name}" is running but the OpenClaw Chrome extension is not connected. ${EXTENSION_PAIRING_HINT}`,
+          `The extension relay for profile "${profile.name}" is running but the Urbicana Chrome extension is not connected. ${EXTENSION_PAIRING_HINT}`,
         );
       }
       const detail = await describeCdpFailure(PROFILE_ATTACH_RETRY_TIMEOUT_MS, signal);

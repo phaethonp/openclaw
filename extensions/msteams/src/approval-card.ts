@@ -32,7 +32,7 @@ type MSTeamsApprovalBodyItem = Record<string, unknown>;
 
 // View-model cards use different system-agent wording from canonical terminal cards.
 function formatMSTeamsApprovalKind(kind: ChannelApprovalKind): string {
-  return kind === "plugin" ? "Plugin" : kind === "system-agent" ? "OpenClaw Change" : "Exec";
+  return kind === "plugin" ? "Plugin" : kind === "system-agent" ? "Urbicana Change" : "Exec";
 }
 
 function buildCardHeading(title: string, subtitle: string): MSTeamsApprovalBodyItem[] {

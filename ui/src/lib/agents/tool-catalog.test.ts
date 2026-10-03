@@ -86,7 +86,7 @@ describe("resolveToolSections", () => {
     expect(
       fallback.flatMap((section) => section.tools).find((tool) => tool.id === "openclaw")
         ?.description,
-    ).toBe("Delegate OpenClaw setup and repair");
+    ).toBe("Delegate Urbicana setup and repair");
   });
 
   it("derives fallback labels and descriptions from canonical tool ids", () => {
@@ -128,7 +128,7 @@ describe("resolveToolSections", () => {
         t("agents.toolCatalog.descriptions.read"),
       );
       expect(fallbackTools.find((tool) => tool.id === "openclaw")?.description).toBe(
-        "Delegate OpenClaw setup and repair",
+        "Delegate Urbicana setup and repair",
       );
     } finally {
       await i18n.setLocale("en");

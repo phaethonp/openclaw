@@ -35,7 +35,7 @@ const pluginPresentation = {
 
 const systemAgentPresentation = {
   kind: "system-agent",
-  title: "OpenClaw change",
+  title: "Urbicana change",
   description: "Set gateway.port to 19001",
   proposalHash: "a".repeat(64),
   agentId: "main",

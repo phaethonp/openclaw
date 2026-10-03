@@ -396,7 +396,7 @@ describe("native Codex thread tool", () => {
       });
     }));
 
-  it("forks a native thread and attaches the fork to the OpenClaw session", () =>
+  it("forks a native thread and attaches the fork to the Urbicana session", () =>
     withFixture(async () => {
       const request = vi.fn(async (_config, method: string) =>
         method === CODEX_CONTROL_METHODS.readThread
@@ -901,7 +901,7 @@ describe("native Codex thread tool", () => {
       });
     }));
 
-  it("rejects archive when another OpenClaw session owns the thread", () =>
+  it("rejects archive when another Urbicana session owns the thread", () =>
     withFixture(async () => {
       await writeCodexAppServerBinding("session-id", {
         threadId: "current-thread",
@@ -924,7 +924,7 @@ describe("native Codex thread tool", () => {
           thread_id: "other-thread",
           confirm: true,
         }),
-      ).rejects.toThrow("owned by another OpenClaw session");
+      ).rejects.toThrow("owned by another Urbicana session");
 
       expect(request).toHaveBeenCalledOnce();
       expect(request).not.toHaveBeenCalledWith(
@@ -939,7 +939,7 @@ describe("native Codex thread tool", () => {
     }));
 
   it.each([false, true])(
-    "rejects archive when a spawned descendant is owned by an OpenClaw session (archived=%s)",
+    "rejects archive when a spawned descendant is owned by an Urbicana session (archived=%s)",
     (archived) =>
       withFixture(async () => {
         await writeCodexAppServerBinding("other-session", {
@@ -973,7 +973,7 @@ describe("native Codex thread tool", () => {
             thread_id: "parent-thread",
             confirm: true,
           }),
-        ).rejects.toThrow("spawned descendant is owned by an OpenClaw session");
+        ).rejects.toThrow("spawned descendant is owned by an Urbicana session");
 
         expect(request).toHaveBeenCalledWith(
           expect.anything(),

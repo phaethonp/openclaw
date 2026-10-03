@@ -211,7 +211,7 @@ export async function startOrResumeThread(
             cwd: params.cwd,
             ...(clientId ? { clientId } : {}),
             // Supervised threads stay on the native user-home connection. Never
-            // persist an outer OpenClaw auth profile onto that private ownership.
+            // persist an outer Urbicana auth profile onto that private ownership.
             authProfileId: undefined,
             agentWorkspaceDeveloperInstructions: params.agentWorkspaceDeveloperInstructions,
             preserveNativeModel: true,
@@ -401,7 +401,7 @@ export async function startOrResumeThread(
           binding.configuredMcpOwnershipVersion === 1));
     if (configuredMcpOwnershipChanged && binding?.threadId) {
       const predecessorBinding = binding;
-      // Scheduled configured MCP moved from Codex-native config to OpenClaw dynamic tools.
+      // Scheduled configured MCP moved from Codex-native config to Urbicana dynamic tools.
       // A persistent main/named session has one binding: rotate its exact predecessor instead
       // of retaining native and scheduled variants that could diverge or widen authority.
       assertCodexBindingMayBeReplaced(

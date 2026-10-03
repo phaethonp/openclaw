@@ -330,7 +330,7 @@ describe("Claude migration provider", () => {
     await writeFile(path.join(customMemory, "MEMORY.md"), "# Existing memory\n");
 
     await expect(provider.plan(contextFor(source, { itemKinds: ["memory"] }))).rejects.toThrow(
-      "source and OpenClaw import destination must be separate",
+      "source and Urbicana import destination must be separate",
     );
   });
 

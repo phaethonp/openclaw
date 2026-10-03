@@ -122,7 +122,7 @@ describe("google provider plugin hooks", () => {
     ).toBe("tagged");
   });
 
-  it("keeps the Gemini CLI runtime without OpenClaw-owned OAuth surfaces", async () => {
+  it("keeps the Gemini CLI runtime without Urbicana-owned OAuth surfaces", async () => {
     const { providers } = await registerGoogleProviders();
     const cliProvider = requireRegisteredProvider(providers, "google-gemini-cli");
 

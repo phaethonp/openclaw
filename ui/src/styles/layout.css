@@ -822,24 +822,6 @@ openclaw-settings-save-indicator:empty {
   height: 15px;
 }
 
-.settings-save-indicator__claw svg {
-  fill: currentColor;
-  stroke: none;
-  animation: chatWorkingClawFlex 2.4s ease-out infinite;
-}
-
-.settings-save-indicator__claw svg .claw-icon__jaw {
-  transform-box: view-box;
-  transform-origin: 8.6px 11px;
-  animation: chatWorkingClawSnip 2.4s ease-out infinite;
-}
-
-.settings-save-indicator__claw--saved svg,
-.settings-save-indicator__claw--saved svg .claw-icon__jaw {
-  animation-duration: 650ms;
-  animation-iteration-count: 1;
-}
-
 .settings-save-indicator__check {
   color: var(--ok);
 }
@@ -868,8 +850,6 @@ openclaw-settings-save-indicator:empty {
 
 @media (prefers-reduced-motion: reduce) {
   .settings-save-indicator--saved,
-  .settings-save-indicator__claw svg,
-  .settings-save-indicator__claw svg .claw-icon__jaw,
   .settings-save-indicator__spinner svg {
     animation: none;
   }

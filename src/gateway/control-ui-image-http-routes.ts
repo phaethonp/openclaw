@@ -10,13 +10,6 @@ export const CONTROL_UI_IMAGE_HTTP_ROUTES = [
     ),
   ],
   [
-    ["pluginThemeArt"],
-    createLazyRuntimeNamedExport(
-      () => import("./plugin-theme-art-http.js"),
-      "handlePluginThemeArtHttpRequest",
-    ),
-  ],
-  [
     ["workspaceIcon"],
     createLazyRuntimeNamedExport(
       () => import("./workspace-icon-http.js"),

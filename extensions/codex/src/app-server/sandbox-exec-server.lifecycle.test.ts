@@ -463,7 +463,7 @@ describe("Codex sandbox exec-server lifecycle", () => {
         id: 3,
         error: {
           code: -32601,
-          message: "Unsupported OpenClaw sandbox exec-server method: unsupported/method",
+          message: "Unsupported Urbicana sandbox exec-server method: unsupported/method",
         },
       },
       { jsonrpc: "2.0", id: 4, result: { processId: "direct-session", sandboxType: "none" } },

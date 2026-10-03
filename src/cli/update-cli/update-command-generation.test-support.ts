@@ -248,7 +248,7 @@ export function registerGenerationRecoveryTests(
         expect(record.downtimeMs).toBeGreaterThanOrEqual(0);
         expect(record.confirmedAtMs).toBeGreaterThanOrEqual(before.stoppedAtMs!);
         expect(renderUpdateRunReport(record).headline).toBe(
-          `↩️ OpenClaw update rolled back to ${VERSION}: restart-unhealthy.`,
+          `↩️ Urbicana update rolled back to ${VERSION}: restart-unhealthy.`,
         );
       }
     },

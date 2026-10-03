@@ -92,7 +92,7 @@ afterEach(() => {
 describe("web media loading", () => {
   beforeAll(() => {
     // Ensure state dir is stable and not influenced by other tests that stub OPENCLAW_STATE_DIR.
-    // Also keep it outside the OpenClaw temp root so default localRoots doesn't accidentally make all state readable.
+    // Also keep it outside the Urbicana temp root so default localRoots doesn't accidentally make all state readable.
     stateDirSnapshot = captureEnv(["OPENCLAW_STATE_DIR"]);
     process.env.OPENCLAW_STATE_DIR = path.join(
       path.parse(os.tmpdir()).root,
@@ -311,7 +311,7 @@ describe("local media root guard", () => {
     );
   });
 
-  it("allows default OpenClaw state workspace and sandbox roots", async () => {
+  it("allows default Urbicana state workspace and sandbox roots", async () => {
     const stateDir = resolveStateDir();
     const readFile = vi.fn(async () => Buffer.from("generated-media"));
 

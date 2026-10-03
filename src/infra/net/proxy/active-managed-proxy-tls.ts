@@ -1,4 +1,4 @@
-// Resolves OpenClaw-managed proxy TLS trust for non-Undici transports.
+// Resolves Urbicana-managed proxy TLS trust for non-Undici transports.
 import { resolveEnvHttpProxyUrl } from "../proxy-env.js";
 import { getActiveManagedProxyTlsOptions, getActiveManagedProxyUrl } from "./active-proxy-state.js";
 import {
@@ -40,7 +40,7 @@ function resolveManagedProxyUrl(env: NodeJS.ProcessEnv = process.env): string | 
   return normalizeProxyUrl(resolveEnvHttpProxyUrl("https", env));
 }
 
-/** Resolves managed proxy TLS trust only when the target proxy is OpenClaw's active proxy. */
+/** Resolves managed proxy TLS trust only when the target proxy is Urbicana's active proxy. */
 export function resolveActiveManagedProxyTlsOptions(
   params?: ResolveActiveManagedProxyTlsOptionsParams,
 ): ManagedProxyTlsOptions | undefined {

@@ -112,7 +112,7 @@ export function startOpenClawDatabaseIntegrityVerifier(options: { env: NodeJS.Pr
         if (!targetsByPath.has(pathname)) {
           targetsByPath.set(pathname, {
             kind: "agent",
-            label: "OpenClaw agent database",
+            label: "Urbicana agent database",
             path: pathname,
             check: "quick",
           });

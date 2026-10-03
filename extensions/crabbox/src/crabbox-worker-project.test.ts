@@ -94,7 +94,7 @@ describe("Crabbox project snapshot provisioning", () => {
 import path from "node:path";
 if (process.env.CRABBOX_WORKER_BOOTSTRAP_TOKEN || !fs.existsSync(${JSON.stringify(privateFiles[0])})) process.exit(9);
 fs.writeFileSync(path.join(process.env.HOME, "runtime-verified"), "verified");
-console.log("OpenClaw 2026.8.1");
+console.log("Urbicana 2026.8.1");
 `,
       );
       const bin = path.join(home, "bin");

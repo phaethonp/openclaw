@@ -135,7 +135,7 @@ describe("Codex direct tool loading", () => {
   );
 });
 
-it("keeps OpenClaw control-path tools direct when code-mode-only is enabled", () => {
+it("keeps Urbicana control-path tools direct when code-mode-only is enabled", () => {
   const tools = [
     createRuntimeDynamicTool("message"),
     createRuntimeDynamicTool("web_search"),
@@ -209,7 +209,7 @@ it("keeps message in the registered schema when disabled for an internal turn", 
     contentItems: [
       {
         type: "inputText",
-        text: "OpenClaw tool is not available for this turn: message",
+        text: "Urbicana tool is not available for this turn: message",
       },
     ],
   });

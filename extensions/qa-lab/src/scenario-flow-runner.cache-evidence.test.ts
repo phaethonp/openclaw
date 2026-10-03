@@ -68,7 +68,7 @@ describe("large read cache evidence", () => {
     "Warning: truncated output (original token count: 20000)\n…12345 tokens truncated…",
     "…12345 chars truncated…",
     "[Read output capped at 50KB]",
-    "...(OpenClaw truncated dynamic tool result: original 100000 chars)",
+    "...(Urbicana truncated dynamic tool result: original 100000 chars)",
     "...(truncated)...",
   ])("accepts a capped result with native marker %s", async (marker) => {
     await expect(checkCacheEvidence(marker)).resolves.toMatchObject({ status: "pass" });

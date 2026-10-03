@@ -6,6 +6,7 @@ import { parseThemeSelection, resolveTheme, type ThemeName } from "./theme.ts";
 describe("resolveTheme", () => {
   it.each([
     ["claw", "dark", "light"],
+    ["urbicana", "urbicana", "urbicana-light"],
     ["knot", "openknot", "openknot-light"],
     ["dash", "dash", "dash-light"],
     ["absolutely", "absolutely", "absolutely-light"],

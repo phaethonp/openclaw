@@ -101,7 +101,7 @@ export async function assertRelayTabCreation(params: {
         async (id) => await chrome.tabGroups.get(id),
         createdTab.groupId,
       ),
-    ).toMatchObject({ title: "OpenClaw" });
+    ).toMatchObject({ title: "Urbicana" });
     expect(created.initialUrl).toBe("about:blank");
     const body = opened.body as { targetId: string };
     expect(opened.body).toMatchObject({
@@ -112,7 +112,7 @@ export async function assertRelayTabCreation(params: {
     const targets = await extensionPage.evaluate(async () => await chrome.debugger.getTargets());
     expect(targets.find((target) => target.tabId === createdTab.id)?.id).toBe(body.targetId);
     expect(created.page.url()).toBe(url);
-    expect(await created.page.title()).toBe("OpenClaw selected tab");
+    expect(await created.page.title()).toBe("Urbicana selected tab");
     const snapshot = await dispatcher.dispatch({
       method: "GET",
       path: "/snapshot",
@@ -121,7 +121,7 @@ export async function assertRelayTabCreation(params: {
     expect(snapshot.status, JSON.stringify(snapshot.body)).toBe(200);
     expect(snapshot.body).toMatchObject({
       targetId: body.targetId,
-      snapshot: expect.stringContaining("OpenClaw created destination"),
+      snapshot: expect.stringContaining("Urbicana created destination"),
     });
     await fs.writeFile(
       artifact,

@@ -357,7 +357,7 @@ const CATALOG_SESSION_STRINGS = [
   ["modelProvider", "model provider", MAX_METADATA_LENGTH],
   ["cliVersion", "CLI version", MAX_METADATA_LENGTH],
   ["gitBranch", "Git branch", MAX_METADATA_LENGTH],
-  ["sessionKey", "OpenClaw session key", MAX_SESSION_KEY_LENGTH],
+  ["sessionKey", "Urbicana session key", MAX_SESSION_KEY_LENGTH],
 ] as const;
 
 function parseCatalogSession(

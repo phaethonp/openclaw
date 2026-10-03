@@ -164,10 +164,10 @@ describe("tool display details", () => {
   it("formats web_search query with quotes", () => {
     const detail = detailFor({
       name: "web_search",
-      args: { query: "OpenClaw docs", count: 3 },
+      args: { query: "Urbicana docs", count: 3 },
     });
 
-    expect(detail).toBe('for "OpenClaw docs" (top 3)');
+    expect(detail).toBe('for "Urbicana docs" (top 3)');
   });
 
   it("formats web_search provider query shapes", () => {
@@ -198,13 +198,13 @@ describe("tool display details", () => {
       detailFor({
         name: "web_search",
         args: {
-          objective: "Find the OpenClaw repository on GitHub",
+          objective: "Find the Urbicana repository on GitHub",
           search_queries: ["openclaw github", "openclaw repository"],
           count: 5,
         },
       }),
     ).toBe(
-      'for "Find the OpenClaw repository on GitHub", "openclaw github", "openclaw repository" (top 5)',
+      'for "Find the Urbicana repository on GitHub", "openclaw github", "openclaw repository" (top 5)',
     );
   });
 
@@ -505,10 +505,10 @@ describe("tool display details", () => {
       formatToolSummary(
         resolveToolDisplay({
           name: "web_search",
-          args: { query: "OpenClaw docs" },
+          args: { query: "Urbicana docs" },
         }),
       ),
-    ).toBe('🔎 Web Search: for "OpenClaw docs"');
+    ).toBe('🔎 Web Search: for "Urbicana docs"');
   });
 
   it("moves cd path to context suffix with || separator", () => {

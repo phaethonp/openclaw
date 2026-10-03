@@ -1341,10 +1341,6 @@ wa-popover.new-session-page__where-popover::part(body) {
     gap: 6px;
   }
 
-  .new-session-page .agent-chat__welcome-clawd {
-    margin-bottom: 0;
-  }
-
   .new-session-page__triggers {
     display: grid;
     /* Keep placement controls stacked while leaving breathing room on phones. */

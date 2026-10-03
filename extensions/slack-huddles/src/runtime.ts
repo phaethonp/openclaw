@@ -53,7 +53,7 @@ export const SlackHuddlesRuntime = MeetingPlatformAdapter.createRuntimeFacade<
       speech: {
         audioBridgeUnavailable: "Realtime speech requires an active Chrome audio bridge.",
         browserUnverified: "Slack browser state has not been verified yet.",
-        microphoneMuted: "Turn on the OpenClaw Slack microphone before asking OpenClaw to speak.",
+        microphoneMuted: "Turn on the Urbicana Slack microphone before asking Urbicana to speak.",
         microphoneMutedReason: "slack-microphone-muted",
         notInCall: "Slack has not reported that the Slack user is in the huddle.",
         notInCallReason: "not-in-call",

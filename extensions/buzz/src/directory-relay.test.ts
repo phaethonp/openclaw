@@ -29,7 +29,7 @@ function createSubscriptionStub(
 function createDirectoryState() {
   return new BuzzDirectoryState({
     publicKey: BOT_PUBLIC_KEY,
-    fallbackProfileName: "OpenClaw",
+    fallbackProfileName: "Urbicana",
     channelIds: [],
   });
 }

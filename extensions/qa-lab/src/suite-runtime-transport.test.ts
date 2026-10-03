@@ -25,7 +25,7 @@ describe("qa suite transport helpers", () => {
       isError: true,
       text: '⚠️ No API key found for provider "openai". You are authenticated with OpenAI Codex OAuth. Use openai/gpt-5.6-luna with the Codex OAuth profile, or set OPENAI_API_KEY for direct OpenAI API access.',
       senderId: "openclaw",
-      senderName: "OpenClaw QA",
+      senderName: "Urbicana QA",
     });
 
     await expect(pending).rejects.toThrow('No API key found for provider "openai".');
@@ -43,7 +43,7 @@ describe("qa suite transport helpers", () => {
       to: "dm:qa-operator",
       text: "checking thread context; then post a tight progress reply here.\nQA_LEAK_OK",
       senderId: "openclaw",
-      senderName: "OpenClaw QA",
+      senderName: "Urbicana QA",
     });
 
     await expect(pending).rejects.toThrow("checking thread context");
@@ -61,7 +61,7 @@ describe("qa suite transport helpers", () => {
       to: "dm:qa-operator",
       text: "Read: AGENT.md\nEvidence snippet: Tool read not found\nStatus: blocked",
       senderId: "openclaw",
-      senderName: "OpenClaw QA",
+      senderName: "Urbicana QA",
     });
 
     await expect(pending).rejects.toThrow("Tool read not found");
@@ -79,7 +79,7 @@ describe("qa suite transport helpers", () => {
       to: "dm:qa-operator",
       text: "status=FAILED\nerror=Could not parse services",
       senderId: "openclaw",
-      senderName: "OpenClaw QA",
+      senderName: "Urbicana QA",
     });
 
     await expect(pending).rejects.toThrow("Could not parse services");
@@ -91,7 +91,7 @@ describe("qa suite transport helpers", () => {
       to: "dm:qa-operator",
       text: "previous scenario reply",
       senderId: "openclaw",
-      senderName: "OpenClaw QA",
+      senderName: "Urbicana QA",
     });
     const sinceIndex = state
       .getSnapshot()
@@ -103,7 +103,7 @@ describe("qa suite transport helpers", () => {
       to: "channel:qa-room",
       text: "current scenario reply",
       senderId: "openclaw",
-      senderName: "OpenClaw QA",
+      senderName: "Urbicana QA",
     });
     await expect(waitForNoOutbound(state, 1, { sinceIndex })).rejects.toThrow(
       "expected no outbound messages, saw 1: channel:qa-room:openclaw:current scenario reply",
@@ -165,7 +165,7 @@ describe("qa suite transport helpers", () => {
       to: "dm:qa-operator",
       text: "working on it",
       senderId: "openclaw",
-      senderName: "OpenClaw QA",
+      senderName: "Urbicana QA",
     });
     state.addInboundMessage({
       conversation: { id: "qa-operator", kind: "direct" },
@@ -195,7 +195,7 @@ describe("qa suite transport helpers", () => {
       isError: true,
       text: '⚠️ No API key found for provider "openai". You are authenticated with OpenAI Codex OAuth. Use openai/gpt-5.6-luna with the Codex OAuth profile, or set OPENAI_API_KEY for direct OpenAI API access.',
       senderId: "openclaw",
-      senderName: "OpenClaw QA",
+      senderName: "Urbicana QA",
     });
 
     await expect(pending).rejects.toThrow('No API key found for provider "openai".');
@@ -213,13 +213,13 @@ describe("qa suite transport helpers", () => {
       to: "dm:qa-operator",
       text: "working on it",
       senderId: "openclaw",
-      senderName: "OpenClaw QA",
+      senderName: "Urbicana QA",
     });
     state.addOutboundMessage({
       to: "dm:qa-operator",
       text: "done",
       senderId: "openclaw",
-      senderName: "OpenClaw QA",
+      senderName: "Urbicana QA",
     });
 
     const messages = readTransportTranscript(state, {
@@ -235,7 +235,7 @@ describe("qa suite transport helpers", () => {
       "done",
     ]);
     expect(formatted).toContain("USER Alice: hello");
-    expect(formatted).toContain("ASSISTANT OpenClaw QA: working on it");
+    expect(formatted).toContain("ASSISTANT Urbicana QA: working on it");
   });
 
   it("applies account filtering after the global outbound cursor", async () => {

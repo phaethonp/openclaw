@@ -232,7 +232,7 @@ function makeNodeServiceEnv(env: Record<string, string>): Record<string, string>
   return {
     ...env,
     OPENCLAW_SERVICE_KIND: "node",
-    OPENCLAW_WINDOWS_TASK_NAME: "OpenClaw Node",
+    OPENCLAW_WINDOWS_TASK_NAME: "Urbicana Node",
   };
 }
 
@@ -324,7 +324,7 @@ function installNodeScheduledTask(env: Record<string, string>, stdout = new Pass
     env: {
       ...env,
       OPENCLAW_SERVICE_KIND: "node",
-      OPENCLAW_WINDOWS_TASK_NAME: "OpenClaw Node",
+      OPENCLAW_WINDOWS_TASK_NAME: "Urbicana Node",
     },
     stdout,
     programArguments: ["node", "openclaw", "node", "run", "--host", "127.0.0.1", "--port", "18789"],
@@ -991,7 +991,7 @@ describe("Windows startup fallback", () => {
     });
 
     await expect(installGatewayScheduledTask(env)).rejects.toThrow(
-      "Could not back up Scheduled Task OpenClaw Gateway before replacement",
+      "Could not back up Scheduled Task Urbicana Gateway before replacement",
     );
 
     await expect(fs.access(resolveTaskScriptPath(env))).rejects.toMatchObject({ code: "ENOENT" });
@@ -999,7 +999,7 @@ describe("Windows startup fallback", () => {
       code: "ENOENT",
     });
     expect(spawn).not.toHaveBeenCalled();
-    expect(schtasksCalls).toEqual([["/Query", "/TN", "OpenClaw Gateway", "/XML"]]);
+    expect(schtasksCalls).toEqual([["/Query", "/TN", "Urbicana Gateway", "/XML"]]);
   });
 
   it("does not fall back when a listener appears after the clean task exit", async ({ env }) => {
@@ -1103,7 +1103,7 @@ describe("Windows startup fallback", () => {
 
   it("does not report a node task as running from a gateway listener", async ({ env }) => {
     env.OPENCLAW_SERVICE_KIND = "node";
-    env.OPENCLAW_WINDOWS_TASK_NAME = "OpenClaw Node";
+    env.OPENCLAW_WINDOWS_TASK_NAME = "Urbicana Node";
     findVerifiedGatewayListenerPidsOnPortSync.mockReturnValue([4242]);
     queueNativeResponses(notYetRunTaskSnapshot());
 
@@ -1120,7 +1120,7 @@ describe("Windows startup fallback", () => {
     const nodeEnv = {
       ...env,
       OPENCLAW_SERVICE_KIND: "node",
-      OPENCLAW_WINDOWS_TASK_NAME: "OpenClaw Node",
+      OPENCLAW_WINDOWS_TASK_NAME: "Urbicana Node",
     };
     await writeNodeScript(nodeEnv);
     findVerifiedGatewayListenerPidsOnPortSync.mockReturnValue([4242]);

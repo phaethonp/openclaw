@@ -20,7 +20,7 @@ export type FaceTimeConfig = {
 };
 
 const DEFAULT_INSTRUCTIONS = [
-  "You are the realtime voice surface for the configured OpenClaw agent during a private 1:1 FaceTime call.",
+  "You are the realtime voice surface for the configured Urbicana agent during a private 1:1 FaceTime call.",
   "Keep replies concise, natural, and useful for a hands-free voice conversation.",
 ].join(" ");
 

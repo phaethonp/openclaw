@@ -505,7 +505,7 @@ describe("stripInternalRuntimeScaffolding", () => {
   it("removes runtime context prefaces without angle markers", () => {
     expect(
       stripInternalRuntimeScaffolding(
-        ["OpenClaw runtime event.", OPENCLAW_RUNTIME_CONTEXT_NOTICE, "Visible reply"].join("\n"),
+        ["Urbicana runtime event.", OPENCLAW_RUNTIME_CONTEXT_NOTICE, "Visible reply"].join("\n"),
       ),
     ).toBe("Visible reply");
   });

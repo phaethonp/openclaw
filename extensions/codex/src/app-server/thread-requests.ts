@@ -46,12 +46,12 @@ import { resolveCodexWebSearchPlan, type CodexNativeWebSearchSupport } from "./w
 export const CODEX_RING_ZERO_BASE_INSTRUCTIONS = "";
 
 // Stream structured patch snapshots so large generated edits keep the turn active.
-// OpenClaw opts into these under-development features deliberately, so silence
+// Urbicana opts into these under-development features deliberately, so silence
 // Codex's chat warning that tells operators to edit the managed codex-home config.
 const CODEX_CODE_MODE_THREAD_CONFIG: JsonObject = {
   "features.code_mode": true,
   "features.code_mode_only": false,
-  // Native code mode replaces OpenClaw's own exec/read/write/edit tools with the
+  // Native code mode replaces Urbicana's own exec/read/write/edit tools with the
   // Codex shell, and cron creator caps project read/exec on the same premise, so
   // request the shell explicitly instead of relying on the codex-home default.
   "features.shell_tool": true,
@@ -64,7 +64,7 @@ const CODEX_GOAL_CONTINUATION_DISABLED_THREAD_CONFIG: JsonObject = {
 };
 
 const CODEX_NATIVE_UPDATE_PLAN_DISABLED_THREAD_CONFIG: JsonObject = {
-  // OpenClaw owns the durable progress card; Codex's native checklist would create a second owner.
+  // Urbicana owns the durable progress card; Codex's native checklist would create a second owner.
   "tools.update_plan.enabled": false,
 };
 
@@ -221,7 +221,7 @@ export function buildThreadStartParams(
       ? { baseInstructions: CODEX_RING_ZERO_BASE_INSTRUCTIONS }
       : {}),
     personality: CODEX_NATIVE_PERSONALITY_NONE,
-    serviceName: "OpenClaw",
+    serviceName: "Urbicana",
     threadSource: "openclaw",
     ...resolveCodexThreadEnvironmentSelection(options),
     // Codex 0.146 accepts canonical typed function and namespace specs natively.

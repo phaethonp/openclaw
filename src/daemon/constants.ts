@@ -4,7 +4,7 @@ import { normalizeLowercaseStringOrEmpty } from "@openclaw/normalization-core/st
 // Default service labels (canonical + legacy compatibility)
 export const GATEWAY_LAUNCH_AGENT_LABEL = "ai.openclaw.gateway";
 const GATEWAY_SYSTEMD_SERVICE_NAME = "openclaw-gateway";
-const GATEWAY_WINDOWS_TASK_NAME = "OpenClaw Gateway";
+const GATEWAY_WINDOWS_TASK_NAME = "Urbicana Gateway";
 export const GATEWAY_SERVICE_MARKER = "openclaw";
 export const GATEWAY_SERVICE_KIND = "gateway";
 export const GATEWAY_SERVICE_RUNTIME_PID_ENV = "OPENCLAW_GATEWAY_SERVICE_PID";
@@ -28,7 +28,7 @@ export function isGatewayServiceEnv(env: Record<string, string | undefined>): bo
 
 const NODE_LAUNCH_AGENT_LABEL = "ai.openclaw.node";
 const NODE_SYSTEMD_SERVICE_NAME = "openclaw-node";
-const NODE_WINDOWS_TASK_NAME = "OpenClaw Node";
+const NODE_WINDOWS_TASK_NAME = "Urbicana Node";
 const NODE_SERVICE_MARKER = "openclaw";
 export const NODE_SERVICE_KIND = "node";
 const NODE_WINDOWS_TASK_SCRIPT_NAME = "node.cmd";
@@ -100,7 +100,7 @@ export function resolveGatewayWindowsTaskName(profile?: string): string {
   if (!normalized) {
     return GATEWAY_WINDOWS_TASK_NAME;
   }
-  return `OpenClaw Gateway (${normalized})`;
+  return `Urbicana Gateway (${normalized})`;
 }
 
 export function normalizeWindowsTaskIdentity(value: string): string {
@@ -149,9 +149,9 @@ export function resolveGatewayNativeServiceIdentityConflict(
 function formatGatewayServiceDescription(profile?: string): string {
   const normalized = normalizeGatewayProfile(profile);
   if (!normalized) {
-    return "OpenClaw Gateway";
+    return "Urbicana Gateway";
   }
-  return `OpenClaw Gateway (profile: ${normalized})`;
+  return `Urbicana Gateway (profile: ${normalized})`;
 }
 
 export function resolveGatewayServiceDescription(params: {

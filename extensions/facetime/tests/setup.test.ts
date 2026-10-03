@@ -377,7 +377,7 @@ describe("FaceTime guided setup", () => {
             connected: false,
             stale: true,
             staleProcessId: 1234,
-            lastError: "Restart FaceTime to load the updated OpenClaw helper",
+            lastError: "Restart FaceTime to load the updated Urbicana helper",
           },
           readyRuntime.helperTargets[1]!,
         ],
@@ -388,7 +388,7 @@ describe("FaceTime guided setup", () => {
     expect(report.actions).toContainEqual({
       id: "restart-call-apps",
       kind: "manual-test",
-      label: "Quit and reopen FaceTime and Phone, then let OpenClaw reinject the helper",
+      label: "Quit and reopen FaceTime and Phone, then let Urbicana reinject the helper",
     });
   });
 

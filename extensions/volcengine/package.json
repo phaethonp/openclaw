@@ -1,7 +1,7 @@
 {
   "name": "@openclaw/volcengine-provider",
   "version": "2026.9.6",
-  "description": "OpenClaw Volcengine provider plugin.",
+  "description": "Urbicana Volcengine provider plugin.",
   "repository": {
     "type": "git",
     "url": "https://github.com/openclaw/openclaw"

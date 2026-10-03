@@ -210,7 +210,7 @@ describe("installSkill before_install hooks", () => {
     });
   });
 
-  it("runs npm node installs with an OpenClaw-managed user prefix", async () => {
+  it("runs npm node installs with an Urbicana-managed user prefix", async () => {
     await withWorkspaceCase(async ({ workspaceDir, homeDir }) => {
       await writeInstallableSkill(workspaceDir, "node-prefix-skill");
       const npmPrefix = path.join(homeDir, ".openclaw", "tools", "node", "npm");

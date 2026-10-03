@@ -36,7 +36,7 @@ describe("failover diagnostic isolation", () => {
     "normalizes published local-profile HTTP status from a %s error without changing its owner",
     (shape) => {
       const message =
-        'Codex app-server auth profile "openai:default" was not found. Select an existing OpenAI profile or sign in again with OpenClaw, then retry.';
+        'Codex app-server auth profile "openai:default" was not found. Select an existing OpenAI profile or sign in again with Urbicana, then retry.';
       const cause = new Error("profile store lookup missed");
       const context = {
         provider: "openai",
@@ -62,7 +62,7 @@ describe("failover diagnostic isolation", () => {
             : Object.assign(new Error(message, { cause }), facts),
       );
       if (original instanceof Error) {
-        attachErrorDiagnostic(original, "profile owner: OpenClaw credential store");
+        attachErrorDiagnostic(original, "profile owner: Urbicana credential store");
       }
 
       expect.soft(describeFailoverError(original)).toMatchObject({
@@ -81,7 +81,7 @@ describe("failover diagnostic isolation", () => {
       expect(original.status).toBe(401);
       expect(original.message).toBe(message);
       if (shape === "typed") {
-        expect(formatErrorMessageForDisplay(normalized)).toContain("profile owner: OpenClaw");
+        expect(formatErrorMessageForDisplay(normalized)).toContain("profile owner: Urbicana");
       }
     },
   );
@@ -256,7 +256,7 @@ describe("failover-error", () => {
 
     it("returns true for Codex missing tool-result local execution failures", () => {
       const missingToolResultMessage =
-        "OpenClaw recorded a native Codex tool.call without a matching tool.result before the turn completed.";
+        "Urbicana recorded a native Codex tool.call without a matching tool.result before the turn completed.";
       expect(isNonProviderRuntimeCoordinationError({ reason: "missing_tool_result" })).toBe(true);
       expect(
         isNonProviderRuntimeCoordinationError({

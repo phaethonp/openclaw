@@ -172,7 +172,7 @@ export function resolveIrcAccount(params: {
     const realname =
       merged.realname?.trim() ||
       (accountId === DEFAULT_ACCOUNT_ID ? process.env.IRC_REALNAME?.trim() : "") ||
-      "OpenClaw";
+      "Urbicana";
 
     const passwordResolution = resolvePassword(accountId, merged);
     const nickservResolution = resolveNickServConfig(accountId, merged.nickserv);

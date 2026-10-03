@@ -16,7 +16,7 @@ describe("brave web search config merge", () => {
         searchConfig: { provider: "brave" },
       });
 
-      await tool?.execute({ query: "OpenClaw docs" });
+      await tool?.execute({ query: "Urbicana docs" });
 
       const searchConfig = executeBraveSearch.mock.calls[0]?.[1];
       expect(searchConfig?.brave).toEqual({

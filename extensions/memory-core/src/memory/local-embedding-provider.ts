@@ -8,5 +8,5 @@ export const MISSING_LOCAL_MEMORY_EMBEDDING_PROVIDER_MESSAGE = [
   "Semantic memory recall is degraded until the managed llama-server is configured.",
   `Install it with: ${LLAMA_CPP_PROVIDER_INSTALL_COMMAND}`,
   "Then run `openclaw configure` and choose llama.cpp to set up the managed llama-server.",
-  "Then restart OpenClaw and retry: openclaw memory status --deep",
+  "Then restart Urbicana and retry: openclaw memory status --deep",
 ].join("\n");

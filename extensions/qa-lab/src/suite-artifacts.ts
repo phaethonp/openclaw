@@ -152,7 +152,7 @@ export async function writeQaSuiteArtifacts(
     (artifact) => artifact.kind === "channel-driver-smoke",
   )?.path;
   const report = renderQaMarkdownReport({
-    title: "OpenClaw QA Scenario Suite",
+    title: "Urbicana QA Scenario Suite",
     inProgress: params.status === "running",
     startedAt: params.startedAt,
     finishedAt: params.finishedAt,

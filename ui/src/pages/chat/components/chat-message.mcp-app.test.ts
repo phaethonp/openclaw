@@ -55,7 +55,7 @@ it("keeps MCP App raw details reachable from its widget menu", async () => {
     renderMessageGroup(group, {
       showReasoning: true,
       showToolCalls: true,
-      assistantName: "OpenClaw",
+      assistantName: "Urbicana",
       assistantAvatar: null,
       sessionKey: "agent:main:main",
     }),

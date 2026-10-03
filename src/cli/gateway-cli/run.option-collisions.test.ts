@@ -1947,7 +1947,7 @@ describe("gateway run option collisions", () => {
         expect(refusal).toBeInstanceOf(Error);
         const message = (refusal as Error).message;
         expect(message).toBe(
-          `Legacy session store requires migration: ${storePath}. Run "openclaw doctor --fix" against the same state/config before starting OpenClaw.`,
+          `Legacy session store requires migration: ${storePath}. Run "openclaw doctor --fix" against the same state/config before starting Urbicana.`,
         );
         const failure =
           kind === "cause"
@@ -2070,7 +2070,7 @@ describe("gateway run option collisions", () => {
   it("does not park launchd for a nonrepairable shared-state schema", async () => {
     startGatewayServer.mockRejectedValueOnce(
       new Error(
-        "OpenClaw state database /tmp/openclaw.sqlite has a noncanonical agent database registry schema that cannot be repaired automatically.",
+        "Urbicana state database /tmp/openclaw.sqlite has a noncanonical agent database registry schema that cannot be repaired automatically.",
       ),
     );
 

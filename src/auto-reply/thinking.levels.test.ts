@@ -460,7 +460,7 @@ describe("listThinkingLevels", () => {
     expect(listThinkingLevels("claude-cli", "company-fable", catalog)).toEqual(["off"]);
   });
 
-  it("honors provider-owned thinking maps before compat and derives OpenClaw Ultra", () => {
+  it("honors provider-owned thinking maps before compat and derives Urbicana Ultra", () => {
     const catalog = catalogFor("custom", "reasoning-model", {
       reasoning: true,
       thinkingLevelMap: {
@@ -554,7 +554,7 @@ describe("listThinkingLevels", () => {
     ).toBe(false);
   });
 
-  it("uses advanced catalog efforts and derives OpenClaw Ultra from Max", () => {
+  it("uses advanced catalog efforts and derives Urbicana Ultra from Max", () => {
     const catalog = catalogFor("myazure", "gpt-5.6-sol", {
       api: "openai-responses",
       reasoning: true,
@@ -594,7 +594,7 @@ describe("listThinkingLevels", () => {
     expect(listThinkingLevels("myazure", "gpt-5.6-sol", catalog, "codex")).toContain("ultra");
   });
 
-  it("preserves catalog-advertised Ultra for non-OpenClaw runtimes", () => {
+  it("preserves catalog-advertised Ultra for non-Urbicana runtimes", () => {
     const catalog = catalogFor("myazure", "gpt-5.6-sol", {
       reasoning: true,
       compat: {

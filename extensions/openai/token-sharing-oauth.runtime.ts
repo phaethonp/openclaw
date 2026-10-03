@@ -299,7 +299,7 @@ export async function loginTokenSharing(ctx: ProviderAuthContext): Promise<Provi
     code_challenge_method: "S256",
     state,
     nonce,
-    ...(registering ? { agent_name_hint: "OpenClaw" } : {}),
+    ...(registering ? { agent_name_hint: "Urbicana" } : {}),
   }).toString();
   const callback = await startProviderOAuthLoopbackCallbackServer({
     redirectUrl: TOKEN_SHARING_REDIRECT_URI,
@@ -327,7 +327,7 @@ export async function loginTokenSharing(ctx: ProviderAuthContext): Promise<Provi
               ]),
           ...(ctx.isRemote
             ? [
-                "Open the sign-in link in your browser. Its localhost:8080 callback must reach this OpenClaw process. For an SSH host, forward the port with: ssh -N -L 8080:127.0.0.1:8080 user@gateway-host",
+                "Open the sign-in link in your browser. Its localhost:8080 callback must reach this Urbicana process. For an SSH host, forward the port with: ssh -N -L 8080:127.0.0.1:8080 user@gateway-host",
               ]
             : []),
           ...(ctx.prompter.openUrl ? [] : [`Sign-in URL: ${url.toString()}`]),
@@ -399,8 +399,8 @@ export async function loginTokenSharing(ctx: ProviderAuthContext): Promise<Provi
       contentType: "text/html; charset=utf-8",
       body: oauthSuccessHtml(
         sharing
-          ? "ChatGPT token sharing is connected. You can return to OpenClaw."
-          : "ChatGPT sign-in succeeded. Token sharing is disabled; return to OpenClaw to choose inference access.",
+          ? "ChatGPT token sharing is connected. You can return to Urbicana."
+          : "ChatGPT sign-in succeeded. Token sharing is disabled; return to Urbicana to choose inference access.",
       ),
     });
     owner.signal.throwIfAborted();
@@ -435,7 +435,7 @@ export async function loginTokenSharing(ctx: ProviderAuthContext): Promise<Provi
     await callback.complete({
       status: 400,
       contentType: "text/html; charset=utf-8",
-      body: oauthErrorHtml("Sign-in did not complete. Return to OpenClaw for details and retry."),
+      body: oauthErrorHtml("Sign-in did not complete. Return to Urbicana for details and retry."),
     });
     throw error;
   } finally {

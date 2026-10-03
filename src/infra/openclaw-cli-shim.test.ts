@@ -141,8 +141,8 @@ it("renders a Windows PATH launcher for the running CLI", async () => {
       env: { OPENCLAW_PROFILE: "work" },
       invocation: {
         command: "C:\\Program Files\\nodejs\\node.exe",
-        args: ["C:\\OpenClaw\\dist\\index.js"],
-        cwd: "C:\\OpenClaw %USERPROFILE%!",
+        args: ["C:\\Urbicana\\dist\\index.js"],
+        cwd: "C:\\Urbicana %USERPROFILE%!",
       },
       platform: "win32",
       stateDir: root,
@@ -150,7 +150,7 @@ it("renders a Windows PATH launcher for the running CLI", async () => {
 
     const executablePath = path.join(root, "tmp", "agent-cli", "openclaw.cmd");
     expect(await fs.readFile(executablePath, "utf8")).toBe(
-      '@echo off\r\nsetlocal DisableDelayedExpansion\r\n"C:\\Program Files\\nodejs\\node.exe" C:\\OpenClaw\\dist\\index.js --profile work %*\r\n',
+      '@echo off\r\nsetlocal DisableDelayedExpansion\r\n"C:\\Program Files\\nodejs\\node.exe" C:\\Urbicana\\dist\\index.js --profile work %*\r\n',
     );
   });
 });

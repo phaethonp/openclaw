@@ -1567,7 +1567,7 @@ describe("handleFeishuMessage command authorization", () => {
         text: mentionedOpenId ? "@_openclaw /status" : "/status",
         message: {
           mentions: mentionedOpenId
-            ? [{ key: "@_openclaw", id: { open_id: mentionedOpenId }, name: "OpenClaw" }]
+            ? [{ key: "@_openclaw", id: { open_id: mentionedOpenId }, name: "Urbicana" }]
             : undefined,
         },
       });
@@ -1592,7 +1592,7 @@ describe("handleFeishuMessage command authorization", () => {
                         key: "@_openclaw",
                         id: "ou-openclaw",
                         id_type: "open_id",
-                        name: "OpenClaw",
+                        name: "Urbicana",
                       },
                     ]
                   : [],
@@ -1697,7 +1697,7 @@ describe("handleFeishuMessage command authorization", () => {
         chatType: "group",
         text: "@_openclaw ping",
         message: {
-          mentions: [{ key: "@_openclaw", id: { open_id: "ou-loop-self" }, name: "OpenClaw" }],
+          mentions: [{ key: "@_openclaw", id: { open_id: "ou-loop-self" }, name: "Urbicana" }],
         },
       });
 

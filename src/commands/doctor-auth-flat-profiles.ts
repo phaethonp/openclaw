@@ -793,7 +793,7 @@ export async function maybeMigrateAuthProfileJsonStoresToSqlite(params: {
   if (fs.existsSync(oauthPath)) {
     result.detected.push(oauthPath);
     warnings.push(
-      `Pre-June OAuth credentials at ${shortenHomePath(oauthPath)} were left unchanged. Install OpenClaw 2026.9.5 and run ${formatCliCommand("openclaw doctor --fix")} before upgrading to latest; see https://docs.openclaw.ai/install/updating#upgrading-very-old-versions.`,
+      `Pre-June OAuth credentials at ${shortenHomePath(oauthPath)} were left unchanged. Install Urbicana 2026.9.5 and run ${formatCliCommand("openclaw doctor --fix")} before upgrading to latest; see https://docs.openclaw.ai/install/updating#upgrading-very-old-versions.`,
     );
   }
   if (detected.length === 0) {

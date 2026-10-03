@@ -102,7 +102,7 @@ function resolveCodexUpstreamForkBoundaryFromTurns(params: {
       if (nativeText === undefined) {
         return failure(
           "drift-mismatch",
-          "A message before the fork point contains images or attachments that cannot be verified across OpenClaw and Codex. Fork from a text-only span instead.",
+          "A message before the fork point contains images or attachments that cannot be verified across Urbicana and Codex. Fork from a text-only span instead.",
         );
       }
       const upstreamText = local && readUpstreamUserText(local.message);

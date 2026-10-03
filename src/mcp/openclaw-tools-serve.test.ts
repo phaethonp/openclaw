@@ -1,4 +1,4 @@
-// OpenClaw MCP tools tests cover core tool server startup and registration.
+// Urbicana MCP tools tests cover core tool server startup and registration.
 import path from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { useAutoCleanupTempDirTracker } from "../../test/helpers/temp-dir.js";
@@ -67,7 +67,7 @@ afterEach(() => {
   vi.unstubAllEnvs();
 });
 
-describe("OpenClaw tools MCP server", () => {
+describe("Urbicana tools MCP server", () => {
   it("does not expose cron to a persisted sub-agent ACP session", async () => {
     const tempDir = tempDirs.make("openclaw-mcp-subagent-policy-");
     const storePath = path.join(tempDir, "sessions.json");
@@ -260,7 +260,7 @@ describe("OpenClaw tools MCP server", () => {
     expect(text).toContain("needs-approval:");
     expect(text).toContain("requesting session's permission policy");
     expect(text).toContain("returns the final outcome");
-    expect(text).not.toContain("OpenClaw operator UI");
+    expect(text).not.toContain("Urbicana operator UI");
     expect(text).not.toContain("ask the user to reply yes");
   });
 });

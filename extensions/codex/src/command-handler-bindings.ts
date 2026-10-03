@@ -334,7 +334,7 @@ export async function resumeThread(
     return MODEL_SELECTION_LOCKED_MESSAGE;
   }
   if (!ctx.sessionId) {
-    return "Cannot attach a Codex thread because this command did not include an OpenClaw session id.";
+    return "Cannot attach a Codex thread because this command did not include an Urbicana session id.";
   }
   const scope = resolveCodexConversationControlScope(ctx);
   const identity = sessionBindingIdentity({
@@ -503,7 +503,7 @@ export async function resumeThread(
             onResponse: commitResumedThread,
           },
         );
-        return `Attached this OpenClaw session to Codex thread ${formatCodexDisplayText(
+        return `Attached this Urbicana session to Codex thread ${formatCodexDisplayText(
           normalizedThreadId,
         )}.${pendingResumeConfiguration ? " The next turn will validate its tools and apply this session's configuration before continuing." : ""}`;
       }),

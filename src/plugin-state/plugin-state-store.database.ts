@@ -33,7 +33,7 @@ export function wrapPluginStateError(
   if (fallbackCode === "PLUGIN_STATE_OPEN_FAILED") {
     if (isSqliteSchemaVersionError(error)) {
       publicMessage +=
-        "\nThe state database uses a newer schema. Run an OpenClaw build that supports it.";
+        "\nThe state database uses a newer schema. Run an Urbicana build that supports it.";
     } else if (error instanceof Error && isTerminalSqliteIntegrityError(error)) {
       publicMessage +=
         "\nDatabase integrity verification failed. Restore or repair the state database, then run openclaw doctor --fix.";

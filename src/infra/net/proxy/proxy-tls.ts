@@ -1,12 +1,12 @@
 // Managed proxy TLS helpers resolve and load CA trust only for HTTPS forward
-// proxies that OpenClaw owns or inherited from a parent process.
+// proxies that Urbicana owns or inherited from a parent process.
 import { readFileSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { normalizeOptionalString } from "@openclaw/normalization-core/string-coerce";
 import type { ProxyConfig } from "../../../config/zod-schema.proxy.js";
 import { formatErrorMessage } from "../../errors.js";
 
-/** TLS trust material passed to proxy clients for OpenClaw-managed HTTPS proxies. */
+/** TLS trust material passed to proxy clients for Urbicana-managed HTTPS proxies. */
 export type ManagedProxyTlsOptions = Readonly<{
   ca?: string;
 }>;

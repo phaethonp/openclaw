@@ -628,8 +628,8 @@ describe("createVoiceCallRuntime lifecycle", () => {
     });
     expect(runEmbeddedAgent).toHaveBeenCalledOnce();
     const consultParams = requireRecord(
-      expectDefined(runEmbeddedAgent.mock.calls.at(0), "embedded OpenClaw consult call")[0],
-      "embedded OpenClaw consult params",
+      expectDefined(runEmbeddedAgent.mock.calls.at(0), "embedded Urbicana consult call")[0],
+      "embedded Urbicana consult params",
     );
     expect(consultParams.agentId).toBe("support");
     expect(consultParams.sessionKey).toBe("agent:support:voice:15550009999");
@@ -784,9 +784,9 @@ describe("createVoiceCallRuntime lifecycle", () => {
     const consultParams = requireRecord(
       expectDefined(
         runEmbeddedAgent.mock.calls.at(0),
-        "per-call embedded OpenClaw consult call",
+        "per-call embedded Urbicana consult call",
       )[0],
-      "per-call embedded OpenClaw consult params",
+      "per-call embedded Urbicana consult params",
     );
     expect(consultParams.sessionKey).toBe("agent:main:voice:call:call-1");
   });
@@ -870,7 +870,7 @@ describe("createVoiceCallRuntime lifecycle", () => {
     mocks.resolveRealtimeFastContextConsult.mockResolvedValue({
       handled: true,
       result: {
-        text: "Fast OpenClaw memory or session context found.\nThe caller's basement lights are on.",
+        text: "Fast Urbicana memory or session context found.\nThe caller's basement lights are on.",
       },
     });
 
@@ -908,7 +908,7 @@ describe("createVoiceCallRuntime lifecycle", () => {
       sessionKey: "agent:main:voice:15550001234",
       labels: {
         audienceLabel: "caller",
-        contextName: "OpenClaw memory or session context",
+        contextName: "Urbicana memory or session context",
       },
     });
     expect(runEmbeddedAgent).not.toHaveBeenCalled();
@@ -960,9 +960,9 @@ describe("createVoiceCallRuntime lifecycle", () => {
     const consultParams = requireRecord(
       expectDefined(
         runEmbeddedAgent.mock.calls.at(0),
-        "configured embedded OpenClaw consult call",
+        "configured embedded Urbicana consult call",
       )[0],
-      "configured embedded OpenClaw consult params",
+      "configured embedded Urbicana consult params",
     );
     expect(consultParams.thinkLevel).toBe("ultra");
     expect(consultParams.fastMode).toBe(true);

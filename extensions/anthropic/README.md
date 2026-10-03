@@ -1,6 +1,6 @@
 # Anthropic
 
-Use Claude models in OpenClaw through the Anthropic API or an existing Claude
+Use Claude models in Urbicana through the Anthropic API or an existing Claude
 Code CLI login. The plugin also supports image and PDF understanding and
 discovery of native Claude conversations.
 
@@ -8,7 +8,7 @@ discovery of native Claude conversations.
 
 Run `openclaw onboard` and choose **Anthropic API key** or **Claude CLI**. API
 access requires an Anthropic API key. The CLI route requires Claude Code to be
-installed and signed in on the host running OpenClaw.
+installed and signed in on the host running Urbicana.
 
 After setup, browse the available models with
 `openclaw models list --provider anthropic`.

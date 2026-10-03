@@ -37,7 +37,7 @@ without an explicit include list and wildcard filters are unsupported. The harne
 logs an error and omits unsupported servers, including stdio, Gateway OAuth,
 requester-scoped connections, legacy SSE, custom TLS, unsupported filters, and
 headers it cannot resolve. Other supported servers remain available. Set an
-explicit Streamable HTTP transport; URL-only definitions retain OpenClaw's legacy
+explicit Streamable HTTP transport; URL-only definitions retain Urbicana's legacy
 SSE interpretation and are omitted. Connection/request timeouts and parallel-call
 settings remain controlled by the native API.
 
@@ -48,16 +48,16 @@ replace the existing native session. Sessions without HTTP MCP configuration
 retain their existing bindings.
 
 Stdio MCP forwarding is a deferred implementation gap. Command-based servers are
-not forwarded, and OpenClaw does not start them on the Gateway for this harness.
+not forwarded, and Urbicana does not start them on the Gateway for this harness.
 The Agents API already supports executor-managed stdio MCP processes; forwarding
 their command, arguments, working directory and environment is future adapter work.
 
-Ordinary conversation attempts run OpenClaw's shared `before_prompt_build` hook,
+Ordinary conversation attempts run Urbicana's shared `before_prompt_build` hook,
 including tool-authorized recall and heartbeat prompt contributions. Per-turn
 `prependContext` and `appendContext` are applied on both new and resumed sessions.
 System-prompt additions and overrides are captured only when the native session
 is created. Updating system instructions on an existing native session is an MVP
-implementation gap; reset the OpenClaw session to adopt those changes. The harness
+implementation gap; reset the Urbicana session to adopt those changes. The harness
 does not move system instructions into user messages. Hook `toolsAllow` restrictions
 are ignored because the harness cannot enforce turn-scoped restrictions across
 Gateway and native tools. Turns continue with the hook's prompt context even for
@@ -142,7 +142,7 @@ explicit session reset before further native session writes. These settings are
 unused for self-hosted sessions.
 
 Self-hosted session creation sends
-the absolute host-prepared OpenClaw workspace as `workspace_directory`. That
+the absolute host-prepared Urbicana workspace as `workspace_directory`. That
 directory must already exist at the same path inside the executor. See the
 [official self-hosted guide](https://developers.openai.com/api/docs/guides/agents-api/environments/self-hosted).
 Before enabling `self_hosted`, configure an operator-owned controller using the
@@ -159,18 +159,18 @@ the API's longer connection window does not extend this deadline. Session
 connection events remain visible while it connects.
 Hosted environments support input
 attachments and output file transfers. Self-hosted environments do not support
-file transfers. Gateway function availability follows the configured OpenClaw
+file transfers. Gateway function availability follows the configured Urbicana
 tool policy. Native Agents API apps and connectors are not configured by this
 plugin, and the Gateway image-generation tool is not exposed.
 
 For self-hosted sessions, `hostExecutorSkillDirectories` lists absolute paths on
 the executor host machine. These directories must already be set up with the
 skill files and be available to the Agents API harness through the executor.
-OpenClaw sends the paths as the Agents API `capability_directories` field; it does
+Urbicana sends the paths as the Agents API `capability_directories` field; it does
 not copy or install files or resolve these paths against the Gateway's filesystem.
 Install any supporting scripts and dependencies on the executor host as well.
 The Agents API harness discovers skills in these directories and reads their
-contents through the executor. OpenClaw's per-skill eligibility filters do not apply to this
+contents through the executor. Urbicana's per-skill eligibility filters do not apply to this
 explicit native discovery list; choose only directories you intend to expose.
 Gateway tool policies continue to apply to Gateway functions.
 Sessions created without skill directories remain valid when the list is
@@ -178,15 +178,15 @@ omitted or empty. Changing a nonempty list requires a session reset.
 The list is unused for hosted sessions.
 
 Changing the environment, self-hosted workspace, or skill directories requires resetting the
-OpenClaw session. Existing hosted bindings remain valid with the setting omitted
+Urbicana session. Existing hosted bindings remain valid with the setting omitted
 or explicitly `openai_hosted`. No saved session is reset or migrated automatically.
 
-The Gateway must be the only writer to each native session bound to OpenClaw.
-Send messages, steering, and interrupts through OpenClaw. Do not also write to
+The Gateway must be the only writer to each native session bound to Urbicana.
+Send messages, steering, and interrupts through Urbicana. Do not also write to
 that native session from another API client or a Gateway with independent state.
 Keep write credentials under the trusted Gateway operator's control. This
 exclusivity is a deployment requirement, not API-enforced session isolation.
-Binding leases coordinate OpenClaw attempts; tool execution retains current
+Binding leases coordinate Urbicana attempts; tool execution retains current
 ownership and cancellation checks. External concurrent writers are unsupported.
 
 Message and steering submissions, tool results, and cancellation events retry
@@ -202,19 +202,19 @@ declarations when Gateway tools are added. Fresh sessions receive the current
 Gateway tool declarations. Reset an existing session to adopt the new tool
 surface; changing its model or API key still requires a reset.
 
-Child sessions use the same Gateway tool-policy filtering as other OpenClaw
+Child sessions use the same Gateway tool-policy filtering as other Urbicana
 runtimes, including inherited restrictions and the child's role. Denied session
 and control tools stay unavailable. Policies that restrict native shell, file,
 or native web-search access are rejected before the native session starts or
 resumes; the MVP cannot narrow those native capabilities.
 
 Token accounting reads canonical native turn records after settlement, since
-completion stream events can omit usage. Each OpenClaw attempt counts its new
+completion stream events can omit usage. Each Urbicana attempt counts its new
 coordinator turns once, including work superseded by steering. Earlier turns in
 the same native session are excluded. Cached input is counted separately from
 uncached input; reasoning tokens remain included in output tokens.
 
-Successful assistant messages retain those totals in the OpenClaw transcript.
+Successful assistant messages retain those totals in the Urbicana transcript.
 When a Gateway tool ends the native turn, a transcript entry with no assistant
 content retains usage without publishing another reply.
 Run results and completion hooks also retain usage reported for interrupted or

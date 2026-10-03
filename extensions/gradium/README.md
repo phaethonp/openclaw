@@ -1,8 +1,8 @@
-# OpenClaw Gradium Plugin
+# Urbicana Gradium Plugin
 
-Official OpenClaw plugin for Gradium.
+Official Urbicana plugin for Gradium.
 
-Install from OpenClaw:
+Install from Urbicana:
 
 ```bash
 openclaw plugins install @openclaw/gradium-speech

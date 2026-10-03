@@ -105,7 +105,7 @@ describe("Codex participant native admission", () => {
               {
                 type: "function",
                 name: "sessions_spawn",
-                description: "Create an OpenClaw child session.",
+                description: "Create an Urbicana child session.",
                 inputSchema: { type: "object", properties: {} },
               },
             ];

@@ -123,7 +123,7 @@ export function slackHuddleStatusPreludeSource(params: MeetingStatusPreludeParam
   if (committedOwnerConflict && !canMutateSession) {
     manualAction = manualActionFor("slack-session-conflict", "This Slack tab is owned by another active huddle session.");
   } else if (!inCall && (loginPage || firstRaw(selectors.signIn))) {
-    manualAction = manualActionFor("slack-login-required", "Sign the OpenClaw Chrome profile into Slack as the claw's Slack account, then retry.");
+    manualAction = manualActionFor("slack-login-required", "Sign the Urbicana Chrome profile into Slack as the claw's Slack account, then retry.");
   } else if (!inCall && inCallControl && !confirmation && !multiDevice && !joinSettling) {
     manualAction = manualActionFor("slack-session-conflict", "Slack does not show this account in the requested huddle while another call is live. Leave that huddle or reopen the requested channel, then retry.");
   } else if (multiDevice) {
@@ -136,7 +136,7 @@ export function slackHuddleStatusPreludeSource(params: MeetingStatusPreludeParam
     manualAction = manualActionFor("slack-huddle-not-active", "No one is in this huddle yet. Start the huddle in Slack, then ask again.");
   } else if ((allowMicrophone && (microphonePermissionState === "denied" || microphonePermissionState === "prompt")) ||
     (!inCall && /allow (?:slack (?:to )?)?(?:access to |use (?:your )?)?(?:the |your )?microphone|microphone permission/i.test(huddleText))) {
-    manualAction = manualActionFor("slack-permission-required", "Allow Slack microphone permission in the OpenClaw Chrome profile, then retry.");
+    manualAction = manualActionFor("slack-permission-required", "Allow Slack microphone permission in the Urbicana Chrome profile, then retry.");
   }
   // Toggle state can change during awaits (a person may mute or unmute), so each toggle re-reads the
   // live control right before clicking and only clicks when the live state differs from the target.
@@ -200,7 +200,7 @@ export function slackHuddleStatusPreludeSource(params: MeetingStatusPreludeParam
         ? "Turn off the Slack huddle microphone for observe-only mode, then retry."
         : desiredMicrophoneState === "on"
           ? "Turn on the Slack huddle microphone, then retry."
-          : "Mute the Slack huddle microphone until the OpenClaw virtual microphone is selected, then retry.");
+          : "Mute the Slack huddle microphone until the Urbicana virtual microphone is selected, then retry.");
     }
   }
   if (identityVerified && ownsCameraScope && cameraState !== "off" && !manualAction) {

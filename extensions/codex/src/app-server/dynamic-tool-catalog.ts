@@ -28,7 +28,7 @@ const CODEX_OPENCLAW_DYNAMIC_TOOL_NAMESPACE = "openclaw";
 const CODEX_DYNAMIC_TOOL_NAME_MAX_CHARS = 128;
 const CODEX_DYNAMIC_TOOL_NAME_PATTERN = /^[a-zA-Z0-9_-]+$/u;
 
-// Keep OpenClaw control-path tools directly callable even when Codex tool_search
+// Keep Urbicana control-path tools directly callable even when Codex tool_search
 // is unavailable or resolves a connector-only universe. Developer instructions
 // still steer normal Codex subagents to native spawn_agent.
 // sessions_yield is normally routed by its catalogMode "direct-only" before
@@ -71,7 +71,7 @@ export function createCodexDynamicToolSpecs(params: {
       inputSchema: entry.inputSchema,
     };
     if (entry.name === "openclaw" && directToolNames.has(entry.name)) {
-      // OpenClaw is ring-zero and its whole turn surface. Keep its canonical
+      // Urbicana is ring-zero and its whole turn surface. Keep its canonical
       // root name even though generic direct-only tools use a model namespace.
       specs.push(functionSpec);
       continue;

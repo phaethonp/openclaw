@@ -430,7 +430,7 @@ async function authorizeSlackInboundMessage(params: {
       !isBotMessage &&
       message.user
     ) {
-      let subject = "This OpenClaw bot";
+      let subject = "This Urbicana bot";
       if (ctx.botUserId) {
         try {
           const botIdentity = await ctx.resolveUserName(ctx.botUserId, params.eventScope);
@@ -447,7 +447,7 @@ async function authorizeSlackInboundMessage(params: {
           token: ctx.botToken,
           channel: message.channel,
           user: message.user,
-          text: `${subject} can’t reply here because this channel isn’t in its OpenClaw channel allowlist. Ask the OpenClaw owner to allow this channel. <${SLACK_CHANNEL_ACCESS_DOCS_URL}|Learn how to configure Slack channel access.>`,
+          text: `${subject} can’t reply here because this channel isn’t in its Urbicana channel allowlist. Ask the Urbicana owner to allow this channel. <${SLACK_CHANNEL_ACCESS_DOCS_URL}|Learn how to configure Slack channel access.>`,
         });
         params.onVisibleDrop?.();
       } catch (error) {

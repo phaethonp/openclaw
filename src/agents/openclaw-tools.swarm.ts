@@ -42,7 +42,7 @@ function ownsAdmittedCollectorRun(
 
 /**
  * Collector context for tool surfaces built outside the embedded runner. CLI
- * backends receive their OpenClaw tools from the Gateway, which never carries
+ * backends receive their Urbicana tools from the Gateway, which never carries
  * the spawn request's collector fields, so the subagent registry is read as the
  * durable owner of collector identity for that child session.
  *

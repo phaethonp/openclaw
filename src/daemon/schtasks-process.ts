@@ -156,7 +156,7 @@ async function resolveScheduledTaskNodeHostProcess(
   if (!snapshot) {
     return null;
   }
-  // Match full persisted argv so a same-port OpenClaw process cannot impersonate this task.
+  // Match full persisted argv so a same-port Urbicana process cannot impersonate this task.
   const pid = findInstalledProcessPid(snapshot, port, installedArguments, isNodeHostArgv);
   return pid ? { pid, port } : null;
 }

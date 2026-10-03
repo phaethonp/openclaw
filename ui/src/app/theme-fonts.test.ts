@@ -25,6 +25,7 @@ describe("typeface presentation", () => {
 
   it.each([
     ["claw", ["instrument-sans", "instrument-sans"]],
+    ["urbicana", ["instrument-sans", "instrument-sans"]],
     ["knot", ["geist", "geist"]],
     ["dash", ["dm-sans", "fraunces"]],
     ["absolutely", ["space-grotesk", "lora"]],

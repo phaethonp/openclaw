@@ -1,8 +1,8 @@
-# OpenClaw Voyage Provider
+# Urbicana Voyage Provider
 
-Official OpenClaw memory embedding provider plugin for Voyage AI.
+Official Urbicana memory embedding provider plugin for Voyage AI.
 
-Install from OpenClaw:
+Install from Urbicana:
 
 ```bash
 openclaw plugins install @openclaw/voyage-provider

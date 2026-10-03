@@ -382,7 +382,7 @@ describe("launchd runtime state", () => {
 });
 
 describe("launchctl list detection", () => {
-  it("parses stale OpenClaw updater jobs from launchctl list", () => {
+  it("parses stale Urbicana updater jobs from launchctl list", () => {
     const jobs = parseLaunchctlListOpenClawUpdateJobs(
       [
         "123 0 ai.openclaw.gateway",
@@ -1403,12 +1403,12 @@ describe("launchd install", () => {
     };
     await installLaunchAgent(
       launchAgentFixture(env, ["node", "node-host.js"], {
-        description: "OpenClaw Node Host",
+        description: "Urbicana Node Host",
       }),
     );
 
     const plist = state.files.get(resolveLaunchAgentPlistPath(env)) ?? "";
-    expect(plist).toContain("<key>Comment</key>\n    <string>OpenClaw Node Host</string>");
+    expect(plist).toContain("<key>Comment</key>\n    <string>Urbicana Node Host</string>");
     expect(plist).not.toContain("OPENCLAW_SERVICE_VERSION");
   });
 

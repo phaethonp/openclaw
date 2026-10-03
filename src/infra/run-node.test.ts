@@ -317,7 +317,7 @@ describe("run-node script", () => {
     await expect(fs.readFile(outputPath, "utf-8")).resolves.toContain(childStderr);
   });
 
-  it("adds Node CPU profiling flags to the launched OpenClaw child when requested", async ({
+  it("adds Node CPU profiling flags to the launched Urbicana child when requested", async ({
     tmp,
   }) => {
     await setupStampedProject(tmp, {
@@ -405,7 +405,7 @@ describe("run-node script", () => {
     expect(fsSync.existsSync(path.join(profileDir, "openclaw-models-old.cpuprofile"))).toBe(true);
   });
 
-  it("adds Node sync I/O tracing flag to the launched OpenClaw child when requested", async ({
+  it("adds Node sync I/O tracing flag to the launched Urbicana child when requested", async ({
     tmp,
   }) => {
     await setupStampedProject(tmp, { oldPaths: [ROOT_SRC, ROOT_TSCONFIG, ROOT_PACKAGE] });

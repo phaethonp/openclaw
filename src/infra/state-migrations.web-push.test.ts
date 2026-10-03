@@ -179,7 +179,7 @@ describe("legacy Web Push Doctor migration", () => {
       await gatewayLock.release();
     }
 
-    expect(blocked.warnings[0]).toContain("OpenClaw state database is busy");
+    expect(blocked.warnings[0]).toContain("Urbicana state database is busy");
     expect(fs.existsSync(subscriptionsPath!)).toBe(true);
     expect(await listWebPushSubscriptions(stateDir)).toEqual([]);
 

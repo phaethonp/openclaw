@@ -100,7 +100,7 @@ describe("linePlugin status.probeAccount", () => {
     vi.resetModules();
     const { lineStatusAdapter } = await import("./status.js");
     const identity = {
-      displayName: "OpenClaw",
+      displayName: "Urbicana",
       userId: "U123",
       basicId: "@openclaw",
       pictureUrl: "https://example.com/bot.png",
@@ -211,7 +211,7 @@ describe("linePlugin gateway.startAccount", () => {
   it("starts provider when token and secret are present", async () => {
     // Startup probes before entering the monitor; keep that HTTP boundary local to this test.
     stubLineApiFetch(
-      Response.json({ displayName: "OpenClaw", userId: "U123" }),
+      Response.json({ displayName: "Urbicana", userId: "U123" }),
       Response.json({ type: "none" }),
     );
     const abort = new AbortController();

@@ -97,7 +97,7 @@ it("keeps duplicate positioned video slots and sibling messages, but not persist
       {
         showReasoning: false,
         showToolCalls: false,
-        assistantName: "OpenClaw",
+        assistantName: "Urbicana",
         assistantAvatar: null,
         getTurnVideoMessages: () => turn,
         onOpenImage: (item) => {

@@ -118,7 +118,7 @@ describe("Scheduled Task settlement", () => {
           outcome: "completed",
           taskSettlement: {
             status: "settled",
-            taskName: "OpenClaw Gateway",
+            taskName: "Urbicana Gateway",
             lastRunResult: "0",
             ended: end,
           },
@@ -199,7 +199,7 @@ describe("Scheduled Task settlement", () => {
         message: "Gateway ownership changed; restart unverified.",
         taskSettlement: {
           status: "replaced",
-          taskName: "OpenClaw Gateway",
+          taskName: "Urbicana Gateway",
           lastRunTime: "replacement",
         },
       });
@@ -300,7 +300,7 @@ describe("Scheduled Task settlement", () => {
           expect(error).toBeInstanceOf(Error);
           const fact = {
             status: "unavailable",
-            taskName: "OpenClaw Gateway",
+            taskName: "Urbicana Gateway",
             ended: failure === "end-unavailable",
           };
           expect(error).toMatchObject(noRun ? { cause: fact } : { taskSettlement: fact });

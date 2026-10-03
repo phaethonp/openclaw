@@ -68,7 +68,7 @@ type OpenClawCodingToolsOptions = NonNullable<
   Parameters<(typeof import("openclaw/plugin-sdk/agent-harness"))["createOpenClawCodingTools"]>[0]
 >;
 
-/** Factory seam for constructing OpenClaw runtime tools without eagerly loading agent-harness. */
+/** Factory seam for constructing Urbicana runtime tools without eagerly loading agent-harness. */
 type OpenClawCodingToolsFactory =
   (typeof import("openclaw/plugin-sdk/agent-harness"))["createOpenClawCodingTools"];
 type OpenClawDynamicTool = ReturnType<OpenClawCodingToolsFactory>[number];
@@ -534,7 +534,7 @@ export function shouldEnableCodexAppServerNativeToolSurface(
   }
   const toolsAllow = params.toolsAllow;
   // Codex native code mode exposes its shell/file surface as one app-server
-  // capability, so narrow OpenClaw allowlists must fail closed rather than
+  // capability, so narrow Urbicana allowlists must fail closed rather than
   // widening `message` or `web_search` into shell access.
   return (
     (toolsAllow === undefined ||
@@ -574,7 +574,7 @@ function canCodexAppServerNativeToolSurfaceHonorSandbox(
   }
   // Codex app-server native shell, filesystem, and user MCP execution are owned
   // by the app-server process. Without the explicit exec-server integration,
-  // active OpenClaw sandboxing must disable the native surface and route shell
+  // active Urbicana sandboxing must disable the native surface and route shell
   // access through sandbox-backed dynamic tools instead.
   return (
     options.sandboxExecServerEnabled === true &&
@@ -592,7 +592,7 @@ function filterCodexMemoryFlushDynamicTools<T extends { name: string }>(tools: T
     CODEX_MEMORY_FLUSH_DYNAMIC_TOOL_ALLOW.has(normalizeCodexDynamicToolName(tool.name)),
   );
 }
-/** Requires a Codex sandbox environment only when native tools must run inside OpenClaw sandboxing. */
+/** Requires a Codex sandbox environment only when native tools must run inside Urbicana sandboxing. */
 export function shouldRequireCodexSandboxExecServerEnvironment(params: {
   sandbox?: OpenClawSandboxContext;
   nativeToolSurfaceEnabled: boolean;
@@ -760,7 +760,7 @@ function shouldKeepOpenClawShellDynamicTools(
   return (
     !isCodexMemoryFlushRun(input.params) &&
     // Disabled native Code Mode sends `environments: []`, so Codex cannot
-    // advertise a shell. Preserve OpenClaw's policy-filtered direct shell.
+    // advertise a shell. Preserve Urbicana's policy-filtered direct shell.
     input.nativeToolSurfaceEnabled === false &&
     input.sandbox?.enabled !== true &&
     nodePolicy.effectiveExecHost !== "node"

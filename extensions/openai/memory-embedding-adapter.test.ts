@@ -49,7 +49,7 @@ describe("OpenAI memory embedding adapter", () => {
     });
   });
 
-  it("keeps native OpenAI embedding cache identity stable across OpenClaw versions", async () => {
+  it("keeps native OpenAI embedding cache identity stable across Urbicana versions", async () => {
     const createForVersion = async (version: string) => {
       vi.stubEnv("OPENCLAW_VERSION", version);
       const client = await resolveRemoteEmbeddingBearerClient({

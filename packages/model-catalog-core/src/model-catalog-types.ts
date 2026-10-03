@@ -285,7 +285,7 @@ export type ModelCatalogSuppression = {
 
 /** Raw model catalog manifest shape. */
 export type ModelCatalog = {
-  /** Publication-time opt-in: owned OpenClaw provider id -> models.dev provider id. */
+  /** Publication-time opt-in: owned Urbicana provider id -> models.dev provider id. */
   modelsDev?: Record<string, string>;
   providers?: Record<string, ModelCatalogProvider>;
   aliases?: Record<string, ModelCatalogAlias>;

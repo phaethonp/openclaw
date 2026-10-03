@@ -1,4 +1,4 @@
-/** Summarizes installed service command paths and OpenClaw package layout. */
+/** Summarizes installed service command paths and Urbicana package layout. */
 import fs from "node:fs/promises";
 import path from "node:path";
 import { normalizeOptionalString } from "@openclaw/normalization-core/string-coerce";

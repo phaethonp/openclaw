@@ -1000,7 +1000,7 @@ describe("GatewayRelayRealtimeTalkTransport", () => {
       callId: "call-1",
       result: {
         status: "cancelled",
-        message: "Cancelled the active OpenClaw run.",
+        message: "Cancelled the active Urbicana run.",
       },
     });
     void transport.stop();
@@ -1116,7 +1116,7 @@ describe("GatewayRelayRealtimeTalkTransport", () => {
           status: "working",
           tool: REALTIME_VOICE_AGENT_CONSULT_TOOL_NAME,
           message:
-            "Tell the person briefly that you are checking, then wait for the final OpenClaw result before answering with the actual result.",
+            "Tell the person briefly that you are checking, then wait for the final Urbicana result before answering with the actual result.",
         },
         options: { willContinue: true },
       }),
@@ -1648,7 +1648,7 @@ describe("GatewayRelayRealtimeTalkTransport", () => {
         callId: "call-1",
         result: {
           status: "cancelled",
-          message: "Cancelled the active OpenClaw run.",
+          message: "Cancelled the active Urbicana run.",
         },
       }),
     );
@@ -1717,7 +1717,7 @@ describe("GatewayRelayRealtimeTalkTransport", () => {
       callId: "call-1",
       result: {
         status: "cancelled",
-        message: "Cancelled the active OpenClaw run.",
+        message: "Cancelled the active Urbicana run.",
       },
     });
   });

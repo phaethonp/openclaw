@@ -1,7 +1,7 @@
 {
   "name": "@openclaw/gmi-provider",
   "version": "2026.9.6",
-  "description": "OpenClaw GMI Cloud provider plugin.",
+  "description": "Urbicana GMI Cloud provider plugin.",
   "repository": {
     "type": "git",
     "url": "https://github.com/openclaw/openclaw"

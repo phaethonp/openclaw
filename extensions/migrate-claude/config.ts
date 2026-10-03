@@ -139,7 +139,7 @@ export async function buildConfigItems(params: {
       [
         "hooks",
         "Claude hooks were found but are not enabled automatically.",
-        "Review hook commands before recreating equivalent OpenClaw automation.",
+        "Review hook commands before recreating equivalent Urbicana automation.",
       ],
       [
         "permissions",
@@ -149,7 +149,7 @@ export async function buildConfigItems(params: {
       [
         "env",
         "Claude environment defaults were found but are not copied automatically.",
-        "Move non-secret values manually and store credentials through OpenClaw credential flows.",
+        "Move non-secret values manually and store credentials through Urbicana credential flows.",
       ],
     ] as const) {
       if (settingsPath && settings[key] !== undefined) {

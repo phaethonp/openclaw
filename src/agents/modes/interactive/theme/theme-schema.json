@@ -1,7 +1,7 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema#",
-	"title": "OpenClaw Agent Theme",
-	"description": "Theme schema for OpenClaw agent",
+	"title": "Urbicana Agent Theme",
+	"description": "Theme schema for Urbicana agent",
 	"type": "object",
 	"required": ["name", "colors"],
 	"properties": {

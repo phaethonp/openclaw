@@ -1,9 +1,9 @@
 {
   "name": "@openclaw/facetime",
   "version": "2026.9.6",
-  "description": "Experimental FaceTime realtime voice carrier for OpenClaw agents",
+  "description": "Experimental FaceTime realtime voice carrier for Urbicana agents",
   "license": "MIT",
-  "author": "OpenClaw contributors",
+  "author": "Urbicana contributors",
   "homepage": "https://docs.openclaw.ai/plugins/facetime",
   "bugs": {
     "url": "https://github.com/openclaw/openclaw/issues"

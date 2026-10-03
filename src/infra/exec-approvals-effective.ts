@@ -88,13 +88,13 @@ function formatRequestedSource(params: {
   defaultValue: ExecSecurity | ExecAsk;
 }): string {
   return params.sourcePath === "__default__"
-    ? `OpenClaw default (${params.defaultValue})`
+    ? `Urbicana default (${params.defaultValue})`
     : `${params.sourcePath}.${params.field}`;
 }
 
 function formatModeSource(params: { sourcePath: string; configPath: string }): string {
   if (params.sourcePath === "__default__") {
-    return "derived from OpenClaw defaults";
+    return "derived from Urbicana defaults";
   }
   return `${params.sourcePath === "scope" ? params.configPath : params.sourcePath}.mode`;
 }
@@ -229,7 +229,7 @@ function formatHostFieldSource(params: {
     return params.hostDefaultSource;
   }
   if (params.field === "askFallback") {
-    return `OpenClaw default (${DEFAULT_EXEC_APPROVAL_ASK_FALLBACK})`;
+    return `Urbicana default (${DEFAULT_EXEC_APPROVAL_ASK_FALLBACK})`;
   }
   return "inherits requested tool policy";
 }
@@ -333,7 +333,7 @@ export function resolveExecPolicyScopeSnapshot(params: {
       requested: requestedHost.value,
       requestedSource:
         requestedHost.sourcePath === "__default__"
-          ? "OpenClaw default (auto)"
+          ? "Urbicana default (auto)"
           : `${requestedHost.sourcePath === "scope" ? params.configPath : requestedHost.sourcePath}.host`,
     },
     mode: {

@@ -3,7 +3,7 @@ import type { OpenKeyedStoreOptions } from "openclaw/plugin-sdk/plugin-state-run
 
 export default definePluginEntry({
   id: "memory-core",
-  name: "OpenClaw Memory",
+  name: "Urbicana Memory",
   description: "File-backed memory search tools and CLI",
   register(api) {
     api.registerCli(

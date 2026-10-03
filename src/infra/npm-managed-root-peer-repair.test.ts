@@ -207,7 +207,7 @@ describe("managed npm root peer repair", () => {
     },
   );
 
-  it("does not repair the active OpenClaw host package in a root-managed install", async () => {
+  it("does not repair the active Urbicana host package in a root-managed install", async () => {
     const npmRoot = await makeTempRoot();
     const hostPackageRoot = path.join(npmRoot, "node_modules", "openclaw");
     await fs.mkdir(path.join(hostPackageRoot, "dist"), { recursive: true });

@@ -174,7 +174,7 @@ describe("createSlackBoltApp", () => {
     }
   });
 
-  it("applies OpenClaw self-event filtering through installed Bolt middleware", async () => {
+  it("applies Urbicana self-event filtering through installed Bolt middleware", async () => {
     const { app } = createSlackBoltApp({
       interop: fakeInterop,
       slackMode: "socket",

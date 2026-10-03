@@ -78,7 +78,7 @@ export function makeBrowserServerState(params?: {
   };
 }
 
-/** Mocks a launched OpenClaw Chrome process with the supplied pid. */
+/** Mocks a launched Urbicana Chrome process with the supplied pid. */
 export function mockLaunchedChrome(
   launchOpenClawChrome: { mockResolvedValue: (value: RunningChrome) => unknown },
   pid: number,

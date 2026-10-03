@@ -1797,8 +1797,8 @@ describe("Codex app-server thread lifecycle bindings", () => {
       userMcpServersEnabled: false,
       developerInstructions: "generic policy",
     };
-    const firstSkills = "## OpenClaw Skills\n\nweather";
-    const secondSkills = "## OpenClaw Skills\n\nweather (edited description)";
+    const firstSkills = "## Urbicana Skills\n\nweather";
+    const secondSkills = "## Urbicana Skills\n\nweather (edited description)";
     const started = await startOrResumeThread({ ...common, skillsInstructions: firstSkills });
     // The catalog rides the thread developer carrier, after the generic policy.
     expect(request.mock.calls.find(([method]) => method === "thread/start")?.[1]).toMatchObject({
@@ -2055,8 +2055,8 @@ describe("Codex app-server thread lifecycle bindings", () => {
   );
 
   it.each([
-    { change: "skills", policy: "generic policy", skills: "## OpenClaw Skills\n\nedited weather" },
-    { change: "policy", policy: "generic policy v2", skills: "## OpenClaw Skills\n\nweather" },
+    { change: "skills", policy: "generic policy", skills: "## Urbicana Skills\n\nedited weather" },
+    { change: "policy", policy: "generic policy v2", skills: "## Urbicana Skills\n\nweather" },
     { change: "skills", policy: "generic policy", skills: undefined },
   ] as const)(
     "refreshes the live incognito skill catalog but refuses generic policy drift ($change: $skills)",
@@ -2093,7 +2093,7 @@ describe("Codex app-server thread lifecycle bindings", () => {
         params,
         userMcpServersEnabled: false,
       };
-      const firstSkills = "## OpenClaw Skills\n\nweather";
+      const firstSkills = "## Urbicana Skills\n\nweather";
       const first = await startOrResumeThread({
         ...common,
         developerInstructions: "generic policy",
@@ -2161,7 +2161,7 @@ describe("Codex app-server thread lifecycle bindings", () => {
                   {
                     type: "input_text",
                     text: expect.stringContaining(
-                      skills ?? "The current OpenClaw skills catalog is empty",
+                      skills ?? "The current Urbicana skills catalog is empty",
                     ),
                   },
                 ],
@@ -2434,7 +2434,7 @@ describe("Codex app-server thread lifecycle bindings", () => {
     });
   });
 
-  it("starts a fresh restricted OpenClaw thread for a new app-server client", async () => {
+  it("starts a fresh restricted Urbicana thread for a new app-server client", async () => {
     const { sessionFile, workspaceDir } = createPaths();
     const params = createParams(sessionFile, workspaceDir);
     params.toolsAllow = ["openclaw"];
@@ -2578,7 +2578,7 @@ describe("Codex app-server thread lifecycle bindings", () => {
     },
   );
 
-  it("fails closed before starting OpenClaw when inherited MCP enumeration fails", async () => {
+  it("fails closed before starting Urbicana when inherited MCP enumeration fails", async () => {
     const { sessionFile, workspaceDir } = createPaths();
     await writeCodexAppServerBinding(sessionFile, {
       threadId: "thread-normal",
@@ -2635,7 +2635,7 @@ describe("Codex app-server thread lifecycle bindings", () => {
     },
     { expectedError: /config layers/u, name: "malformed", layer: { name: {} } },
   ])(
-    "fails closed on $name config layers before OpenClaw thread/start",
+    "fails closed on $name config layers before Urbicana thread/start",
     async ({ expectedError, layer }) => {
       const { sessionFile, workspaceDir } = createPaths();
       const params = createParams(sessionFile, workspaceDir);
@@ -2662,7 +2662,7 @@ describe("Codex app-server thread lifecycle bindings", () => {
   );
 
   it.each(["hooks", "managed_hooks"] as const)(
-    "fails closed on non-empty %s requirements before OpenClaw thread/start",
+    "fails closed on non-empty %s requirements before Urbicana thread/start",
     async (requirementsKey) => {
       const { sessionFile, workspaceDir } = createPaths();
       const params = createParams(sessionFile, workspaceDir);

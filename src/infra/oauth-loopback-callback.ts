@@ -263,7 +263,7 @@ export async function startOAuthLoopbackCallbackServer(params: {
       body: renderOAuthPage({
         title: "Authorization received",
         heading: "Authorization received",
-        message: "Return to the terminal while OpenClaw finishes.",
+        message: "Return to the terminal while Urbicana finishes.",
       }),
       contentType: "text/html; charset=utf-8",
     }));

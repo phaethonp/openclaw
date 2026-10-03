@@ -185,8 +185,8 @@ function resolveBrowserFetchOperatorHint(
 ): string {
   if (opts?.ownership === "external-browser") {
     return (
-      "The browser profile is external to OpenClaw; make sure its browser/CDP endpoint " +
-      "is running and reachable. Restarting the OpenClaw gateway will not launch it."
+      "The browser profile is external to Urbicana; make sure its browser/CDP endpoint " +
+      "is running and reachable. Restarting the Urbicana gateway will not launch it."
     );
   }
   const isLocal = !isAbsoluteHttp(url);
@@ -305,14 +305,14 @@ function enhanceBrowserFetchError(url: string, err: unknown, timeoutMs: number):
   const kind = classifyBrowserFetchFailure(err);
   let message: string;
   if (kind === "timeout") {
-    message = `Can't reach the OpenClaw browser control service (timed out after ${timeoutMs}ms). ${operatorHint} ${BROWSER_TOOL_TRANSIENT_MODEL_HINT}`;
+    message = `Can't reach the Urbicana browser control service (timed out after ${timeoutMs}ms). ${operatorHint} ${BROWSER_TOOL_TRANSIENT_MODEL_HINT}`;
   } else if (kind === "aborted") {
     message = `Browser control request was cancelled. ${operatorHint}`;
   } else if (kind === "transient-network") {
-    message = `Can't reach the OpenClaw browser control service. ${operatorHint} (${msg}) ${BROWSER_TOOL_TRANSIENT_MODEL_HINT}`;
+    message = `Can't reach the Urbicana browser control service. ${operatorHint} (${msg}) ${BROWSER_TOOL_TRANSIENT_MODEL_HINT}`;
   } else {
     message = appendBrowserToolModelHint(
-      `Can't reach the OpenClaw browser control service. ${operatorHint} (${msg})`,
+      `Can't reach the Urbicana browser control service. ${operatorHint} (${msg})`,
       BROWSER_TOOL_PERSISTENT_MODEL_HINT,
     );
   }

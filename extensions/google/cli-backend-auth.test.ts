@@ -417,7 +417,7 @@ describe("google gemini cli backend auth bridge", () => {
     },
   );
 
-  it("rejects native tools because Gemini exact policy only exposes OpenClaw MCP", async () => {
+  it("rejects native tools because Gemini exact policy only exposes Urbicana MCP", async () => {
     await withTempDir("openclaw-test-workspace-", async (workspaceDir) => {
       const inheritedSettingsPath = path.join(workspaceDir, "generated-mcp-settings.json");
       await fs.writeFile(
@@ -440,7 +440,7 @@ describe("google gemini cli backend auth bridge", () => {
     });
   });
 
-  it("enforces an exact empty tool cap without an OpenClaw MCP server", async () => {
+  it("enforces an exact empty tool cap without an Urbicana MCP server", async () => {
     await withTempDir("openclaw-test-workspace-", async (workspaceDir) => {
       const inheritedSettingsPath = path.join(workspaceDir, "system-settings.json");
       await fs.writeFile(
@@ -496,7 +496,7 @@ describe("google gemini cli backend auth bridge", () => {
     });
   });
 
-  it("materializes selected OpenClaw OAuth credentials into a persistent profile-scoped Gemini CLI home", async () => {
+  it("materializes selected Urbicana OAuth credentials into a persistent profile-scoped Gemini CLI home", async () => {
     const backend = buildGoogleGeminiCliBackend();
     const workspaceDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-test-workspace-"));
     let home: string | undefined;

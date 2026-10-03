@@ -63,12 +63,6 @@ import {
   storeSidebarCatalogGrouping,
   type SidebarRecentSession,
 } from "./app-sidebar-session-types.ts";
-import { renderCommunityInviteCard } from "./community-invite-card.ts";
-import {
-  COMMUNITY_INVITE_KEY,
-  dismissCommunityInvite as persistCommunityInviteDismissal,
-  isCommunityInviteEligible,
-} from "./community-invite-state.ts";
 import { icons } from "./icons.ts";
 import { renderPanelRefreshStatus } from "./panel-refresh-status.ts";
 import { SessionOrganizerController } from "./session-organizer-controller.ts";
@@ -158,7 +152,6 @@ class AppSidebar extends AppSidebarSessionNavigationElement implements SessionLi
     .watch(
       () => this.context?.config,
       (config, notify) => config.subscribe(notify),
-      () => this.syncCommunityInviteState(),
     )
     .watch(
       () => this.context?.plugins,
@@ -167,12 +160,6 @@ class AppSidebar extends AppSidebarSessionNavigationElement implements SessionLi
   private readonly nativeGatewaysChanged = () => this.sidebarMenus.closeSessionMenu();
   private readonly hiddenSessionCatalogsChanged = () => {
     this.hiddenSessionCatalogIds = loadStoredHiddenSessionCatalogIds();
-  };
-  @state() private communityInvitePresentation: "unavailable" | "pending" | "shown" = "unavailable";
-  private readonly communityInviteStorageChanged = (event: StorageEvent) => {
-    if (event.key === COMMUNITY_INVITE_KEY || event.key === null) {
-      this.syncCommunityInviteState();
-    }
   };
 
   // Catalog rows are non-startup content. Load their renderer through the same
@@ -216,7 +203,6 @@ class AppSidebar extends AppSidebarSessionNavigationElement implements SessionLi
     );
     this.narration?.disconnect();
     this.catalogRendererImport.dispose();
-    window.removeEventListener("storage", this.communityInviteStorageChanged);
     super.disconnectedCallback();
   }
 
@@ -225,16 +211,6 @@ class AppSidebar extends AppSidebarSessionNavigationElement implements SessionLi
     // Admit new geometry only between interactions; once shown it stays put.
     // Popover focus can leave :focus-within false; inspect the owned DOM instead.
     // Native drag can clear :hover, so retain the organizer's authoritative drag facts.
-    if (
-      this.communityInvitePresentation === "pending" &&
-      !this.matches(":hover") &&
-      !this.contains(this.ownerDocument.activeElement) &&
-      this.sessionOrganizer.draggingSessionKey === null &&
-      this.sessionOrganizer.draggingSidebarSection === null &&
-      this.sessionOrganizer.draggingSidebarEntry === null
-    ) {
-      this.communityInvitePresentation = "shown";
-    }
     const currentResult =
       this.sidebarAgentsMode === "roster"
         ? this.rosterSessionSource?.result
@@ -348,39 +324,8 @@ class AppSidebar extends AppSidebarSessionNavigationElement implements SessionLi
       SIDEBAR_HIDDEN_SESSION_CATALOGS_CHANGED_EVENT,
       this.hiddenSessionCatalogsChanged,
     );
-    window.addEventListener("storage", this.communityInviteStorageChanged);
-    this.syncCommunityInviteState();
     this.catalogRendererImport.schedule();
   }
-
-  private readonly handleSidebarInteractionEnd = (event: Event) => {
-    // Internal focus handoffs can briefly clear :focus-within before the new target focuses.
-    if (
-      this.communityInvitePresentation !== "pending" ||
-      (event instanceof FocusEvent &&
-        event.relatedTarget instanceof Node &&
-        this.contains(event.relatedTarget))
-    ) {
-      return;
-    }
-    this.requestUpdate();
-  };
-
-  private syncCommunityInviteState() {
-    if (this.context?.config.current.communityInvite !== true || !isCommunityInviteEligible()) {
-      this.communityInvitePresentation = "unavailable";
-    } else if (this.communityInvitePresentation !== "shown") {
-      this.communityInvitePresentation = "pending";
-    }
-  }
-
-  private readonly dismissCommunityInvite = () => {
-    const result = persistCommunityInviteDismissal();
-    this.syncCommunityInviteState();
-    if (!result.ok) {
-      showToast({ message: t("communityInvite.dismissFailed") });
-    }
-  };
 
   protected override firstUpdated() {
     requestAnimationFrame(() => requestAnimationFrame(() => this.classList.add("sidebar-r")));
@@ -566,8 +511,6 @@ class AppSidebar extends AppSidebarSessionNavigationElement implements SessionLi
     return html`
       <aside
         class="sidebar"
-        @pointerleave=${this.handleSidebarInteractionEnd}
-        @focusout=${this.handleSidebarInteractionEnd}
         @contextmenu=${(event: MouseEvent) => {
           // Editable controls keep the platform editing menu; all other sidebar chrome is owned here.
           if (!(event.target as Element).closest("input, textarea, [contenteditable]")) {
@@ -627,9 +570,6 @@ class AppSidebar extends AppSidebarSessionNavigationElement implements SessionLi
                     className: "sidebar-session-error sidebar-session-catalog-error",
                   })
             }
-          </div>
-          <div class="sidebar-shell__invite">
-            ${this.communityInvitePresentation === "shown" ? renderCommunityInviteCard(this.dismissCommunityInvite) : nothing}
           </div>
           <div class="sidebar-shell__footer">
             ${

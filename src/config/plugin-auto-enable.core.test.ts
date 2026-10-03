@@ -801,7 +801,7 @@ describe("applyPluginAutoEnable core", () => {
   });
 
   it.each([
-    { name: "OpenClaw preference", runtime: "openclaw", api: undefined, codexEnabled: false },
+    { name: "Urbicana preference", runtime: "openclaw", api: undefined, codexEnabled: false },
     { name: "Codex preference", runtime: "codex", api: undefined, codexEnabled: true },
     {
       name: "implicit subscription route with legacy Completions",
@@ -857,7 +857,7 @@ describe("applyPluginAutoEnable core", () => {
     expect(result.config.auth).toEqual(config.auth);
   });
 
-  it("preserves an OpenClaw preference on a literal model-map key", () => {
+  it("preserves an Urbicana preference on a literal model-map key", () => {
     const result = applyPluginAutoEnable({
       config: {
         agents: {

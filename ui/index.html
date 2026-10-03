@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content"
     />
-    <title>OpenClaw Control</title>
+    <title>Urbicana</title>
     <meta name="color-scheme" content="dark light" />
     <!-- These mirror the claw theme's --bg tokens for first paint; runtime theme application keeps them synchronized. -->
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#faf9f7" />
@@ -23,6 +23,7 @@
       (function () {
         var THEMES = {
           claw: 1,
+          urbicana: 1,
           knot: 1,
           dash: 1,
           absolutely: 1,
@@ -66,6 +67,7 @@
           // family -> [dark, light] resolved names. Kept in lockstep with
           // resolveTheme() in app/theme.ts and the files in public/themes.
           var FAMILIES = {
+            urbicana: ["urbicana", "urbicana-light"],
             knot: ["openknot", "openknot-light"],
             dash: ["dash", "dash-light"],
             absolutely: ["absolutely", "absolutely-light"],
@@ -182,6 +184,14 @@
 
       html[data-theme="crt-light"] {
         background: #f5f5f4;
+      }
+
+      html[data-theme="urbicana"] {
+        background: #1a1713;
+      }
+
+      html[data-theme="urbicana-light"] {
+        background: #fbf9f4;
       }
 
       html[data-theme="manuscript"] {
@@ -401,14 +411,14 @@
       hidden
     >
       <div class="mount-fallback__panel" tabindex="-1">
-        <p class="mount-fallback__eyebrow">OpenClaw Control UI</p>
+        <p class="mount-fallback__eyebrow">Urbicana</p>
         <h1 id="openclaw-mount-fallback-title">Control UI did not start</h1>
         <p id="openclaw-mount-fallback-summary">
           The browser loaded the static page, but the app bundle did not start. The gateway may be
-          restarting, or this page may reference assets from a different OpenClaw version.
+          restarting, or this page may reference assets from a different Urbicana version.
         </p>
         <ul>
-          <li>If startup fails, OpenClaw will retry the current app bundle automatically.</li>
+          <li>If startup fails, Urbicana will retry the current app bundle automatically.</li>
           <li>If this persists, reload or try a clean browser profile.</li>
           <li>
             See
@@ -509,7 +519,7 @@
             return;
           }
           setSummary(
-            "The gateway is not reachable yet. OpenClaw will keep retrying while it restarts.",
+            "The gateway is not reachable yet. Urbicana will keep retrying while it restarts.",
           );
           scheduleRecovery();
         }
@@ -582,7 +592,7 @@
           setSummary(
             documentLoaded
               ? failureSummary
-              : "The browser is still loading the app. OpenClaw will keep waiting without interrupting the download.",
+              : "The browser is still loading the app. Urbicana will keep waiting without interrupting the download.",
           );
           if (documentLoaded) retryCurrentDocument();
           fallback.hidden = false;

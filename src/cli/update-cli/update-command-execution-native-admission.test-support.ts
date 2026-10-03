@@ -228,7 +228,7 @@ export function registerNativeAdmissionTests({
             ? {
                 OPENCLAW_LAUNCHD_LABEL: "ai.openclaw.other",
                 OPENCLAW_SYSTEMD_UNIT: "openclaw-other",
-                OPENCLAW_WINDOWS_TASK_NAME: "OpenClaw Other",
+                OPENCLAW_WINDOWS_TASK_NAME: "Urbicana Other",
               }
             : {}),
         };
@@ -381,7 +381,7 @@ export function registerNativeAdmissionTests({
                 stderrTail: expect.stringContaining(
                   scenario.consumer === "same-profile-other-service"
                     ? process.platform === "win32"
-                      ? "OpenClaw Other"
+                      ? "Urbicana Other"
                       : "openclaw-other"
                     : consumerEnv.OPENCLAW_PROFILE,
                 ),

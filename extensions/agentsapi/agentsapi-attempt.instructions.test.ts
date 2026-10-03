@@ -360,7 +360,7 @@ describe("Agents API agent workspace instructions", () => {
     expect(promptFixture.turnInputs[0]).toContain("Current date: 2026-09-25");
     expect(promptFixture.turnInputs[0]).toContain("Time zone: America/Los_Angeles");
     expect(promptFixture.turnInputs[0]).toContain(
-      "OpenClaw delivers your final response automatically.",
+      "Urbicana delivers your final response automatically.",
     );
     expect(promptFixture.turnInputs[0]).toContain("Watched fixture session: fixture-one");
     expect(promptFixture.turnInputs[0]).toContain("Fixture prompt");
@@ -391,7 +391,7 @@ describe("Agents API agent workspace instructions", () => {
       const binding = await fixture.run();
       const initialInstructions = fixture.requests[0]?.agent.instructions;
       expect(initialInstructions).toContain("Extra fixture instructions");
-      expect(initialInstructions).not.toContain("OpenClaw Agent Workspace Instructions");
+      expect(initialInstructions).not.toContain("Urbicana Agent Workspace Instructions");
       await fs.writeFile(instructionsPath, "Rules added after session creation.");
       await fixture.run(binding);
       expect(fixture.requests[1]).toEqual({ agent: { reasoning: { effort: null } } });

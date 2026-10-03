@@ -1,6 +1,6 @@
 # @openclaw/zalouser
 
-OpenClaw extension for Zalo Personal Account messaging via native `zca-js` integration.
+Urbicana extension for Zalo Personal Account messaging via native `zca-js` integration.
 
 > **Warning:** Using Zalo automation may result in account suspension or ban. Use at your own risk. This is an unofficial integration.
 
@@ -14,7 +14,7 @@ OpenClaw extension for Zalo Personal Account messaging via native `zca-js` integ
 
 ## Prerequisites
 
-- OpenClaw Gateway
+- Urbicana Gateway
 - Zalo mobile app (for QR login)
 
 No external `zca`, `openzca`, or `zca-cli` binary is required.
@@ -59,7 +59,7 @@ channels:
 ### Send a message
 
 ```bash
-openclaw message send --channel zalouser --target <threadId> --message "Hello from OpenClaw"
+openclaw message send --channel zalouser --target <threadId> --message "Hello from Urbicana"
 ```
 
 ## Configuration

@@ -27,8 +27,6 @@ export type PluginManifestTheme = {
   name: string;
   description: string;
   source: string;
-  hats?: Record<string, string>;
-  critters?: Record<string, { source: string; title?: string; crossMs?: number }>;
 };
 
 /** Top-level plugin manifest format. */
@@ -266,7 +264,7 @@ export type PluginManifestDoctorContract = {
   resolveSessionStoreAgentIds?: boolean;
   /**
    * @deprecated Declare static ownership in top-level sessionRouteStateOwners instead.
-   * Removal plan: remove the module fallback in OpenClaw 2027.1 after external plugins migrate.
+   * Removal plan: remove the module fallback in Urbicana 2027.1 after external plugins migrate.
    */
   sessionRouteStateOwners?: boolean;
   /**

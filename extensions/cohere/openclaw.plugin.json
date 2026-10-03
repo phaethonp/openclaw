@@ -2,7 +2,7 @@
   "id": "cohere",
   "categories": ["models"],
   "name": "Cohere",
-  "description": "OpenClaw Cohere provider plugin.",
+  "description": "Urbicana Cohere provider plugin.",
   "activation": {
     "onStartup": false
   },

@@ -22,7 +22,7 @@ describe("memory_search during a chunking upgrade", () => {
   });
 
   // Seeds a published index, then reopens its metadata as an older runtime's
-  // index so the next search sees a pending OpenClaw chunking upgrade.
+  // index so the next search sees a pending Urbicana chunking upgrade.
   async function seedPriorChunkingVersionIndex(
     cfg: Parameters<typeof fixture.getFreshManager>[0],
   ): Promise<string> {

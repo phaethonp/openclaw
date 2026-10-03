@@ -1,6 +1,6 @@
 # NVIDIA
 
-Use NVIDIA-hosted models through NVIDIA's OpenAI-compatible API. OpenClaw provides
+Use NVIDIA-hosted models through NVIDIA's OpenAI-compatible API. Urbicana provides
 model setup and a catalog of supported chat models, including available
 NVIDIA and third-party models.
 

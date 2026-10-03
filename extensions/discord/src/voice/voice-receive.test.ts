@@ -101,7 +101,7 @@ defineDiscordVoiceTests(
         if (mode === "agent-proxy") {
           await emitFinalRealtimeUserTranscript(
             lastRealtimeBridgeParams(),
-            "OpenClaw, what changed?",
+            "Urbicana, what changed?",
           );
         } else {
           await lastRealtimeBridgeParams().onToolCall?.(

@@ -84,7 +84,7 @@ vi.mock("../../status/status-plugin-health.runtime.js", () => pluginHealthRuntim
 vi.mock("../../agents/harness/builtin-openclaw.js", () => ({
   createOpenClawAgentHarness: () => ({
     id: "openclaw",
-    label: "OpenClaw Default",
+    label: "Urbicana Default",
     supports: () => ({ supported: true, priority: 0 }),
     runAttempt: async () => {
       throw new Error("not used in status tests");
@@ -744,7 +744,7 @@ describe("buildStatusReply subagent summary", () => {
     expect(pluginHealthRuntimeMock.collectInstalledPluginHealthSnapshot).not.toHaveBeenCalled();
   });
 
-  it("shows the effective non-OpenClaw embedded harness in /status", async () => {
+  it("shows the effective non-Urbicana embedded harness in /status", async () => {
     registerStatusCodexHarness();
 
     const text = await buildStatusText({
@@ -1556,7 +1556,7 @@ describe("buildStatusReply subagent summary", () => {
     );
   });
 
-  it("uses Codex OAuth auth labels for explicit OpenAI OpenClaw auth order", async () => {
+  it("uses Codex OAuth auth labels for explicit OpenAI Urbicana auth order", async () => {
     await withTempHome(
       async (dir) => {
         const agentDir = path.join(dir, ".openclaw", "agents", "main", "agent");
@@ -1850,7 +1850,7 @@ describe("buildStatusReply subagent summary", () => {
     }
   });
 
-  it("keeps /status on an explicit OpenClaw runtime override after config changes", async () => {
+  it("keeps /status on an explicit Urbicana runtime override after config changes", async () => {
     registerStatusCodexHarness();
 
     const text = await buildStatusText({
@@ -1968,7 +1968,7 @@ describe("buildStatusReply subagent summary", () => {
     });
 
     expect(normalizeTestText(text)).toContain("Runtime: OpenAI Codex");
-    expect(normalizeTestText(text)).toContain("previous runtime: OpenClaw Default");
+    expect(normalizeTestText(text)).toContain("previous runtime: Urbicana Default");
   });
 
   it("labels a divergent locked harness as an active session pin in /status", async () => {
@@ -1993,7 +1993,7 @@ describe("buildStatusReply subagent summary", () => {
     });
 
     expect(normalizeTestText(text)).toContain(
-      "Runtime: OpenAI Codex (session pin: OpenClaw Default)",
+      "Runtime: OpenAI Codex (session pin: Urbicana Default)",
     );
   });
 });

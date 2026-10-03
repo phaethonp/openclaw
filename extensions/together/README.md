@@ -1,6 +1,6 @@
 # Together AI
 
-Use Together AI's hosted chat models and video generation in OpenClaw. The
+Use Together AI's hosted chat models and video generation in Urbicana. The
 plugin connects to Together's API and supplies models for agent conversations
 and the shared video generation feature.
 

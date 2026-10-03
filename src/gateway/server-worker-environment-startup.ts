@@ -330,7 +330,7 @@ export async function createGatewayWorkerEnvironmentRuntime(params: {
         const runningBuildId = resolveRuntimeServiceBuildId();
         if (!metadata || !packageRoot || !runningBuildId) {
           throw new Error(
-            "Cloud node bootstrap requires the running build and plugin inventory; build OpenClaw and restart the Gateway",
+            "Cloud node bootstrap requires the running build and plugin inventory; build Urbicana and restart the Gateway",
           );
         }
         const producer = createNodeBootstrapArtifactProvider({

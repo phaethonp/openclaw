@@ -917,7 +917,7 @@ function requireCurrentEndpointSet(
 
 function idleContinuationError(threadId: string): Error {
   return new Error(
-    `Codex thread ${threadId} is idle. Continue it from Codex Sessions so OpenClaw can install the Codex harness approval and tool handlers before resume.`,
+    `Codex thread ${threadId} is idle. Continue it from Codex Sessions so Urbicana can install the Codex harness approval and tool handlers before resume.`,
   );
 }
 
@@ -991,7 +991,7 @@ export function createCodexSupervisionTools(options: CodexSupervisionToolsOption
     {
       name: "codex_sessions_list",
       label: "Codex Sessions List",
-      description: "List Codex sessions visible to the OpenClaw supervisor.",
+      description: "List Codex sessions visible to the Urbicana supervisor.",
       parameters: SessionsListParamsSchema,
       execute: async (_toolCallId, rawParams) => {
         const params = isRecord(rawParams) ? rawParams : {};

@@ -363,7 +363,7 @@ it.each([
     expect(native.task).toHaveBeenCalledExactlyOnceWith([
       "/Query",
       "/TN",
-      "OpenClaw Gateway",
+      "Urbicana Gateway",
       "/XML",
     ]);
   },
@@ -515,11 +515,11 @@ it("accepts retained heap aliases, custom environment and owned environment rege
   expect(result.definitionDrift).toBeUndefined();
 });
 
-it.each(["OpenClaw Gateway (v2026.9.4)", "operator-private"])(
+it.each(["Urbicana Gateway (v2026.9.4)", "operator-private"])(
   "classifies systemd description before a rewrite: %s",
   async (description) => {
     const fixture = await systemdFixture((unit) =>
-      unit.replace("Description=OpenClaw Gateway", `Description=${description}`),
+      unit.replace("Description=Urbicana Gateway", `Description=${description}`),
     );
     const result = await auditGatewayServiceConfig({
       ...fixture,
@@ -564,7 +564,7 @@ it.each(["canonical-wrapper", "legacy-wrapper", "malformed-args", "wrapper", "me
             }
           : {}),
         label: "ai.openclaw.gateway",
-        comment: kind === "metadata" ? "operator-private" : "OpenClaw Gateway",
+        comment: kind === "metadata" ? "operator-private" : "Urbicana Gateway",
         stdoutPath,
         stderrPath: stdoutPath,
       }),
@@ -662,7 +662,7 @@ it.each([
     (kind === "script" ? "echo operator-private\r\n" : "");
   const launcher =
     (releasedWaiting
-      ? `' OpenClaw Gateway (v2026.9.3)\r\nWScript.Quit CreateObject("WScript.Shell").Run("""${scriptPath.replaceAll('"', '""')}""", 0, True)\r\n`
+      ? `' Urbicana Gateway (v2026.9.3)\r\nWScript.Quit CreateObject("WScript.Shell").Run("""${scriptPath.replaceAll('"', '""')}""", 0, True)\r\n`
       : buildHiddenLauncherScript({ scriptPath, taskSupervisor: true })) +
     (kind === "launcher" || kind === "planned-launcher" || kind === "released-waiting-custom"
       ? 'WScript.Echo "operator-private"\r\n'
@@ -675,7 +675,7 @@ it.each([
     code: 0,
     stderr: "",
     stdout: buildScheduledTaskXml({
-      taskDescription: kind === "metadata" ? "operator-private" : "OpenClaw Gateway",
+      taskDescription: kind === "metadata" ? "operator-private" : "Urbicana Gateway",
       taskUser: "fixture",
       launchPath:
         kind === "planned-launcher" || kind === "missing-launcher" ? scriptPath : hiddenPath,

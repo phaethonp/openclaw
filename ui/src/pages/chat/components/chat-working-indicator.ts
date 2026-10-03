@@ -1,14 +1,11 @@
 import { html, nothing } from "lit";
-import type { ThemeMascot } from "../../../../../packages/gateway-protocol/src/theme.ts";
 import "../../../components/elapsed-time.ts";
 import "../../../components/working-phrase.ts";
 import { icons } from "../../../components/icons.ts";
-import { currentThemeBranding } from "../../../components/neutral-mark.ts";
 import { i18n, t } from "../../../i18n/index.ts";
 import type { ChatItem } from "../../../lib/chat/chat-types.ts";
 import { formatCompactTokenCount } from "../../../lib/format.ts";
 import type { TurnRecap } from "../chat-progress.ts";
-import { selectWorkingClawSurprise } from "./chat-working-indicator-surprise.ts";
 
 const TURN_RECAP_DURATION_UNITS = [
   { seconds: 86_400, unit: "day" },
@@ -51,7 +48,6 @@ function outputTokensLabel(outputTokens: number): string {
 export function renderChatWorkingIndicator(
   part: Extract<ChatItem, { kind: "reading-indicator" }>,
   options: {
-    mascot?: ThemeMascot;
     workingPhrases?: readonly string[];
     waitingApproval?: boolean;
     startupLabel?: string;
@@ -60,7 +56,6 @@ export function renderChatWorkingIndicator(
   } = {},
 ) {
   const waitingApproval = options.waitingApproval === true;
-  const neutral = (options.mascot ?? currentThemeBranding().mascot) === "none";
   const continuation = options.presentation === "continuation";
   const statusLabel = waitingApproval
     ? t("chat.waitingForApproval")
@@ -82,16 +77,10 @@ export function renderChatWorkingIndicator(
           ? nothing
           : html`
               <div
-                class="chat-bubble chat-reading-indicator ${
-                  neutral
-                    ? "chat-reading-indicator--neutral"
-                    : selectWorkingClawSurprise(part.key, {
-                        eligible: !waitingApproval,
-                      })
-                }"
+                class="chat-bubble chat-reading-indicator chat-reading-indicator--neutral"
                 aria-hidden="true"
               >
-                ${neutral ? html`<span></span><span></span><span></span>` : icons.claw}
+                <span></span><span></span><span></span>
               </div>
             `
       }
@@ -151,9 +140,7 @@ export function renderTurnRecapRow(
       ${
         continuation
           ? nothing
-          : html`<span class="chat-turn-recap__claw" aria-hidden="true"
-              >${currentThemeBranding().mascot === "none" ? icons.mark : icons.claw}</span
-            >`
+          : html`<span class="chat-turn-recap__mark" aria-hidden="true">${icons.mark}</span>`
       }
       <span>${t("chat.turnRecap.doneIn", { duration })}</span>
       ${

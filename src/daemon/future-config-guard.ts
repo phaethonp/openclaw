@@ -1,4 +1,4 @@
-/** Prevents daemon write actions when the config belongs to a newer OpenClaw. */
+/** Prevents daemon write actions when the config belongs to a newer Urbicana. */
 import {
   formatFutureConfigActionBlock,
   resolveFutureConfigActionBlock,

@@ -1,7 +1,7 @@
 {
   "name": "@openclaw/onepassword",
   "version": "2026.9.6",
-  "description": "1Password SecretRef resolver and audited agent secrets broker for OpenClaw",
+  "description": "1Password SecretRef resolver and audited agent secrets broker for Urbicana",
   "type": "module",
   "devDependencies": {
     "@openclaw/plugin-sdk": "workspace:*"

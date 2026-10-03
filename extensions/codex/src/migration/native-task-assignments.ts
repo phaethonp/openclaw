@@ -67,7 +67,7 @@ function databasePath(params: Pick<Params, "stateDir">) {
 }
 
 const missingOwnerMessage =
-  "missing original requester session, lifecycle and connection facts (nativeHistory); inspect the original child in its native Codex account, or restore the pre-upgrade backup with its matching OpenClaw version to finish delivery";
+  "missing original requester session, lifecycle and connection facts (nativeHistory); inspect the original child in its native Codex account, or restore the pre-upgrade backup with its matching Urbicana version to finish delivery";
 
 function taskIdentity(task: LegacyTask) {
   try {

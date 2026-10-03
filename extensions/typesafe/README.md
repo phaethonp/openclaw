@@ -1,13 +1,13 @@
-# TypeSafe AI for OpenClaw
+# TypeSafe AI for Urbicana
 
 Official external plugin for typed decisions with hosted TypeSafe AI Jev models
 or a local Kev System One server.
-It provides Choice, Score, and Boolean judgments through OpenClaw's shared
+It provides Choice, Score, and Boolean judgments through Urbicana's shared
 decision-model API. Core supplies the provider-neutral `decision_evaluate` agent
 tool when the agent has an effective `decisionModel` selection, subject to normal
 tool policy and harness capabilities. No separate tool enablement is required.
 
-Requires OpenClaw and plugin API **2026.9.6 or later**. Released OpenClaw
+Requires Urbicana and plugin API **2026.9.6 or later**. Released Urbicana
 2026.9.5 does not include the decision API.
 
 ```sh

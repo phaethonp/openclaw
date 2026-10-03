@@ -9,7 +9,7 @@ import {
 import type { MemoryExtraPath } from "./types.js";
 export { normalizeAgentId };
 
-// Shared OpenClaw config helpers used by memory host and agent context code.
+// Shared Urbicana config helpers used by memory host and agent context code.
 
 type DmScope = "main" | "per-peer" | "per-channel-peer" | "per-account-channel-peer";
 /** Citation injection behavior for memory search results. */
@@ -71,7 +71,7 @@ type AgentConfig = {
   contextLimits?: AgentContextLimitsConfig;
 };
 
-/** Narrow OpenClaw config shape consumed by memory host utilities. */
+/** Narrow Urbicana config shape consumed by memory host utilities. */
 export type OpenClawConfig = {
   agents?: {
     ownership?: "explicit";

@@ -2,12 +2,7 @@ import { html, noChange, nothing, type AttributePart } from "lit";
 import { Directive, directive } from "lit/directive.js";
 import { guard } from "lit/directives/guard.js";
 import { until, UntilDirective } from "lit/directives/until.js";
-import {
-  isThemeAvatarHatId,
-  type ThemeBranding,
-} from "../../../packages/gateway-protocol/src/theme.ts";
 import { isReservedSystemAgentId } from "../../../src/system-agent/agent-id.js";
-import { inferControlUiPublicAssetPath } from "../app/public-assets.ts";
 import { readAvatarGatewayContext } from "../lib/identity-avatar-context.ts";
 import { resolveAvatarImageUrl, retainAvatarImageUrl } from "../lib/identity-avatar-loader.ts";
 import {
@@ -18,11 +13,7 @@ import {
   type ResolvedIdentityAvatar,
 } from "../lib/identity-avatar.ts";
 import "../styles/identity-avatar.css";
-import { resolveAvatarHat } from "./agent-avatar-hat.ts";
 import { icons } from "./icons.ts";
-import { currentThemeBranding } from "./neutral-mark.ts";
-import { renderPluginThemeArtwork } from "./plugin-theme-artwork.ts";
-import { AVATAR_HAT_SPRITES } from "./theme-flair-sprites.ts";
 
 type IdentityAvatarFallback = Extract<ResolvedIdentityAvatar, { kind: "initials" }>;
 
@@ -238,23 +229,14 @@ export function renderAgentIdentityAvatar(
   className = "",
   onImageError?: () => void,
 ) {
-  const branding = currentThemeBranding();
   if (isReservedSystemAgentId(agent.id)) {
-    if (branding.mascot === "none") {
-      return html`<span
-        class=${`identity-avatar--agent identity-avatar--neutral ${className}`}
-        role=${agent.name ? "img" : nothing}
-        aria-label=${agent.name ?? nothing}
-        aria-hidden=${agent.name ? nothing : "true"}
-        >${icons.mark}</span
-      >`;
-    }
-    return html`<img
-      class=${`identity-avatar--agent ${className}`}
-      src=${inferControlUiPublicAssetPath("favicon.svg")}
-      alt=${agent.name ?? ""}
+    return html`<span
+      class=${`identity-avatar--agent identity-avatar--neutral ${className}`}
+      role=${agent.name ? "img" : nothing}
+      aria-label=${agent.name ?? nothing}
       aria-hidden=${agent.name ? nothing : "true"}
-    />`;
+      >${icons.mark}</span
+    >`;
   }
   const imageUrl =
     agent.avatar && !agent.pending ? (resolveAvatarImageUrl(agent.avatar) ?? agent.avatar) : null;
@@ -282,25 +264,5 @@ export function renderAgentIdentityAvatar(
         ),
       )}
     </span>
-    ${agent.pending ? nothing : renderAgentAvatarHat(agent.id, branding)}
   </span>`;
-}
-
-export function renderAgentAvatarHat(
-  agentId: string,
-  branding: ThemeBranding = currentThemeBranding(),
-) {
-  const hat = resolveAvatarHat(agentId, branding);
-  if (!hat) {
-    return nothing;
-  }
-  const artwork = branding.artwork?.hats?.[hat];
-  const sprite = isThemeAvatarHatId(hat)
-    ? AVATAR_HAT_SPRITES[hat]
-    : artwork
-      ? renderPluginThemeArtwork(artwork.url, "identity-avatar__hat-img")
-      : nothing;
-  return html`<span class=${`identity-avatar__hat identity-avatar__hat--${hat}`} aria-hidden="true"
-    >${sprite}</span
-  >`;
 }

@@ -499,7 +499,7 @@ describeTelegramDispatch("dispatchTelegramMessage final-delivery-lifecycle", () 
         expect(status.setError).not.toHaveBeenCalled();
       } else {
         expect(visible.some(([, text]) => text === second)).toBe(false);
-        expect(visible.some(([, text]) => text.includes("OpenClaw chat history"))).toBe(true);
+        expect(visible.some(([, text]) => text.includes("Urbicana chat history"))).toBe(true);
         expect(sendMessage.mock.calls.filter(([, text]) => text === second)).toHaveLength(1);
         expect(status.setError).toHaveBeenCalledOnce();
         expect(status.setDone).not.toHaveBeenCalled();

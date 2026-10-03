@@ -177,7 +177,7 @@ describe("acp translator reconnect settlement", () => {
     reconnect(harness);
     await expect(harness.promptPromise).rejects.toThrow("Full reply recovery unavailable");
     expect(messageChunks(harness)).toEqual([
-      "[OpenClaw interruption] Full reply recovery unavailable (reply-not-found). Check the session history.",
+      "[Urbicana interruption] Full reply recovery unavailable (reply-not-found). Check the session history.",
     ]);
   });
 
@@ -191,7 +191,7 @@ describe("acp translator reconnect settlement", () => {
     reconnect(harness);
 
     await expect(harness.promptPromise).rejects.toThrow("boom");
-    expect(messageChunks(harness)).toEqual(["final answer", "[OpenClaw interruption] boom"]);
+    expect(messageChunks(harness)).toEqual(["final answer", "[Urbicana interruption] boom"]);
   });
 
   it("claims recovery before a late final event can emit the suffix twice", async () => {

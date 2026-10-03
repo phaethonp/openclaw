@@ -749,7 +749,7 @@ describe("pnpm isolated install preflight (v11 layout)", () => {
 
       expect(result.failedStep?.name).toBe("pnpm-isolated-install-preflight");
       expect(result.failedStep?.stderrTail).toContain("owns");
-      expect(result.failedStep?.stderrTail).toContain("not the invoking OpenClaw install");
+      expect(result.failedStep?.stderrTail).toContain("not the invoking Urbicana install");
       expect(runCommand).toHaveBeenCalledOnce();
       expect(runStep).not.toHaveBeenCalled();
     });

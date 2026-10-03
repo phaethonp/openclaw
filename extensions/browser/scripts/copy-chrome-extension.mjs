@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Copies the unpacked OpenClaw Chrome extension into the browser plugin dist so
+ * Copies the unpacked Urbicana Chrome extension into the browser plugin dist so
  * `openclaw browser extension path` resolves a stable location for
  * chrome://extensions "Load unpacked".
  */

@@ -801,7 +801,7 @@ module.exports = { stateMigrations: [{
         await expect(execution).rejects.toBe(failure);
       } else {
         await expect(execution).rejects.toThrow(
-          "OpenClaw startup migrations did not complete cleanly",
+          "Urbicana startup migrations did not complete cleanly",
         );
       }
       expectBlockedTailInPlanOrder({ plan, receipts: emittedReceipts, blockerId });

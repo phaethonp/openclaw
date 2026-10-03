@@ -1,6 +1,6 @@
 # Google
 
-Use Gemini models in OpenClaw through Google AI Studio or Vertex AI. The plugin
+Use Gemini models in Urbicana through Google AI Studio or Vertex AI. The plugin
 also supports media understanding, embeddings, image, music and video generation,
 speech output, realtime voice, and Gemini web search.
 

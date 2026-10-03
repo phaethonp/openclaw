@@ -52,8 +52,8 @@ describe("scheduled task runtime derivation", () => {
       state: task.name,
       lastRunResult: String(task.result),
     });
-    expect(probeScheduledTaskExists("OpenClaw Gateway")).toBe(true);
-    expect(isScheduledTaskDefinitelyNotRunning("OpenClaw Gateway")).toBe(
+    expect(probeScheduledTaskExists("Urbicana Gateway")).toBe(true);
+    expect(isScheduledTaskDefinitelyNotRunning("Urbicana Gateway")).toBe(
       task.expected === "stopped",
     );
   });
@@ -66,16 +66,16 @@ describe("scheduled task runtime derivation", () => {
         status: "stopped",
         state: "Ready",
       });
-      expect(probeScheduledTaskExists("OpenClaw Gateway")).toBe(true);
-      expect(isScheduledTaskDefinitelyNotRunning("OpenClaw Gateway")).toBe(true);
+      expect(probeScheduledTaskExists("Urbicana Gateway")).toBe(true);
+      expect(isScheduledTaskDefinitelyNotRunning("Urbicana Gateway")).toBe(true);
     },
   );
 
   it.each(["3", 5])("preserves existence but not offline proof for state %j", async (state) => {
     spawnSync.mockReturnValue({ status: 0, stdout: JSON.stringify({ state }) });
     await expect(readRuntime()).resolves.toMatchObject({ status: "unknown" });
-    expect(probeScheduledTaskExists("OpenClaw Gateway")).toBe(true);
-    expect(isScheduledTaskDefinitelyNotRunning("OpenClaw Gateway")).toBe(false);
+    expect(probeScheduledTaskExists("Urbicana Gateway")).toBe(true);
+    expect(isScheduledTaskDefinitelyNotRunning("Urbicana Gateway")).toBe(false);
   });
 
   it.each(["-2147024894", "-2147024893"])(
@@ -86,8 +86,8 @@ describe("scheduled task runtime derivation", () => {
         status: "stopped",
         missingUnit: true,
       });
-      expect(probeScheduledTaskExists("OpenClaw Gateway")).toBe(false);
-      expect(isScheduledTaskDefinitelyNotRunning("OpenClaw Gateway")).toBe(false);
+      expect(probeScheduledTaskExists("Urbicana Gateway")).toBe(false);
+      expect(isScheduledTaskDefinitelyNotRunning("Urbicana Gateway")).toBe(false);
     },
   );
 
@@ -105,7 +105,7 @@ describe("scheduled task runtime derivation", () => {
       missingUnit: false,
       inspectionFailure: { code: "service-runtime-inspection-failed" },
     });
-    expect(probeScheduledTaskExists("OpenClaw Gateway")).toBeNull();
+    expect(probeScheduledTaskExists("Urbicana Gateway")).toBeNull();
   });
 
   it("requires current Scheduler running state before retiring the Startup owner", async () => {
@@ -136,7 +136,7 @@ describe("scheduled task runtime derivation", () => {
         : { status: 0, stdout: JSON.stringify({ state: 3 }) };
     });
     try {
-      expect(isScheduledTaskDefinitelyNotRunning("OpenClaw Gateway")).toBe(task.expected);
+      expect(isScheduledTaskDefinitelyNotRunning("Urbicana Gateway")).toBe(task.expected);
       expect(Date.now()).toBe(Math.min(task.responseAfterMs, 5_000));
     } finally {
       vi.useRealTimers();

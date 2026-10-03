@@ -148,7 +148,7 @@ export type AgentsApiFunctionResult =
   | { success: true; output: string }
   | { success: false; error: string };
 
-/** The SDK owns the wire protocol; OpenClaw retains native session authority. */
+/** The SDK owns the wire protocol; Urbicana retains native session authority. */
 export class AgentsApiClient {
   private readonly sessions: OpenAI["beta"]["agents"]["sessions"];
   private readonly environments: OpenAI["beta"]["agents"]["environments"];

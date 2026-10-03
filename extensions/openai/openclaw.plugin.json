@@ -327,7 +327,7 @@
         "aliases": ["codex"]
       },
       "choiceLabel": "Codex login (device code)",
-      "choiceHint": "Use a browser code when OpenClaw runs on a remote VM",
+      "choiceHint": "Use a browser code when Urbicana runs on a remote VM",
       "docsUrl": "https://docs.openclaw.ai/providers/openai/authentication",
       "assistantPriority": -40,
       "groupId": "openai",
@@ -343,7 +343,7 @@
       "appGuidedAuth": "oauth",
       "credentialOnly": true,
       "choiceLabel": "Sign in with ChatGPT (Beta)",
-      "choiceHint": "Authorize OpenClaw for eligible Responses models using your Codex allowance",
+      "choiceHint": "Authorize Urbicana for eligible Responses models using your Codex allowance",
       "docsUrl": "https://docs.openclaw.ai/providers/openai/authentication",
       "assistantPriority": 0,
       "groupId": "openai",

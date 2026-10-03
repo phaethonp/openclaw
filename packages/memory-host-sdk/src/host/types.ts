@@ -68,7 +68,7 @@ export type MemorySyncProgressUpdate = {
 };
 
 export type MemorySessionSyncTarget = {
-  /** Owning OpenClaw agent. Omit only when the active manager scope already supplies it. */
+  /** Owning Urbicana agent. Omit only when the active manager scope already supplies it. */
   agentId?: string;
   /** Storage-neutral transcript/session identity. */
   sessionId: string;
@@ -213,7 +213,7 @@ export type MemoryIndexIdentityState =
           owner: "openclaw";
           // Older-chunking corpus marker: set only when every configuration-owned
           // constraint (sources, scope hash, chunk settings, FTS tokenizer) still
-          // matches, so a pending OpenClaw chunking upgrade cannot mask a narrowed
+          // matches, so a pending Urbicana chunking upgrade cannot mask a narrowed
           // scope. It excludes embedding identity — provider, model, provider
           // settings, and vector dims may differ — and does not establish keyword
           // retrieval availability; consumers must still check usable FTS before
@@ -340,20 +340,20 @@ export function resolveMemoryIndexSearchDiagnostic(
         ? `the memory index metadata is missing (${diagnostic.reason}); no configuration change is needed`
         : newerIndex
           ? diagnostic.reason
-          : `this OpenClaw version changed the memory index format (${diagnostic.reason}); no configuration change is needed`;
+          : `this Urbicana version changed the memory index format (${diagnostic.reason}); no configuration change is needed`;
   const guidance = formatMemoryIndexRebuildGuidance(status, agentId);
   const priorFailure = repairFailure ? ` Previous memory sync failed: ${repairFailure}.` : "";
   return {
     error: diagnostic.reason,
     warning: `Tell the user: memory search is paused because ${cause}.${priorFailure}`,
     action: newerIndex
-      ? `Tell the user to upgrade OpenClaw or reindex explicitly: ${guidance}`
+      ? `Tell the user to upgrade Urbicana or reindex explicitly: ${guidance}`
       : `Tell the user to run: ${guidance}`,
     staleness: {
       stale: true as const,
       warning: `Memory index is stale: ${diagnostic.reason} (owner: ${diagnostic.owner}, code: ${diagnostic.code}). Search results may be incomplete.${priorFailure}`,
       action: newerIndex
-        ? `Upgrade OpenClaw or reindex explicitly: ${guidance}`
+        ? `Upgrade Urbicana or reindex explicitly: ${guidance}`
         : `Run: ${guidance}`,
     },
   };

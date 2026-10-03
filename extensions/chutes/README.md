@@ -1,8 +1,8 @@
-# OpenClaw Chutes Provider
+# Urbicana Chutes Provider
 
-Official OpenClaw provider plugin for Chutes.
+Official Urbicana provider plugin for Chutes.
 
-Install from OpenClaw:
+Install from Urbicana:
 
 ```bash
 openclaw plugins install @openclaw/chutes-provider

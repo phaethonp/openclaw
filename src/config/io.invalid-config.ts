@@ -20,8 +20,8 @@ export function configFailureHeading(
   snapshot: Pick<ConfigFileSnapshot, "issues" | "readError">,
 ): string {
   return isConfigReadFailure(snapshot)
-    ? "OpenClaw config could not be read"
-    : "OpenClaw config is invalid";
+    ? "Urbicana config could not be read"
+    : "Urbicana config is invalid";
 }
 
 /** Formats validation issues as terminal-safe bullet lines for config load failures. */

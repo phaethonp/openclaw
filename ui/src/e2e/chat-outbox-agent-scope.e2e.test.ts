@@ -252,7 +252,7 @@ suite.define(() => {
           };
         };
         if (!app.runtime) {
-          throw new Error("OpenClaw application runtime is unavailable");
+          throw new Error("Urbicana application runtime is unavailable");
         }
         app.runtime.context.agentSelection.set("work");
         app.runtime.context.navigate("chat", { pathname });

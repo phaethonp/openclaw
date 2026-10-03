@@ -68,7 +68,7 @@ describe("sendMSTeamsActivityWithReference SDK import ordering", () => {
           },
         },
       );
-      // The built plugin expects an installed OpenClaw host. Stub unrelated host SDK exports so
+      // The built plugin expects an installed Urbicana host. Stub unrelated host SDK exports so
       // this child isolates the emitted Teams loader and the real pinned Teams CommonJS package.
       Module._load = function load(request, parent, isMain) {
         if (request === "openclaw/plugin-sdk/string-coerce-runtime") {

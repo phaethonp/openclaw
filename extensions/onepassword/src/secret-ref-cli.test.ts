@@ -97,7 +97,7 @@ describe("1Password SecretRef setup", () => {
   });
 
   it("encodes native 1Password refs with spaces and selectors", async () => {
-    const nativeRef = "op://Personal/OpenClaw QA API Key/password?attribute=value%20one";
+    const nativeRef = "op://Personal/Urbicana QA API Key/password?attribute=value%20one";
     const plan = await createSetupPlan(["--provider-key", `openai=${nativeRef}`]);
     expect(plan.targets[0]).toMatchObject({
       providerId: "openai",

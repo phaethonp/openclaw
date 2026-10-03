@@ -99,7 +99,7 @@ describe("suite artifacts", () => {
   it("distinguishes partial Markdown from the terminal report shape", async () => {
     const outputDir = await tempDirs.makeTempDir("qa-suite-report-lifecycle-");
     const partial = await writeArtifacts(outputDir, { status: "running" });
-    expect(partial.report).toContain("# OpenClaw QA Scenario Suite (In Progress)");
+    expect(partial.report).toContain("# Urbicana QA Scenario Suite (In Progress)");
     expect(partial.report).toContain("- Status: running");
     expect(partial.report).toContain("- Updated: 2026-04-11T00:01:00.000Z");
     expect(partial.report).not.toContain("- Finished:");
@@ -109,7 +109,7 @@ describe("suite artifacts", () => {
     );
 
     const terminal = await writeArtifacts(outputDir);
-    expect(terminal.report).toContain("# OpenClaw QA Scenario Suite\n");
+    expect(terminal.report).toContain("# Urbicana QA Scenario Suite\n");
     expect(terminal.report).toContain("- Finished: 2026-04-11T00:01:00.000Z");
     expect(terminal.report).not.toContain("In Progress");
     expect(terminal.report).not.toContain("- Status: running");

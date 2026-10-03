@@ -1,0 +1,154 @@
+/* Urbicana palette; selected by index.html and app/theme.ts. */
+
+:root[data-theme="urbicana-light"] {
+  /*
+   * The Urbicana workbench shell: paper #fbf9f4, ink #1f1e1b, lines #e4e2dc,
+   * rust #b4442a, the shell's warm greys for muted text, and its green as the
+   * second accent. Light is the home mode; dark is the ink counterpart below.
+   *
+   * WCAG 2.1 AA audit (bg = #fbf9f4, relative luminance ≈ 0.946):
+   *   --accent #b4442a  contrast ≈ 5.3:1 AA ✓
+   *   --primary-foreground #ffffff on #b4442a button: 5.5:1 ✓
+   *   body text --text #1f1e1b: 16.6:1 ✓
+   *   worst text pairing --muted #6f6b64 on --bg-muted #f2f1ed: 4.7:1 ✓
+   */
+  --ring: #b4442a;
+  --accent: #b4442a;
+  --accent-hover: #8f3320;
+  --accent-muted: #b4442a;
+  --accent-subtle: rgba(180, 68, 42, 0.09);
+  --accent-glow: rgba(180, 68, 42, 0.14);
+  --primary: #b4442a;
+  --primary-hover: var(--accent-hover);
+  --primary-foreground: #ffffff;
+  --accent-foreground: #ffffff;
+
+  --bg: #fbf9f4;
+  --bg-accent: #f7f5ef;
+  --bg-elevated: #ffffff;
+  --bg-hover: #edebe6;
+  --bg-muted: #f2f1ed;
+  --bg-content: #fbfaf7;
+
+  --card: #ffffff;
+  --card-foreground: #1f1e1b;
+  --card-highlight: rgba(31, 30, 27, 0.02);
+  --popover: #ffffff;
+  --popover-foreground: #1f1e1b;
+  --session-hovercard-surface: var(--card);
+  --session-hovercard-progress-surface: color-mix(
+    in srgb,
+    var(--card) 52%,
+    var(--panel-strong) 48%
+  );
+
+  --panel: #fbf9f4;
+  --panel-strong: #f2f1ed;
+  --panel-hover: #edebe6;
+  --chrome: rgba(251, 249, 244, 0.96);
+  --chrome-strong: rgba(251, 249, 244, 0.98);
+
+  --text: #1f1e1b;
+  --text-strong: #1a1713;
+  --chat-text: #1f1e1b;
+  --muted: #6f6b64;
+  --muted-strong: #55524c;
+  --muted-foreground: #6f6b64;
+
+  --border: #e4e2dc;
+  --border-strong: #dcd9d2;
+  --border-hover: #c8c4ba;
+  --input: #e4e2dc;
+
+  --secondary: #f2f1ed;
+  --secondary-foreground: #1f1e1b;
+  --accent-2: #4c6b3e;
+  --accent-2-muted: rgba(76, 107, 62, 0.75);
+  --accent-2-subtle: rgba(76, 107, 62, 0.09);
+
+  --destructive: #8a2b20;
+  --destructive-hover: #7a2419;
+  --destructive-foreground: #ffffff;
+
+  --shadow-sm: 0 1px 2px rgba(31, 30, 27, 0.06);
+  --shadow-md: 0 4px 12px rgba(31, 30, 27, 0.08);
+  --shadow-lg: 0 12px 28px rgba(31, 30, 27, 0.1);
+  --overlay-shadow: var(--shadow-md);
+
+  --grid-line: rgba(31, 30, 27, 0.05);
+}
+
+:root[data-theme="urbicana"] {
+  /*
+   * The same hues on ink: warm near-black surfaces, paper-toned text, rust
+   * lifted for legibility as an accent while buttons keep the shell's rust.
+   *
+   * WCAG 2.1 AA audit (bg = #1a1713, relative luminance ≈ 0.008):
+   *   --accent #e07a5f  contrast ≈ 6.1:1 AA ✓
+   *   --primary-foreground #ffffff on #b4442a button: 5.5:1 ✓
+   *   --destructive-foreground #ffffff on #c24b3c button: 4.8:1 ✓
+   *   body text --text #e4e2dc: 13.5:1 ✓
+   *   worst text pairing --muted #a8a398 on --bg-muted #2a2620: 5.9:1 ✓
+   */
+  --ring: #e07a5f;
+  --accent: #e07a5f;
+  --accent-hover: #e8927a;
+  --accent-muted: #e07a5f;
+  --accent-subtle: rgba(224, 122, 95, 0.12);
+  --accent-glow: rgba(224, 122, 95, 0.2);
+  --primary: #b4442a;
+  --primary-hover: #a03b24;
+  --primary-foreground: #ffffff;
+  --accent-foreground: #1a1713;
+
+  --destructive: #c24b3c;
+  --destructive-hover: #ad4234;
+  --destructive-foreground: #ffffff;
+
+  --focus: rgba(224, 122, 95, 0.18);
+  --focus-ring: 0 0 0 2px var(--bg), 0 0 0 3px color-mix(in srgb, var(--ring) 75%, transparent);
+  --focus-glow: 0 0 0 2px var(--bg), 0 0 0 3px var(--ring), 0 0 16px var(--accent-glow);
+
+  --bg: #1a1713;
+  --bg-accent: #1f1b16;
+  --bg-elevated: #24201a;
+  --bg-hover: #302b24;
+  --bg-muted: #2a2620;
+
+  --card: #24201a;
+  --card-foreground: #f2f1ed;
+  --card-highlight: rgba(251, 249, 244, 0.04);
+  --popover: #292420;
+  --popover-foreground: #f2f1ed;
+
+  --panel: #1a1713;
+  --panel-strong: #24201a;
+  --panel-hover: #302b24;
+  --chrome: rgba(26, 23, 19, 0.96);
+  --chrome-strong: rgba(26, 23, 19, 0.98);
+
+  --text: #e4e2dc;
+  --text-strong: #fbf9f4;
+  --chat-text: #e4e2dc;
+  --muted: #a8a398;
+  --muted-strong: #c0bbb0;
+  --muted-foreground: #a8a398;
+
+  --border: #3a362f;
+  --border-strong: #4a453d;
+  --border-hover: #6a645a;
+  --input: #3a362f;
+
+  --secondary: #2a2620;
+  --secondary-foreground: #f2f1ed;
+  --accent-2: #8fb07e;
+  --accent-2-muted: rgba(143, 176, 126, 0.7);
+  --accent-2-subtle: rgba(143, 176, 126, 0.12);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.6);
+  --overlay-shadow: var(--shadow-md);
+
+  --grid-line: rgba(251, 249, 244, 0.04);
+}

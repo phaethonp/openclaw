@@ -1,6 +1,6 @@
 # ElevenLabs
 
-Give OpenClaw a voice and transcribe audio with ElevenLabs. This bundled plugin
+Give Urbicana a voice and transcribe audio with ElevenLabs. This bundled plugin
 supports text-to-speech, transcription of recorded audio, and realtime
 transcription for supported voice integrations.
 

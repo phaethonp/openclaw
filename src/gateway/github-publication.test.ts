@@ -829,8 +829,8 @@ describe("Gateway GitHub publication", () => {
         if (command === "git show -s --format=%B HEAD") {
           return commandResult(
             bodyOnlyCredit
-              ? `Resume the publication\n\nCo-authored-by: alice <7+alice@users.noreply.github.com>\n\nThe line above is quoted attribution.\n\nOpenClaw-Publication: ${requestId}\n`
-              : `Resume the publication\n\nCo-authored-by: alice <7+alice@users.noreply.github.com>\nOpenClaw-Publication: ${requestId}\n`,
+              ? `Resume the publication\n\nCo-authored-by: alice <7+alice@users.noreply.github.com>\n\nThe line above is quoted attribution.\n\nUrbicana-Publication: ${requestId}\n`
+              : `Resume the publication\n\nCo-authored-by: alice <7+alice@users.noreply.github.com>\nUrbicana-Publication: ${requestId}\n`,
           );
         }
         if (command === "git rev-parse HEAD^{tree}") {

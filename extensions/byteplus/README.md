@@ -1,9 +1,9 @@
-# OpenClaw BytePlus Provider
+# Urbicana BytePlus Provider
 
-Official OpenClaw provider plugin for BytePlus model inference and Seedance
+Official Urbicana provider plugin for BytePlus model inference and Seedance
 video generation.
 
-Install from OpenClaw:
+Install from Urbicana:
 
 ```bash
 openclaw plugins install @openclaw/byteplus-provider

@@ -255,7 +255,7 @@ describe("Codex app-server attempt context", () => {
 
       expect(context.threadDeveloperInstructions).toContain("Canonical agent instructions");
       expect(context.threadDeveloperInstructions).toContain(
-        "OpenClaw Agent Workspace Instructions",
+        "Urbicana Agent Workspace Instructions",
       );
       expect(context.threadDeveloperInstructions).toContain(path.join(workspaceDir, "AGENTS.md"));
       expect(context.threadDeveloperInstructions).not.toContain("Canonical agent soul");
@@ -426,7 +426,7 @@ describe("Codex app-server attempt context", () => {
     });
   });
 
-  it("stitches watched-session context into the per-turn OpenClaw prompt context", () => {
+  it("stitches watched-session context into the per-turn Urbicana prompt context", () => {
     const attempt = { config: {} } as EmbeddedRunAttemptParams;
 
     expect(

@@ -459,7 +459,7 @@ export async function monitorMSTeamsProvider(
   };
 
   // The delegated SDK sign-in handlers emit `signin` only after a successful
-  // token exchange/lookup. Persist that token for later OpenClaw use.
+  // token exchange/lookup. Persist that token for later Urbicana use.
   if (ssoDeps) {
     app.event("signin", (ctx) => {
       void (async () => {

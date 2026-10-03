@@ -825,7 +825,7 @@ describe("monitorDiscordProvider", () => {
     expect(drained[0]?.message).toContain("4014");
   });
 
-  it("passes OpenClaw event queue defaults to the Discord client", async () => {
+  it("passes Urbicana event queue defaults to the Discord client", async () => {
     await runProvider();
 
     const eventQueue = getConstructedEventQueue();

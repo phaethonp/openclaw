@@ -310,7 +310,7 @@ describe("createCopilotToolBridge", () => {
     });
   });
 
-  it("preserves direct-only OpenClaw through the exact Copilot allowlist", async () => {
+  it("preserves direct-only Urbicana through the exact Copilot allowlist", async () => {
     const systemAgentTool = makeTool({
       name: "openclaw",
       catalogMode: "direct-only",
@@ -901,7 +901,7 @@ describe("createCopilotToolBridge", () => {
       }
     });
 
-    it("prefers the unscoped toolAuthProfileStore when building OpenClaw tools", async () => {
+    it("prefers the unscoped toolAuthProfileStore when building Urbicana tools", async () => {
       const { createOpenClawCodingTools, getOpts } = captureCall();
       const authProfileStore = { kind: "transport-scoped-store" } as never;
       const toolAuthProfileStore = { kind: "tool-store" } as never;
@@ -1611,7 +1611,7 @@ describe("createCopilotToolBridge tool conversion", () => {
     expect(result.parameters).toBe(parameters);
   });
 
-  it("sets skipPermission: true so OpenClaw's wrapped-tool internal enforcement handles permission decisions (PI-parity model)", async () => {
+  it("sets skipPermission: true so Urbicana's wrapped-tool internal enforcement handles permission decisions (PI-parity model)", async () => {
     // Host wrappers own policy and approvals; SDK prompts must not replace that decision.
     const result = (await convertOpenClawToolToSdkToolForTest(makeTool(), {})) as SdkTool & {
       skipPermission?: boolean;
@@ -1620,7 +1620,7 @@ describe("createCopilotToolBridge tool conversion", () => {
     expect(result.skipPermission).toBe(true);
   });
 
-  it("marks every bridged tool as overridesBuiltInTool so OpenClaw owns names that collide with Copilot CLI built-ins (edit/read/write/bash/...)", async () => {
+  it("marks every bridged tool as overridesBuiltInTool so Urbicana owns names that collide with Copilot CLI built-ins (edit/read/write/bash/...)", async () => {
     // The SDK rejects colliding built-in names unless external tools explicitly override them.
     for (const name of ["edit", "read", "write", "bash", "live_echo"]) {
       const result = (await convertOpenClawToolToSdkToolForTest(
@@ -1951,7 +1951,7 @@ describe("createCopilotToolBridge tool conversion", () => {
     ).toHaveLength(1);
   });
 
-  it("reports returned OpenClaw error results to both tool observers", async () => {
+  it("reports returned Urbicana error results to both tool observers", async () => {
     const onAgentToolResult = vi.fn();
     const onToolCompleted = vi.fn();
     const sourceResult = {

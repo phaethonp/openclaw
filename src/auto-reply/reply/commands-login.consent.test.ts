@@ -212,7 +212,7 @@ describe("handleLoginCommand model consent", () => {
           expect(result.reply?.text).toContain(
             status === "applied"
               ? "All OpenAI models are now visible."
-              : "Model access was saved, but OpenClaw has not confirmed it is active. Open Settings and select Apply changes, then send /models.",
+              : "Model access was saved, but Urbicana has not confirmed it is active. Open Settings and select Apply changes, then send /models.",
           );
           expect(result.reply?.presentation).toBeUndefined();
           expect(runModelsAuthLoginFlowMock).toHaveBeenCalledOnce();
@@ -399,7 +399,7 @@ describe("handleLoginCommand model consent", () => {
         const denied = await dispatchLoginCommand(
           buildLoginParams(command, { command: { senderIsOwner: false } }),
         );
-        expect(denied?.reply?.text).toContain("Only an OpenClaw owner can sign in here.");
+        expect(denied?.reply?.text).toContain("Only an Urbicana owner can sign in here.");
         setRuntimeConfigSnapshot(revokedConfig);
         await expect(dispatchLoginCommand(buildLoginParams(command))).rejects.toThrow(
           "Provider login authority is no longer active.",

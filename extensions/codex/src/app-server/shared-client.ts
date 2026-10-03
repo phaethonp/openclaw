@@ -1249,7 +1249,7 @@ export function captureCodexAppServerClientLifetime(
     (start?.transport !== "stdio" || isCodexAppServerProxyLaunch(start.args))
   ) {
     throw new AgentHarnessPreflightError(
-      "Codex manual thread adoption requires an OpenClaw-managed local stdio process, not an external socket or app-server proxy. No turn was sent; reconnect through managed local stdio before continuing.",
+      "Codex manual thread adoption requires an Urbicana-managed local stdio process, not an external socket or app-server proxy. No turn was sent; reconnect through managed local stdio before continuing.",
     );
   }
   const isolated = requiredOwnership !== "connection" && state.isolatedClients.has(client);

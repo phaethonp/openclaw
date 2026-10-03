@@ -206,7 +206,7 @@ describe("CodexAppServerEventProjector command output projection", () => {
         | undefined
     )?.output;
     expect(output).toHaveLength(10_000);
-    expect(output).toContain("OpenClaw truncated Codex native tool output");
+    expect(output).toContain("Urbicana truncated Codex native tool output");
     expect(output).toContain("original 13023 chars");
     expect(output).toContain("showing 10000");
     expect(output?.match(/OpenClaw truncated Codex native tool output/g)).toHaveLength(1);
@@ -222,7 +222,7 @@ describe("CodexAppServerEventProjector command output projection", () => {
     const toolResultContentItem = requireRecord(toolResultContent[0], "tool result content item");
     expect(toolResultContentItem.type).toBe("text");
     expect(toolResultContentItem.text).toHaveLength(10_000);
-    expect(toolResultContentItem.text).toContain("OpenClaw truncated Codex native tool output");
+    expect(toolResultContentItem.text).toContain("Urbicana truncated Codex native tool output");
     expect(toolResultMessage).toMatchObject({
       __openclaw: { toolOutput: { source: "execution", captureTruncated: true } },
     });

@@ -4,7 +4,7 @@ import { stripMatrixMentionPrefix } from "./mentions.js";
 describe("stripMatrixMentionPrefix", () => {
   it.each([
     { text: "", expected: "" },
-    { text: "@[OpenClaw Bot] /model", displayName: "OpenClaw Bot", expected: "/model" },
+    { text: "@[Urbicana Bot] /model", displayName: "Urbicana Bot", expected: "/model" },
     { text: "@bot /new", userId: "@bot:server", expected: "/new" },
     {
       text: "Hello @bot:server how are you",

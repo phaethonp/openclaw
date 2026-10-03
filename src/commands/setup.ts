@@ -52,7 +52,7 @@ export async function setupCommand(
         import("../config/issue-format.js"),
       ]);
       writeRuntimeJson(runtime, {
-        ...formatCliJsonFailure(`OpenClaw config is invalid: ${shortenHomePath(configPath)}`),
+        ...formatCliJsonFailure(`Urbicana config is invalid: ${shortenHomePath(configPath)}`),
         issues: normalizeConfigIssues(snapshot.issues),
       });
     }

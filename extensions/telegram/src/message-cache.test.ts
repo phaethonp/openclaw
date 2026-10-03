@@ -50,9 +50,9 @@ function photo(file_id: string) {
 }
 
 function botMessage(messageId: number, text: string, overrides: Record<string, unknown> = {}) {
-  return message(messageId, "OpenClaw", {
+  return message(messageId, "Urbicana", {
     text,
-    from: sender(999, "OpenClaw", true),
+    from: sender(999, "Urbicana", true),
     ...overrides,
   });
 }
@@ -334,7 +334,7 @@ describe("telegram message cache", () => {
     const businessMessage = message(9128, "Business User", {
       text: "Business reply",
       from: sender(700, "Business User"),
-      sender_business_bot: sender(42, "OpenClaw", true),
+      sender_business_bot: sender(42, "Urbicana", true),
     });
     const cache = createTelegramMessageCache();
     const live = await record(cache, businessMessage, {
@@ -360,7 +360,7 @@ describe("telegram message cache", () => {
     const cache = createTelegramMessageCache();
     const live = await record(
       cache,
-      message(9132, "OpenClaw", { text, from: sender(42, "OpenClaw", true) }),
+      message(9132, "Urbicana", { text, from: sender(42, "Urbicana", true) }),
       {
         botUserId: 42,
         promptContextProjection: marker,

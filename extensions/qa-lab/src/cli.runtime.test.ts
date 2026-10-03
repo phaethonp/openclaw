@@ -573,7 +573,7 @@ describe("qa cli", () => {
         scenarioIds: ["channel-chat-baseline"],
       }),
     ).rejects.toThrow(
-      "OpenClaw CLI entry not found: expected scripts/run-node.mjs or dist/index.(m)js",
+      "Urbicana CLI entry not found: expected scripts/run-node.mjs or dist/index.(m)js",
     );
     expect(runQaSuite).not.toHaveBeenCalled();
     expect(runQaFlowSuiteFromRuntime).not.toHaveBeenCalled();
@@ -1523,7 +1523,7 @@ describe("qa cli", () => {
 
   it("prints a markdown tool coverage inventory without a run summary", async () => {
     await runQaCoverageReportCommand({ tools: true });
-    expectWriteContains(stdoutWrite, "# OpenClaw Runtime Tool Coverage");
+    expectWriteContains(stdoutWrite, "# Urbicana Runtime Tool Coverage");
     expectWriteContains(stdoutWrite, "codex-native-workspace");
   });
 
@@ -1582,7 +1582,7 @@ describe("qa cli", () => {
       ),
     ) as { transcripts?: Array<{ userTurnCount?: number }> };
 
-    expect(report).toContain("# OpenClaw JSONL Replay Report - openclaw vs codex");
+    expect(report).toContain("# Urbicana JSONL Replay Report - openclaw vs codex");
     expect(report).toContain("| plan-mode-boundaries.jsonl | 3 |  | none, none, none |");
     expect(summary.transcripts).toHaveLength(7);
   });

@@ -438,7 +438,7 @@ export function buildQaAgenticParityComparison(params: {
 
 export function renderQaAgenticParityMarkdownReport(comparison: QaAgenticParityComparison): string {
   const lines = [
-    `# OpenClaw Agentic Parity Report — ${comparison.candidateLabel} vs ${comparison.baselineLabel}`,
+    `# Urbicana Agentic Parity Report — ${comparison.candidateLabel} vs ${comparison.baselineLabel}`,
     "",
     `- Compared at: ${comparison.comparedAt}`,
     `- Candidate: ${comparison.candidateLabel}`,

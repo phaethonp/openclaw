@@ -81,7 +81,7 @@ function resolveCodexCatalogTerminalHome(
   sources.source?.assertCurrent();
   const runtimeConfig = sources.getRuntimeConfig();
   if (!runtimeConfig) {
-    throw new Error("OpenClaw runtime config is unavailable");
+    throw new Error("Urbicana runtime config is unavailable");
   }
   const agentDir =
     sources.source?.agentDir ??

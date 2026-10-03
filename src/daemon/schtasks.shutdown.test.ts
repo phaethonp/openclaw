@@ -194,14 +194,14 @@ describe("Scheduled Task shutdown and SQLite handle release", () => {
         restartRecovery: "sqlite-owner-read",
         taskSettlement: {
           status: "settled",
-          taskName: "OpenClaw Gateway",
+          taskName: "Urbicana Gateway",
           lastRunResult: "0",
           ended: false,
         },
       });
 
       expect(warn).toHaveBeenCalledWith(expect.stringContaining("SQLite"));
-      expect(schtasksCalls).toContainEqual(["/Run", "/TN", "OpenClaw Gateway"]);
+      expect(schtasksCalls).toContainEqual(["/Run", "/TN", "Urbicana Gateway"]);
     });
   });
 
@@ -295,7 +295,7 @@ describe("Scheduled Task shutdown and SQLite handle release", () => {
       expect(Date.now() - stoppedAt).toBeGreaterThanOrEqual(500);
       expect(schtasksCalls.some(([action]) => action === "/End")).toBe(false);
       expect(spawnSync.mock.calls.some(([exe]) => exe.endsWith("taskkill.exe"))).toBe(false);
-      expect(schtasksCalls).toContainEqual(["/Run", "/TN", "OpenClaw Gateway"]);
+      expect(schtasksCalls).toContainEqual(["/Run", "/TN", "Urbicana Gateway"]);
     });
   });
 
@@ -444,13 +444,13 @@ describe("Scheduled Task shutdown and SQLite handle release", () => {
           outcome: "completed",
           taskSettlement: {
             status: "settled",
-            taskName: "OpenClaw Gateway",
+            taskName: "Urbicana Gateway",
             lastRunResult: "0",
             ended: false,
           },
         });
         expect(failed).toBe(true);
-        expect(schtasksCalls).toContainEqual(["/Run", "/TN", "OpenClaw Gateway"]);
+        expect(schtasksCalls).toContainEqual(["/Run", "/TN", "Urbicana Gateway"]);
       });
     },
   );
@@ -474,13 +474,13 @@ describe("Scheduled Task shutdown and SQLite handle release", () => {
         restartRecovery: "sqlite-owner-read",
         taskSettlement: {
           status: "settled",
-          taskName: "OpenClaw Gateway",
+          taskName: "Urbicana Gateway",
           lastRunResult: "0",
           ended: false,
         },
       });
       expect(warn).toHaveBeenCalledWith(expect.stringContaining("SQLite"));
-      expect(schtasksCalls).toContainEqual(["/Run", "/TN", "OpenClaw Gateway"]);
+      expect(schtasksCalls).toContainEqual(["/Run", "/TN", "Urbicana Gateway"]);
     });
   });
 });

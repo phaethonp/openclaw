@@ -107,7 +107,7 @@ afterEach(() => {
   resetAppHostTestGlobals();
 });
 
-describe("OpenClaw shell deleted-session recovery", () => {
+describe("Urbicana shell deleted-session recovery", () => {
   it.each([
     "initial readiness",
     "reconnect",

@@ -144,7 +144,7 @@ describe("registered Telegram retained history", () => {
     await receive(bot, { message: old });
     await recordOutboundMessageForPromptContext({
       cfg,
-      account: { accountId: "default", name: "OpenClaw" },
+      account: { accountId: "default", name: "Urbicana" },
       chatId: group.id,
       messageId: botReply.message_id,
       message: botReply,
@@ -188,7 +188,7 @@ describe("registered Telegram retained history", () => {
     const sent = { ...message("Already delivered"), chat: group, from: bot.botInfo };
     await recordOutboundMessageForPromptContext({
       cfg,
-      account: { accountId: "default", name: "OpenClaw" },
+      account: { accountId: "default", name: "Urbicana" },
       chatId: group.id,
       messageId: sent.message_id,
       message: sent,
@@ -198,7 +198,7 @@ describe("registered Telegram retained history", () => {
     expect(lastInput().InboundEventKind).toBe("room_event");
     expect(
       contextMessages().filter((entry) => entry.message_id === String(sent.message_id)),
-    ).toEqual([expect.objectContaining({ body: "Already delivered", sender: "OpenClaw (you)" })]);
+    ).toEqual([expect.objectContaining({ body: "Already delivered", sender: "Urbicana (you)" })]);
   });
 
   it.each(["bot", "business", "spoof"] as const)(
@@ -246,7 +246,7 @@ describe("registered Telegram retained history", () => {
       const messageId = 700 + partIndex;
       await recordOutboundMessageForPromptContext({
         cfg,
-        account: { accountId: "default", name: "OpenClaw" },
+        account: { accountId: "default", name: "Urbicana" },
         chatId: chat.id,
         messageId,
         message: {

@@ -246,7 +246,7 @@ describe("runCodexAppServerAttempt configured MCP ownership", () => {
       (turnStart?.params as { input?: Array<{ text?: string }> } | undefined)?.input?.[0]?.text ??
       "";
     expect(inputText.length).toBeLessThanOrEqual(1 << 20);
-    expect(inputText).toContain("OpenClaw assembled context for this turn:");
+    expect(inputText).toContain("Urbicana assembled context for this turn:");
     expect(inputText).toContain("new scheduled ownership question");
     expect(inputText).toContain("recent scheduled ownership answer");
     expect(inputText).toContain("Current user request:");

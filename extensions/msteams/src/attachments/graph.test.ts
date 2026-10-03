@@ -339,7 +339,7 @@ describe("downloadMSTeamsGraphMedia hosted content $value fallback", () => {
     expect(result.hostedCount).toBe(1);
   });
 
-  it("adds the OpenClaw User-Agent to guarded Graph attachment fetches", async () => {
+  it("adds the Urbicana User-Agent to guarded Graph attachment fetches", async () => {
     mockGraphMediaFetch({ messageId: "msg-ua" });
 
     await downloadGraphMediaWithDefaults({
@@ -358,7 +358,7 @@ describe("downloadMSTeamsGraphMedia hosted content $value fallback", () => {
     }
   });
 
-  it("adds the OpenClaw User-Agent to Graph shares downloads for reference attachments", async () => {
+  it("adds the Urbicana User-Agent to Graph shares downloads for reference attachments", async () => {
     mockGraphMediaFetch({
       messageId: "msg-share",
       messageResponse: {

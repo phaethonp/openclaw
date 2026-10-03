@@ -724,7 +724,7 @@ export class CodexAppServerClient {
   addNotificationHandler(handler: CodexServerNotificationHandler): () => void {
     this.notificationHandlers.add(handler);
     // Codex sends configuration warnings immediately after initialize, before
-    // OpenClaw can reserve the first thread or install its shared turn router.
+    // Urbicana can reserve the first thread or install its shared turn router.
     for (const notification of this.pendingStartupWarnings.splice(0)) {
       this.handleNotification(notification);
     }

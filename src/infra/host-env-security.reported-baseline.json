@@ -1,5 +1,5 @@
 {
-  "source": "OpenClaw host env dangerous-variable baseline (reported GHSA class)",
+  "source": "Urbicana host env dangerous-variable baseline (reported GHSA class)",
   "generatedAt": "2026-04-10",
   "reportedDangerousEverywhereKeys": [
     "ANT_OPTS",

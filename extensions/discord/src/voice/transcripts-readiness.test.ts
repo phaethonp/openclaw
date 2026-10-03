@@ -192,7 +192,7 @@ defineDiscordVoiceTests(
             }),
           ]);
           vi.useFakeTimers();
-          // Native speaking state exists before OpenClaw installs its receive listeners.
+          // Native speaking state exists before Urbicana installs its receive listeners.
           f.speaking.onPacket("guest");
           expect(f.connection.receiver.subscribe).not.toHaveBeenCalled();
           if (overlap === "before") {
@@ -315,7 +315,7 @@ defineDiscordVoiceTests(
           const entry = getSessionEntry(f.manager);
           const conversations = vi.spyOn(entry.conversations, "enqueue");
           writeSpeech(f.stream, 2);
-          // A native restart inside OpenClaw's grace retains this same owned receive stream.
+          // A native restart inside Urbicana's grace retains this same owned receive stream.
           await vi.advanceTimersByTimeAsync(SpeakingMap.DELAY + 400);
           f.speaking.onPacket("owner");
           writeSpeech(f.stream, 3);

@@ -207,7 +207,7 @@ function registerCodexHealthChecks(
     });
     const owner = registry.plugins.find((plugin) => plugin.id === "codex");
     if (!owner) {
-      // Implicit preferences may use OpenClaw while plugin provisioning is deferred.
+      // Implicit preferences may use Urbicana while plugin provisioning is deferred.
       const requiredRuntimes = collectConfiguredAgentHarnessRuntimes(params.cfg, {
         includeImplicitRuntimePreferences: false,
       });

@@ -1,9 +1,9 @@
-# OpenClaw Xiaomi Provider
+# Urbicana Xiaomi Provider
 
-Official OpenClaw provider plugin for Xiaomi MiMo pay-as-you-go and Token Plan
+Official Urbicana provider plugin for Xiaomi MiMo pay-as-you-go and Token Plan
 models, usage tracking, and text-to-speech.
 
-Install from OpenClaw:
+Install from Urbicana:
 
 ```bash
 openclaw plugins install @openclaw/xiaomi-provider

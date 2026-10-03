@@ -268,7 +268,7 @@ export class VisitorAccessService {
   private actionStore(assertCurrent?: () => void): PluginStateKeyedStore<VisitorGrant, 2> {
     if (!this.store.withCurrent) {
       throw new VisitorAccessError(
-        "This Gateway cannot authorize visitor grant writes. Update OpenClaw before managing visitors.",
+        "This Gateway cannot authorize visitor grant writes. Update Urbicana before managing visitors.",
       );
     }
     return this.store.withCurrent({
@@ -294,7 +294,7 @@ export class VisitorAccessService {
         {
           headers: {
             Accept: "application/vnd.github+json",
-            "User-Agent": "OpenClaw-visitor-access",
+            "User-Agent": "Urbicana-visitor-access",
           },
           redirect: "error",
           signal: this.signal

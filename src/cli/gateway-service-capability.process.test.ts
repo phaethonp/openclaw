@@ -156,7 +156,7 @@ describe("candidate service capability startup", () => {
         error: {
           type: "cli_error",
           message: expect.stringContaining(
-            `OpenClaw state database is busy at ${fixture.databasePath}.`,
+            `Urbicana state database is busy at ${fixture.databasePath}.`,
           ),
         },
       });

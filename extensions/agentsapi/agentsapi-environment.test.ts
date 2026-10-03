@@ -210,7 +210,7 @@ describe("Agents API attempt environment selection", () => {
       terminal: {
         kind: "failed",
         error: expect.objectContaining({
-          message: expect.stringContaining("reset the OpenClaw session"),
+          message: expect.stringContaining("reset the Urbicana session"),
         }),
       },
     });
@@ -233,7 +233,7 @@ describe("Agents API attempt environment selection", () => {
       terminal: {
         kind: "failed",
         error: expect.objectContaining({
-          message: expect.stringContaining("reset the OpenClaw session"),
+          message: expect.stringContaining("reset the Urbicana session"),
         }),
       },
     });
@@ -331,7 +331,7 @@ describe("Agents API attempt environment selection", () => {
         terminal: {
           kind: "failed",
           error: expect.objectContaining({
-            message: expect.stringContaining("reset the OpenClaw session"),
+            message: expect.stringContaining("reset the Urbicana session"),
           }),
         },
       });

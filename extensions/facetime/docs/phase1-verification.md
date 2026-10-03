@@ -24,7 +24,7 @@ boundary tests use the real realtime adapter with synthetic credentials and
 WebSocket traffic, while intercepting native audio before process execution.
 
 The playback-drain signal estimates when PCM handed to the separate SoX process
-should have reached `OpenClaw-Feed`. It does not prove Core Audio consumption or
+should have reached `Urbicana-Feed`. It does not prove Core Audio consumption or
 remote audibility.
 
 ## Live proof gap

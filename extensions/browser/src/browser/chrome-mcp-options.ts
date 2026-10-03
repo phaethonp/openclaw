@@ -27,7 +27,7 @@ export function normalizeChromeMcpOptions(
   }
   const options = typeof input === "string" ? { userDataDir: input } : (input ?? {});
   const configuredCommand = normalizeOptionalString(options.mcpCommand);
-  // Explicit npx has always selected OpenClaw's pinned server, including its package prefix.
+  // Explicit npx has always selected Urbicana's pinned server, including its package prefix.
   const customCommand = configuredCommand === "npx" ? undefined : configuredCommand;
   const managedServer = customCommand === undefined;
   const extraArgs = Array.isArray(options.mcpArgs) ? options.mcpArgs.filter(hasNonEmptyString) : [];

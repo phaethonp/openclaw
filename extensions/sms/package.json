@@ -1,7 +1,7 @@
 {
   "name": "@openclaw/sms",
   "version": "2026.9.6",
-  "description": "OpenClaw SMS/MMS channel plugin for Twilio messages.",
+  "description": "Urbicana SMS/MMS channel plugin for Twilio messages.",
   "repository": {
     "type": "git",
     "url": "https://github.com/openclaw/openclaw"

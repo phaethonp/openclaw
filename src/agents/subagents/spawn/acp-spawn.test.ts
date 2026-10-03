@@ -1203,7 +1203,7 @@ describe("spawnAcpDirect", () => {
     expect(initInput.sessionKey).toMatch(/^agent:codex:acp:/);
   });
 
-  it("strips an inherited OpenClaw auth profile before ACP initialization", async () => {
+  it("strips an inherited Urbicana auth profile before ACP initialization", async () => {
     replaceSpawnConfig({
       ...createDefaultSpawnConfig(),
       agents: {
@@ -1229,7 +1229,7 @@ describe("spawnAcpDirect", () => {
     );
   });
 
-  it("rejects an explicit OpenClaw auth profile for ACP runtimes", async () => {
+  it("rejects an explicit Urbicana auth profile for ACP runtimes", async () => {
     const result = await spawnAcpDirect(
       {
         task: "Investigate flaky tests",
@@ -1242,7 +1242,7 @@ describe("spawnAcpDirect", () => {
     expect(result.status).toBe("error");
     expect(result).toHaveProperty(
       "error",
-      "ACP model overrides cannot select OpenClaw auth profiles; configure credentials in the ACP runtime instead.",
+      "ACP model overrides cannot select Urbicana auth profiles; configure credentials in the ACP runtime instead.",
     );
     expect(hoisted.initializeSessionMock).not.toHaveBeenCalled();
   });
@@ -1543,7 +1543,7 @@ describe("spawnAcpDirect", () => {
     expect(agentCall?.params?.timeout).toBe(172_800);
   });
 
-  it("rejects OpenClaw config agent ids when runtime=acp targets a native agent", async () => {
+  it("rejects Urbicana config agent ids when runtime=acp targets a native agent", async () => {
     replaceSpawnConfig({
       ...createDefaultSpawnConfig(),
       acp: {
@@ -1578,7 +1578,7 @@ describe("spawnAcpDirect", () => {
     });
     expect(result).toHaveProperty(
       "error",
-      'agentId "pleres" is an OpenClaw config agent, not an ACP harness. Use runtime="subagent" or omit runtime for OpenClaw config agents. Use runtime="acp" only with external ACP harness ids such as codex, claude, droid, gemini, or opencode, or configure agents.entries.*.runtime.type="acp" with runtime.acp.agent.',
+      'agentId "pleres" is an Urbicana config agent, not an ACP harness. Use runtime="subagent" or omit runtime for Urbicana config agents. Use runtime="acp" only with external ACP harness ids such as codex, claude, droid, gemini, or opencode, or configure agents.entries.*.runtime.type="acp" with runtime.acp.agent.',
     );
     expect(hoisted.initializeSessionMock).not.toHaveBeenCalled();
     expectGatewayMethodNotCalled("agent");

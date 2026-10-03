@@ -159,7 +159,7 @@ function sanitizeSystemdUnitBackupContent(params: {
   fileManagedKeys: ReadonlySet<string>;
 }): string {
   // Gateway credentials are never useful in a recovery artifact. File-managed
-  // values are also omitted after OpenClaw moves them to the generated env file.
+  // values are also omitted after Urbicana moves them to the generated env file.
   return removeSystemdInlineEnvironmentKeys(
     params.content,
     new Set([...params.fileManagedKeys, ...SYSTEMD_GATEWAY_CREDENTIAL_KEYS]),
@@ -200,8 +200,8 @@ function removeLegacyGatewayVersionMetadata(content: string): string {
     return content;
   }
   const replacement = description[1]
-    ? `Description=OpenClaw Gateway (${description[1]})`
-    : "Description=OpenClaw Gateway";
+    ? `Description=Urbicana Gateway (${description[1]})`
+    : "Description=Urbicana Gateway";
   const refreshed =
     content.slice(0, description.index) +
     replacement +

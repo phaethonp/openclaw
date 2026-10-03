@@ -11,6 +11,7 @@ import { nativeHistoryMessageIdentity } from "../chat/history-message-identity.t
 import { copyToClipboard } from "../clipboard.ts";
 import { formatUiError } from "../format-error.ts";
 import { reserveExternalWindowForDeferredNavigation } from "../open-external-url.ts";
+import { PRODUCT_NAME } from "../product-name.ts";
 import { readSessionMethodAccess } from "../session-method-access.ts";
 import { showToast } from "../toast.ts";
 import {
@@ -138,7 +139,7 @@ async function copySessionMarkdown<TRouteId extends string>(
   }
   const assistantName =
     context.agents.state.agentsList?.agents.find((agent) => agent.id === agentId)?.name ??
-    "OpenClaw";
+    PRODUCT_NAME;
   const markdown = buildChatMarkdown(pages.toReversed().flat(), assistantName);
   if (!markdown) {
     throw new Error(t("chat.commandResults.emptyExport"));

@@ -248,7 +248,7 @@ export function providerManualItems(
         "transport",
         `${source}.transport`,
         `Hermes provider "${id}" uses unsupported transport "${transport}".`,
-        "Configure an equivalent OpenClaw provider plugin or API adapter manually.",
+        "Configure an equivalent Urbicana provider plugin or API adapter manually.",
       );
     } else if (baseUrlConfig.unresolved) {
       add(
@@ -270,8 +270,8 @@ export function providerManualItems(
       add(
         "inline-key",
         `${source}.api_key`,
-        `Hermes provider "${id}" contains an inline API key that was not copied into OpenClaw config.`,
-        "Move the key to an environment variable or OpenClaw secret provider.",
+        `Hermes provider "${id}" contains an inline API key that was not copied into Urbicana config.`,
+        "Move the key to an environment variable or Urbicana secret provider.",
       );
     }
     if (headerConfig.blocked) {
@@ -301,7 +301,7 @@ export function providerManualItems(
       add(
         "extra-body",
         `${source}.extra_body`,
-        `Hermes provider "${id}" adds request body fields that OpenClaw cannot import generically.`,
+        `Hermes provider "${id}" adds request body fields that Urbicana cannot import generically.`,
         "Configure an equivalent provider plugin or supported request option manually.",
       );
     }
@@ -311,7 +311,7 @@ export function providerManualItems(
         "key-env",
         `${source}.key_env`,
         `Hermes provider "${id}" references ${apiKeyEnv}, but that value was not present in the Hermes .env file.`,
-        "Configure an OpenClaw auth profile for this provider or expose the variable to the OpenClaw runtime.",
+        "Configure an Urbicana auth profile for this provider or expose the variable to the Urbicana runtime.",
       );
     }
   }

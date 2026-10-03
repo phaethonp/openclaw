@@ -81,7 +81,7 @@ describe("OAuth loopback callback server", () => {
           renderer === "provider"
             ? () => ({
                 body: oauthSuccessHtml(
-                  "Authorization received; return to the terminal while OpenClaw finishes.",
+                  "Authorization received; return to the terminal while Urbicana finishes.",
                 ),
                 contentType: "text/html; charset=utf-8",
               })

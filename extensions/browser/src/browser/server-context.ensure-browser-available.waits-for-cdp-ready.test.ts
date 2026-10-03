@@ -547,10 +547,10 @@ describe("browser server-context ensureBrowserAvailable", () => {
       'Port 18800 is in use for profile "openclaw" but not by openclaw.',
     );
     await expect(promise).rejects.toThrow(
-      "set browser.profiles.openclaw.attachOnly=true so OpenClaw attaches without trying to manage the local process",
+      "set browser.profiles.openclaw.attachOnly=true so Urbicana attaches without trying to manage the local process",
     );
     await expect(promise).rejects.toThrow(
-      "For Browserless Docker, set EXTERNAL to the same WebSocket endpoint OpenClaw can reach via browser.profiles.<name>.cdpUrl.",
+      "For Browserless Docker, set EXTERNAL to the same WebSocket endpoint Urbicana can reach via browser.profiles.<name>.cdpUrl.",
     );
 
     expect(launchOpenClawChrome).not.toHaveBeenCalled();

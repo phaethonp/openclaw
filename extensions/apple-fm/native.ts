@@ -116,7 +116,7 @@ export function createAppleFmNative(pluginRoot: string) {
       return infoSchema.parse(await invoke(command, ["info"], "", options));
     }
     // First-time discovery runs a disposable helper off-process. It must not install
-    // anything in OpenClaw state before the user selects this model.
+    // anything in Urbicana state before the user selects this model.
     const directory = await fs.mkdtemp(
       path.join(resolvePreferredOpenClawTmpDir(), "openclaw-apple-fm-probe-"),
     );
@@ -146,7 +146,7 @@ export function createAppleFmNative(pluginRoot: string) {
     options.signal?.throwIfAborted();
     if (developerTools.code !== 0) {
       throw new Error(
-        "Install Apple's developer tools with the macOS 27 SDK, then rerun Apple Foundation Models setup. OpenClaw does not install developer tools automatically.",
+        "Install Apple's developer tools with the macOS 27 SDK, then rerun Apple Foundation Models setup. Urbicana does not install developer tools automatically.",
       );
     }
     const result = await runCommandBuffered(

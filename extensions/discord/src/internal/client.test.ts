@@ -430,7 +430,7 @@ describe("Client gateway event queue", () => {
     );
   }
 
-  it("uses OpenClaw Discord event queue defaults", () => {
+  it("uses Urbicana Discord event queue defaults", () => {
     const client = createQueuedClient({
       listeners: [],
       eventQueue: {},

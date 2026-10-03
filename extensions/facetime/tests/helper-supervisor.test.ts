@@ -226,7 +226,7 @@ describe("FaceTime helper supervisor", () => {
 
     expect(logger.warn).toHaveBeenCalledTimes(1);
     expect(logger.warn).toHaveBeenLastCalledWith(
-      "[facetime] Restart FaceTime to load the updated OpenClaw helper",
+      "[facetime] Restart FaceTime to load the updated Urbicana helper",
     );
     expect(supervisor.status()).toContainEqual(
       expect.objectContaining({

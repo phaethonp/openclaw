@@ -174,7 +174,7 @@ describe("memory chunking upgrade fallback over a real embedding transport", () 
   }
 
   // Seeds a published index, then reopens its metadata as an older runtime's
-  // index so the next search sees a pending OpenClaw chunking upgrade.
+  // index so the next search sees a pending Urbicana chunking upgrade.
   async function seedPriorChunkingVersionIndex(cfg: OpenClawConfig): Promise<string> {
     const manager = requireManager(await getMemorySearchManager({ cfg, agentId: "main" }));
     await manager.sync({ reason: "test", force: true });

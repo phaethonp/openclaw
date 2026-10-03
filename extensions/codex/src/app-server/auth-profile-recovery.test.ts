@@ -27,7 +27,7 @@ describe("Codex auth profile recovery", () => {
     expect(rejection).toMatchObject({
       code: "selected_auth_profile_unavailable",
       message: expect.stringContaining(
-        'auth profile "openai:work" was not found in the OpenClaw credential store.',
+        'auth profile "openai:work" was not found in the Urbicana credential store.',
       ),
     });
     expect(rejection).not.toHaveProperty("status");
@@ -49,7 +49,7 @@ describe("Codex auth profile recovery", () => {
 
     expect(rejection).toMatchObject({
       code: "selected_auth_profile_unavailable",
-      message: expect.stringContaining("was not found in the OpenClaw credential store"),
+      message: expect.stringContaining("was not found in the Urbicana credential store"),
     });
     expect(rejection).not.toHaveProperty("status");
     expect(startSpy).not.toHaveBeenCalled();

@@ -1,6 +1,6 @@
 # Apple Foundation Models provider
 
-Bundled on-device Apple Intelligence inference for OpenClaw setup and utility tasks.
+Bundled on-device Apple Intelligence inference for Urbicana setup and utility tasks.
 Choose **Apple Foundation Models** during `openclaw onboard` on a Mac. No API key
 or third-party model server is required.
 

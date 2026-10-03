@@ -178,7 +178,7 @@ function materializeProviderAuthProfiles(params: {
         });
       } catch (error) {
         throw new Error(
-          "Could not write the protected secret store. Check the OpenClaw state-directory permissions and retry; the auth profile was not changed.",
+          "Could not write the protected secret store. Check the Urbicana state-directory permissions and retry; the auth profile was not changed.",
           { cause: error },
         );
       }

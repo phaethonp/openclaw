@@ -134,7 +134,7 @@ describe("google web search provider", () => {
         throw new Error("Expected tool definition");
       }
 
-      await expect(tool.execute({ query: "OpenClaw docs" })).resolves.toEqual({
+      await expect(tool.execute({ query: "Urbicana docs" })).resolves.toEqual({
         docs: "https://docs.openclaw.ai/tools/web",
         error: "missing_gemini_api_key",
         message:
@@ -174,7 +174,7 @@ describe("google web search provider", () => {
       searchConfig: { provider: "gemini" },
     });
 
-    await tool?.execute({ query: "OpenClaw docs" });
+    await tool?.execute({ query: "Urbicana docs" });
 
     expect(getGeminiFetchUrl(mockFetch)).toBe(
       "https://generativelanguage.googleapis.com/proxy/v1beta/models/gemini-3.6-flash:generateContent",
@@ -206,7 +206,7 @@ describe("google web search provider", () => {
       searchConfig: { provider: "gemini", cacheTtlMinutes: 0 },
     });
 
-    const result = await tool?.execute({ query: "OpenClaw model selection" });
+    const result = await tool?.execute({ query: "Urbicana model selection" });
 
     expect(getGeminiFetchUrl(mockFetch)).toBe(
       `https://generativelanguage.googleapis.com/v1beta/models/${expectedModel}:generateContent`,
@@ -223,7 +223,7 @@ describe("google web search provider", () => {
       "X-Goog-Api-Key": "operator-value",
     });
 
-    await tool?.execute({ query: "OpenClaw operator headers" });
+    await tool?.execute({ query: "Urbicana operator headers" });
 
     expect(getFetchHeaders(mockFetch)).toMatchObject({
       "content-type": "application/json",
@@ -237,10 +237,10 @@ describe("google web search provider", () => {
     const mockFetch = installGeminiFetch();
 
     await createGeminiToolWithHeaders({ "X-Routing-Target": "staging" })?.execute({
-      query: "OpenClaw header cache partition",
+      query: "Urbicana header cache partition",
     });
     await createGeminiToolWithHeaders({ "X-Routing-Target": "production" })?.execute({
-      query: "OpenClaw header cache partition",
+      query: "Urbicana header cache partition",
     });
 
     const postCalls = mockFetch.mock.calls.filter(([, init]) => typeof init?.body === "string");
@@ -316,10 +316,10 @@ describe("google web search provider", () => {
     const mockFetch = installGeminiFetch();
 
     await createGeminiToolWithHeaders({ "X-Goog-Api-Key": "operator-one" })?.execute({
-      query: "OpenClaw provider-owned header cache",
+      query: "Urbicana provider-owned header cache",
     });
     await createGeminiToolWithHeaders({ "x-goog-api-key": "operator-two" })?.execute({
-      query: "OpenClaw provider-owned header cache",
+      query: "Urbicana provider-owned header cache",
     });
 
     const postCalls = mockFetch.mock.calls.filter(([, init]) => typeof init?.body === "string");
@@ -333,9 +333,9 @@ describe("google web search provider", () => {
     await createGeminiToolWithHeaders({
       "X-Routing-Target": "stale",
       "x-routing-target": "production",
-    })?.execute({ query: "OpenClaw case-colliding header cache" });
+    })?.execute({ query: "Urbicana case-colliding header cache" });
     await createGeminiToolWithHeaders({ "X-Routing-Target": "production" })?.execute({
-      query: "OpenClaw case-colliding header cache",
+      query: "Urbicana case-colliding header cache",
     });
 
     const postCalls = mockFetch.mock.calls.filter(([, init]) => typeof init?.body === "string");
@@ -347,7 +347,7 @@ describe("google web search provider", () => {
     const mockFetch = installGeminiFetch();
     const tool = createGeminiToolWithHeaders({ "X-Optional-Metadata": " \t " });
 
-    await tool?.execute({ query: "OpenClaw empty operator header" });
+    await tool?.execute({ query: "Urbicana empty operator header" });
 
     expect(getFetchHeaders(mockFetch)["x-optional-metadata"]).toBe("");
   });
@@ -356,7 +356,7 @@ describe("google web search provider", () => {
     const mockFetch = installGeminiFetch();
     const tool = createGeminiToolWithHeaders({ "Bad Header": "value" });
 
-    await expect(tool?.execute({ query: "OpenClaw malformed header" })).rejects.toThrow(
+    await expect(tool?.execute({ query: "Urbicana malformed header" })).rejects.toThrow(
       'plugins.entries.google.config.webSearch.headers["Bad Header"] is not a valid HTTP header',
     );
     expect(mockFetch).not.toHaveBeenCalled();
@@ -368,7 +368,7 @@ describe("google web search provider", () => {
       const mockFetch = installGeminiFetch();
       const tool = createGeminiToolWithHeaders({ [name]: "configured-value" });
 
-      await expect(tool?.execute({ query: `OpenClaw rejects ${name}` })).rejects.toThrow(
+      await expect(tool?.execute({ query: `Urbicana rejects ${name}` })).rejects.toThrow(
         `plugins.entries.google.config.webSearch.headers["${name}"] uses a reserved or framing HTTP header`,
       );
       expect(mockFetch).not.toHaveBeenCalled();
@@ -386,7 +386,7 @@ describe("google web search provider", () => {
     });
 
     await expect(
-      tool?.execute({ query: "OpenClaw unresolved header SecretRef" }),
+      tool?.execute({ query: "Urbicana unresolved header SecretRef" }),
     ).rejects.toMatchObject({
       name: "UnresolvedSecretInputError",
       path: 'plugins.entries.google.config.webSearch.headers["X-Gateway-Token"]',
@@ -468,7 +468,7 @@ describe("google web search provider", () => {
     const provider = createGeminiWebSearchProvider();
     const tool = provider.createTool(createGeminiToolOptions());
 
-    await expect(tool?.execute({ query: "OpenClaw docs" })).rejects.toThrow(
+    await expect(tool?.execute({ query: "Urbicana docs" })).rejects.toThrow(
       "Gemini API error: malformed JSON response",
     );
   });
@@ -481,7 +481,7 @@ describe("google web search provider", () => {
     const provider = createGeminiWebSearchProvider();
     const tool = provider.createTool(createGeminiToolOptions());
 
-    await expect(tool?.execute({ query: "OpenClaw docs" })).rejects.toThrow(
+    await expect(tool?.execute({ query: "Urbicana docs" })).rejects.toThrow(
       "Gemini API error: malformed JSON response",
     );
   });
@@ -519,7 +519,7 @@ describe("google web search provider", () => {
       );
       const tool = createGeminiToolWithHeaders({});
 
-      await expect(tool?.execute({ query: "OpenClaw empty answer" })).rejects.toThrow(
+      await expect(tool?.execute({ query: "Urbicana empty answer" })).rejects.toThrow(
         `Gemini search returned no final answer${reason}.`,
       );
     },
@@ -548,7 +548,7 @@ describe("google web search provider", () => {
     );
     const tool = createGeminiToolWithHeaders({});
 
-    await expect(tool?.execute({ query: "OpenClaw malformed answer" })).rejects.toThrow(
+    await expect(tool?.execute({ query: "Urbicana malformed answer" })).rejects.toThrow(
       "Gemini API error: malformed JSON response",
     );
   });
@@ -570,7 +570,7 @@ describe("google web search provider", () => {
     );
     const tool = createGeminiToolWithHeaders({});
 
-    await expect(tool?.execute({ query: "OpenClaw bounded reason" })).rejects.toThrow(
+    await expect(tool?.execute({ query: "Urbicana bounded reason" })).rejects.toThrow(
       `Gemini search returned no final answer (${"X".repeat(119)}…).`,
     );
   });
@@ -588,7 +588,7 @@ describe("google web search provider", () => {
     const tool = createGeminiToolWithHeaders({});
 
     await expect(
-      tool?.execute({ query: `OpenClaw partial answer with ${parts.length} parts` }),
+      tool?.execute({ query: `Urbicana partial answer with ${parts.length} parts` }),
     ).resolves.toMatchObject({
       content: expect.stringContaining("Partial answer"),
     });
@@ -604,7 +604,7 @@ describe("google web search provider", () => {
     const tool = provider.createTool(createGeminiToolOptions());
 
     await expect(
-      tool?.execute({ query: "OpenClaw cancelled docs" }, { signal: controller.signal }),
+      tool?.execute({ query: "Urbicana cancelled docs" }, { signal: controller.signal }),
     ).rejects.toBe(reason);
     expect(mockFetch).not.toHaveBeenCalled();
   });
@@ -636,7 +636,7 @@ describe("google web search provider", () => {
       },
       searchConfig: { provider: "gemini" },
     });
-    const query = "OpenClaw late-cancel Gemini cache";
+    const query = "Urbicana late-cancel Gemini cache";
 
     await expect(tool?.execute({ query }, { signal: controller.signal })).rejects.toBe(reason);
     await tool?.execute({ query });
@@ -662,7 +662,7 @@ describe("google web search provider", () => {
         searchConfig: { provider: "gemini" },
       });
 
-      await tool?.execute({ query: "OpenClaw provider key fallback" });
+      await tool?.execute({ query: "Urbicana provider key fallback" });
 
       expect(getFetchHeaders(mockFetch)["x-goog-api-key"]).toBe("AIza-provider-test");
       expect(getFetchHeaders(mockFetch)["x-goog-api-client"]).toMatch(/^openclaw\//u);
@@ -697,7 +697,7 @@ describe("google web search provider", () => {
         searchConfig: { provider: "gemini" },
       });
 
-      await tool?.execute({ query: "OpenClaw plugin key precedence" });
+      await tool?.execute({ query: "Urbicana plugin key precedence" });
 
       expect(getFetchHeaders(mockFetch)["x-goog-api-key"]).toBe("AIza-plugin-test");
       expect(getFetchHeaders(mockFetch)["x-goog-api-client"]).toMatch(/^openclaw\//u);
@@ -721,7 +721,7 @@ describe("google web search provider", () => {
       searchConfig: { provider: "gemini" },
     });
 
-    await tool?.execute({ query: "OpenClaw provider baseUrl fallback" });
+    await tool?.execute({ query: "Urbicana provider baseUrl fallback" });
 
     expect(getGeminiFetchUrl(mockFetch)).toBe(
       "https://generativelanguage.googleapis.com/provider/v1beta/models/gemini-3.6-flash:generateContent",
@@ -756,7 +756,7 @@ describe("google web search provider", () => {
       searchConfig: { provider: "gemini" },
     });
 
-    await tool?.execute({ query: "OpenClaw plugin baseUrl precedence" });
+    await tool?.execute({ query: "Urbicana plugin baseUrl precedence" });
 
     expect(getGeminiFetchUrl(mockFetch)).toBe(
       "https://generativelanguage.googleapis.com/plugin/v1beta/models/gemini-3.6-flash:generateContent",
@@ -867,7 +867,7 @@ describe("google web search provider", () => {
     const tool = provider.createTool(createGeminiToolOptions());
 
     await tool?.execute({
-      query: "OpenClaw release notes",
+      query: "Urbicana release notes",
       date_after: "2026-04-01",
       date_before: "2026-04-30",
     });
@@ -886,7 +886,7 @@ describe("google web search provider", () => {
 
     await expect(
       tool?.execute({
-        query: "OpenClaw release notes",
+        query: "Urbicana release notes",
         freshness: "week",
         date_after: "2026-04-01",
       }),

@@ -231,7 +231,7 @@ describe("Hermes migration file and skill items", () => {
     ]);
   });
 
-  it("maps supported OAuth model providers and requests fresh OpenClaw authentication", async () => {
+  it("maps supported OAuth model providers and requests fresh Urbicana authentication", async () => {
     const { root, source } = makeHermesPaths(testWorkspace.dir);
     const xaiProvider = ["xai", "oauth"].join("-");
     const minimaxProvider = ["minimax", "oauth"].join("-");
@@ -267,11 +267,11 @@ describe("Hermes migration file and skill items", () => {
       (item) => item.kind === "manual" && item.message?.includes("credentials cannot be reused"),
     );
     expect(reauthItems.map((item) => item.reason)).toEqual([
-      "Authenticate anthropic in OpenClaw after migration.",
-      "Authenticate nous in OpenClaw after migration.",
+      "Authenticate anthropic in Urbicana after migration.",
+      "Authenticate nous in Urbicana after migration.",
       "Authenticate qwen with an API key after migration: openclaw onboard --auth-choice qwen-api-key.",
-      "Authenticate minimax-portal in OpenClaw after migration.",
-      "Authenticate xai in OpenClaw after migration.",
+      "Authenticate minimax-portal in Urbicana after migration.",
+      "Authenticate xai in Urbicana after migration.",
     ]);
   });
 
@@ -564,7 +564,7 @@ describe("Hermes migration file and skill items", () => {
     }
     expect(plan.items.find((item) => item.id === "archive:auth.json")).toBeUndefined();
     expect(plan.warnings).toEqual([
-      "Some Hermes files are archive-only. They will be copied into the migration report for manual review, not loaded into OpenClaw.",
+      "Some Hermes files are archive-only. They will be copied into the migration report for manual review, not loaded into Urbicana.",
     ]);
 
     const result = await provider.apply(makeContext({ source, stateDir, workspaceDir, reportDir }));

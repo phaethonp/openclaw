@@ -378,7 +378,7 @@ export function buildAgentsApiToolSurface(
         }
       >({
         tool: entry?.tool,
-        unavailableToolMessage: `OpenClaw tool is not available for this turn: ${call.name}`,
+        unavailableToolMessage: `Urbicana tool is not available for this turn: ${call.name}`,
         call: {
           toolCallId: call.call_id,
           toolName: call.name,
@@ -391,7 +391,7 @@ export function buildAgentsApiToolSurface(
         boundaries: executionBoundaries,
         prepareArguments: (args) => {
           if (!isRecord(args)) {
-            throw new Error(`Arguments for OpenClaw tool ${call.name} must be an object`);
+            throw new Error(`Arguments for Urbicana tool ${call.name} must be an object`);
           }
           return args;
         },
@@ -416,7 +416,7 @@ export function buildAgentsApiToolSurface(
                 });
                 if (!validation.ok) {
                   throw new Error(
-                    `Invalid arguments for OpenClaw tool ${call.name}: ${validation.errors
+                    `Invalid arguments for Urbicana tool ${call.name}: ${validation.errors
                       .slice(0, 4)
                       .map((error) => error.text)
                       .join("; ")}`,
@@ -504,7 +504,7 @@ export function buildAgentsApiToolSurface(
           executedArgs = executedArguments;
           startedAt = invocationStartedAt;
           const message = sanitizeToolResult(
-            formatToolExecutionErrorMessage(error, "OpenClaw tool failed"),
+            formatToolExecutionErrorMessage(error, "Urbicana tool failed"),
           );
           const disposition =
             getBeforeToolCallFailureDisposition(error) ??

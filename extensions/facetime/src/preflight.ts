@@ -193,8 +193,8 @@ export async function runFaceTimePreflight(params: {
   const audioDevices = profiler.code === 0 ? parseCoreAudioDevices(profiler.stdout ?? "") : [];
   const deviceNames = new Set(audioDevices.map((device) => device.name));
   for (const [id, label, deviceName] of [
-    ["paired-driver-mic", "OpenClaw microphone device", FACETIME_MIC_DEVICE_NAME],
-    ["paired-driver-feed", "OpenClaw feed device", FACETIME_FEED_DEVICE_NAME],
+    ["paired-driver-mic", "Urbicana microphone device", FACETIME_MIC_DEVICE_NAME],
+    ["paired-driver-feed", "Urbicana feed device", FACETIME_FEED_DEVICE_NAME],
   ] as const) {
     const found = deviceNames.has(deviceName);
     pushCheck(checks, {

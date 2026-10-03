@@ -196,7 +196,7 @@ describe("update.run handoff refusal diagnostics", () => {
       expect(sendGatewayLifecycleNoticeMock).toHaveBeenLastCalledWith(
         expect.objectContaining({
           message: expect.stringContaining(
-            "OpenClaw update failed: managed-service-handoff-failed",
+            "Urbicana update failed: managed-service-handoff-failed",
           ),
         }),
         expect.any(Object),

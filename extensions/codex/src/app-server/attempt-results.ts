@@ -21,7 +21,7 @@ export function buildCodexAppServerPromptTimeoutOutcome(
     message:
       timeout.kind === "execution"
         ? "Codex reached the configured execution time limit. Some work may already have been performed; verify the current state before continuing."
-        : "Codex finished its turn, but OpenClaw could not finish processing the result. Some work may already have been performed; verify the current state before continuing.",
+        : "Codex finished its turn, but Urbicana could not finish processing the result. Some work may already have been performed; verify the current state before continuing.",
     replayInvalid: true,
     livenessState: "abandoned",
   };

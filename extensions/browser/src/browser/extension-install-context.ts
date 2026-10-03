@@ -77,7 +77,7 @@ export function assertCurrentNativeHostLaunchContext(
     configPath(saved) !== configPath(current)
   ) {
     throw new NativeHostSetupContextError(
-      "Chrome's native host uses a different OpenClaw configuration. Rerun setup with its matching OPENCLAW_STATE_DIR and OPENCLAW_CONFIG_PATH.",
+      "Chrome's native host uses a different Urbicana configuration. Rerun setup with its matching OPENCLAW_STATE_DIR and OPENCLAW_CONFIG_PATH.",
     );
   }
 }

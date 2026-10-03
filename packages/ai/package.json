@@ -1,7 +1,7 @@
 {
   "name": "@openclaw/ai",
   "version": "2026.9.6",
-  "description": "Reusable model provider adapters and streaming runtime from OpenClaw",
+  "description": "Reusable model provider adapters and streaming runtime from Urbicana",
   "keywords": [
     "ai",
     "anthropic",

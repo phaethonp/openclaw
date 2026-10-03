@@ -276,7 +276,7 @@ describe("sandbox workspace Doctor migration", () => {
     await repair(context, cfg, active, [main]);
   });
 
-  it("repairs sandbox workspace copies beneath the configured OpenClaw home", async () => {
+  it("repairs sandbox workspace copies beneath the configured Urbicana home", async () => {
     const context = setup();
     const effectiveHome = path.join(context.homeDir, "effective-openclaw-home");
     setTestEnvValue("OPENCLAW_HOME", effectiveHome);

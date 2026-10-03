@@ -362,7 +362,7 @@ describe("Gateway agent and artifact APIs", () => {
       {
         name: "report.pdf",
         mimeType: "application/pdf",
-        body: Buffer.from("%PDF-1.4\n% OpenClaw artifact proof\n"),
+        body: Buffer.from("%PDF-1.4\n% Urbicana artifact proof\n"),
       },
     ];
     await Promise.all(

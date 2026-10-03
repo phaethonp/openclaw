@@ -192,7 +192,7 @@ describe("buildSlackProgressCardBlocks", () => {
         lines: [toolLine("run tests")],
         diffStat: { files: 2, added: 1, removed: 1 },
         sessionLinks: [
-          { url: "https://team.openclaw.ai/openclaw/chat/main", text: "Open in OpenClaw" },
+          { url: "https://team.openclaw.ai/openclaw/chat/main", text: "Open in Urbicana" },
         ],
       });
 
@@ -211,7 +211,7 @@ describe("buildSlackProgressCardBlocks", () => {
           {
             type: "button",
             action_id: "openclaw:session_link",
-            text: { type: "plain_text", text: "Open in OpenClaw" },
+            text: { type: "plain_text", text: "Open in Urbicana" },
             url: "https://team.openclaw.ai/openclaw/chat/main",
           },
         ],

@@ -1,6 +1,6 @@
 /**
- * OpenClaw ACPX runtime adapter. It wraps the upstream acpx runtime with
- * OpenClaw session metadata, lease tracking, model scoping, and cleanup policy.
+ * Urbicana ACPX runtime adapter. It wraps the upstream acpx runtime with
+ * Urbicana session metadata, lease tracking, model scoping, and cleanup policy.
  */
 import { AsyncLocalStorage } from "node:async_hooks";
 import { randomUUID } from "node:crypto";
@@ -160,7 +160,7 @@ async function readCodexWrapperStderrTail(params: {
 
 const CODEX_ACP_AGENT_ID = "codex";
 const CODEX_ACP_OPENCLAW_PREFIX = "openai/";
-// Documented OpenClaw provider prefixes the Claude Agent SDK does not understand.
+// Documented Urbicana provider prefixes the Claude Agent SDK does not understand.
 // Strip only these; a generic first-slash split would corrupt native Bedrock
 // inference-profile ids and ARNs the SDK accepts as-is.
 const CLAUDE_ACP_OPENCLAW_PREFIX = /^(?:anthropic|amazon-bedrock)\//i;
@@ -380,7 +380,7 @@ function resolveBridgeSession(
   return handle.bridgeSession === undefined ? handle : handle.bridgeSession;
 }
 
-/** OpenClaw-managed ACP runtime implementation backed by the upstream acpx runtime. */
+/** Urbicana-managed ACP runtime implementation backed by the upstream acpx runtime. */
 export class AcpxRuntime implements CompleteAcpRuntime {
   readonly ownerAwareSessions = 1 as const;
   private readonly legacyBareSessionKeys: Set<string>;
@@ -1058,7 +1058,7 @@ export class AcpxRuntime implements CompleteAcpRuntime {
             try {
               const turn = delegate.startTurn({
                 ...toAcpxResourceInput(input),
-                // OpenClaw owns deadlines; ACPX must not complete partial output.
+                // Urbicana owns deadlines; ACPX must not complete partial output.
                 timeoutMs: 0,
               });
               void turn.result.then(release, release);

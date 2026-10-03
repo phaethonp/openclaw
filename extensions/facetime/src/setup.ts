@@ -93,7 +93,7 @@ const SETUP_ACTIONS = {
   },
   "restart-gateway": {
     kind: "command",
-    label: "Stop the stale gateway process, then restart OpenClaw",
+    label: "Stop the stale gateway process, then restart Urbicana",
     command: "openclaw gateway restart",
   },
   "wait-for-helper": {
@@ -102,7 +102,7 @@ const SETUP_ACTIONS = {
   },
   "restart-call-apps": {
     kind: "manual-test",
-    label: "Quit and reopen FaceTime and Phone, then let OpenClaw reinject the helper",
+    label: "Quit and reopen FaceTime and Phone, then let Urbicana reinject the helper",
   },
   "install-driver": {
     kind: "gateway",
@@ -116,7 +116,7 @@ const SETUP_ACTIONS = {
   },
   "grant-system-audio": {
     kind: "system-settings",
-    label: "Allow OpenClaw to capture FaceTime app audio",
+    label: "Allow Urbicana to capture FaceTime app audio",
     settingsPath: "System Settings > Privacy & Security > Screen & System Audio Recording",
   },
   "configure-realtime-provider": {
@@ -443,7 +443,7 @@ export async function runFaceTimeSetup(params: SetupParams): Promise<FaceTimeSet
               ? `Automatic retry scheduled after: ${target.lastError}`
               : target.lastError
                 ? target.lastError
-                : "OpenClaw is launching the app and injecting the helper",
+                : "Urbicana is launching the app and injecting the helper",
         ...(status === "repairing"
           ? { actionId: "wait-for-helper" }
           : status === "action-required"
@@ -461,7 +461,7 @@ export async function runFaceTimeSetup(params: SetupParams): Promise<FaceTimeSet
     status: driverReady ? "ready" : "action-required",
     required: true,
     message: driverReady
-      ? "OpenClaw-Mic and OpenClaw-Feed driver is current"
+      ? "Urbicana-Mic and Urbicana-Feed driver is current"
       : !params.nativePackageReady
         ? "Install the FaceTime native package before setting up the audio driver"
         : driver.error

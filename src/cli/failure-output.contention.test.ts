@@ -24,6 +24,6 @@ it.each(["nested", "message-only"])(
       ...(kind === "message-only" ? ["[openclaw] Try: openclaw doctor"] : []),
       "[openclaw] Help: openclaw --help",
     ]);
-    expect(error.message).toContain("Wait for the other OpenClaw process to finish, then retry.");
+    expect(error.message).toContain("Wait for the other Urbicana process to finish, then retry.");
   },
 );

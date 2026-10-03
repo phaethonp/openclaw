@@ -167,7 +167,7 @@ export type ProviderPlugin = {
   /**
    * Optional async preparation for dynamic model resolution.
    *
-   * OpenClaw calls this only from async model resolution paths. Return the
+   * Urbicana calls this only from async model resolution paths. Return the
    * requested model directly, or return nothing to retry `resolveDynamicModel`.
    */
   prepareDynamicModel?: (
@@ -239,7 +239,7 @@ export type ProviderPlugin = {
   /**
    * Provider-owned replay-history sanitization.
    *
-   * Runs after OpenClaw performs generic transcript cleanup. Use this for
+   * Runs after Urbicana performs generic transcript cleanup. Use this for
    * provider-specific replay rewrites that should stay with the provider
    * plugin rather than in shared core compaction helpers.
    */
@@ -259,7 +259,7 @@ export type ProviderPlugin = {
   /**
    * Provider-owned tool-schema normalization.
    *
-   * Use this for transport-family schema cleanup before OpenClaw registers
+   * Use this for transport-family schema cleanup before Urbicana registers
    * tools with the embedded runner.
    */
   normalizeToolSchemas?: (
@@ -317,7 +317,7 @@ export type ProviderPlugin = {
    */
   supportsSystemPromptCacheBoundary?: boolean;
   /**
-   * Provider-owned stream wrapper applied after generic OpenClaw wrappers.
+   * Provider-owned stream wrapper applied after generic Urbicana wrappers.
    *
    * Typical uses: provider attribution headers, request-body rewrites, or
    * provider-specific compat payload patches that do not justify a separate
@@ -370,7 +370,7 @@ export type ProviderPlugin = {
   /**
    * Runtime auth exchange hook.
    *
-   * Called after OpenClaw resolves the raw configured credential but before the
+   * Called after Urbicana resolves the raw configured credential but before the
    * runner stores it in runtime auth storage. This lets plugins exchange a
    * source credential (for example a GitHub token) into a short-lived runtime
    * token plus optional base URL override.
@@ -428,7 +428,7 @@ export type ProviderPlugin = {
    * Provider-owned missing-auth message override.
    *
    * Return a custom message when the provider wants a more specific recovery
-   * hint than OpenClaw's generic auth-store guidance.
+   * hint than Urbicana's generic auth-store guidance.
    */
   buildMissingAuthMessage?: (
     ctx: ProviderBuildMissingAuthMessageContext,
@@ -437,7 +437,7 @@ export type ProviderPlugin = {
    * Provider-owned unknown-model hint override.
    *
    * Return a suffix when the provider wants a more specific recovery hint than
-   * OpenClaw's generic `Unknown model` error after catalog/runtime lookup
+   * Urbicana's generic `Unknown model` error after catalog/runtime lookup
    * fails.
    */
   buildUnknownModelHint?: (ctx: ProviderBuildUnknownModelHintContext) => string | null | undefined;
@@ -445,7 +445,7 @@ export type ProviderPlugin = {
    * Provider-owned built-in model suppression.
    *
    * Return `{ suppress: true }` to hide a stale upstream row. Include
-   * `errorMessage` when OpenClaw should surface a provider-specific hint for
+   * `errorMessage` when Urbicana should surface a provider-specific hint for
    * direct model resolution failures.
    *
    * @deprecated Use manifest `modelCatalog.suppressions`. Runtime suppression
@@ -462,7 +462,7 @@ export type ProviderPlugin = {
    * compatibility during the migration window.
    *
    * Return extra rows to append to the final catalog after discovery/config
-   * merging. OpenClaw deduplicates by `provider/id`, so plugins only need to
+   * merging. Urbicana deduplicates by `provider/id`, so plugins only need to
    * describe the desired supplemental rows.
    */
   augmentModelCatalog?: (
@@ -477,7 +477,7 @@ export type ProviderPlugin = {
    * Provider-owned thinking level profile.
    *
    * Prefer this over the individual thinking capability hooks when a provider
-   * or model exposes a custom set of thinking levels. OpenClaw stores the
+   * or model exposes a custom set of thinking levels. Urbicana stores the
    * canonical `id`, shows `label` when provided, and downgrades stale stored
    * values by profile rank.
    */
@@ -490,7 +490,7 @@ export type ProviderPlugin = {
    * Provider-owned system-prompt contribution.
    *
    * Use this when a provider/model family needs cache-aware prompt tuning
-   * without replacing the full OpenClaw-owned system prompt.
+   * without replacing the full Urbicana-owned system prompt.
    */
   resolveSystemPromptContribution?: (
     ctx: ProviderSystemPromptContributionContext,
@@ -498,7 +498,7 @@ export type ProviderPlugin = {
   /**
    * Provider-owned GPT/model prompt overlay seam.
    *
-   * Runs after OpenClaw's built-in overlay is resolved and before the
+   * Runs after Urbicana's built-in overlay is resolved and before the
    * provider's regular system-prompt contribution is merged.
    */
   resolvePromptOverlay?: (
@@ -507,7 +507,7 @@ export type ProviderPlugin = {
   /**
    * Provider-owned fallback route override for model/profile failure handling.
    *
-   * Return undefined/null to keep OpenClaw's default fallback policy.
+   * Return undefined/null to keep Urbicana's default fallback policy.
    */
   followupFallbackRoute?: (
     ctx: ProviderFollowupFallbackRouteContext,
@@ -523,7 +523,7 @@ export type ProviderPlugin = {
    * Provider-owned final system-prompt transform.
    *
    * Use this sparingly when a provider transport needs small compatibility
-   * rewrites after OpenClaw has assembled the complete prompt. Return
+   * rewrites after Urbicana has assembled the complete prompt. Return
    * `undefined`/`null` to leave the prompt unchanged.
    */
   transformSystemPrompt?: (ctx: ProviderTransformSystemPromptContext) => string | null | undefined;
@@ -531,7 +531,7 @@ export type ProviderPlugin = {
    * Provider-owned bidirectional text replacements.
    *
    * `input` applies to system prompts and text message content before transport.
-   * `output` applies to assistant text deltas/final text before OpenClaw handles
+   * `output` applies to assistant text deltas/final text before Urbicana handles
    * its own control markers or channel delivery.
    */
   textTransforms?: PluginTextTransforms;
@@ -555,7 +555,7 @@ export type ProviderPlugin = {
   /**
    * Provider-owned auth-profile API-key formatter.
    *
-   * OpenClaw uses this when a stored auth profile is already valid and needs to
+   * Urbicana uses this when a stored auth profile is already valid and needs to
    * be converted into the runtime `apiKey` string expected by the provider. Use
    * this for providers whose auth profile stores extra metadata alongside the
    * bearer token (for example Gemini CLI's `{ token, projectId }` payload).
@@ -588,7 +588,7 @@ export type ProviderPlugin = {
   /**
    * Provider-owned OAuth refresh.
    *
-   * OpenClaw calls this before falling back to the shared `shared model runtime` OAuth
+   * Urbicana calls this before falling back to the shared `shared model runtime` OAuth
    * refreshers. Use it when the provider has a custom refresh endpoint, or when
    * the provider needs custom refresh-failure behavior that should stay out of
    * core auth-profile code.
@@ -599,7 +599,7 @@ export type ProviderPlugin = {
    *
    * Return a multiline repair hint when OAuth refresh fails and the provider
    * wants to steer users toward a specific auth-profile migration or recovery
-   * path. Return nothing to keep OpenClaw's generic error text.
+   * path. Return nothing to keep Urbicana's generic error text.
    */
   buildAuthDoctorHint?: (
     ctx: ProviderAuthDoctorHintContext,
@@ -628,7 +628,7 @@ export type ProviderPlugin = {
   ) => ProviderSyntheticAuthResult | null | undefined;
   /**
    * Prepare external availability before synchronous synthetic-auth reads.
-   * Keep process/network I/O here; OpenClaw publishes the completed result for this generation.
+   * Keep process/network I/O here; Urbicana publishes the completed result for this generation.
    */
   prepareSyntheticAuth?: (
     ctx: ProviderResolveSyntheticAuthContext & {
@@ -656,7 +656,7 @@ export type ProviderPlugin = {
    *
    * Return true when a stored profile API key is only a provider-owned
    * synthetic placeholder and should yield to env/config-backed auth before
-   * OpenClaw falls back to that stored profile.
+   * Urbicana falls back to that stored profile.
    */
   shouldDeferSyntheticProfileAuth?: (
     ctx: ProviderDeferSyntheticProfileAuthContext,

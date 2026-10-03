@@ -2,7 +2,7 @@
   "name": "@openclaw/github-copilot-provider",
   "version": "2026.9.6",
   "private": true,
-  "description": "OpenClaw GitHub Copilot provider plugin",
+  "description": "Urbicana GitHub Copilot provider plugin",
   "type": "module",
   "devDependencies": {
     "@openclaw/plugin-sdk": "workspace:*"

@@ -1867,7 +1867,7 @@ describe("native hook relay registry", () => {
     expect(testing.getNativeHookRelayRegistrationForTests(relay.relayId)).toBeUndefined();
   });
 
-  it("uses the Codex no-op output when no OpenClaw hook decides", async () => {
+  it("uses the Codex no-op output when no Urbicana hook decides", async () => {
     const relay = registerRelay();
 
     for (const event of ["pre_tool_use", "post_tool_use", "before_agent_finalize"] as const) {
@@ -1879,7 +1879,7 @@ describe("native hook relay registry", () => {
     }
   });
 
-  it("maps Codex PreToolUse to OpenClaw before_tool_call and blocks before execution", async () => {
+  it("maps Codex PreToolUse to Urbicana before_tool_call and blocks before execution", async () => {
     const beforeToolCall = vi.fn(async () => ({
       block: true,
       blockReason: "repo policy blocks this command",
@@ -2070,7 +2070,7 @@ describe("native hook relay registry", () => {
     });
   });
 
-  it("normalizes Codex exec_command argv cmd input before running OpenClaw policy", async () => {
+  it("normalizes Codex exec_command argv cmd input before running Urbicana policy", async () => {
     const beforeToolCall = vi.fn(async () => ({
       block: true,
       blockReason: "argv command blocked",
@@ -2172,7 +2172,7 @@ describe("native hook relay registry", () => {
         hookEventName: "PreToolUse",
         permissionDecision: "deny",
         permissionDecisionReason:
-          "OpenClaw tool policy rewrote Codex app-server approval params; refusing original request.",
+          "Urbicana tool policy rewrote Codex app-server approval params; refusing original request.",
       },
     });
     expect(beforeToolCall).toHaveBeenCalledTimes(1);
@@ -2205,7 +2205,7 @@ describe("native hook relay registry", () => {
         hookEventName: "PreToolUse",
         permissionDecision: "deny",
         permissionDecisionReason:
-          "OpenClaw tool policy rewrote Codex app-server approval params; refusing original request.",
+          "Urbicana tool policy rewrote Codex app-server approval params; refusing original request.",
       },
     });
     expect(beforeToolCall).toHaveBeenCalledTimes(1);
@@ -2430,7 +2430,7 @@ describe("native hook relay registry", () => {
     });
   });
 
-  it("maps Codex PostToolUse to OpenClaw after_tool_call observation", async () => {
+  it("maps Codex PostToolUse to Urbicana after_tool_call observation", async () => {
     const afterToolCall = vi.fn();
     initializeGlobalHookRunner(
       createMockPluginRegistry([

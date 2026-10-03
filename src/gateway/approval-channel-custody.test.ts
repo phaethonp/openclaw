@@ -202,7 +202,7 @@ describe("prepareApprovalChannelCustody", () => {
       mocks.hasApproverSettings.value = false;
     });
 
-    it("lets only a configured owner decide an OpenClaw change", () => {
+    it("lets only a configured owner decide an Urbicana change", () => {
       expect(
         prepareApprovalChannelCustody({
           cfg: ownerCfg,

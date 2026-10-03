@@ -292,7 +292,7 @@ describe("googleChatApprovalNativeRuntime", () => {
           approvalKind: "system-agent",
           id: "system-agent:change-1",
           request: {
-            title: "OpenClaw change",
+            title: "Urbicana change",
             description: "restart the Gateway",
             command: "restart the Gateway",
             proposalHash: "a".repeat(64),
@@ -313,7 +313,7 @@ describe("googleChatApprovalNativeRuntime", () => {
           approvalKind: "system-agent",
           approvalId: "system-agent:change-1",
           phase: "resolved",
-          title: "OpenClaw change",
+          title: "Urbicana change",
           metadata: [],
           commandText: "restart the Gateway",
           operationSummary: "restart the Gateway",
@@ -327,7 +327,7 @@ describe("googleChatApprovalNativeRuntime", () => {
       expect(result).toMatchObject({
         kind: "update",
         payload: {
-          cardsV2: [{ card: { header: { title: `OpenClaw Change Approval: ${label}` } } }],
+          cardsV2: [{ card: { header: { title: `Urbicana Change Approval: ${label}` } } }],
         },
       });
     },

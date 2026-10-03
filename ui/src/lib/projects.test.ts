@@ -231,14 +231,14 @@ describe("registered project catalog", () => {
   });
 
   it.each([
-    ["https://github.com/OpenClaw/ClawSweeper.git", true],
-    ["git@github.com:OpenClaw/ClawSweeper.git", true],
-    ["github.com:OpenClaw/ClawSweeper.git", true],
-    ["ssh://git@github.com/OpenClaw/ClawSweeper.git", true],
-    ["ssh://github.com/OpenClaw/ClawSweeper.git", true],
-    ["ssh://github.com:22/OpenClaw/ClawSweeper.git", true],
-    ["ssh://github.com:2222/OpenClaw/ClawSweeper.git", false],
-    ["ssh://github.com.evil.test/OpenClaw/ClawSweeper.git", false],
+    ["https://github.com/Urbicana/ClawSweeper.git", true],
+    ["git@github.com:Urbicana/ClawSweeper.git", true],
+    ["github.com:Urbicana/ClawSweeper.git", true],
+    ["ssh://git@github.com/Urbicana/ClawSweeper.git", true],
+    ["ssh://github.com/Urbicana/ClawSweeper.git", true],
+    ["ssh://github.com:22/Urbicana/ClawSweeper.git", true],
+    ["ssh://github.com:2222/Urbicana/ClawSweeper.git", false],
+    ["ssh://github.com.evil.test/Urbicana/ClawSweeper.git", false],
     ["https://gitlab.com/openclaw/clawsweeper.git", false],
     ["https://user:secret@github.com/openclaw/clawsweeper.git", false],
     ["git@evil.test:openclaw/clawsweeper.git", false],

@@ -66,7 +66,7 @@ describe("FaceTime native audio bridge", () => {
     const outputIndex = spawn.mock.calls.findIndex((call) => call[0].endsWith("sox"));
     const captureIndex = spawn.mock.calls.findIndex((call) => call[0] === "/capture");
     expect(outputIndex).toBeGreaterThanOrEqual(0);
-    expect(spawn.mock.calls[outputIndex]?.[1]).toContain("OpenClaw-Feed");
+    expect(spawn.mock.calls[outputIndex]?.[1]).toContain("Urbicana-Feed");
     pump.writeOutputAudio(Buffer.from([4, 5, 6]));
     expect(processes[outputIndex]?.stdin.writes).toEqual([Buffer.from([4, 5, 6])]);
     expect(processes[captureIndex]?.stdin.writes).toEqual([]);
@@ -85,7 +85,7 @@ describe("FaceTime native audio bridge", () => {
     await pump.suppressionReady();
     expect(pump.processOutputSuppressed()).toBe(true);
     const route = pump.routeReady();
-    processes[0]?.stderr.emit("data", "facetime-audio-capture: verified OpenClaw-Mic input");
+    processes[0]?.stderr.emit("data", "facetime-audio-capture: verified Urbicana-Mic input");
     processes[0]?.stderr.emit("data", " route\n");
     await route;
     processes[0]?.stdout.emit("data", Buffer.from([1, 2]));

@@ -36,7 +36,7 @@ import { CODEX_CONTROL_METHODS, type CodexCommandDeps } from "./command-handler-
 import { resolveControlTarget } from "./command-handler-scope.js";
 
 const NO_DIAGNOSTICS_THREAD = [
-  "No Codex thread is attached to this OpenClaw session yet.",
+  "No Codex thread is attached to this Urbicana session yet.",
   "Use /codex threads to find a thread, then /codex resume <thread-id> before sending diagnostics.",
 ].join("\n");
 
@@ -176,7 +176,7 @@ async function previewCodexDiagnosticsFeedbackApproval(
   return [
     targets.length === 1 ? "Codex runtime thread detected." : "Codex runtime threads detected.",
     `Approving diagnostics will also send ${targets.length === 1 ? "this thread's feedback bundle" : "these threads' feedback bundles"} to OpenAI servers.`,
-    "The completed diagnostics reply will list the OpenClaw session ids and Codex thread ids that were sent.",
+    "The completed diagnostics reply will list the Urbicana session ids and Codex thread ids that were sent.",
     ...(displayReason ? [`Note: ${displayReason}`] : []),
     "Included: Codex logs and spawned Codex subthreads when available.",
   ].join("\n");

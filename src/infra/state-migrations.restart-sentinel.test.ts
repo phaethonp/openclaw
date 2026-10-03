@@ -559,7 +559,7 @@ describe("legacy restart sentinel migration", () => {
       await gatewayLock.release();
     }
 
-    expect(result.warnings[0]).toContain("OpenClaw state database is busy");
+    expect(result.warnings[0]).toContain("Urbicana state database is busy");
     expect(fs.existsSync(sourcePath)).toBe(true);
     expect(receipt(env)).toBeUndefined();
   });

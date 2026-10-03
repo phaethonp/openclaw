@@ -1,4 +1,4 @@
-// Defines the top-level OpenClaw configuration type.
+// Defines the top-level Urbicana configuration type.
 import type { z } from "zod";
 import type { TranscriptsConfig } from "../transcripts/config.js";
 import type { ConfigIncludeOwnership } from "./includes.js";
@@ -44,7 +44,7 @@ type RootUpdateConfig = NonNullable<z.input<typeof OpenClawSchemaShape.update>>;
 type RootUiConfig = NonNullable<z.input<typeof OpenClawSchemaShape.ui>>;
 type RootAttachmentsConfig = NonNullable<z.input<typeof OpenClawSchemaShape.attachments>>;
 
-/** Top-level OpenClaw config as read from user/project config files. */
+/** Top-level Urbicana config as read from user/project config files. */
 export type OpenClawConfig = {
   /** @deprecated Doctor-only legacy input. */
   audit?: AuditConfig;

@@ -210,7 +210,7 @@ describe("Codex app-server adopted thread lifecycle", () => {
     },
   );
 
-  it("keeps OpenClaw from overriding App Server model selection across resumes", async () => {
+  it("keeps Urbicana from overriding App Server model selection across resumes", async () => {
     const sessionFile = path.join(tempDir, "session.jsonl");
     const workspaceDir = path.join(tempDir, "workspace");
     const params = createThreadLifecycleParams(sessionFile, workspaceDir);

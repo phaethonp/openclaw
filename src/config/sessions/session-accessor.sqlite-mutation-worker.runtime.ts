@@ -89,7 +89,7 @@ function throwReclamationFailure(
   if (!cleanup.settled) {
     throw new AggregateError(
       [error, ...cleanup.cleanupWarnings.map((warning) => new Error(warning))],
-      "SQLite session reclamation failed and Worker cleanup is incomplete; restart OpenClaw before deleting the owning agent",
+      "SQLite session reclamation failed and Worker cleanup is incomplete; restart Urbicana before deleting the owning agent",
       { cause: error },
     );
   }

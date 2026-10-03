@@ -326,7 +326,7 @@ async function runConnectCommand(
 
 export function registerConnectCli(program: Command): void {
   addNodeCommandOptions(
-    program.command("connect").description("Connect this machine to an OpenClaw Gateway as a node"),
+    program.command("connect").description("Connect this machine to an Urbicana Gateway as a node"),
   )
     .argument("[target]", "oc-pair URL, setup code, or HTTPS Gateway join URL")
     .option("--service", "Install and run the node host as an OS service", false)

@@ -61,7 +61,7 @@ describe("Codex app-server sandbox shell tools", () => {
     return { params, workspaceDir };
   }
 
-  it("exposes OpenClaw sandbox shell tools under distinct names for non-Docker sandbox backends", async () => {
+  it("exposes Urbicana sandbox shell tools under distinct names for non-Docker sandbox backends", async () => {
     const execTool = expectDefined(
       createOpenClawCodingTools({ workspaceDir: tempDir }).find((tool) => tool.name === "exec"),
       "assembled exec tool",

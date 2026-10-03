@@ -341,7 +341,7 @@ describe("maybeRepairGatewayDaemon", () => {
   });
 
   it.each([
-    { environment: "container without an OpenClaw service", detected: true },
+    { environment: "container without an Urbicana service", detected: true },
     { environment: "Kubernetes pod without container markers", kubernetes: true },
     { environment: "globally external supervisor", external: true },
   ])(
@@ -873,7 +873,7 @@ describe("maybeRepairGatewayDaemon", () => {
     expect(note).toHaveBeenCalledWith(formatServiceRepairDeferredNote("external"), "Gateway");
   });
 
-  it("skips gateway service install when a system OpenClaw gateway service exists", async () => {
+  it("skips gateway service install when a system Urbicana gateway service exists", async () => {
     setPlatform("linux");
     service.isLoaded.mockResolvedValue(false);
     findSystemGatewayServices.mockResolvedValue([
@@ -894,9 +894,9 @@ describe("maybeRepairGatewayDaemon", () => {
     expect(service.restart).not.toHaveBeenCalled();
     expect(note).toHaveBeenCalledWith(
       [
-        "System-level OpenClaw gateway service detected while the user gateway service is not installed.",
+        "System-level Urbicana gateway service detected while the user gateway service is not installed.",
         "- openclaw-gateway.service (unit: /etc/systemd/system/openclaw-gateway.service)",
-        "OpenClaw will not install a second user-level gateway service automatically.",
+        "Urbicana will not install a second user-level gateway service automatically.",
         "Run `openclaw gateway status --deep` or `openclaw doctor --deep` to inspect duplicate services.",
         `Set ${SERVICE_REPAIR_POLICY_ENV}=external if a system supervisor owns the gateway lifecycle.`,
       ].join("\n"),

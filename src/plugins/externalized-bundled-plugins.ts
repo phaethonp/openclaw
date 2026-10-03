@@ -7,11 +7,11 @@ export type ExternalizedBundledPluginBridge = {
   bundledPluginId: string;
   /** Plugin id declared by the external package. Defaults to bundledPluginId. */
   pluginId?: string;
-  /** npm spec OpenClaw can install when migrating the bundled plugin out. */
+  /** npm spec Urbicana can install when migrating the bundled plugin out. */
   npmSpec?: string;
   /** Catalog integrity pin for npmSpec; only valid for that exact spec. */
   expectedIntegrity?: string;
-  /** ClawHub spec OpenClaw can install when migrating the bundled plugin out. */
+  /** ClawHub spec Urbicana can install when migrating the bundled plugin out. */
   clawhubSpec?: string;
   /** Optional ClawHub base URL for non-default registries. */
   clawhubUrl?: string;

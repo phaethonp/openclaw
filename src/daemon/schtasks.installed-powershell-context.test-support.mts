@@ -276,7 +276,7 @@ async function main(inputPath: string) {
   );
   childProcess.execFileSync("git", ["--no-optional-locks", "diff", "--quiet", "HEAD", "--"]);
   const managedCwd = await fs.realpath(path.join(input.stateRoot, "fresh"));
-  const taskName = `OpenClaw-context-${randomUUID()}`;
+  const taskName = `Urbicana-context-${randomUUID()}`;
   const root = path.join(input.stateRoot, `powershell-context-${randomUUID()}`);
   await fs.mkdir(root);
   const rows: Array<{

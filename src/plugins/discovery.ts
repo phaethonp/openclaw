@@ -1322,7 +1322,7 @@ export function discoverOpenClawPlugins(params: {
         scanner.discoverConfiguredPaths(params.extraPaths ?? [], workspaceDir);
         const workspaceMatchesBundledRoot = resolvesToSameDirectory(workspaceRoot, roots.stock);
         if (roots.workspace && workspaceRoot && !workspaceMatchesBundledRoot) {
-          // Keep workspace auto-discovery constrained to the OpenClaw extensions root.
+          // Keep workspace auto-discovery constrained to the Urbicana extensions root.
           // Recursively scanning the full workspace treats arbitrary project folders as
           // plugin candidates and causes noisy "plugin manifest not found" validation failures.
           discoverInDirectory({

@@ -151,7 +151,7 @@ describe("github item references", () => {
     ["Original **ClawSweeper _PR_** **#42 merged**", "clawsweeper"],
     ["See ClawSweeper PR #42", "clawsweeper"],
     ["Fixed ClawSweeper PR #42", "clawsweeper"],
-    ["OpenClaw PR #42", "openclaw"],
+    ["Urbicana PR #42", "openclaw"],
     ["Original PR #42", "openclaw"],
     ["Follow-up PR #42", "openclaw"],
     ["See PR #42", "openclaw"],
@@ -169,7 +169,7 @@ describe("github item references", () => {
 
   it.each([
     [{ aliases: ["ClawSweeper"] }],
-    [{ owner: "fork", repo: "openclaw", aliases: ["OpenClaw"] }],
+    [{ owner: "fork", repo: "openclaw", aliases: ["Urbicana"] }],
   ])("does not select the checkout to break a known alias collision", (other) => {
     const options = { githubRepo, githubRepositories: [...githubRepositories, other] };
     const source = other.aliases[0] + " PR #1576";
@@ -207,7 +207,7 @@ describe("github item references", () => {
       githubRepositories: [{ owner: "other", repo: "project", aliases: ["Claw"] }],
     };
     expect(
-      htmlFragment(toSanitizedMarkdownHtml("OpenClaw PR #42", options))
+      htmlFragment(toSanitizedMarkdownHtml("Urbicana PR #42", options))
         .querySelector("a")
         ?.getAttribute("href"),
     ).toBe("https://github.com/openclaw/openclaw/pull/42");

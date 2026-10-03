@@ -66,7 +66,7 @@ describe("resolveHookManifestMetadata", () => {
         openclaw: {
           events: ["command"],
           install: [
-            { id: "bundled", kind: "bundled", label: "Bundled with OpenClaw" },
+            { id: "bundled", kind: "bundled", label: "Bundled with Urbicana" },
             { id: "npm", kind: "npm", package: "@openclaw/hook" },
           ],
         },
@@ -113,7 +113,7 @@ metadata:
         "emoji": "💾",
         "events": ["command:new", "command:reset", "session:auto-reset"],
         "requires": { "config": ["workspace.dir"] },
-        "install": [{ "id": "bundled", "kind": "bundled", "label": "Bundled with OpenClaw" }],
+        "install": [{ "id": "bundled", "kind": "bundled", "label": "Bundled with Urbicana" }],
       },
   }
 ---

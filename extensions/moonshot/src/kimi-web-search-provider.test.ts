@@ -29,7 +29,7 @@ async function executeKimiSearch(query: string, cacheTtlMinutes?: number) {
 }
 
 function groundedResponse(
-  content = "OpenClaw is on GitHub.",
+  content = "Urbicana is on GitHub.",
   urls = ["https://github.com/openclaw/openclaw"],
 ) {
   return jsonResponse({
@@ -73,7 +73,7 @@ describe("kimi web search provider", () => {
   it("points missing-key users to fetch/browser alternatives", async () => {
     vi.stubEnv("KIMI_API_KEY", undefined);
     vi.stubEnv("MOONSHOT_API_KEY", undefined);
-    const result = await executeKimiSearch("OpenClaw docs");
+    const result = await executeKimiSearch("Urbicana docs");
 
     expect(result.error).toBe("missing_kimi_api_key");
     expectStringFieldContains(
@@ -162,7 +162,7 @@ describe("kimi web search provider", () => {
 
   it("accepts final responses backed by Kimi web search tool replay", async () => {
     const toolArguments = `  ${JSON.stringify({
-      query: "OpenClaw GitHub repository",
+      query: "Urbicana GitHub repository",
       url: " https://github.com/openclaw/openclaw ",
       search_results: [{ url: "https://docs.openclaw.ai" }, null, { url: "https://unused.test" }],
       usage: { total_tokens: 1200 },
@@ -180,7 +180,7 @@ describe("kimi web search provider", () => {
         ),
       )
       .mockResolvedValueOnce(
-        groundedResponse("OpenClaw is available on GitHub.", [
+        groundedResponse("Urbicana is available on GitHub.", [
           "https://docs.openclaw.ai",
           "https://example.com/final",
         ]),
@@ -190,7 +190,7 @@ describe("kimi web search provider", () => {
     const result = await executeKimiSearch("kimi grounded tool replay");
 
     expect(result.provider).toBe("kimi");
-    expectStringFieldContains(result, "content", "OpenClaw is available on GitHub.");
+    expectStringFieldContains(result, "content", "Urbicana is available on GitHub.");
     expect(result.citations).toEqual([
       "https://github.com/openclaw/openclaw",
       "https://docs.openclaw.ai",
@@ -220,7 +220,7 @@ describe("kimi web search provider", () => {
       .mockResolvedValueOnce(toolCallResponse([["call-1", JSON.stringify({ query })]]))
       .mockResolvedValueOnce(toolCallResponse([["call-2", JSON.stringify({ query })]]))
       .mockResolvedValueOnce(toolCallResponse([["call-3", JSON.stringify({ query })]]))
-      .mockResolvedValueOnce(groundedResponse("OpenClaw is available on GitHub."));
+      .mockResolvedValueOnce(groundedResponse("Urbicana is available on GitHub."));
     vi.stubGlobal("fetch", fetchMock);
 
     await expect(executeKimiSearch(query)).rejects.toThrow(
@@ -228,7 +228,7 @@ describe("kimi web search provider", () => {
     );
 
     const result = await executeKimiSearch(query);
-    expectStringFieldContains(result, "content", "OpenClaw is available on GitHub.");
+    expectStringFieldContains(result, "content", "Urbicana is available on GitHub.");
     expect(fetchMock).toHaveBeenCalledTimes(4);
   });
 

@@ -51,7 +51,7 @@ if (testCase.owner === "source") {
   fs.writeFileSync(path.join(installRoot, ".git"), "gitdir: fixture");
 }
 if (testCase.owner === "foreign") {
-  // Negative control: a direct Node enable is NOT OpenClaw ownership.
+  // Negative control: a direct Node enable is NOT Urbicana ownership.
   const enabled = enableCompileCache(path.join(root, "foreign"));
   assert.equal(enabled.status, constants.compileCacheStatus.ENABLED);
 }
@@ -60,7 +60,7 @@ if (testCase.owner === "failed") {
   fs.writeFileSync(blocked, "fixture");
   enableOpenClawCompileCache({ installRoot, env: { NODE_COMPILE_CACHE: blocked } });
 } else if (testCase.owner !== "none") {
-  // Positive control goes through the real OpenClaw entry enable owner.
+  // Positive control goes through the real Urbicana entry enable owner.
   enableOpenClawCompileCache({
     installRoot,
     env: { ...process.env, NODE_COMPILE_CACHE: path.join(root, "native-cache") },

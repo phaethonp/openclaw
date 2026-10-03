@@ -136,7 +136,7 @@ export const OpenClawSchemaShape = {
               mcpArgs: z.array(z.string()).optional(),
               /**
                * Profile driver (default: openclaw). "extension" attaches to the user's
-               * signed-in browser through the OpenClaw Chrome extension relay.
+               * signed-in browser through the Urbicana Chrome extension relay.
                */
               driver: z
                 .union([
@@ -186,7 +186,7 @@ export const OpenClawSchemaShape = {
                 ctx.addIssue({
                   code: "custom",
                   path: ["attachOnly"],
-                  message: "Lightpanda requires attachOnly: true; OpenClaw does not launch it",
+                  message: "Lightpanda requires attachOnly: true; Urbicana does not launch it",
                 });
               }
               if (value.driver !== undefined && value.driver !== "openclaw") {
@@ -267,6 +267,7 @@ export const OpenClawSchemaShape = {
           theme: z
             .union([
               z.literal("claw"),
+              z.literal("urbicana"),
               z.literal("knot"),
               z.literal("dash"),
               z.literal("absolutely"),

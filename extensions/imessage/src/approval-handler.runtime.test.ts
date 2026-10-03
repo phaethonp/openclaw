@@ -412,7 +412,7 @@ describe("imessageApprovalNativeRuntime", () => {
         approvalKind: "system-agent",
         id: approvalId,
         request: {
-          title: "OpenClaw change",
+          title: "Urbicana change",
           description: "Update the agent display name",
           command: "config.patch",
           proposalHash: "synthetic-proposal",
@@ -426,7 +426,7 @@ describe("imessageApprovalNativeRuntime", () => {
         approvalKind: "system-agent",
         approvalId,
         phase: "pending",
-        title: "OpenClaw change requires approval",
+        title: "Urbicana change requires approval",
         metadata: [],
         commandText: request.request.description,
         operationSummary: request.request.description,

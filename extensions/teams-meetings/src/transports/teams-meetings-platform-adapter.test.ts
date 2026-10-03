@@ -439,7 +439,7 @@ describe("Microsoft Teams meeting platform adapter", () => {
     expect(currentLeave.clicks).toBe(0);
   });
 
-  it("does not leave a call owned by a newer OpenClaw session", () => {
+  it("does not leave a call owned by a newer Urbicana session", () => {
     const leave = control({ label: "Leave" });
     const inCallUrl = "https://teams.microsoft.com/v2/";
     const { result } = runLeaveScript({
@@ -773,7 +773,7 @@ describe("Microsoft Teams meeting platform adapter", () => {
 
   it.each([
     ["BlackHole 2ch", "BlackHole 2ch (Virtual)"],
-    ["OpenClaw Meeting Audio", "OpenClaw Meeting Audio"],
+    ["Urbicana Meeting Audio", "Urbicana Meeting Audio"],
   ])(
     "reports verified %s routes only after the exact input marker and output sink agree",
     async (deviceLabel, selectedInputLabel) => {
@@ -815,7 +815,7 @@ describe("Microsoft Teams meeting platform adapter", () => {
     },
   );
 
-  it.each(["OpenClaw Meeting Audio (Virtual)", "Monitor of OpenClaw Meeting Audio"])(
+  it.each(["Urbicana Meeting Audio (Virtual)", "Monitor of Urbicana Meeting Audio"])(
     "rejects the non-contract virtual audio label %s",
     async (deviceLabel) => {
       const { result } = await runStatusScript({
@@ -831,7 +831,7 @@ describe("Microsoft Teams meeting platform adapter", () => {
         audioInputRouted: false,
         manualAction: {
           message:
-            "Select the OpenClaw virtual audio device as the Teams microphone and verify it is selected before enabling talk-back.",
+            "Select the Urbicana virtual audio device as the Teams microphone and verify it is selected before enabling talk-back.",
           reason: "teams-audio-choice-required",
         },
       });

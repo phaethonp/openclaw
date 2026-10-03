@@ -190,7 +190,7 @@ export async function createWebhookForChannel(params: {
       assertCreateAllowed?.();
       return createChannelWebhook(rest, params.channelId, {
         body: {
-          name: "OpenClaw Agents",
+          name: "Urbicana Agents",
         },
       });
     });

@@ -106,7 +106,7 @@ describe("models-config runtime source snapshot", () => {
             openai: {
               ...runtime,
               baseUrl,
-              headers: { ...runtime.headers, "X-OpenClaw-Test": value },
+              headers: { ...runtime.headers, "X-Urbicana-Test": value },
             },
           },
         },
@@ -123,7 +123,7 @@ describe("models-config runtime source snapshot", () => {
         baseUrl: runtime.baseUrl,
         apiKey: "OPENAI_API_KEY",
         headers: {
-          "X-OpenClaw-Test": "one",
+          "X-Urbicana-Test": "one",
           Authorization: "secretref-env:OPENAI_HEADER_TOKEN",
           "X-Tenant-Token": NON_ENV_SECRETREF_MARKER,
         },
@@ -134,7 +134,7 @@ describe("models-config runtime source snapshot", () => {
         baseUrl: runtime.baseUrl,
         apiKey: "OPENAI_API_KEY",
         headers: {
-          "X-OpenClaw-Test": "two",
+          "X-Urbicana-Test": "two",
           Authorization: "secretref-env:OPENAI_HEADER_TOKEN",
           "X-Tenant-Token": NON_ENV_SECRETREF_MARKER,
         },

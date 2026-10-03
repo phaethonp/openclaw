@@ -42,7 +42,7 @@ async function assertTargetOutsideLiveState(targetPath: string): Promise<void> {
   ]);
   if (isPathInside(canonicalStateDir, canonicalTarget)) {
     throw new Error(
-      `Backup restore target must be outside the live OpenClaw state directory: ${targetPath}`,
+      `Backup restore target must be outside the live Urbicana state directory: ${targetPath}`,
     );
   }
   const configSnapshot = await readConfigFileSnapshot({ observe: false });
@@ -54,7 +54,7 @@ async function assertTargetOutsideLiveState(targetPath: string): Promise<void> {
   for (const { sourcePath } of agentRoots) {
     if (isPathInside(sourcePath, canonicalTarget)) {
       throw new Error(
-        `Backup restore target must be outside the live OpenClaw agent directory: ${targetPath}`,
+        `Backup restore target must be outside the live Urbicana agent directory: ${targetPath}`,
       );
     }
   }

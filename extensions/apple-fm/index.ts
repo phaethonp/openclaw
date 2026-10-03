@@ -11,7 +11,7 @@ const loadStream = createLazyRuntimeModule(() => import("./stream.js"));
 export default defineSingleProviderPluginEntry({
   id: APPLE_FM_PROVIDER_ID,
   name: "Apple Foundation Models",
-  description: "On-device Apple Intelligence inference for lightweight OpenClaw setup",
+  description: "On-device Apple Intelligence inference for lightweight Urbicana setup",
   manifest,
   provider: (api) => {
     const pluginRoot = api.rootDir ?? path.dirname(api.source);

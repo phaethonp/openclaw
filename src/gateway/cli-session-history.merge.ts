@@ -1,5 +1,5 @@
 // Imported CLI history merge helpers.
-// Deduplicates external history messages against local OpenClaw transcripts.
+// Deduplicates external history messages against local Urbicana transcripts.
 import { asFiniteNumber } from "@openclaw/normalization-core/number-coercion";
 import { asOptionalRecord } from "@openclaw/normalization-core/record-coerce";
 import {
@@ -645,7 +645,7 @@ export function mergeImportedChatHistoryMessages(params: {
       const byText = imported.role ? roleTextMinimumOrder.get(imported.role) : undefined;
       const importedMinimumOrder = imported.text ? (byText?.get(imported.text) ?? 0) : 0;
       // A user can quote the complete note. Prefer that literal local turn
-      // before comparing the text after an OpenClaw-generated note.
+      // before comparing the text after an Urbicana-generated note.
       for (const text of [imported.text, imported.driftNoteText]) {
         if (!imported.role || !text) {
           continue;

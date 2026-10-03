@@ -731,7 +731,7 @@ function normalizeMarketplaceExpectedSha256(value: string | undefined): string |
   return hash ? `sha256:${hash.toLowerCase()}` : trimmed;
 }
 
-/** List entries from the configured OpenClaw marketplace feed. */
+/** List entries from the configured Urbicana marketplace feed. */
 export async function runPluginMarketplaceEntriesCommand(
   opts: PluginMarketplaceEntriesOptions,
 ): Promise<void> {
@@ -787,7 +787,7 @@ export async function runPluginMarketplaceEntriesCommand(
   defaultRuntime.log(lines.join("\n"));
 }
 
-/** Refresh the configured OpenClaw marketplace feed snapshot. */
+/** Refresh the configured Urbicana marketplace feed snapshot. */
 export async function runPluginMarketplaceRefreshCommand(
   opts: PluginMarketplaceRefreshOptions,
 ): Promise<void> {

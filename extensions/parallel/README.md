@@ -1,8 +1,8 @@
-# OpenClaw Parallel Plugin
+# Urbicana Parallel Plugin
 
-Official OpenClaw plugin for Parallel.
+Official Urbicana plugin for Parallel.
 
-Install from OpenClaw:
+Install from Urbicana:
 
 ```bash
 openclaw plugins install @openclaw/parallel-plugin

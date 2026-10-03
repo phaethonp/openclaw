@@ -352,7 +352,7 @@ export function createQwenThinkingWrapper(
         // tool-choice normalization; this pass only strips generic fields.
         patchTokenPlanKimiPayload(payloadObj, false);
       } else if (tokenPlanContract?.family === "glm") {
-        // GLM accepts OpenClaw's reasoning levels directly; only GLM 5.2 accepts max.
+        // GLM accepts Urbicana's reasoning levels directly; only GLM 5.2 accepts max.
         patchTokenPlanGlmPayload(
           payloadObj,
           effectiveThinkingLevel,

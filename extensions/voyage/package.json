@@ -1,7 +1,7 @@
 {
   "name": "@openclaw/voyage-provider",
   "version": "2026.9.6",
-  "description": "OpenClaw Voyage embedding provider plugin.",
+  "description": "Urbicana Voyage embedding provider plugin.",
   "repository": {
     "type": "git",
     "url": "https://github.com/openclaw/openclaw"

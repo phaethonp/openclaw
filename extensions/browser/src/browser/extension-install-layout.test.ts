@@ -197,8 +197,8 @@ describe("deterministic unpacked extension ID", () => {
   });
 
   it("normalizes only a lowercase Windows drive letter", () => {
-    expect(generateChromeExtensionIdForPath("c:\\OpenClaw\\extension", "win32")).toBe(
-      generateChromeExtensionIdForPath("C:\\OpenClaw\\extension", "win32"),
+    expect(generateChromeExtensionIdForPath("c:\\Urbicana\\extension", "win32")).toBe(
+      generateChromeExtensionIdForPath("C:\\Urbicana\\extension", "win32"),
     );
   });
 });
@@ -221,13 +221,13 @@ describe("Chrome preferences discovery", () => {
         userDataDir: chrome.userDataDir,
         profile: "Default",
         entries: {
-          [installedId]: { location: 4, path: installed, manifest: { name: "Not OpenClaw" } },
+          [installedId]: { location: 4, path: installed, manifest: { name: "Not Urbicana" } },
           [FOUNDATION_STORE_ID]: {
             location: 1,
             from_webstore: true,
             path: path.join(value.root, "foreign-store-lookalike"),
           },
-          ["p".repeat(32)]: { location: 1, path: installed, manifest: { name: "OpenClaw" } },
+          ["p".repeat(32)]: { location: 1, path: installed, manifest: { name: "Urbicana" } },
         },
       });
       await writeChromePreferences({
@@ -417,7 +417,7 @@ describe("Chrome preferences discovery", () => {
 
     expect(status.discovered).toEqual([]);
     expect(status.manualSetupRequired).toBe(true);
-    expect(status.issues.join("\n")).toContain("not OpenClaw-owned");
+    expect(status.issues.join("\n")).toContain("not Urbicana-owned");
   });
 });
 

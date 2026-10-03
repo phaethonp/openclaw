@@ -1,5 +1,5 @@
 /**
- * OpenClaw-managed Chrome profile decoration.
+ * Urbicana-managed Chrome profile decoration.
  *
  * Applies managed-browser policy, a stable profile name, color, download
  * directory, and clean-exit markers to Chrome's profile files.
@@ -96,7 +96,7 @@ export function usesOpenClawMockKeychain(userDataDir: string): boolean {
   );
 }
 
-/** Disable Chromium network prediction in an OpenClaw-managed Chrome profile. */
+/** Disable Chromium network prediction in an Urbicana-managed Chrome profile. */
 export function ensureProfileNetworkPredictionDisabled(userDataDir: string) {
   const preferencesPath = path.join(userDataDir, "Default", "Preferences");
   const prefs = safeReadJson(preferencesPath) ?? {};

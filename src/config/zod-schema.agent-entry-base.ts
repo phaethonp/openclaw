@@ -30,7 +30,7 @@ const AgentModelRuntimeEntrySchema = z
       )
       .max(8)
       .optional(),
-    /** OpenClaw Code Mode override; omitted inherits the enclosing activation policy. */
+    /** Urbicana Code Mode override; omitted inherits the enclosing activation policy. */
     codeMode: z.boolean().optional(),
     /** Enable streaming for this model (default: true, false for Ollama to avoid SDK issue #1205). */
     streaming: z.boolean().optional(),

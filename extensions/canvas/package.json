@@ -2,7 +2,7 @@
   "name": "@openclaw/canvas-plugin",
   "version": "2026.9.6",
   "private": true,
-  "description": "OpenClaw Canvas plugin",
+  "description": "Urbicana Canvas plugin",
   "type": "module",
   "devDependencies": {
     "@openclaw/plugin-sdk": "workspace:*"

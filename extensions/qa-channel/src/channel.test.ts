@@ -116,7 +116,7 @@ function createQaChannelConfig(params: {
       "qa-channel": {
         baseUrl: params.baseUrl,
         botUserId: "openclaw",
-        botDisplayName: "OpenClaw QA",
+        botDisplayName: "Urbicana QA",
         allowFrom: params.allowFrom,
         mediaMaxMb: params.mediaMaxMb,
       },

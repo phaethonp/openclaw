@@ -156,7 +156,7 @@ export class FaceTimeHelperSupervisor {
     state.connected = false;
     state.stale = true;
     state.staleProcessId = staleProcessId;
-    state.lastError = `Restart ${target} to load the updated OpenClaw helper`;
+    state.lastError = `Restart ${target} to load the updated Urbicana helper`;
     if (!wasStale) {
       this.params.logger.warn(`[facetime] ${state.lastError}`);
     }

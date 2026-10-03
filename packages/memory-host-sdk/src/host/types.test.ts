@@ -82,7 +82,7 @@ describe("memory search staleness", () => {
           indexIdentity: {
             status: "mismatched",
             reason:
-              "the index was written by a newer OpenClaw version; upgrade OpenClaw or reindex explicitly",
+              "the index was written by a newer Urbicana version; upgrade Urbicana or reindex explicitly",
             code,
             owner: "openclaw",
             versionOrder: "newer",
@@ -90,15 +90,15 @@ describe("memory search staleness", () => {
         },
       };
       const result = resolveMemorySearchStaleness(status, "main");
-      expect(result?.warning).toContain("newer OpenClaw version");
+      expect(result?.warning).toContain("newer Urbicana version");
       expect(result?.warning).toContain("Previous memory sync failed: HTTP 400");
-      expect(result?.action).toContain("Upgrade OpenClaw or reindex explicitly");
+      expect(result?.action).toContain("Upgrade Urbicana or reindex explicitly");
       expect(result?.action).toContain("provider cost");
       expect(status.lastSyncError).toBe("HTTP 400: embedding provider unavailable");
     },
   );
 
-  it("attributes an OpenClaw-owned format mismatch and names the repair cost", () => {
+  it("attributes an Urbicana-owned format mismatch and names the repair cost", () => {
     const status: MemoryProviderStatus = {
       backend: "builtin",
       provider: "openai",

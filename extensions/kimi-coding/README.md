@@ -1,8 +1,8 @@
-# OpenClaw Kimi Coding Provider
+# Urbicana Kimi Coding Provider
 
-Official OpenClaw provider plugin for Kimi Coding.
+Official Urbicana provider plugin for Kimi Coding.
 
-Install from OpenClaw:
+Install from Urbicana:
 
 ```bash
 openclaw plugins install @openclaw/kimi-provider
@@ -13,7 +13,7 @@ See <https://docs.openclaw.ai/providers/moonshot> for setup and configuration.
 
 ## Quota errors
 
-Kimi can return HTTP 403 when a weekly usage limit is exhausted. OpenClaw treats
+Kimi can return HTTP 403 when a weekly usage limit is exhausted. Urbicana treats
 explicit weekly, seven-day, or quota-reset errors as rate limits. Wait for the
 provider's quota window to reset or use another configured provider; replacing a
 valid API key does not restore quota. Invalid keys and access restrictions keep

@@ -181,7 +181,7 @@ export function createProfileTabOps({ profile, state, runtime }: TabOpsDeps): Pr
             : undefined;
         return pages.filter(isSelectableCdpBrowserTarget).map((p) => {
           // Correlate only by the relay's exact CDP target id. The native Chrome
-          // tab id is runtime-scoped and must not replace OpenClaw's stable tN alias.
+          // tab id is runtime-scoped and must not replace Urbicana's stable tN alias.
           const webExtensionTabId = webExtensionTabIds?.get(p.targetId);
           const tab: BrowserTab = {
             targetId: p.targetId,

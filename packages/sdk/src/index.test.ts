@@ -90,7 +90,7 @@ function waitForSnapshot(runId: string, fields: Record<string, unknown> = {}) {
   return createClientFixture({ "agent.wait": snapshot }).oc.runs.wait(runId);
 }
 
-describe("OpenClaw SDK", () => {
+describe("Urbicana SDK", () => {
   it("runs an agent through the Gateway agent method", async () => {
     const { transport, oc } = createClientFixture({
       agent: { status: "accepted", runId: "run_123" },
@@ -296,7 +296,7 @@ describe("OpenClaw SDK", () => {
         approvals: "ask",
       }),
     ).rejects.toThrow(
-      "OpenClaw Gateway does not support per-run SDK options yet: workspace, runtime, environment, approvals",
+      "Urbicana Gateway does not support per-run SDK options yet: workspace, runtime, environment, approvals",
     );
   });
 
@@ -469,7 +469,7 @@ describe("OpenClaw SDK", () => {
       status: "unavailable",
     });
     await expect(oc.environments.delete("worker_123")).rejects.toThrow(
-      "oc.environments.delete is not supported by the current OpenClaw Gateway yet",
+      "oc.environments.delete is not supported by the current Urbicana Gateway yet",
     );
     expect(transport.calls).toEqual([
       { method: "environments.list", params: {}, options: undefined },
@@ -552,13 +552,13 @@ describe("OpenClaw SDK", () => {
     const close = oc.close();
     transport.finishConnect();
 
-    await expect(connect).rejects.toThrow("OpenClaw SDK client is closed");
+    await expect(connect).rejects.toThrow("Urbicana SDK client is closed");
     await close;
-    await expect(oc.agents.list()).rejects.toThrow("OpenClaw SDK client is closed");
+    await expect(oc.agents.list()).rejects.toThrow("Urbicana SDK client is closed");
     await expect(oc.events()[Symbol.asyncIterator]().next()).rejects.toThrow(
-      "OpenClaw SDK client is closed",
+      "Urbicana SDK client is closed",
     );
-    expect(() => oc.rawEvents()).toThrow("OpenClaw SDK client is closed");
+    expect(() => oc.rawEvents()).toThrow("Urbicana SDK client is closed");
     expect(transport.connectCalls).toBe(1);
     expect(transport.calls).toEqual([]);
   });
@@ -599,7 +599,7 @@ describe("OpenClaw SDK", () => {
       closePromise = oc.close();
     };
 
-    await expect(oc.agents.list()).rejects.toThrow("OpenClaw SDK client is closed");
+    await expect(oc.agents.list()).rejects.toThrow("Urbicana SDK client is closed");
     await closePromise;
     expect(transport.calls).toEqual([]);
   });

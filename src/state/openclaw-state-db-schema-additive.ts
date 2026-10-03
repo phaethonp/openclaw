@@ -79,7 +79,7 @@ export function ensureSecretStoreSchema(database: DatabaseSync): void {
     extractSqliteTableSchema(OPENCLAW_STATE_SCHEMA_SQL, "secret_store_entries", {
       endMarker:
         "ON secret_store_entries (scope_kind, scope_id, name) WHERE deleted_at_ms IS NULL;",
-      errorMessage: "OpenClaw secret store schema marker is missing.",
+      errorMessage: "Urbicana secret store schema marker is missing.",
     }),
   ); // sqlite-allow-raw -- Canonical additive DDL only.
   ensureColumn(database, "secret_store_entries", "allowed_hosts TEXT");
@@ -89,7 +89,7 @@ export function ensureSecretStoreSchema(database: DatabaseSync): void {
 export function ensureMcpOAuthPendingSchema(database: DatabaseSync): void {
   database.exec(
     extractSqliteTableSchema(OPENCLAW_STATE_SCHEMA_SQL, "mcp_oauth_pending_authorizations", {
-      errorMessage: "OpenClaw MCP OAuth pending schema marker is missing.",
+      errorMessage: "Urbicana MCP OAuth pending schema marker is missing.",
     }),
   ); // sqlite-allow-raw -- Canonical additive DDL only.
 }
@@ -98,7 +98,7 @@ export function ensureMcpOAuthPendingSchema(database: DatabaseSync): void {
 export function ensureDevicePairingJoinCodeSchema(database: DatabaseSync): void {
   database.exec(
     extractSqliteTableSchema(OPENCLAW_STATE_SCHEMA_SQL, "device_pairing_join_codes", {
-      errorMessage: "OpenClaw device pairing join-code schema marker is missing.",
+      errorMessage: "Urbicana device pairing join-code schema marker is missing.",
     }),
   ); // sqlite-allow-raw -- Canonical additive DDL only.
 }
@@ -107,7 +107,7 @@ export function ensureDevicePairingJoinCodeSchema(database: DatabaseSync): void 
 export function ensureConfigRevisionKeySchema(database: DatabaseSync): void {
   database.exec(
     extractSqliteTableSchema(OPENCLAW_STATE_SCHEMA_SQL, "config_revision_keys", {
-      errorMessage: "OpenClaw config revision key schema marker is missing.",
+      errorMessage: "Urbicana config revision key schema marker is missing.",
     }),
   ); // sqlite-allow-raw -- Canonical additive DDL only; key rows use Kysely.
 }

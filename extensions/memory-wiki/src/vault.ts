@@ -68,7 +68,7 @@ function buildWikiOverviewMarkdown(config: ResolvedMemoryWikiConfig): string {
   return withTrailingNewline(`\
 # Memory Wiki
 
-This vault is maintained by the OpenClaw memory-wiki plugin.
+This vault is maintained by the Urbicana memory-wiki plugin.
 
 - Vault mode: \`${config.vaultMode}\`
 - Render mode: \`${config.vault.renderMode}\`
@@ -78,7 +78,7 @@ This vault is maintained by the OpenClaw memory-wiki plugin.
 - Raw sources remain the evidence layer.
 - To keep unmanaged raw Markdown in \`sources/\`, add \`${WIKI_RAW_SOURCE_MARKER}\` near the top of the page.
 - Wiki pages are the human-readable synthesis layer.
-- Compiled query and prompt snapshots live in OpenClaw plugin state, not vault files.
+- Compiled query and prompt snapshots live in Urbicana plugin state, not vault files.
 
 ## Notes
 <!-- openclaw:human:start -->

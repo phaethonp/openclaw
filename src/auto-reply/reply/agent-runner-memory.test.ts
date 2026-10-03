@@ -2649,7 +2649,7 @@ describe("runMemoryFlushIfNeeded", () => {
     expect(refreshQueuedFollowupSessionMock).not.toHaveBeenCalled();
   });
 
-  it("skips OpenClaw preflight compaction for explicit Codex runtime overrides", async () => {
+  it("skips Urbicana preflight compaction for explicit Codex runtime overrides", async () => {
     registerMemoryFlushPlanResolverForTest(() =>
       createModifiedMemoryFlushPlan({
         reserveTokensFloor: 0,
@@ -2755,7 +2755,7 @@ describe("runMemoryFlushIfNeeded", () => {
     expect(compactEmbeddedAgentSessionMock).not.toHaveBeenCalled();
   });
 
-  it("keeps the OpenAI API context window for persisted OpenClaw runtime overrides", async () => {
+  it("keeps the OpenAI API context window for persisted Urbicana runtime overrides", async () => {
     registerMemoryFlushPlanResolverForTest(() =>
       createModifiedMemoryFlushPlan({
         reserveTokensFloor: 0,

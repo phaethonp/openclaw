@@ -34,26 +34,13 @@ async function runStatic() {
     .filter((row) => row.length > 0);
 }
 
-const EXPECTED_MASCOT = [
-  " •●●:.        .:●●•",
-  ":●●●●:        :●●●●:",
-  ".●●●●:.:•●●•:.:●●●●.",
-  " .●●●: •●●●●• :●●●.",
-  " ..:••●●●●●●●●••:..",
-  ".::••••●●●●●●••••::.",
-  " . .:  •●●●●•  :. .",
-  "    .  :●●●●:  .",
-  "      .●●●●●●.",
-  "       :••••:",
-] as const;
-
 describe("printClawBanner", () => {
   it("prints the static banner when not animatable", async () => {
     const { runtime, log } = runtimeStub();
     await printClawBanner(runtime, { columns: 120, isTty: false, env: {} });
     const output = stripAnsi(String(log.mock.calls[0]?.[0]));
     const rows = output.split("\n").filter((row) => row.length > 0);
-    expect(rows.map((row) => row.slice(0, 20).trimEnd())).toEqual(EXPECTED_MASCOT);
+    expect(rows).toHaveLength(3);
     expect(output).toContain("█▀▀▀█ █▀▀▀█ █▀▀▀▀ █▄  █");
   });
 
@@ -65,31 +52,22 @@ describe("printClawBanner", () => {
 
   it("falls back to the plain title on narrow terminals", async () => {
     const { runtime, log } = runtimeStub();
-    await printClawBanner(runtime, { columns: 50, isTty: true, rich: true, env: {} });
+    await printClawBanner(runtime, { columns: 40, isTty: true, rich: true, env: {} });
     const output = String(log.mock.calls[0]?.[0]);
     expect(output).toContain("OPENCLAW");
     expect(output).not.toContain("█");
   });
 
-  it("wipes, shimmers once, and snips once within the startup pause budget", async () => {
+  it("wipes and shimmers once within the startup pause budget", async () => {
     const staticRows = await runStatic();
     const { chunks, pauses, result } = await runAnimated();
     expect(result).toBe("completed");
     expect(pauses.reduce((total, ms) => total + ms, 0)).toBeLessThanOrEqual(400);
-    expect(pauses).toEqual([...Array<number>(13).fill(20), 35, 35]);
+    expect(pauses).toEqual(Array<number>(12).fill(20));
     expect(chunks[0]).toBe("\x1b[?25l");
     expect(chunks).toContain("\x1b[?25h");
     const frames = chunks.filter((chunk) => chunk.includes("\x1b[K"));
-    expect(frames).toHaveLength(16);
-    expect(
-      frames.flatMap((frame, index) => {
-        const [first = "", second = ""] = stripAnsi(frame).split("\n");
-        return first.slice(0, 20).trimEnd() === "•●•.:.        .:.•●•" &&
-          second.slice(0, 20).trimEnd() === ":●●●•:        :•●●●:"
-          ? [index]
-          : [];
-      }),
-    ).toEqual([13]);
+    expect(frames).toHaveLength(13);
     const finalRows = stripAnsi(frames[frames.length - 1] ?? "")
       .split("\n")
       .filter((row) => row.length > 0);

@@ -30,7 +30,7 @@ export async function runMatrixQaE2eeCliAccountAddEnableE2eeScenario(
   const accountId = "cli-add-e2ee";
   const account = await registerMatrixQaCliE2eeAccount({
     context,
-    deviceName: "OpenClaw Matrix QA CLI Account Add Owner",
+    deviceName: "Urbicana Matrix QA CLI Account Add Owner",
     scenarioId: "matrix-e2ee-cli-account-add-enable-e2ee",
   });
   const cli = await createMatrixQaCliE2eeSetupRuntime({
@@ -56,7 +56,7 @@ export async function runMatrixQaE2eeCliAccountAddEnableE2eeScenario(
         "--password",
         account.password,
         "--device-name",
-        "OpenClaw Matrix QA CLI Account Add E2EE",
+        "Urbicana Matrix QA CLI Account Add E2EE",
         "--allow-private-network",
         "--enable-e2ee",
         "--json",
@@ -129,13 +129,13 @@ export async function runMatrixQaE2eeCliEncryptionSetupScenario(
   const accountId = "cli-encryption-setup";
   const account = await registerMatrixQaCliE2eeAccount({
     context,
-    deviceName: "OpenClaw Matrix QA CLI Encryption Setup Owner",
+    deviceName: "Urbicana Matrix QA CLI Encryption Setup Owner",
     scenarioId: "matrix-e2ee-cli-encryption-setup",
   });
   const cliDevice = await loginMatrixQaCliDevice(
     context.baseUrl,
     account,
-    "OpenClaw Matrix QA CLI Encryption Setup Device",
+    "Urbicana Matrix QA CLI Encryption Setup Device",
     "Matrix E2EE CLI encryption setup",
   );
   const cli = await createMatrixQaCliE2eeSetupRuntime({
@@ -205,13 +205,13 @@ export async function runMatrixQaE2eeCliEncryptionSetupIdempotentScenario(
   const accountId = "cli-encryption-idempotent";
   const account = await registerMatrixQaCliE2eeAccount({
     context,
-    deviceName: "OpenClaw Matrix QA CLI Encryption Idempotent Owner",
+    deviceName: "Urbicana Matrix QA CLI Encryption Idempotent Owner",
     scenarioId: "matrix-e2ee-cli-encryption-setup-idempotent",
   });
   const cliDevice = await loginMatrixQaCliDevice(
     context.baseUrl,
     account,
-    "OpenClaw Matrix QA CLI Encryption Idempotent Device",
+    "Urbicana Matrix QA CLI Encryption Idempotent Device",
     "Matrix E2EE CLI idempotent setup",
   );
   const cli = await createMatrixQaCliE2eeSetupRuntime({
@@ -289,13 +289,13 @@ export async function runMatrixQaE2eeCliEncryptionSetupBootstrapFailureScenario(
   const accountId = "cli-encryption-failure";
   const account = await registerMatrixQaCliE2eeAccount({
     context,
-    deviceName: "OpenClaw Matrix QA CLI Encryption Failure Owner",
+    deviceName: "Urbicana Matrix QA CLI Encryption Failure Owner",
     scenarioId: "matrix-e2ee-cli-encryption-setup-bootstrap-failure",
   });
   const cliDevice = await loginMatrixQaCliDevice(
     context.baseUrl,
     account,
-    "OpenClaw Matrix QA CLI Encryption Failure Device",
+    "Urbicana Matrix QA CLI Encryption Failure Device",
     "Matrix E2EE CLI bootstrap-failure",
   );
   const proxy = await startMatrixQaFaultProxy({

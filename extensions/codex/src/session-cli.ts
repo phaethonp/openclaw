@@ -253,7 +253,7 @@ async function continueCodexSession(
     writeJson(result);
     return;
   }
-  writeLine(`OpenClaw session: ${singleLineTerminalText(result.sessionKey)}`);
+  writeLine(`Urbicana session: ${singleLineTerminalText(result.sessionKey)}`);
 }
 
 async function archiveCodexSession(
@@ -313,7 +313,7 @@ export function registerCodexSessionCli(program: Command): void {
   addGatewayClientOptions(
     codex
       .command("continue <thread-id>")
-      .description("Continue a Gateway-local Codex thread as an OpenClaw branch")
+      .description("Continue a Gateway-local Codex thread as an Urbicana branch")
       .option("--agent <id>", "Agent id that owns the Codex session")
       .option("--host <id>", "Stable local host id from codex sessions")
       .option("--json", "Print the structured response", false),
@@ -327,7 +327,7 @@ export function registerCodexSessionCli(program: Command): void {
       .option("--host <id>", "Stable local host id from codex sessions")
       .option(
         "--confirm-no-other-runner",
-        "Confirm no other Codex client or OpenClaw runner is using this thread",
+        "Confirm no other Codex client or Urbicana runner is using this thread",
         false,
       )
       .option("--json", "Print the structured response", false),

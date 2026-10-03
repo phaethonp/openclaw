@@ -309,7 +309,7 @@ describe("runDoctorHealthFlow update outcomes", () => {
           .map(([value]) => value)
           .filter(
             (value): value is string =>
-              typeof value === "string" && value.startsWith("# OpenClaw update failure report"),
+              typeof value === "string" && value.startsWith("# Urbicana update failure report"),
           );
         expect(previews).toHaveLength(uncertain || browser ? 2 : 3);
         expect(new Set(previews).size).toBe(1);

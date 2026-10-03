@@ -135,7 +135,7 @@ it.each([
         await fs.writeFile(path.join(cloud, "published-only.ignored"), "cloud publication only\n");
         git(cloud, "add", "-f", "published-only.ignored");
       }
-      git(cloud, "commit", "-qam", "Cloud\n\nOpenClaw-Publication: prior-cloud-publication");
+      git(cloud, "commit", "-qam", "Cloud\n\nUrbicana-Publication: prior-cloud-publication");
       const publishedHead = git(cloud, "rev-parse", "HEAD");
       git(cloud, "push", "origin", repository.branch);
       const priorCurrent = await captureWorkspaceManifest({ root: cloud, baseCommit });

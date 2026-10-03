@@ -1,5 +1,5 @@
---- telegram-direct-codex-message-tool.md	sha256=6650765b9ade850bc3b7f435f79449993534c05edc1eefa5fc5f7c81804cea58
-+++ telegram-heartbeat-codex-tool.md	sha256=068b3a7a85fbdf5a46645e9bfed7f26a3c3bd1f2feb4dd76d4c530abf2f19712
+--- telegram-direct-codex-message-tool.md	sha256=94069686f4865c4dbdc66a23e5451b12305cfb8f3d8e0442e8f8663a84e03d7b
++++ telegram-heartbeat-codex-tool.md	sha256=01b015188ce5d7419e18b8ad606c3c3d82b2678dedd1a55de2db57178e4e0fd7
 @@ -1,1 +1,1 @@
 -# Telegram Direct Codex Message Tool Turn
 +# Telegram Direct Codex Heartbeat Tool Turn
@@ -64,7 +64,7 @@
 -```
 -
 @@ -559,1 +549,0 @@
--[OpenClaw conversation info: sender={"id":"1000001","name":"Pash","username":"pash"}]
+-[Urbicana conversation info: sender={"id":"1000001","name":"Pash","username":"pash"}]
 @@ -578,1 +568,1 @@
 -{"chat_id":"user:1000001","message_id":"tg-msg-0001","sender":{"id":"1000001","name":"Pash","username":"pash"}}
 +{"chat_id":"user:1000001","message_id":"heartbeat-0001","sender":{"id":"1000001","name":"Pash","username":"pash"}}

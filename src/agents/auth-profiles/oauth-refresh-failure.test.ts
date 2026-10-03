@@ -215,7 +215,7 @@ describe("buildAuthProfileUnusableHint", () => {
     });
 
     expect(hint).toBe(
-      "Gemini CLI OAuth cannot be repaired by OpenClaw. Connect Google with an AI Studio API key using `openclaw models auth login --provider google`, then select that Google profile for the Gemini CLI runtime.",
+      "Gemini CLI OAuth cannot be repaired by Urbicana. Connect Google with an AI Studio API key using `openclaw models auth login --provider google`, then select that Google profile for the Gemini CLI runtime.",
     );
     expect(hint).not.toContain("--provider google-gemini-cli");
   });

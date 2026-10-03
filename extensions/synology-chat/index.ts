@@ -3,7 +3,7 @@ import { defineBundledChannelEntry } from "openclaw/plugin-sdk/channel-entry-con
 export default defineBundledChannelEntry({
   id: "synology-chat",
   name: "Synology Chat",
-  description: "Native Synology Chat channel plugin for OpenClaw",
+  description: "Native Synology Chat channel plugin for Urbicana",
   importMetaUrl: import.meta.url,
   plugin: {
     specifier: "./channel-plugin-api.js",

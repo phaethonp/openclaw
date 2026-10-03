@@ -48,7 +48,7 @@ export function registerMatrixDeviceCommands(root: Command): void {
 
   devices
     .command("prune-stale")
-    .description("Delete stale OpenClaw-managed devices for this account")
+    .description("Delete stale Urbicana-managed devices for this account")
     .option("--account <id>", "Account ID (for multi-account setups)")
     .option("--verbose", "Show detailed diagnostics")
     .option("--json", "Output as JSON")
@@ -59,7 +59,7 @@ export function registerMatrixDeviceCommands(root: Command): void {
         onText: (result, verbose) => {
           cli.printAccountLabel(accountId);
           console.log(
-            `Deleted stale OpenClaw devices: ${
+            `Deleted stale Urbicana devices: ${
               result.deletedDeviceIds.length
                 ? result.deletedDeviceIds
                     .map((deviceId) => cli.formatMatrixCliText(deviceId))

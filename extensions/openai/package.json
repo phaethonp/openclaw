@@ -2,7 +2,7 @@
   "name": "@openclaw/openai-provider",
   "version": "2026.9.6",
   "private": true,
-  "description": "OpenClaw OpenAI provider plugins",
+  "description": "Urbicana OpenAI provider plugins",
   "type": "module",
   "dependencies": {
     "jose": "6.2.12",

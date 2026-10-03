@@ -24,7 +24,7 @@ describe("qa-lab server capture helpers", () => {
     const capture = createQaCaptureLifecycle();
     const operation = vi.fn();
     await expect(capture.withStore(operation)).rejects.toThrow(
-      "QA capture requires async proxy capture support. Upgrade the OpenClaw host.",
+      "QA capture requires async proxy capture support. Upgrade the Urbicana host.",
     );
     expect(operation).not.toHaveBeenCalled();
     capture.stopAdmission();

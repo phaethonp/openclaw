@@ -2,7 +2,7 @@
   "name": "@openclaw/google-plugin",
   "version": "2026.9.6",
   "private": true,
-  "description": "OpenClaw Google plugin",
+  "description": "Urbicana Google plugin",
   "type": "module",
   "dependencies": {
     "@google/genai": "2.23.0",

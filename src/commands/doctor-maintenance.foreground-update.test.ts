@@ -186,7 +186,7 @@ it.each([
             message: expect.stringContaining(
               outcome === "authority-lost"
                 ? "update owner was revoked"
-                : "OpenClaw state database is busy at",
+                : "Urbicana state database is busy at",
             ),
           }),
         });
@@ -219,7 +219,7 @@ it.each(["ordinary", "unfenced", "supervised"] as const)(
           runtime: { log, error: vi.fn(), exit: vi.fn() },
           ...(kind === "unfenced" ? {} : { assertCurrent: () => {} }),
         }),
-      ).rejects.toThrow("OpenClaw state database is busy at");
+      ).rejects.toThrow("Urbicana state database is busy at");
       expect(log).not.toHaveBeenCalled();
     } finally {
       predecessor?.release();

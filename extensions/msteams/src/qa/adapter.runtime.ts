@@ -40,7 +40,7 @@ function renderMSTeamsQaText(text: string) {
             {
               type: "mention",
               text: mentionText,
-              mentioned: { id: APP_ID, name: "OpenClaw QA" },
+              mentioned: { id: APP_ID, name: "Urbicana QA" },
             },
           ],
         }),
@@ -172,7 +172,7 @@ export async function createMSTeamsQaTransportAdapter(
           aadObjectId: DRIVER_AAD_OBJECT_ID,
           name: input.senderName ?? "Teams QA Driver",
         },
-        recipient: { id: APP_ID, name: "OpenClaw QA" },
+        recipient: { id: APP_ID, name: "Urbicana QA" },
         conversation: {
           id: nativeThreadId ? `${conversationId};messageid=${nativeThreadId}` : conversationId,
           conversationType:

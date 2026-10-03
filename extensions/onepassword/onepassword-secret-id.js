@@ -57,7 +57,7 @@ export function encodeOnePasswordSecretId(value) {
   const encoded = `${ENCODED_SECRET_ID_PREFIX}${Buffer.from(value, "utf8").toString("base64url")}`;
   if (!isCanonicalExecSecretId(encoded)) {
     throw invalidSecretId(
-      "the encoded reference exceeds OpenClaw's exec SecretRef limit; use 1Password vault, item, section, and field IDs to shorten it.",
+      "the encoded reference exceeds Urbicana's exec SecretRef limit; use 1Password vault, item, section, and field IDs to shorten it.",
     );
   }
   return encoded;

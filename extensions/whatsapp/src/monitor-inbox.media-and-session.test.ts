@@ -67,7 +67,7 @@ describe("web monitor inbox", () => {
     expect(sock.end).toHaveBeenCalledTimes(1);
     const closeError = sock.end.mock.calls[0]?.[0];
     expect(closeError).toBeInstanceOf(Error);
-    expect(closeError?.message).toBe("OpenClaw WhatsApp listener close");
+    expect(closeError?.message).toBe("Urbicana WhatsApp listener close");
     expect(sock.ws.close).not.toHaveBeenCalled();
   });
 

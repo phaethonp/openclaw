@@ -302,7 +302,7 @@ if (process.exitCode === 0) {
     ).resolves.toEqual({
       ok: false,
       built: false,
-      message: `Missing Control UI assets at ${indexPath}. Reinstall OpenClaw to restore bundled Control UI assets.`,
+      message: `Missing Control UI assets at ${indexPath}. Reinstall Urbicana to restore bundled Control UI assets.`,
     });
   });
 
@@ -314,7 +314,7 @@ if (process.exitCode === 0) {
     await expect(ensureControlUiAssetsBuilt(undefined, { root })).resolves.toEqual({
       ok: false,
       built: false,
-      message: `Incomplete Control UI assets at ${indexPath} (missing assets/startup.js). Reinstall OpenClaw to restore bundled Control UI assets.`,
+      message: `Incomplete Control UI assets at ${indexPath} (missing assets/startup.js). Reinstall Urbicana to restore bundled Control UI assets.`,
     });
     expect(state.runCommandWithTimeout).not.toHaveBeenCalled();
   });

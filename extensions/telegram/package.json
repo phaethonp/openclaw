@@ -2,7 +2,7 @@
   "name": "@openclaw/telegram",
   "version": "2026.9.6",
   "private": true,
-  "description": "OpenClaw Telegram channel plugin",
+  "description": "Urbicana Telegram channel plugin",
   "type": "module",
   "dependencies": {
     "@grammyjs/transformer-throttler": "1.2.1",

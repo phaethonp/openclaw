@@ -68,27 +68,27 @@ describe("findExtraGatewayServices (win32)", () => {
 
   it("keeps verified Node and legacy services while rejecting an unrelated branded monitor", async () => {
     listScheduledTasksMock.mockReturnValue([
-      task("\\OpenClaw Gateway", "C:\\OpenClaw\\openclaw.exe", "gateway run"),
-      task("\\OpenClaw Gateway (dev)", "C:\\OpenClaw\\openclaw.exe", "gateway run --profile dev"),
-      task("\\OpenClaw Gateway Backup", "C:\\OpenClaw\\openclaw.exe", "gateway run"),
+      task("\\Urbicana Gateway", "C:\\Urbicana\\openclaw.exe", "gateway run"),
+      task("\\Urbicana Gateway (dev)", "C:\\Urbicana\\openclaw.exe", "gateway run --profile dev"),
+      task("\\Urbicana Gateway Backup", "C:\\Urbicana\\openclaw.exe", "gateway run"),
       task(
-        "\\OpenClaw Node",
+        "\\Urbicana Node",
         "C:\\Program Files\\nodejs\\node.exe",
-        '"C:\\OpenClaw\\dist\\entry.js" node run',
+        '"C:\\Urbicana\\dist\\entry.js" node run',
       ),
       task("\\Clawdbot Legacy", "C:\\clawdbot\\clawdbot.exe", "run"),
       task(
-        "\\OpenClaw Gateway Monitor",
+        "\\Urbicana Gateway Monitor",
         "C:\\tools\\monitor.exe",
         "--gateway-url http://127.0.0.1:18789",
       ),
       {
-        taskPath: "\\OpenClaw CrossAction",
+        taskPath: "\\Urbicana CrossAction",
         state: null,
         actions: [
           {
             type: 0,
-            path: "C:\\OpenClaw\\openclaw.exe",
+            path: "C:\\Urbicana\\openclaw.exe",
             arguments: "node run",
             workingDirectory: "",
           },
@@ -107,14 +107,14 @@ describe("findExtraGatewayServices (win32)", () => {
     expect(result.errors).toEqual([]);
     expect(result.services).toEqual([
       expect.objectContaining({
-        label: "\\OpenClaw Gateway Backup",
+        label: "\\Urbicana Gateway Backup",
         marker: "openclaw",
         legacy: false,
       }),
-      expect.objectContaining({ label: "\\OpenClaw Node", marker: "openclaw", legacy: false }),
+      expect.objectContaining({ label: "\\Urbicana Node", marker: "openclaw", legacy: false }),
       expect.objectContaining({ label: "\\Clawdbot Legacy", marker: "clawdbot", legacy: true }),
       expect.objectContaining({
-        label: "\\OpenClaw CrossAction",
+        label: "\\Urbicana CrossAction",
         marker: "openclaw",
         legacy: false,
       }),
@@ -123,9 +123,9 @@ describe("findExtraGatewayServices (win32)", () => {
     const managed = await listManagedOpenClawGatewayServices(nativeEnv);
     expect(managed.errors).toEqual([]);
     expect(managed.services.map((service) => service.label)).toEqual([
-      "\\OpenClaw Gateway",
-      "\\OpenClaw Gateway (dev)",
-      "\\OpenClaw Gateway Backup",
+      "\\Urbicana Gateway",
+      "\\Urbicana Gateway (dev)",
+      "\\Urbicana Gateway Backup",
     ]);
     for (const service of result.services) {
       expect(service).not.toHaveProperty("windowsProfile");
@@ -165,7 +165,7 @@ describe("findExtraGatewayServices (win32)", () => {
     "retains incomplete known selectors with missing actions $actions",
     async ({ actions }) => {
       listScheduledTasksMock.mockReturnValue([
-        { taskPath: "\\OpenClaw Gateway", state: null, actions },
+        { taskPath: "\\Urbicana Gateway", state: null, actions },
         { taskPath: "\\Selected Custom", state: null, actions },
       ]);
       const env = { ...nativeEnv, OPENCLAW_WINDOWS_TASK_NAME: "\\Selected Custom" };
@@ -175,7 +175,7 @@ describe("findExtraGatewayServices (win32)", () => {
       expect(extras.services).toEqual([]);
       expect(extras.errors).toEqual([
         {
-          source: "\\OpenClaw Gateway",
+          source: "\\Urbicana Gateway",
           message: expect.stringContaining("could not be inspected"),
         },
         { source: "\\Selected Custom", message: expect.stringContaining("could not be inspected") },
@@ -189,9 +189,9 @@ describe("findExtraGatewayServices (win32)", () => {
     ["legacy command", "Services\\Selected Legacy", "clawdbot", "run", true, false],
     ["upgraded legacy task", "Clawdbot Gateway", "openclaw", "gateway run", true, true],
     ["Node", "Services\\Selected Node", "openclaw", "node run", true, false],
-    ["canonical modern Gateway", "OpenClaw Gateway", "openclaw", "gateway run", false, true],
-    ["canonical legacy command", "OpenClaw Gateway", "clawdbot", "run", true, false],
-    ["profile-named Node", "OpenClaw Gateway (dev)", "openclaw", "node run", true, false],
+    ["canonical modern Gateway", "Urbicana Gateway", "openclaw", "gateway run", false, true],
+    ["canonical legacy command", "Urbicana Gateway", "clawdbot", "run", true, false],
+    ["profile-named Node", "Urbicana Gateway (dev)", "openclaw", "node run", true, false],
   ] as const)(
     "keeps selected %s diagnostic and managed projections separate",
     async (_kind, name, marker, args, extra, managedGateway) => {
@@ -212,7 +212,7 @@ describe("findExtraGatewayServices (win32)", () => {
     },
   );
 
-  it.each(["\\OpenClaw Gateway (dev)", "\\Clawdbot Gateway"])(
+  it.each(["\\Urbicana Gateway (dev)", "\\Clawdbot Gateway"])(
     "reports unreadable known launcher %s before any contents are available",
     async (label) => {
       listScheduledTasksMock.mockReturnValue([task(label, "C:\\custom\\gateway.cmd", "")]);
@@ -238,7 +238,7 @@ describe("findExtraGatewayServices (win32)", () => {
         selected.actions = [];
       } else if (fault === "multiple actions") {
         selected.actions = [0, 1].map(
-          () => task(label, "C:\\OpenClaw\\openclaw.exe", "gateway run").actions[0]!,
+          () => task(label, "C:\\Urbicana\\openclaw.exe", "gateway run").actions[0]!,
         );
       }
       listScheduledTasksMock.mockReturnValue([selected]);
@@ -286,7 +286,7 @@ describe("findExtraGatewayServices (win32)", () => {
         state: null,
         actions: [
           task(label, "C:\\clawdbot\\clawdbot.exe", "run").actions[0]!,
-          task(label, "C:\\OpenClaw\\openclaw.exe", "gateway run").actions[0]!,
+          task(label, "C:\\Urbicana\\openclaw.exe", "gateway run").actions[0]!,
         ],
       },
     ]);
@@ -355,7 +355,7 @@ describe("findExtraGatewayServices (win32)", () => {
       await fs.writeFile(entry, "export {};\n");
       await fs.writeFile(executable, "synthetic executable bytes; never launched\n");
       const script = entryKind === "relative script" ? path.join("dist", "entry.js") : entry;
-      const labels = ["\\OpenClaw Gateway (dev)", "\\Custom Modern"];
+      const labels = ["\\Urbicana Gateway (dev)", "\\Custom Modern"];
       listScheduledTasksMock.mockReturnValue(
         labels.map((label) => ({
           taskPath: label,

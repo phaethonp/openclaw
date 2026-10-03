@@ -2,7 +2,7 @@
   "id": "amazon-bedrock-mantle",
   "categories": ["models"],
   "name": "Amazon Bedrock Mantle",
-  "description": "OpenClaw Amazon Bedrock Mantle provider plugin for OpenAI-compatible model routing.",
+  "description": "Urbicana Amazon Bedrock Mantle provider plugin for OpenAI-compatible model routing.",
   "activation": {
     "onStartup": false
   },
@@ -38,7 +38,7 @@
     },
     "discovery.enabled": {
       "label": "Enable Discovery",
-      "help": "When false, OpenClaw keeps the Amazon Bedrock Mantle plugin available but skips implicit startup discovery. Leave unset for default auto-detect behavior."
+      "help": "When false, Urbicana keeps the Amazon Bedrock Mantle plugin available but skips implicit startup discovery. Leave unset for default auto-detect behavior."
     }
   },
   "providers": ["amazon-bedrock-mantle"],

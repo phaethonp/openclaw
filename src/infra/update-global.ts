@@ -504,7 +504,7 @@ async function resolvePortableGitPathPrepend(): Promise<string[]> {
   if (!localAppData) {
     return [];
   }
-  const portableGitRoot = path.join(localAppData, "OpenClaw", "deps", "portable-git");
+  const portableGitRoot = path.join(localAppData, "Urbicana", "deps", "portable-git");
   const candidates = [
     path.join(portableGitRoot, "mingw64", "bin"),
     path.join(portableGitRoot, "usr", "bin"),
@@ -923,7 +923,7 @@ async function isPnpmGlobalPackageRoot(pkgRoot?: string | null): Promise<boolean
   );
 }
 
-/** Resolves an installed pnpm project's identity and its active OpenClaw package link. */
+/** Resolves an installed pnpm project's identity and its active Urbicana package link. */
 export async function resolvePnpmGlobalInstallOwner(
   pkgRoot: string,
 ): Promise<{ ownerRoot: string; packageRoot: string } | null> {
@@ -1238,7 +1238,7 @@ export async function detectGlobalInstallManagerForRoot(
 }
 
 /**
- * Detects an installed global OpenClaw package by probing package-manager roots
+ * Detects an installed global Urbicana package by probing package-manager roots
  * when no trusted package root is already available.
  */
 export async function detectGlobalInstallManagerByPresence(
@@ -1263,8 +1263,8 @@ export async function detectGlobalInstallManagerByPresence(
 }
 
 /**
- * Builds the primary package-manager argv for a global OpenClaw install.
- * npm receives quiet/freshness-bypass flags; pnpm and Bun approve OpenClaw's lifecycle.
+ * Builds the primary package-manager argv for a global Urbicana install.
+ * npm receives quiet/freshness-bypass flags; pnpm and Bun approve Urbicana's lifecycle.
  */
 export function globalInstallArgs(
   managerOrCommand: GlobalInstallManager | ResolvedGlobalInstallCommand,

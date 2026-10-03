@@ -314,7 +314,7 @@ describe("streamed-output-echo", () => {
     await projector.handleNotification(forCurrentTurn("item/started", { item }));
     expect(onToolResult.mock.calls[0]?.[0].text).toHaveLength(10_000);
     expect(onToolResult.mock.calls[0]?.[0].text).toContain(
-      "OpenClaw truncated Codex native tool output",
+      "Urbicana truncated Codex native tool output",
     );
     // More than the former signature FIFO capacity; a trailing newline must not change matching.
     const chunks = Array.from(
@@ -338,7 +338,7 @@ describe("streamed-output-echo", () => {
     expect(toolResult).toMatchObject({ toolCallId: item.id, toolName: "bash", isError: false });
     const output = toolResult?.content.find((block) => block.type === "text")?.text;
     expect(output).toHaveLength(10_000);
-    expect(output).toContain("OpenClaw truncated Codex native tool output");
+    expect(output).toContain("Urbicana truncated Codex native tool output");
     expect(JSON.stringify(result.messagesSnapshot)).not.toContain(summary.slice(0, 1_000));
     expect(JSON.stringify(result.messagesSnapshot)).not.toContain(chunks.join("").trim());
   });

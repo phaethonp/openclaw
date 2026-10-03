@@ -170,7 +170,7 @@ suite.define(() => {
           projects: [
             {
               id: "openclaw",
-              displayName: "OpenClaw",
+              displayName: "Urbicana",
               repoRoot: TARGET_REPO,
               source: "registered",
             },
@@ -340,7 +340,7 @@ suite.define(() => {
           project.evaluate((element) => (element as HTMLElement & { open: boolean }).open),
         )
         .toBe(true);
-      await project.getByRole("button", { name: "OpenClaw", exact: true }).click();
+      await project.getByRole("button", { name: "Urbicana", exact: true }).click();
       await expect.poll(() => projectTrigger.getAttribute("data-project-id")).toBe("openclaw");
       await expect.poll(() => trigger.getAttribute("data-cloud-profile")).toBe("aws");
       await checkoutTrigger.click();
@@ -351,7 +351,7 @@ suite.define(() => {
         .toBe(true);
       await checkout.getByLabel("Name", { exact: true }).fill("cloud-e2e");
       await pollLocatorText(checkout.locator(".new-session-page__menu-note").last()).toContain(
-        "Syncs OpenClaw to the selected runner",
+        "Syncs Urbicana to the selected runner",
       );
       await captureUiProof(suite, page, "01-cloud-worker-target.png", {
         surface: checkout.locator(".new-session-page__picker-root"),

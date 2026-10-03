@@ -1,8 +1,8 @@
-# OpenClaw Cloudflare AI Gateway Provider
+# Urbicana Cloudflare AI Gateway Provider
 
-Official OpenClaw provider plugin for Cloudflare AI Gateway.
+Official Urbicana provider plugin for Cloudflare AI Gateway.
 
-Install from OpenClaw:
+Install from Urbicana:
 
 ```bash
 openclaw plugins install @openclaw/cloudflare-ai-gateway-provider

@@ -98,7 +98,7 @@ it.each(["dist/index.js", "/unrelated-app/dist/index.js"])(
   },
 );
 
-it("resolves a relative script against the observed OpenClaw installation", () => {
+it("resolves a relative script against the observed Urbicana installation", () => {
   rows.set(peer, { ppid: 1, argv: ["node", "dist/index.js"], cwd: "/app" });
   expect(inspectOtherOpenClawProcesses()).toEqual({ pids: [peer] });
 });
@@ -161,7 +161,7 @@ it.each([
   expect(inspectOtherOpenClawProcesses()).toEqual({ pids: [] });
 });
 
-it("uses a declared Bun task before a same-named OpenClaw file", () => {
+it("uses a declared Bun task before a same-named Urbicana file", () => {
   rows.set(peer, { ppid: 1, argv: ["bun", "run", "start"], cwd: "/unrelated-app" });
   realpath.mockReturnValue("/app/openclaw.mjs");
   expect(inspectOtherOpenClawProcesses()).toEqual({ pids: [] });

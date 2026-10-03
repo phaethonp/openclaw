@@ -1,4 +1,4 @@
-// OpenClaw agent database stores agent-scoped persisted runtime state.
+// Urbicana agent database stores agent-scoped persisted runtime state.
 import path from "node:path";
 import type { DatabaseSync } from "node:sqlite";
 import { isMainThread } from "node:worker_threads";
@@ -612,7 +612,7 @@ export function getOpenClawAgentDatabaseIfOpen(
     isIncognitoOpenClawAgentSqlitePath(pathname, options) &&
     readAgentDeletionJournal(agentId, { env: options.env }, "runtime")
   ) {
-    throw new Error(`OpenClaw agent database is unavailable while agent ${agentId} is deleted.`);
+    throw new Error(`Urbicana agent database is unavailable while agent ${agentId} is deleted.`);
   }
   const database = cache.databases.get(pathname);
   if (!database?.db.isOpen) {
@@ -624,7 +624,7 @@ export function getOpenClawAgentDatabaseIfOpen(
   }
   if (database.agentId !== agentId) {
     throw new Error(
-      `OpenClaw agent database ${pathname} is already open for agent ${database.agentId}; requested agent ${agentId}.`,
+      `Urbicana agent database ${pathname} is already open for agent ${database.agentId}; requested agent ${agentId}.`,
     );
   }
   assertAgentDeletionDatabaseCleanupAccess(database, options);

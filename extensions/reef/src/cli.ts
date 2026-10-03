@@ -210,7 +210,7 @@ async function runRegister(output: ReefCliOutput, options: RegisterOptions): Pro
   ) {
     return await fail(
       output,
-      `This OpenClaw state already holds the Reef identity @${identity.handle} on ${identity.relayUrl}. Re-register the same handle and relay.`,
+      `This Urbicana state already holds the Reef identity @${identity.handle} on ${identity.relayUrl}. Re-register the same handle and relay.`,
     );
   }
   const requestedHandle = explicitHandle ?? identity?.handle;

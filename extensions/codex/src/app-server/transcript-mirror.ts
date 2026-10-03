@@ -42,7 +42,7 @@ import {
 
 type UserMessagePersistenceNotifier = (receipt: MirroredUserMessageReceipt) => void;
 
-/** Imports a bounded, user-visible Codex history tail into a new OpenClaw transcript. */
+/** Imports a bounded, user-visible Codex history tail into a new Urbicana transcript. */
 export async function importCodexThreadHistoryToTranscript(params: {
   assertCurrent?: () => void;
   thread: CodexThread;

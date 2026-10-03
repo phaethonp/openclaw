@@ -62,7 +62,7 @@ export function clearTrackedToolExecution(toolCallId: string, runId?: string): v
 
 /**
  * Consume exact in-flight execution state. Undefined means the wrapper already
- * settled or the producer does not participate in OpenClaw boundary tracking.
+ * settled or the producer does not participate in Urbicana boundary tracking.
  */
 export function consumeTrackedToolExecutionStarted(
   toolCallId: string,

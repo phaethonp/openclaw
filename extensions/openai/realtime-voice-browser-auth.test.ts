@@ -216,7 +216,7 @@ describe("OpenAI realtime voice browser authentication", () => {
     expect(FakeWebSocket.instances).toHaveLength(0);
   });
 
-  it("returns browser-safe OpenClaw attribution headers for native WebRTC offers", async () => {
+  it("returns browser-safe Urbicana attribution headers for native WebRTC offers", async () => {
     vi.stubEnv("OPENCLAW_VERSION", "2026.3.22");
     mockRealtimeClientSecretResponse({ expiresAt: 1_765_000_000 });
     const provider = buildOpenAIRealtimeVoiceProvider();

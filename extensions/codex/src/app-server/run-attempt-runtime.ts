@@ -276,7 +276,7 @@ export async function prepareCodexAttemptRuntime(connection: CodexAttemptConnect
       connection.assertCurrent();
       // Choose the existing sandbox-backed tools before their catalog and prompt are built.
       nativeToolSurfaceEnabled = false;
-      embeddedAgentLog.info("Codex managed-only hooks require sandbox-backed OpenClaw tools");
+      embeddedAgentLog.info("Codex managed-only hooks require sandbox-backed Urbicana tools");
     } finally {
       if (attemptClientFactory === createIsolatedCodexAppServerClient) {
         await client.closeAndWait();
@@ -302,7 +302,7 @@ export async function prepareCodexAttemptRuntime(connection: CodexAttemptConnect
       : undefined;
   let nativeProviderWebSearchSupport: CodexNativeWebSearchSupport;
   // The bound thread owns its established search policy, not the daemon's current
-  // provider defaults. Explicit OpenClaw policy changes still pass the lifecycle checks.
+  // provider defaults. Explicit Urbicana policy changes still pass the lifecycle checks.
   if (isCodexResponsesOAuth(startupPreparedAuth)) {
     nativeProviderWebSearchSupport = "supported";
   } else if (

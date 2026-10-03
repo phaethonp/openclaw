@@ -133,7 +133,7 @@ function getCommandPaletteBaseItems(
           {
             id: "panel-custodian",
             label: t("nav.askOpenClaw"),
-            icon: "lobster" as const,
+            icon: "mark" as const,
             category: "navigation" as const,
             action: "panel:custodian",
           },

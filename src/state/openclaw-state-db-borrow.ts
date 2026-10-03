@@ -49,7 +49,7 @@ export function createStateDatabaseRetainer(
   ) => {
     operations.capture(database.path).assertCurrent();
     if (state.cachedDatabases.get(database.path) !== database || !database.db.isOpen) {
-      throw new Error("OpenClaw state database borrow requires its current canonical handle");
+      throw new Error("Urbicana state database borrow requires its current canonical handle");
     }
     const owner: StateDatabaseBorrowers = state.borrowers.get(database.db) ?? {
       references: new Set<object>(),
@@ -57,7 +57,7 @@ export function createStateDatabaseRetainer(
       cleanupComplete: false,
     };
     if (owner.retiring) {
-      throw new Error("OpenClaw state database native owner is retiring");
+      throw new Error("Urbicana state database native owner is retiring");
     }
     if (!readOnly) {
       observeOpenClawDatabaseMaintenanceResource(database.db);
@@ -138,7 +138,7 @@ export function assertStateDatabaseBorrowersReleased(
   pathname: string,
 ): void {
   if (owner?.references.size) {
-    throw new Error(`OpenClaw state database still has active native borrowers: ${pathname}`);
+    throw new Error(`Urbicana state database still has active native borrowers: ${pathname}`);
   }
 }
 

@@ -1,4 +1,4 @@
-// Prompt adapter from OpenAI Responses input items to OpenClaw agent messages.
+// Prompt adapter from OpenAI Responses input items to Urbicana agent messages.
 import {
   buildAgentMessageFromConversationEntries,
   type ConversationEntry,

@@ -121,7 +121,7 @@ describe("sanitizeUserFacingText", () => {
 
   it.each(["disk full"])("rewrites disk-space failures with errorContext: %s", (input) => {
     expect(renderUserFacingText(input, { errorContext: true })).toBe(
-      "OpenClaw could not write local session data because the disk is full. Free some disk space and try again.",
+      "Urbicana could not write local session data because the disk is full. Free some disk space and try again.",
     );
   });
 
@@ -201,12 +201,12 @@ describe("sanitizeUserFacingText", () => {
     const input = [
       markInboundContextLabel("Conversation info:"),
       "```json",
-      '{"chat_id":"channel:123","sender":"OpenClaw"}',
+      '{"chat_id":"channel:123","sender":"Urbicana"}',
       "```",
       "",
       markInboundContextLabel("Sender:"),
       "```json",
-      '{"label":"OpenClaw (123)"}',
+      '{"label":"Urbicana (123)"}',
       "```",
       "",
       "Pong",
@@ -281,7 +281,7 @@ describe("sanitizeUserFacingText", () => {
 
   it("drops legacy unmarked internal runtime context when it leaks into user-facing text", () => {
     const input = [
-      "OpenClaw runtime context (internal):",
+      "OpenClaw runtime context (internal):", // urbicana-legacy
       "This context is runtime-generated, not user-authored. Keep internal details private.",
       "",
       "[Internal task completion event]",
@@ -295,7 +295,7 @@ describe("sanitizeUserFacingText", () => {
     const input = [
       "Visible intro.",
       "",
-      "OpenClaw runtime context (internal):",
+      "OpenClaw runtime context (internal):", // urbicana-legacy
       "This context is runtime-generated, not user-authored. Keep internal details private.",
       "",
       "[Internal task completion event]",
@@ -322,7 +322,7 @@ describe("sanitizeUserFacingText", () => {
 
   it("strips copied next-turn runtime context prefaces from user-facing text", () => {
     const input = [
-      "OpenClaw runtime context for the immediately preceding user message.",
+      "OpenClaw runtime context for the immediately preceding user message.", // urbicana-legacy
       "This context is runtime-generated, not user-authored. Keep internal details private.",
       "",
       "<<<BEGIN_OPENCLAW_INTERNAL_CONTEXT>>>",
@@ -337,7 +337,7 @@ describe("sanitizeUserFacingText", () => {
 
   it("strips copied runtime event prefaces when no visible text remains", () => {
     const input = [
-      "OpenClaw runtime event.",
+      "OpenClaw runtime event.", // urbicana-legacy
       "This context is runtime-generated, not user-authored. Keep internal details private.",
     ].join("\n");
 

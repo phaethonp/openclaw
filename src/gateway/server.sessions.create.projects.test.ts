@@ -136,7 +136,7 @@ test.each([
       const created = await createRemoteSession(
         {
           ...(attachments ? { attachments } : {}),
-          projectGitUrl: "git@github.com:OpenClaw/OpenClaw.git",
+          projectGitUrl: "git@github.com:Urbicana/Urbicana.git",
           ...(worktree
             ? { worktree: true, worktreeName: "remote-startup", worktreeBaseRef: baseRef }
             : {}),

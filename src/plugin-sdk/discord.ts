@@ -43,7 +43,7 @@ export {
   resolveConfiguredFromCredentialStatuses,
 } from "./channel-status.js";
 
-/** Discord channel config shape for one account in OpenClaw config. */
+/** Discord channel config shape for one account in Urbicana config. */
 export type DiscordAccountConfig = NonNullable<NonNullable<OpenClawConfig["channels"]>["discord"]>;
 
 /** Component-message request accepted by the deprecated Discord SDK facade. */
@@ -239,7 +239,7 @@ export function inspectDiscordAccount(params: {
   return loadDiscordApiFacadeModule().inspectDiscordAccount(params);
 }
 
-/** List configured Discord account ids from OpenClaw config. */
+/** List configured Discord account ids from Urbicana config. */
 export function listDiscordAccountIds(cfg: OpenClawConfig): string[] {
   return loadDiscordApiFacadeModule().listDiscordAccountIds(cfg);
 }

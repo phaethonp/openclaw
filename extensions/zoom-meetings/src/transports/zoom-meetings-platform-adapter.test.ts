@@ -149,7 +149,7 @@ async function runStatusFixture(params: {
       allowSessionAdoption: true,
       autoJoin: true,
       captureCaptions: false,
-      guestName: "OpenClaw Agent",
+      guestName: "Urbicana Agent",
       meetingSessionId: "session-1",
       meetingUrl: URL,
       readOnly: params.readOnly,
@@ -376,7 +376,7 @@ describe("Zoom meeting platform adapter", () => {
       }),
     });
 
-    expect(guest.value).toBe("OpenClaw Agent");
+    expect(guest.value).toBe("Urbicana Agent");
     expect(guest.dispatchEvent).toHaveBeenCalledTimes(2);
     expect(join.click).toHaveBeenCalledOnce();
     expect(result.clickedJoin).toBe(true);
@@ -537,14 +537,14 @@ describe("Zoom meeting platform adapter", () => {
       audioInputRouted: false,
       manualAction: {
         message:
-          "Verify the OpenClaw virtual audio device is selected as both the Zoom microphone and speaker before starting talk-back.",
+          "Verify the Urbicana virtual audio device is selected as both the Zoom microphone and speaker before starting talk-back.",
         reason: "zoom-audio-choice-required",
       },
     });
     expect(meetingState).not.toHaveProperty("audioInputDeviceId");
   });
 
-  it.each(["BlackHole 2ch (Virtual)", "OpenClaw Meeting Audio"])(
+  it.each(["BlackHole 2ch (Virtual)", "Urbicana Meeting Audio"])(
     "recognizes the exact virtual audio input label %s",
     async (deviceLabel) => {
       const result = await runAudioInputFixture(deviceLabel);
@@ -554,14 +554,14 @@ describe("Zoom meeting platform adapter", () => {
         audioInputRouted: false,
         manualAction: {
           message:
-            "Verify the OpenClaw virtual audio device is selected as both the Zoom microphone and speaker before starting talk-back.",
+            "Verify the Urbicana virtual audio device is selected as both the Zoom microphone and speaker before starting talk-back.",
           reason: "zoom-audio-choice-required",
         },
       });
     },
   );
 
-  it.each(["OpenClaw Meeting Audio (Virtual)", "Monitor of OpenClaw Meeting Audio"])(
+  it.each(["Urbicana Meeting Audio (Virtual)", "Monitor of Urbicana Meeting Audio"])(
     "rejects the non-contract virtual audio input label %s",
     async (deviceLabel) => {
       const result = await runAudioInputFixture(deviceLabel);

@@ -544,7 +544,7 @@ it("starts a new topology read after healthy integrity confirmation without revi
       await withTestTimeout(entered.promise, 2_000, "Topology snapshot did not reach its owner");
       await applyOpenClawDatabaseVerificationResults({
         env: state.env,
-        targets: [{ kind: "state", label: "OpenClaw state database", path: database.path }],
+        targets: [{ kind: "state", label: "Urbicana state database", path: database.path }],
         results: [
           { path: database.path, ok: false, error: "stale terminal result", terminal: true },
         ],

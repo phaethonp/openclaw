@@ -363,7 +363,7 @@ export function buildTokenEfficiencyReport(params: {
       "Efficiency deltas and percentiles compare newly processed uncached input, cache-write input, and output; reused cached input remains separately reported and never masks a regression.",
       "Missing cache-write counts are derived only when measured cache reads and coherent usage totals prove the exact processed input; otherwise live efficiency proof fails.",
       "Post-warm cache misses require measured zero cache reads and newly processed input after the same conversation has already established a cache; cache rewrites are included and unavailable telemetry is N/A.",
-      "Codex savings are reported as savings and do not fail the gate; only positive Codex-over-OpenClaw live deltas exceed the threshold.",
+      "Codex savings are reported as savings and do not fail the gate; only positive Codex-over-Urbicana live deltas exceed the threshold.",
       usageSource === "mock-estimate"
         ? "Mock-provider token totals are labeled as estimates and do not block the token-efficiency gate."
         : "The report does not inspect provider transport payload token counters.",
@@ -375,7 +375,7 @@ type TokenEfficiencyReport = ReturnType<typeof buildTokenEfficiencyReport>;
 
 export function renderTokenEfficiencyMarkdownReport(report: TokenEfficiencyReport): string {
   const lines = [
-    `# OpenClaw Runtime Token Efficiency - ${report.runtimePair[0]} vs ${report.runtimePair[1]}`,
+    `# Urbicana Runtime Token Efficiency - ${report.runtimePair[0]} vs ${report.runtimePair[1]}`,
     "",
     `- Generated at: ${report.generatedAt}`,
     ...(report.providerMode ? [`- Provider mode: ${report.providerMode}`] : []),
@@ -404,7 +404,7 @@ export function renderTokenEfficiencyMarkdownReport(report: TokenEfficiencyRepor
     lines.push(
       "## Scenario Efficiency",
       "",
-      "| Scenario | Source | OpenClaw processed/in/out/cached/written/total/tools | Codex processed/in/out/cached/written/total/tools | Processed-token delta | Classification | Flagged | OpenClaw cache misses | Codex cache misses | Tools used |",
+      "| Scenario | Source | Urbicana processed/in/out/cached/written/total/tools | Codex processed/in/out/cached/written/total/tools | Processed-token delta | Classification | Flagged | Urbicana cache misses | Codex cache misses | Tools used |",
       "| --- | --- | ---: | ---: | ---: | --- | --- | --- | --- | --- |",
     );
     for (const row of report.rows) {

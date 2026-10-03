@@ -1,4 +1,4 @@
-/** Regular-agent client for the OpenClaw system agent. */
+/** Regular-agent client for the Urbicana system agent. */
 import { randomUUID } from "node:crypto";
 import { Type } from "typebox";
 import { sha256Hex } from "../../infra/crypto-digest.js";
@@ -15,7 +15,7 @@ import { callInProcessGatewayTool } from "./in-process-gateway.js";
 
 const OpenClawDelegateSchema = Type.Object({
   message: Type.String({ description: "What system must do." }),
-  sessionId: Type.Optional(Type.String({ description: "Continue prior OpenClaw talk." })),
+  sessionId: Type.Optional(Type.String({ description: "Continue prior Urbicana talk." })),
 });
 
 const OpenClawDelegateOutputSchema = Type.Object(
@@ -78,22 +78,22 @@ export function createOpenClawDelegateToolsForRun(
     options.currentMessagingTarget ?? options.currentChannelId ?? options.agentTo;
   const turnSourceThreadId = options.currentThreadTs ?? options.agentThreadId;
   // Only messaging channels receive approval prompts; Webchat and terminal runs
-  // decide in the Control UI or the OpenClaw apps.
+  // decide in the Control UI or the Urbicana apps.
   const approvalLocation = isDeliverableMessageChannel(
     normalizeMessageChannel(options.agentChannel) ?? "",
   )
     ? "in this chat (approval buttons or `/approve`)"
-    : "in the Control UI or OpenClaw apps";
+    : "in the Control UI or Urbicana apps";
   const tool: AnyAgentTool = {
     name: "openclaw",
-    label: "OpenClaw",
+    label: "Urbicana",
     // Keep human approval in one model tool call; a yielded cell can outlive its turn.
     catalogMode: "direct-only",
     description:
       "Delegate system setup or repair to a separate model turn. " +
       "Prefer your available tools for routine status and session/workspace checks. " +
       "Gateway restart, config, channels, plugins, agents, models/providers, API keys. " +
-      "Setup flows use masked entry, which keeps keys out of model context; if the user already gave a key or token in chat, pass it along and OpenClaw stores it without echoing it. " +
+      "Setup flows use masked entry, which keeps keys out of model context; if the user already gave a key or token in chat, pass it along and Urbicana stores it without echoing it. " +
       (fullPermission
         ? "Full Access applies permitted changes without asking for approval."
         : `Changes wait for the user to approve ${approvalLocation} and return the final outcome.`),

@@ -65,7 +65,7 @@ export async function checkGitCandidateNodeRuntime(root: string): Promise<Update
     nodeVersionSatisfiesEngine(systemNode.version, engine) !== false
   ) {
     systemDiagnostic =
-      "OpenClaw did not select or activate another runtime. " +
+      "Urbicana did not select or activate another runtime. " +
       `Existing compatible Node ${systemNode.version}: ${systemNode.path}`;
   } else {
     systemDiagnostic = "No compatible existing system Node was found.";

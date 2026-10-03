@@ -60,7 +60,7 @@ describe("tokenjuice plugin", () => {
     expect(manifest).not.toHaveProperty("enabledByDefault");
   });
 
-  it("registers tokenjuice tool result middleware for OpenClaw, Codex, and Agents API runtimes", () => {
+  it("registers tokenjuice tool result middleware for Urbicana, Codex, and Agents API runtimes", () => {
     const captured = capturePluginRegistration({
       id: "tokenjuice",
       contracts: manifest.contracts,

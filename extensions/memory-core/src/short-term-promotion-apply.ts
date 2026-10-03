@@ -575,7 +575,7 @@ export async function applyShortTermPromotions(
             );
           } else {
             // Append fallback keeps the historical read-modify-replace contract. Policy accepts
-            // its external-editor race because OpenClaw writers remain serialized by this sweep lock.
+            // its external-editor race because Urbicana writers remain serialized by this sweep lock.
             await commitMemoryContent({
               workspaceDir,
               filePath: memoryWritePath,

@@ -13,7 +13,7 @@ type BrowserProfileMode =
 export type BrowserProfileCapabilities = {
   mode: BrowserProfileMode;
   isRemote: boolean;
-  /** Browser process reads paths from the same filesystem as OpenClaw. */
+  /** Browser process reads paths from the same filesystem as Urbicana. */
   browserFilesystemLocal: boolean;
   /** Profile uses the Chrome DevTools MCP server (existing-session driver). */
   usesChromeMcp: boolean;

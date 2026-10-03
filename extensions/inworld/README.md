@@ -1,8 +1,8 @@
-# OpenClaw Inworld Plugin
+# Urbicana Inworld Plugin
 
-Official OpenClaw plugin for Inworld.
+Official Urbicana plugin for Inworld.
 
-Install from OpenClaw:
+Install from Urbicana:
 
 ```bash
 openclaw plugins install @openclaw/inworld-speech

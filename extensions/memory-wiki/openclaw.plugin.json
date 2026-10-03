@@ -13,7 +13,7 @@
     "onStartup": true
   },
   "name": "Memory Wiki",
-  "description": "Persistent wiki compiler and Obsidian-friendly knowledge vault for OpenClaw.",
+  "description": "Persistent wiki compiler and Obsidian-friendly knowledge vault for Urbicana.",
   "cliCommands": [
     {
       "name": "wiki",
@@ -41,7 +41,7 @@
     },
     "vault.renderMode": {
       "label": "Render Mode",
-      "help": "Render markdown in native OpenClaw format or Obsidian-friendly format."
+      "help": "Render markdown in native Urbicana format or Obsidian-friendly format."
     },
     "obsidian.useOfficialCli": {
       "label": "Use Obsidian CLI",

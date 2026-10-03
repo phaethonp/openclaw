@@ -218,7 +218,7 @@ const RUNTIME_TOOL_SUCCESS_ARGS: Record<string, Record<string, unknown>> = {
       "",
     ].join("\n"),
   },
-  web_search: { query: "OpenClaw runtime parity fixed query", count: 1 },
+  web_search: { query: "Urbicana runtime parity fixed query", count: 1 },
   web_fetch: { url: "https://example.com/", maxChars: 500 },
   image_generate: {
     prompt: "QA lighthouse runtime parity fixture",

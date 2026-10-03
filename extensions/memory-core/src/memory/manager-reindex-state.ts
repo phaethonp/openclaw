@@ -240,7 +240,7 @@ export function resolveMemoryIndexIdentityState(
       (meta.provenanceVersion ?? 0) > MEMORY_INDEX_PROVENANCE_VERSION
         ? "provenance_version"
         : "chunking_version",
-      "the index was written by a newer OpenClaw version; upgrade OpenClaw or reindex explicitly",
+      "the index was written by a newer Urbicana version; upgrade Urbicana or reindex explicitly",
       "newer",
     );
   }

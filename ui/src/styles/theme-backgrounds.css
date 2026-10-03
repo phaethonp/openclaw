@@ -9,6 +9,14 @@
   --app-background-image: url("../assets/themes/claw-light.webp?no-inline");
 }
 
+:root[data-theme="urbicana"] {
+  --app-background-image: url("../assets/themes/urbicana-dark.webp?no-inline");
+}
+
+:root[data-theme="urbicana-light"] {
+  --app-background-image: url("../assets/themes/urbicana-light.webp?no-inline");
+}
+
 :root[data-theme="openknot"] {
   --app-background-image: url("../assets/themes/knot-dark.webp?no-inline");
 }

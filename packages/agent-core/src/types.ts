@@ -59,7 +59,7 @@ export interface BeforeToolCallResult {
 export interface InternalToolBatchCall {
   toolCall: AgentToolCall;
   args: unknown;
-  /** Resolved tool identity for OpenClaw-owned argument canonicalization. */
+  /** Resolved tool identity for Urbicana-owned argument canonicalization. */
   tool?: AgentTool;
 }
 
@@ -81,14 +81,14 @@ export interface ToolLoopWarning {
   count: number;
 }
 
-/** Context for OpenClaw-owned whole-batch tool admission. */
+/** Context for Urbicana-owned whole-batch tool admission. */
 export interface InternalBeforeToolBatchContext {
   assistantMessage: AssistantMessage;
   calls: InternalToolBatchCall[];
   context: AgentContext;
 }
 
-/** Result of OpenClaw-owned whole-batch tool admission. */
+/** Result of Urbicana-owned whole-batch tool admission. */
 export type InternalBeforeToolBatchResult =
   | { intervention: ToolLoopIntervention; warnings?: never }
   | { intervention?: never; warnings?: ToolLoopWarning[] };
@@ -354,7 +354,7 @@ export interface AgentLoopConfig extends SimpleStreamOptions {
     signal?: AbortSignal,
   ) => Promise<BeforeToolCallResult | undefined>;
 
-  /** @internal OpenClaw-owned batch admission. Not a plugin or session SDK hook. */
+  /** @internal Urbicana-owned batch admission. Not a plugin or session SDK hook. */
   beforeToolBatch?: (
     context: InternalBeforeToolBatchContext,
     signal?: AbortSignal,

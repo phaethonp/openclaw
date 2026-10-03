@@ -2172,7 +2172,7 @@ describe("diagnostics-otel service", () => {
     expect(Object.hasOwn(harnessDuration?.[1] ?? {}, "openclaw.error")).toBe(false);
   });
 
-  test("lets explicit OpenClaw sampling override the inherited sampler environment", async () => {
+  test("lets explicit Urbicana sampling override the inherited sampler environment", async () => {
     process.env.OTEL_TRACES_SAMPLER = "always_off";
     await startServiceFixture(["traces"], (ctx) => {
       ctx.config.diagnostics!.otel!.sampleRate = 1;
@@ -3571,7 +3571,7 @@ describe("diagnostics-otel service", () => {
 
   // Exec spans used to always be roots, which stranded every shell command in its
   // own single-span trace instead of nesting it under the run that spawned it.
-  test("nests exec spans under the run when the trace context is OpenClaw-owned", async () => {
+  test("nests exec spans under the run when the trace context is Urbicana-owned", async () => {
     await startServiceFixture(["traces", "metrics"]);
 
     emitTrustedEvent("run.started");

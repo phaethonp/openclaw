@@ -25,7 +25,7 @@ function requireString(value: unknown, label: string): string {
 }
 
 describe("crabline transport", () => {
-  it("configures OpenClaw's Telegram plugin against a Crabline local provider server", async () => {
+  it("configures Urbicana's Telegram plugin against a Crabline local provider server", async () => {
     await withTempDir("qa-crabline-transport-", async (outputDir) => {
       const transport = await createQaCrablineTransportAdapter({
         outputDir,
@@ -266,7 +266,7 @@ describe("crabline transport", () => {
     });
   });
 
-  it("configures OpenClaw's WhatsApp plugin against a Crabline Baileys WebSocket server", async () => {
+  it("configures Urbicana's WhatsApp plugin against a Crabline Baileys WebSocket server", async () => {
     await withTempDir("qa-crabline-transport-", async (outputDir) => {
       const transport = await createQaCrablineTransportAdapter({
         outputDir,
@@ -651,7 +651,7 @@ describe("crabline transport", () => {
         );
         expect(() =>
           transport.buildAgentDelivery({ target: "thread:main/$event:matrix.test" }),
-        ).toThrow("Matrix thread targets require OpenClaw QA thread forwarding");
+        ).toThrow("Matrix thread targets require Urbicana QA thread forwarding");
         await expect(
           transport.state.addInboundMessage({
             conversation: { id: "  ", kind: "group" },

@@ -101,7 +101,7 @@ export function createTelegramPrivateTopicCallback(updateId: number, botId: numb
     message: {
       chat: { id: 1234, type: "private" as const },
       date: 1_736_380_800,
-      from: { id: botId, is_bot: true as const, first_name: "OpenClaw" },
+      from: { id: botId, is_bot: true as const, first_name: "Urbicana" },
       message_id: 10,
       message_thread_id: 42,
     },

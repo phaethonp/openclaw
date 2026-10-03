@@ -157,6 +157,7 @@ describe("profile-bound appearance preferences", () => {
     // browser-local, so the selection must never follow the profile.
     const profileStorable: Record<ThemeName, boolean> = {
       claw: true,
+      urbicana: true,
       knot: true,
       dash: true,
       absolutely: true,

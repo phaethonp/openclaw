@@ -268,12 +268,12 @@ describe("Telegram prompt composition", () => {
         promptContext: chatWindow([
           {
             message_id: "9",
-            sender: "OpenClaw (you)",
+            sender: "Urbicana (you)",
             body: "explicit older reply",
             is_reply_target: true,
           },
           { message_id: "10", body: "before self marker" },
-          { message_id: "11", sender: "OpenClaw (you)", body: "self marker body" },
+          { message_id: "11", sender: "Urbicana (you)", body: "self marker body" },
           { message_id: "12", body: "after self marker" },
         ]),
       });

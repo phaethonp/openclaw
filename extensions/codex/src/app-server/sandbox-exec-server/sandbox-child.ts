@@ -67,7 +67,7 @@ export async function spawnSandboxChild(params: SandboxChildStartParams): Promis
     });
   if (!command) {
     await finalize("failed", null).catch(params.onFinalizeError);
-    throw new Error("OpenClaw sandbox exec spec did not provide a command.");
+    throw new Error("Urbicana sandbox exec spec did not provide a command.");
   }
   let child: ChildProcessWithoutNullStreams | undefined;
   let pty: TerminalPtyHandle | undefined;

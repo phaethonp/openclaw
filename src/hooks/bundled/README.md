@@ -1,6 +1,6 @@
 # Bundled Hooks
 
-These internal hooks ship with OpenClaw. They subscribe to colon-separated events
+These internal hooks ship with Urbicana. They subscribe to colon-separated events
 such as `command:new`; they are not typed plugin hooks or HTTP webhooks.
 
 For setup, custom hook authoring, event payloads, discovery precedence, and

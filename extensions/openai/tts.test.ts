@@ -61,7 +61,7 @@ describe("openai tts", () => {
   const proxyReset = installDebugProxyTestResetHooks();
 
   describe("openaiTTS diagnostics", () => {
-    it("adds OpenClaw attribution headers to native OpenAI speech requests", async () => {
+    it("adds Urbicana attribution headers to native OpenAI speech requests", async () => {
       vi.stubEnv("OPENCLAW_VERSION", "2026.3.22");
       const fetchMock = vi.fn<typeof fetch>(
         async (_url, _init) => new Response(Buffer.from("audio-bytes"), { status: 200 }),

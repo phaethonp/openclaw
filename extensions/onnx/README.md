@@ -1,15 +1,15 @@
 # @openclaw/onnx
 
-Official local ONNX decision-model plugin for OpenClaw. It evaluates Choice,
+Official local ONNX decision-model plugin for Urbicana. It evaluates Choice,
 Score, and Boolean rubrics with GLiClass, GLiNER2.5, and DeBERTa classifiers in a
 persistent CPU inference process.
 
 ## Setup
 
-Released OpenClaw `2026.9.5` lacks the decision-provider API. Packaged installs
+Released Urbicana `2026.9.5` lacks the decision-provider API. Packaged installs
 require a host and plugin API of at least `2026.9.6`.
 
-For development, use an OpenClaw checkout containing both the decision-provider
+For development, use an Urbicana checkout containing both the decision-provider
 API and this plugin. Run `pnpm install --frozen-lockfile` and `pnpm build`, enable
 `plugins.entries.onnx`, and run these commands from the checkout:
 

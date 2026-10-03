@@ -30,7 +30,7 @@ const faceTimeConfigSchema = {
 const faceTimePlugin: OpenClawPluginDefinition = definePluginEntry({
   id: "facetime",
   name: "FaceTime",
-  description: "Experimental private FaceTime realtime voice carrier for OpenClaw agents",
+  description: "Experimental private FaceTime realtime voice carrier for Urbicana agents",
   configSchema: faceTimeConfigSchema,
   register(api: OpenClawPluginApi) {
     const config = resolveFaceTimeConfig(api.pluginConfig);

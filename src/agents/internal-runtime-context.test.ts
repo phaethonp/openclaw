@@ -17,8 +17,9 @@ import {
 } from "./internal-runtime-context.js";
 
 // Preface of carriers persisted before the stable system prompt explained the markers.
+// urbicana-legacy: this fixture is a transcript written before the rename.
 const LEGACY_NEXT_TURN_RUNTIME_CONTEXT_HEADER =
-  "OpenClaw runtime context for the active user request in this turn. Do not reply to or describe this context. Use it to continue answering the active user request now. Do not wait for another message.";
+  "OpenClaw runtime context for the active user request in this turn. Do not reply to or describe this context. Use it to continue answering the active user request now. Do not wait for another message."; // urbicana-legacy
 
 type TestMessage = { role: string; content: string; customType?: string };
 
@@ -49,7 +50,7 @@ describe("internal runtime context codec", () => {
       "Visible intro",
       "",
       INTERNAL_RUNTIME_CONTEXT_BEGIN,
-      "OpenClaw runtime context (internal):",
+      "Urbicana runtime context (internal):",
       "This context is runtime-generated, not user-authored. Keep internal details private.",
       "",
       "[Internal task completion event]",
@@ -123,9 +124,9 @@ describe("internal runtime context codec", () => {
     ["current turn", LEGACY_NEXT_TURN_RUNTIME_CONTEXT_HEADER],
     [
       "previous current turn",
-      "OpenClaw runtime context for the immediately preceding user message.",
+      "OpenClaw runtime context for the immediately preceding user message.", // urbicana-legacy
     ],
-    ["runtime event", "OpenClaw runtime event."],
+    ["runtime event", "OpenClaw runtime event."], // urbicana-legacy
   ])("detects and strips the %s prompt preface", (_name, header) => {
     const preface = [header, OPENCLAW_RUNTIME_CONTEXT_NOTICE].join("\n");
     const input = [
@@ -165,7 +166,7 @@ describe("internal runtime context codec", () => {
 
   it("strips a whitespace-wrapped runtime event preface", () => {
     const input = [
-      "OpenClaw\n runtime event.",
+      "OpenClaw\n runtime event.", // urbicana-legacy
       OPENCLAW_RUNTIME_CONTEXT_NOTICE,
       "",
       "Visible reply",
@@ -190,7 +191,7 @@ describe("internal runtime context codec", () => {
   it("preserves text when the runtime-context header or notice does not match", () => {
     for (const input of [
       [LEGACY_NEXT_TURN_RUNTIME_CONTEXT_HEADER, "Ordinary user text"].join("\n"),
-      ["OpenClaw runtime context for another message.", OPENCLAW_RUNTIME_CONTEXT_NOTICE].join("\n"),
+      ["Urbicana runtime context for another message.", OPENCLAW_RUNTIME_CONTEXT_NOTICE].join("\n"),
       OPENCLAW_RUNTIME_CONTEXT_NOTICE,
     ]) {
       expect(hasInternalRuntimeContext(input)).toBe(false);

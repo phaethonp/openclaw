@@ -189,7 +189,7 @@ async function fetchWithGuard(
     signal,
     policy: { allowPrivateNetwork: false, hostnameAllowlist: limits.urlAllowlist },
     auditContext: `openresponses.${kind}`,
-    init: { headers: { "User-Agent": "OpenClaw-Gateway/1.0" } },
+    init: { headers: { "User-Agent": "Urbicana-Gateway/1.0" } },
   });
 
   let result: InputFetchResult;

@@ -59,13 +59,13 @@ export async function maybeOfferUpdateBeforeDoctor(params: {
   if (git === "git") {
     if (isServiceRepairDeferred()) {
       note(
-        "Update through the external supervisor's stop/update/finalize/restart workflow. Continuing Doctor without updating OpenClaw.",
+        "Update through the external supervisor's stop/update/finalize/restart workflow. Continuing Doctor without updating Urbicana.",
         "Update",
       );
       return { updated: false };
     }
     const shouldUpdate = await params.confirm({
-      message: "Update OpenClaw from git before running doctor?",
+      message: "Update Urbicana from git before running doctor?",
       initialValue: true,
     });
     if (!shouldUpdate) {
@@ -89,7 +89,7 @@ export async function maybeOfferUpdateBeforeDoctor(params: {
     if (handled) {
       params.outro(
         readinessReason
-          ? "OpenClaw installed; Gateway readiness remains unverified. Keep recovery backups and check `openclaw gateway status --deep`."
+          ? "Urbicana installed; Gateway readiness remains unverified. Keep recovery backups and check `openclaw gateway status --deep`."
           : "Update completed (doctor already ran as part of the update).",
       );
     }

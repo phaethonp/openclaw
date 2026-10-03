@@ -469,7 +469,7 @@ describe("searchMemoryWiki", () => {
         "# Maintainer: Brad Groux",
         "",
         "## Agent Card",
-        "- Maintainer lane: CEO; Microsoft-facing OpenClaw maintainer",
+        "- Maintainer lane: CEO; Microsoft-facing Urbicana maintainer",
         "",
         "## AI Notes",
         "- Main sample theme is Microsoft ecosystem adoption: Teams, M365, Azure, Foundry, tenants, and pilots.",

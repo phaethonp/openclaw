@@ -263,7 +263,7 @@ describe("Slack live adapter reconciliation", () => {
   it("refuses missing async capture before acquiring credentials or contacting Slack", async () => {
     mocks.captureAvailable = false;
     await expect(createSlackQaTransportAdapter({} as never)).rejects.toThrow(
-      "Slack QA requires async proxy capture support. Upgrade the OpenClaw host.",
+      "Slack QA requires async proxy capture support. Upgrade the Urbicana host.",
     );
     expect(mocks.acquireCredentialLease).not.toHaveBeenCalled();
     expect(mocks.getSlackIdentity).not.toHaveBeenCalled();

@@ -72,7 +72,7 @@ export const ZOOM_MEETINGS_PLATFORM_ADAPTER = MeetingPlatformAdapter.create<
     participantIdentity: (transport) =>
       transport === "chrome-node"
         ? "Zoom guest in Chrome on a paired node"
-        : "Zoom guest in the OpenClaw Chrome profile",
+        : "Zoom guest in the Urbicana Chrome profile",
   },
   nodeCommandName: "zoommeetings.chrome",
   nodeConfigPath: "plugins.entries.zoom-meetings.config.chromeNode.node",
@@ -113,7 +113,7 @@ export const ZOOM_MEETINGS_PLATFORM_ADAPTER = MeetingPlatformAdapter.create<
       category: "browser-control-unavailable",
       reason: "browser-control-unavailable",
       message:
-        "Open the OpenClaw browser profile, finish the Zoom sign-in, admission, or permission prompt, then retry.",
+        "Open the Urbicana browser profile, finish the Zoom sign-in, admission, or permission prompt, then retry.",
     }),
     buildLeaveScript: (meetingUrl) =>
       zoomMeetingLeaveScript({

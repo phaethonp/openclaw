@@ -338,7 +338,7 @@ export async function loadBackground({
       query: vi.fn(async (): Promise<Array<{ id: number; windowId: number }>> => []),
       get: vi.fn(async (groupId: number) => ({
         id: groupId,
-        title: groupId === 7 ? "OpenClaw" : "Other",
+        title: groupId === 7 ? "Urbicana" : "Other",
         windowId: 1,
       })),
       update: vi.fn(async (id: number, properties: { title: string; color?: string }) => {

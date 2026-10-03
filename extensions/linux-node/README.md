@@ -1,6 +1,6 @@
 # Linux Node
 
-Add desktop notifications, camera capture, and location to a Linux OpenClaw
+Add desktop notifications, camera capture, and location to a Linux Urbicana
 node. Each capability depends on the host's installed tools and permissions.
 
 ## Get started

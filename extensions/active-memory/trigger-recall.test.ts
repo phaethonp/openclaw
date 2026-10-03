@@ -170,7 +170,7 @@ describe("active-memory trigger recall", () => {
   });
 
   it("gates tagged entries to the active project while leaving global entries unchanged", () => {
-    const activeKey = "github.com/OpenClaw/OpenClaw";
+    const activeKey = "github.com/Urbicana/Urbicana";
     const sameProject = result({ projectKey: activeKey, startLine: 1 });
     const foreignProject = result({ projectKey: "github.com/example/other", startLine: 2 });
     const global = result({ startLine: 3 });

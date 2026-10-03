@@ -77,8 +77,8 @@ function collectExecPolicyConflictWarnings(
   approvals: ExecApprovalsFile,
 ): SecurityAuditFinding[] {
   const findings: SecurityAuditFinding[] = [];
-  const defaultRequestedSecuritySource = "OpenClaw default (full)";
-  const defaultRequestedAskSource = "OpenClaw default (off)";
+  const defaultRequestedSecuritySource = "Urbicana default (full)";
+  const defaultRequestedAskSource = "Urbicana default (off)";
 
   const maybeWarn = (params: {
     scopeLabel: string;

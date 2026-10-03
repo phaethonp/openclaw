@@ -1,9 +1,9 @@
-# OpenClaw Mistral Provider
+# Urbicana Mistral Provider
 
-Official OpenClaw provider plugin for Mistral models, Voxtral transcription, and
+Official Urbicana provider plugin for Mistral models, Voxtral transcription, and
 Mistral memory embeddings.
 
-Install from OpenClaw:
+Install from Urbicana:
 
 ```bash
 openclaw plugins install @openclaw/mistral-provider

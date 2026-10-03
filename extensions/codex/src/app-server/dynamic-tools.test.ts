@@ -550,7 +550,7 @@ describe("createCodexDynamicToolBridge", () => {
 
     expectInputText(
       result,
-      `OpenClaw tool is not available for this turn: ${HEARTBEAT_RESPONSE_TOOL_NAME}`,
+      `Urbicana tool is not available for this turn: ${HEARTBEAT_RESPONSE_TOOL_NAME}`,
       false,
     );
     expect(result.executionStarted).toBe(false);
@@ -565,7 +565,7 @@ describe("createCodexDynamicToolBridge", () => {
     });
   });
 
-  it("retains all sanitized details for OpenClaw transcript projection", async () => {
+  it("retains all sanitized details for Urbicana transcript projection", async () => {
     const mcpAppPreview = {
       kind: "canvas",
       view: { id: "mcp-app-view-1", title: "Nearby food" },
@@ -680,7 +680,7 @@ describe("createCodexDynamicToolBridge", () => {
 
     const result = await bridge.handleToolCall(createDynamicToolCall("fuzzplugin_move_angles"));
 
-    expectInputText(result, "Unknown OpenClaw tool: fuzzplugin_move_angles", false);
+    expectInputText(result, "Unknown Urbicana tool: fuzzplugin_move_angles", false);
     expect(result.executionStarted).toBe(false);
     expect(result.executedArguments).toEqual({});
     expect(badExecute).not.toHaveBeenCalled();
@@ -736,7 +736,7 @@ describe("createCodexDynamicToolBridge", () => {
     expect(invalidResult.contentItems).toEqual([
       {
         type: "inputText",
-        text: `Unknown OpenClaw tool: ${testCase.name}`,
+        text: `Unknown Urbicana tool: ${testCase.name}`,
       },
     ]);
   });
@@ -912,7 +912,7 @@ describe("createCodexDynamicToolBridge", () => {
   it("redacts a credential that crosses the dynamic tool result budget", async () => {
     const maxChars = 16_000;
     const totalChars = 20_000;
-    const noticeText = `...(OpenClaw truncated dynamic tool result: original ${totalChars} chars, weighted budget ${maxChars}; rerun with narrower args.)`;
+    const noticeText = `...(Urbicana truncated dynamic tool result: original ${totalChars} chars, weighted budget ${maxChars}; rerun with narrower args.)`;
     const textBudget = maxChars - noticeText.length - 1;
     // Newlines bound the credential token so the filler stays outside its mask.
     const marker = `\nAuthorization: Bearer ${SYNTHETIC_BEARER_CREDENTIAL}\n`;
@@ -936,7 +936,7 @@ describe("createCodexDynamicToolBridge", () => {
       .join("");
     expect(text).not.toContain(SYNTHETIC_BEARER_CREDENTIAL);
     expect(text).not.toContain("bearer-model-visible");
-    expect(text).toContain("OpenClaw truncated dynamic tool result");
+    expect(text).toContain("Urbicana truncated dynamic tool result");
     expect(result.contentItems).toContainEqual(expect.objectContaining({ type: "inputImage" }));
   });
 

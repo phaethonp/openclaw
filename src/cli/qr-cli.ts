@@ -229,7 +229,7 @@ export function registerQrCli(program: Command) {
 
         const lines: string[] = [
           theme.heading("Pairing QR"),
-          "Scan this with the OpenClaw mobile app (Onboarding -> Scan QR).",
+          "Scan this with the Urbicana mobile app (Onboarding -> Scan QR).",
           "",
         ];
 

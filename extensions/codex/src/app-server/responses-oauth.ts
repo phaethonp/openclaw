@@ -10,7 +10,7 @@ import {
 import { decodeOpenAICodexJwtPayload } from "openclaw/plugin-sdk/provider-auth";
 import type { CodexAppServerPreparedAuth } from "./auth-types.js";
 
-// A distinct native provider selects HTTP and local summarization. OpenClaw's
+// A distinct native provider selects HTTP and local summarization. Urbicana's
 // public provider remains `openai`; this id belongs only to its private process.
 export const CODEX_RESPONSES_OAUTH_PROVIDER = "openclaw_token_sharing";
 
@@ -38,7 +38,7 @@ export function isCodexResponsesOAuth(prepared: CodexAppServerPreparedAuth | und
 /** The OAuth owner verified this ID token. Decoding here compares identity, never proves it. */
 function fingerprintCodexResponsesOAuth(credential: AuthProfileCredential | undefined) {
   if (!isCodexResponsesOAuthCredential(credential) || credential?.type !== "oauth") {
-    throw new Error("ChatGPT subscription sharing is unavailable; sign in with OpenClaw again.");
+    throw new Error("ChatGPT subscription sharing is unavailable; sign in with Urbicana again.");
   }
   const subject = credential.idToken && decodeOpenAICodexJwtPayload(credential.idToken)?.sub;
   if (!credential.issuer || !credential.clientId || typeof subject !== "string" || !subject) {
@@ -83,7 +83,7 @@ export async function resolveCodexResponsesOAuthProfileFingerprint(params: {
   return fingerprintCodexResponsesOAuth(credential);
 }
 
-/** Keep OAuth refresh and persisted grant ownership in OpenClaw, outside native Codex auth. */
+/** Keep OAuth refresh and persisted grant ownership in Urbicana, outside native Codex auth. */
 export function createCodexResponsesOAuth(params: {
   profileId: string;
   store: AuthProfileStore;

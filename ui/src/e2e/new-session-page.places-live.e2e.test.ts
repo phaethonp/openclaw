@@ -213,7 +213,7 @@ suite.define(() => {
   });
 
   it.each([
-    { name: "OpenClaw", runtime: "openclaw" },
+    { name: "Urbicana", runtime: "openclaw" },
     { name: "Codex", runtime: "codex" },
   ] as const)(
     "keeps the same multimode Crabbox profile selectable for $name",

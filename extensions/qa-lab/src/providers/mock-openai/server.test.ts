@@ -318,7 +318,7 @@ const WHATSAPP_STRUCTURED_CASES = [
 ];
 
 const TEST_RUNTIME_CONTEXT_CARRIER = [
-  "OpenClaw runtime context for the immediately preceding user message.",
+  "Urbicana runtime context for the immediately preceding user message.",
   "This context is runtime-generated, not user-authored. Keep internal details private.",
   "",
   "<<<BEGIN_OPENCLAW_INTERNAL_CONTEXT>>>",
@@ -884,7 +884,7 @@ describe("qa mock openai server", () => {
         makeUserInput("Read QA_KICKOFF_TASK.md, then summarize what you found."),
         makeToolOutputWithCallId(
           "call_mock_read_1",
-          JSON.stringify({ text: "QA mission: understand this OpenClaw repo." }),
+          JSON.stringify({ text: "QA mission: understand this Urbicana repo." }),
         ),
       ],
     });
@@ -1084,7 +1084,7 @@ describe("qa mock openai server", () => {
             `[Slack Driver (user) Fri 2026-07-31 10:00 UTC] ${seedPrompt}`,
             "[slack message id: 1.000000 channel: C123]",
             "",
-            `[Slack OpenClaw (this assistant) (assistant) Fri 2026-07-31 10:01 UTC] ${botReplyMarker}`,
+            `[Slack Urbicana (this assistant) (assistant) Fri 2026-07-31 10:01 UTC] ${botReplyMarker}`,
             "[slack message id: 1.500000 channel: C123]",
             "",
             `[Slack Driver (user) Fri 2026-07-31 10:02 UTC] ${recallPrompt}`,
@@ -1504,7 +1504,7 @@ describe("qa mock openai server", () => {
           "# Personal task ledger\n\nRequired status contract:\n1. Read PERSONAL_TASK_LEDGER.md.\n2. Read FOLLOWTHROUGH_NOTE.md.\n3. Write ./personal-task-status.txt.\n",
         ),
         makeUserInput(
-          "Task: prepare a local OpenClaw PR readiness note.\nPending: wait for maintainer feedback before publishing.\nBlocked: publishing needs explicit user approval.\nDone: local evidence captured in personal-task-status.txt.\n",
+          "Task: prepare a local Urbicana PR readiness note.\nPending: wait for maintainer feedback before publishing.\nBlocked: publishing needs explicit user approval.\nDone: local evidence captured in personal-task-status.txt.\n",
         ),
       ],
     });
@@ -2765,7 +2765,7 @@ describe("qa mock openai server", () => {
       ];
       const usesCodexDelivery = instructionSource.startsWith("Codex");
       const instructions = usesCodexDelivery
-        ? "Visible source replies are not automatically delivered for this run. Use `message(action=send)` for user-visible source-channel output. For progress, set `final=false`. When the message is the completed reply to the current source conversation, set `final=true`; OpenClaw stops after confirming delivery."
+        ? "Visible source replies are not automatically delivered for this run. Use `message(action=send)` for user-visible source-channel output. For progress, set `final=false`. When the message is the completed reply to the current source conversation, set `final=true`; Urbicana stops after confirming delivery."
         : "Current source visible reply MUST use `message(action=send)`; final text is private. Skip tool = user gets nothing.";
       const withDeliveryInstructions = (input: unknown[]) =>
         instructionSource === "body instructions"
@@ -2813,7 +2813,7 @@ describe("qa mock openai server", () => {
       const prompt = QA_FANOUT_PROMPT;
       const usesCodexDelivery = instructionSource.startsWith("Codex");
       const instructions = usesCodexDelivery
-        ? "Visible source replies are not automatically delivered for this run. Use `message(action=send)` for user-visible source-channel output. For progress, set `final=false`. When the message is the completed reply to the current source conversation, set `final=true`; OpenClaw stops after confirming delivery."
+        ? "Visible source replies are not automatically delivered for this run. Use `message(action=send)` for user-visible source-channel output. For progress, set `final=false`. When the message is the completed reply to the current source conversation, set `final=true`; Urbicana stops after confirming delivery."
         : "Current source visible reply MUST use `message(action=send)`; final text is private. Skip tool = user gets nothing.";
 
       await startFanout(
@@ -2857,7 +2857,7 @@ describe("qa mock openai server", () => {
       const prompt = QA_FANOUT_PROMPT;
       const usesCodexDelivery = instructionSource.startsWith("Codex");
       const instructions = usesCodexDelivery
-        ? "Visible source replies are not automatically delivered for this run. Use `message(action=send)` for user-visible source-channel output. For progress, set `final=false`. When the message is the completed reply to the current source conversation, set `final=true`; OpenClaw stops after confirming delivery."
+        ? "Visible source replies are not automatically delivered for this run. Use `message(action=send)` for user-visible source-channel output. For progress, set `final=false`. When the message is the completed reply to the current source conversation, set `final=true`; Urbicana stops after confirming delivery."
         : "Current source visible reply MUST use `message(action=send)`; final text is private. Skip tool = user gets nothing.";
 
       await startFanout(
@@ -3226,7 +3226,7 @@ describe("qa mock openai server", () => {
     const callId = outputToolCallId(imageCall, "call_mock_image_generate_unavailable");
     const completionEvent = [
       "<<<BEGIN_OPENCLAW_INTERNAL_CONTEXT>>>",
-      "OpenClaw runtime context (internal):",
+      "Urbicana runtime context (internal):",
       "",
       "[Internal task completion event]",
       "source: image_generation",
@@ -3271,7 +3271,7 @@ describe("qa mock openai server", () => {
     [
       "plans QA tool-search calls for instruction-declared Codex dynamic tools",
       {
-        instructions: "Codex dynamic OpenClaw tools available in this turn: web_search.",
+        instructions: "Codex dynamic Urbicana tools available in this turn: web_search.",
         input: [
           makeUserInput(
             "tool search qa check target=web_search. Call exactly that tool once and then summarize.",
@@ -3279,7 +3279,7 @@ describe("qa mock openai server", () => {
         ],
       },
       "web_search",
-      "OpenClaw runtime parity fixed query",
+      "Urbicana runtime parity fixed query",
     ],
     [
       "plans QA tool-search calls from explicit fixture targets even without Responses tools",
@@ -3650,7 +3650,7 @@ describe("qa mock openai server", () => {
           "Switch models now. Tool continuity check: reread QA_KICKOFF_TASK.md and mention the handoff in one short sentence.",
         ),
         makeToolOutput(
-          "QA mission: Understand this OpenClaw repo from source + docs before acting.",
+          "QA mission: Understand this Urbicana repo from source + docs before acting.",
         ),
       ],
     });
@@ -4411,7 +4411,7 @@ describe("qa mock openai server", () => {
       input: [
         makeUserInput(QA_REASONING_ONLY_RECOVERY_PROMPT),
         makeToolOutput(
-          "QA mission: Understand this OpenClaw repo from source + docs before acting.",
+          "QA mission: Understand this Urbicana repo from source + docs before acting.",
         ),
       ],
     });
@@ -4428,7 +4428,7 @@ describe("qa mock openai server", () => {
         makeUserInput(QA_REASONING_ONLY_RECOVERY_PROMPT),
         makeUserInput(QA_REASONING_ONLY_RETRY_INSTRUCTION),
         makeToolOutput(
-          "QA mission: Understand this OpenClaw repo from source + docs before acting.",
+          "QA mission: Understand this Urbicana repo from source + docs before acting.",
         ),
       ],
     });
@@ -4525,7 +4525,7 @@ describe("qa mock openai server", () => {
       input: [
         makeUserInput(QA_EMPTY_RESPONSE_RECOVERY_PROMPT),
         makeToolOutput(
-          "QA mission: Understand this OpenClaw repo from source + docs before acting.",
+          "QA mission: Understand this Urbicana repo from source + docs before acting.",
         ),
       ],
     });
@@ -4538,7 +4538,7 @@ describe("qa mock openai server", () => {
         makeUserInput(QA_EMPTY_RESPONSE_RECOVERY_PROMPT),
         makeUserInput(QA_SETTLED_TOOL_TERMINAL_CONTINUATION_INSTRUCTION),
         makeToolOutput(
-          "QA mission: Understand this OpenClaw repo from source + docs before acting.",
+          "QA mission: Understand this Urbicana repo from source + docs before acting.",
         ),
       ],
     });
@@ -4554,7 +4554,7 @@ describe("qa mock openai server", () => {
       input: [
         makeUserInput(QA_EMPTY_RESPONSE_EXHAUSTION_PROMPT),
         makeToolOutput(
-          "QA mission: Understand this OpenClaw repo from source + docs before acting.",
+          "QA mission: Understand this Urbicana repo from source + docs before acting.",
         ),
       ],
     });
@@ -4565,7 +4565,7 @@ describe("qa mock openai server", () => {
         makeUserInput(QA_EMPTY_RESPONSE_EXHAUSTION_PROMPT),
         makeUserInput(QA_EMPTY_RESPONSE_RETRY_INSTRUCTION),
         makeToolOutput(
-          "QA mission: Understand this OpenClaw repo from source + docs before acting.",
+          "QA mission: Understand this Urbicana repo from source + docs before acting.",
         ),
       ],
     });

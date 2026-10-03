@@ -131,7 +131,7 @@ suite.define(() => {
           });
           const dialog = page.locator("openclaw-modal-dialog");
           await dialog
-            .getByText("⬆️ OpenClaw update in progress: restarting.", { exact: true })
+            .getByText("⬆️ Urbicana update in progress: restarting.", { exact: true })
             .waitFor();
           await gateway.setOnline(false);
           await dialog.getByText("Gateway restarting…", { exact: true }).waitFor();
@@ -162,7 +162,7 @@ suite.define(() => {
             (await gateway.waitForRequest("update.runs.get", { after: reads })).params,
           ).toEqual({ runId: run.runId });
           await dialog
-            .getByText("✅ OpenClaw updated to 9f3c21a0 (from 11111111).", { exact: true })
+            .getByText("✅ Urbicana updated to 9f3c21a0 (from 11111111).", { exact: true })
             .first()
             .waitFor();
           await page.screenshot({ path: path.join(artifactDir, "4-success-report.png") });
@@ -238,7 +238,7 @@ suite.define(() => {
 
           const dialog = page.locator("openclaw-modal-dialog");
           await dialog
-            .getByText("⚠️ OpenClaw update failed: deps-install-failed.", { exact: true })
+            .getByText("⚠️ Urbicana update failed: deps-install-failed.", { exact: true })
             .first()
             .waitFor();
           const failureText = await dialog.textContent();

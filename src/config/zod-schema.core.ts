@@ -512,7 +512,7 @@ const ModelDefinitionSchema = z
      */
     contextTokens: z.number().int().positive().optional(),
     maxTokens: z.number().positive().optional(),
-    /** Maps OpenClaw thinking levels to provider/model-specific values. */
+    /** Maps Urbicana thinking levels to provider/model-specific values. */
     thinkingLevelMap: ThinkingLevelMapSchema.optional(),
     /** Provider-specific request/runtime parameters passed through to provider plugins. */
     params: z.record(z.string(), z.unknown()).optional(),
@@ -613,7 +613,7 @@ const ModelProvidersSchema = z
 
 const ModelCatalogRefreshConfigSchema = z
   .object({
-    /** Fetch model catalog updates from the hosted OpenClaw catalog. Default: true. */
+    /** Fetch model catalog updates from the hosted Urbicana catalog. Default: true. */
     enabled: z.boolean().optional(),
     /** Override the hosted catalog URL (HTTPS mirrors, or localhost HTTP for testing). */
     url: z

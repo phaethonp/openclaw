@@ -8,7 +8,7 @@ export type MockServer = { baseUrl: string };
 
 export const guestCodeModeExecTool = {
   name: "exec",
-  description: "Run JavaScript in OpenClaw.",
+  description: "Run JavaScript in Urbicana.",
   parameters: Type.Object({
     title: Type.String({ minLength: 1, maxLength: 120, pattern: "\\S" }),
     code: Type.String(),

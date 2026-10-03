@@ -125,12 +125,12 @@ describe("native device settings pages", () => {
         ...snapshot,
         desktopSharing: {
           state: "error",
-          detail: "Install the OpenClaw CLI to share this desktop.",
+          detail: "Install the Urbicana CLI to share this desktop.",
         },
       });
       await page.updateComplete;
       expect(row(page, "Desktop sharing status").textContent).toContain("Unavailable");
-      expect(page.textContent).toContain("Install the OpenClaw CLI");
+      expect(page.textContent).toContain("Install the Urbicana CLI");
       const permissions = await mount("openclaw-device-permissions-page", native.capability);
       expect(permissions.querySelector("wa-switch")).toBeNull();
       expect(permissions.textContent).not.toContain("Location access");
@@ -221,7 +221,7 @@ describe("native device settings pages", () => {
     "shows an app-only state without a bridge and waits for the initial snapshot on %s",
     async (tag) => {
       const browserPage = await mount(tag, null);
-      expect(browserPage.textContent).toContain("only available inside the OpenClaw app");
+      expect(browserPage.textContent).toContain("only available inside the Urbicana app");
       expect(browserPage.querySelector("wa-switch")).toBeNull();
       const { capability } = createCapability(null);
       const waitingPage = await mount(tag, capability);

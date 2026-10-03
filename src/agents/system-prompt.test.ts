@@ -394,7 +394,7 @@ describe("buildAgentSystemPrompt", () => {
     expect(prompt).toContain(
       "Gateway restart, config, channels, plugins, agents, models/providers: ask `openclaw`.",
     );
-    expect(prompt).toContain("Update OpenClaw: `gateway` action update.run");
+    expect(prompt).toContain("Update Urbicana: `gateway` action update.run");
     expect(prompt).not.toContain("models/providers, updates: ask `openclaw`");
   });
 

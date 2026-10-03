@@ -213,7 +213,7 @@ describe("configured profile workspace preservation", () => {
     );
     const cfg: OpenClawConfig = {
       agents: {
-        defaults: { workspace: path.join(fixture.homeDir, ".OpenClaw-work", "workspace") },
+        defaults: { workspace: path.join(fixture.homeDir, ".Urbicana-work", "workspace") },
       },
     };
     fs.writeFileSync(fixture.configPath, JSON.stringify(cfg));

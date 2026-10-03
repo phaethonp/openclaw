@@ -201,7 +201,7 @@ export async function buildCodexPluginThreadConfig(
   // Install/enable first so the initial app snapshot observes newly activated plugin apps.
   if (!activationRequired && appInventoryMissing) {
     await refreshInventory({
-      // OpenClaw is missing its process-local snapshot, but Codex may already
+      // Urbicana is missing its process-local snapshot, but Codex may already
       // have a current inventory. Avoid rebuilding the entire remote catalog
       // during thread startup; post-install and readiness repair still force.
       forceRefetch: false,

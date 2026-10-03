@@ -16,7 +16,7 @@ export function registerBrowserCliMetadata(api: OpenClawPluginApi) {
       descriptors: [
         {
           name: "browser",
-          description: "Manage OpenClaw's dedicated browser (Chrome/Chromium)",
+          description: "Manage Urbicana's dedicated browser (Chrome/Chromium)",
           hasSubcommands: true,
           machineOutput: isBrowserMachineOutput,
         },

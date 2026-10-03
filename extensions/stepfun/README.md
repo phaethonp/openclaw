@@ -1,8 +1,8 @@
-# OpenClaw StepFun Provider
+# Urbicana StepFun Provider
 
-Official OpenClaw provider plugin for StepFun.
+Official Urbicana provider plugin for StepFun.
 
-Install from OpenClaw:
+Install from Urbicana:
 
 ```bash
 openclaw plugins install @openclaw/stepfun-provider

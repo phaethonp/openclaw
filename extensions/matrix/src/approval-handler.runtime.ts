@@ -46,7 +46,7 @@ import {
 import { resolveMatrixTargetIdentity } from "./matrix/target-ids.js";
 import type { CoreConfig } from "./types.js";
 
-// OpenClaw Matrix custom event content for capable clients; body and reactions remain fallback.
+// Urbicana Matrix custom event content for capable clients; body and reactions remain fallback.
 const MATRIX_APPROVAL_METADATA_KEY = "com.openclaw.approval" as const;
 
 type PendingMessage = {
@@ -283,7 +283,7 @@ function buildPendingApprovalContent(params: {
       approvalKind: "system-agent",
       approvalId: params.view.approvalId,
       approvalSlug: params.view.approvalId.slice(0, 8),
-      text: `OpenClaw change requires approval:\n${params.view.operationSummary}`,
+      text: `Urbicana change requires approval:\n${params.view.operationSummary}`,
       agentId: params.view.agentId,
       allowedDecisions,
       sessionKey: params.view.sessionKey,
@@ -336,7 +336,7 @@ function buildResolvedApprovalText(view: ResolvedApprovalView): string {
   }
   const decisionLabel = formatChannelApprovalResolvedLabel(view);
   return [
-    `${view.approvalKind === "system-agent" ? "OpenClaw change" : "Exec approval"}: ${decisionLabel}`,
+    `${view.approvalKind === "system-agent" ? "Urbicana change" : "Exec approval"}: ${decisionLabel}`,
     "",
     view.approvalKind === "system-agent" ? "Change" : "Command",
     buildMarkdownCodeBlock(view.commandText),

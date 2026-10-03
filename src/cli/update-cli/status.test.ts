@@ -325,7 +325,7 @@ describe("update status Node runtime findings", () => {
         expect(result).not.toHaveProperty("abandonedRun");
       } else {
         const output = runtime.log.mock.calls.flat().join("\n");
-        expect(output).toContain("OpenClaw update status");
+        expect(output).toContain("Urbicana update status");
         expect(output.includes("Update run status unavailable:")).toBe(unavailable);
         if (sqliteVersion === "3.51.2") {
           expect(output).toContain("SQLite 3.51.2");
@@ -526,7 +526,7 @@ describe("update status readiness outcome", () => {
     });
     await updateStatusCommand({});
     expect(runtime.log.mock.calls.flat().join("\n")).toContain(
-      "OpenClaw 2026.9.4 installed; Gateway readiness unverified; recovery backups retained.",
+      "Urbicana 2026.9.4 installed; Gateway readiness unverified; recovery backups retained.",
     );
     await updateStatusCommand({ json: true });
     expect(runtime.writeJson.mock.lastCall?.[0]).toMatchObject({
@@ -614,7 +614,7 @@ describe("update status abandoned-run reporting", () => {
         expect(result).not.toHaveProperty("migrationWarnings");
       } else {
         const output = runtime.log.mock.calls.flat().join("\n");
-        expect(output).toContain("OpenClaw update status");
+        expect(output).toContain("Urbicana update status");
         expect(output).toContain("Pending migration status unavailable:");
       }
     },
@@ -912,7 +912,7 @@ describe("update status abandoned-run reporting", () => {
         }
       } else {
         const output = runtime.log.mock.calls.flat().join("\n");
-        expect(output).toContain("OpenClaw update status");
+        expect(output).toContain("Urbicana update status");
         expect(output).toContain("Update run status unavailable:");
         expect(output).not.toContain(active.runId);
       }

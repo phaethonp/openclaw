@@ -1,8 +1,8 @@
-# OpenClaw Kilo Gateway Provider
+# Urbicana Kilo Gateway Provider
 
-Official OpenClaw provider plugin for Kilo Gateway.
+Official Urbicana provider plugin for Kilo Gateway.
 
-Install from OpenClaw:
+Install from Urbicana:
 
 ```bash
 openclaw plugins install @openclaw/kilocode-provider

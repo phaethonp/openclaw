@@ -1026,7 +1026,7 @@ describe("handleInlineActions", () => {
       inlineStatusRequested: true,
     },
     {
-      channelBody: "/skill@OpenClaw: wait-what first line\nsecond line\n\n  indented third",
+      channelBody: "/skill@Urbicana: wait-what first line\nsecond line\n\n  indented third",
       normalizedBody: "/skill wait-what first line\nsecond line\n\n  indented third",
       expectedRequest: "/skill wait-what first line\nsecond line\n\n  indented third",
       botUsername: "openclaw",
@@ -2170,9 +2170,9 @@ describe("sender command dispatch ownership", () => {
       shape: "standalone",
       forwarded: true,
       commandName: "/help",
-      commandText: "/help@OpenClaw:",
+      commandText: "/help@Urbicana:",
       normalized: "/help",
-      botUsername: "OpenClaw",
+      botUsername: "Urbicana",
       expectedPrompt: "",
     },
     {

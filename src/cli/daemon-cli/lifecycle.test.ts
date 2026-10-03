@@ -528,7 +528,7 @@ describe("runDaemonRestart health checks", () => {
           startedAt: 2000,
           port: 18789,
           mode: "supervised",
-          supervisor: { kind: "schtasks", name: "OpenClaw Gateway" },
+          supervisor: { kind: "schtasks", name: "Urbicana Gateway" },
           state: "live",
           expired: false,
         });

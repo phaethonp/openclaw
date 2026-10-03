@@ -152,7 +152,7 @@ export async function prepareCodexControlSessionAuth(
   const route = plan.modelRoute;
   // A control subscription must use the same prepared auth partition as a turn.
   // Unsubscribe leaves Codex's native writer loaded for 30 minutes; another
-  // process cannot resume that thread, even after its OpenClaw binding is gone.
+  // process cannot resume that thread, even after its Urbicana binding is gone.
   const resolvedAuth = route
     ? await resolveApiKeyForProvider({
         provider: route.provider,
@@ -256,7 +256,7 @@ export async function codexControlRequest(
     : resolveCodexAppServerRuntimeOptions({ pluginConfig });
   const startOptions = options.startOptions ?? runtime.start;
   // Native-auth forks also settle detached subscriptions on their selected
-  // local or remote connection without acquiring an OpenClaw session login.
+  // local or remote connection without acquiring an Urbicana session login.
   const nativeAuthFork =
     method === "thread/fork" &&
     options.startOptions !== undefined &&

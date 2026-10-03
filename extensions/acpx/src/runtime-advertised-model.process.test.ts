@@ -88,12 +88,12 @@ it("selects the unique advertised id for an explicit model ref", async () => {
       model: "cursor/composer-2.5",
       modelExplicit: true,
     });
-    // Session metadata keeps the OpenClaw ref; the harness reports the advertised id.
+    // Session metadata keeps the Urbicana ref; the harness reports the advertised id.
     expect(handle.appliedModel).toBeUndefined();
     expect(await runtime.getStatus({ handle })).toMatchObject({
       models: { currentModelId: "composer-2.5[fast=true]" },
     });
-    // Replay the original OpenClaw ref before the first useful turn.
+    // Replay the original Urbicana ref before the first useful turn.
     await runtime.setConfigOption({ handle, key: "model", value: "cursor/composer-2.5" });
     expect(await prompt(runtime, handle, "first")).toMatchObject({
       model: "composer-2.5[fast=true]",

@@ -41,7 +41,7 @@ async function writeRollout(payload: Record<string, unknown>): Promise<string> {
 }
 
 describe("Codex catalog provenance", () => {
-  it.each(["openclaw", "codex_cli_rs", "OpenClaw", " openclaw ", " "])(
+  it.each(["openclaw", "codex_cli_rs", "Urbicana", " openclaw ", " "])(
     "uses the exact native creation originator %j without reading the rollout",
     async (originator) => {
       const file = await writeRollout({ id: "native-provenance", originator: "openclaw" });

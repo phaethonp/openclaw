@@ -1,8 +1,8 @@
-# OpenClaw DeepInfra Provider
+# Urbicana DeepInfra Provider
 
-Official OpenClaw provider plugin for DeepInfra.
+Official Urbicana provider plugin for DeepInfra.
 
-Install from OpenClaw:
+Install from Urbicana:
 
 ```bash
 openclaw plugins install @openclaw/deepinfra-provider

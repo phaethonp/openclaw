@@ -8,9 +8,9 @@ import {
 import { isValidProfileName } from "./profiles.js";
 
 export const WINDOWS_MANAGEMENT_LIMIT = 32768;
-export const WINDOWS_NATIVE_EXE = "OpenClaw.BrowserBootstrap.exe";
-export const WINDOWS_BINDING = "OpenClaw.BrowserBootstrap.binding.json";
-export const WINDOWS_RECEIPT = "OpenClaw.BrowserBootstrap.owned.json";
+export const WINDOWS_NATIVE_EXE = "Urbicana.BrowserBootstrap.exe";
+export const WINDOWS_BINDING = "Urbicana.BrowserBootstrap.binding.json";
+export const WINDOWS_RECEIPT = "Urbicana.BrowserBootstrap.owned.json";
 export const WINDOWS_MANIFEST = BROWSER_NATIVE_HOST_NAME + ".json";
 export const WINDOWS_OFFICIAL_ORIGIN = "chrome-extension://kcdjddhmeafeomebliikmbpblkmkfoig/";
 const windowsPathKey = (value: string) => value.replace(/[A-Z]/g, (c) => c.toLowerCase());

@@ -410,7 +410,7 @@ describe("system agent operations", () => {
         ),
       );
       expect(lines.join("\n")).toContain("searchable");
-      expect(lines.join("\n")).toContain("Use searchable to defer OpenClaw dynamic tools");
+      expect(lines.join("\n")).toContain("Use searchable to defer Urbicana dynamic tools");
     } finally {
       clearRuntimeConfigSnapshot();
     }
@@ -511,13 +511,13 @@ describe("system agent operations", () => {
     await expect(fs.access(path.join(tempDir, "audit", "system-agent.jsonl"))).rejects.toThrow();
   });
 
-  it("reserves the normalized OpenClaw agent identity before any write or audit", async () => {
+  it("reserves the normalized Urbicana agent identity before any write or audit", async () => {
     const tempDir = useOperationStateDir("openclaw-agent-id-reserved-");
     const { runtime, lines } = createSystemAgentTestRuntime();
     const createAgent = vi.fn();
     const operation = {
       kind: "create-agent" as const,
-      agentId: "OpenClaw",
+      agentId: "Urbicana",
       workspace: "/tmp/work",
     };
 

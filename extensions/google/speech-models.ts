@@ -49,7 +49,7 @@ export function assertSupportedGoogleTtsModel(model: string): void {
   }
   if (model.includes("gemini-3.8-") && model.includes("-tts")) {
     throw new Error(
-      `Google TTS model ${model} is not supported. OpenClaw sends Gemini 3.8 TTS through the Interactions API; supported models: ${GOOGLE_TTS_INTERACTIONS_MODELS.join(", ")}.`,
+      `Google TTS model ${model} is not supported. Urbicana sends Gemini 3.8 TTS through the Interactions API; supported models: ${GOOGLE_TTS_INTERACTIONS_MODELS.join(", ")}.`,
     );
   }
 }

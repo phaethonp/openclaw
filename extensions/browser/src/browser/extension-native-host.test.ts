@@ -167,7 +167,7 @@ async function nativeFixture(allowedOrigins = [ORIGIN]) {
     manifestPath,
     `${JSON.stringify({
       name: "ai.openclaw.browser_bootstrap",
-      description: "OpenClaw browser extension bootstrap",
+      description: "Urbicana browser extension bootstrap",
       path: launcherPath,
       type: "stdio",
       allowed_origins: allowedOrigins,

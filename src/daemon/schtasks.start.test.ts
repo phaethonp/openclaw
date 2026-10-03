@@ -11,7 +11,7 @@ const native = vi.hoisted(() => ({
   enabledAvailable: true,
   running: false,
   scriptPath: "",
-  taskName: "OpenClaw Gateway",
+  taskName: "Urbicana Gateway",
   failure: undefined as "enable" | "run" | undefined,
   afterEnable: undefined as (() => void | Promise<void>) | undefined,
   files: new Map<string, string>(),
@@ -109,7 +109,7 @@ async function fixture(program?: string, kind = "gateway") {
     file,
     `@echo off\r\n${program ?? `"C:\\Node\\node.exe" "${entry}" ${kind === "node" ? "node run" : "gateway"}`}\r\n`,
   );
-  native.taskName = kind === "node" ? "OpenClaw Node" : "OpenClaw Gateway";
+  native.taskName = kind === "node" ? "Urbicana Node" : "Urbicana Gateway";
   const env: Record<string, string> = {
     USERPROFILE: root,
     APPDATA: path.join(root, "appdata"),

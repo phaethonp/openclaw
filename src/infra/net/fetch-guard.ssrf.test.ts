@@ -242,7 +242,7 @@ describe("fetchWithSsrFGuard hardening", () => {
   const CROSS_ORIGIN_REDIRECT_PRESERVED_HEADERS = [
     ["accept", "application/json"],
     ["content-type", "application/json"],
-    ["user-agent", "OpenClaw-Test/1.0"],
+    ["user-agent", "Urbicana-Test/1.0"],
   ] as const;
 
   const createPublicLookup = (): LookupFn =>
@@ -1119,7 +1119,7 @@ describe("fetchWithSsrFGuard hardening", () => {
           "X-Trace": "1",
           Accept: "application/json",
           "Content-Type": "application/json",
-          "User-Agent": "OpenClaw-Test/1.0",
+          "User-Agent": "Urbicana-Test/1.0",
         },
       },
     });
@@ -1472,12 +1472,12 @@ describe("fetchWithSsrFGuard hardening", () => {
       Authorization: "Bearer secret",
       Cookie: "session=abc",
       Accept: "application/json",
-      "User-Agent": "OpenClaw-Test/1.0",
+      "User-Agent": "Urbicana-Test/1.0",
     });
 
     expect(headers).toEqual({
       accept: "application/json",
-      "user-agent": "OpenClaw-Test/1.0",
+      "user-agent": "Urbicana-Test/1.0",
     });
   });
 

@@ -385,9 +385,9 @@ describe("renderTable", () => {
   it("preserves OSC-8 parameters when reopening wrapped links", () => {
     const open = "\x1b]8;id=docs;https://openclaw.ai\x07";
     const close = "\x1b]8;;\x07";
-    const out = renderValue(`${open}${"OpenClaw".repeat(5)}${close} after`, 20);
+    const out = renderValue(`${open}${"Urbicana".repeat(5)}${close} after`, 20);
 
-    const linkLines = out.split("\n").filter((line) => line.includes("OpenClaw"));
+    const linkLines = out.split("\n").filter((line) => line.includes("Urbicana"));
     expect(linkLines.length).toBeGreaterThan(1);
     for (const line of linkLines) {
       expect(line).toContain(open);
@@ -412,7 +412,7 @@ describe("renderTable", () => {
   ])(
     "closes and reopens embedded OSC-8 links at wrap boundaries (%s)",
     (_label, openSeq, closeSeq) => {
-      const link = `${openSeq}OpenClaw${closeSeq}`;
+      const link = `${openSeq}Urbicana${closeSeq}`;
       const out = renderValue(`before ${link} after`, 20);
 
       const afterLines = out.split("\n").filter((line) => line.includes("after"));
@@ -435,7 +435,7 @@ describe("renderTable", () => {
   ])(
     "does not reopen a leading OSC-8 link onto wrapped suffix lines (%s)",
     (_label, openSeq, closeSeq) => {
-      const link = `${openSeq}OpenClaw${closeSeq}`;
+      const link = `${openSeq}Urbicana${closeSeq}`;
       const out = renderValue(`${link} after`, 20);
       expectIntroducersToStartCompleteSequences(out, openSeq.charAt(0), [openSeq, closeSeq]);
 
@@ -448,8 +448,8 @@ describe("renderTable", () => {
       for (const line of afterLines) {
         expect(line.includes(openSeq)).toBe(false);
       }
-      // The link itself stays intact on the OpenClaw line: open + close present.
-      const linkLine = lines.find((line) => line.includes("OpenClaw"));
+      // The link itself stays intact on the Urbicana line: open + close present.
+      const linkLine = lines.find((line) => line.includes("Urbicana"));
       expect(linkLine).toBeDefined();
       expect(linkLine?.includes(openSeq)).toBe(true);
       expect(linkLine?.includes(closeSeq)).toBe(true);
@@ -819,7 +819,7 @@ describe("wrapNoteMessage", () => {
 
   it("preserves long Windows paths without inserting spaces/newlines", () => {
     // No spaces: wrapNoteMessage splits on whitespace, so a "Program Files" style path would wrap.
-    const input = "C:\\\\State\\\\OpenClaw\\\\bin\\\\openclaw.exe";
+    const input = "C:\\\\State\\\\Urbicana\\\\bin\\\\openclaw.exe";
     const wrapped = wrapNoteMessage(input, { maxWidth: 10, columns: 80 });
     expect(wrapped).toBe(input);
   });

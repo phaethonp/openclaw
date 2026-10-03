@@ -28,7 +28,7 @@ function requireUsableModel(facts: AppleFmFacts): void {
   if (facts.contextWindow < APPLE_FM_MIN_CONTEXT_WINDOW) {
     throw new Error(
       `${facts.modelName} provides ${facts.contextWindow} context tokens. ` +
-        `OpenClaw's Apple setup option requires at least ${APPLE_FM_MIN_CONTEXT_WINDOW}. ` +
+        `Urbicana's Apple setup option requires at least ${APPLE_FM_MIN_CONTEXT_WINDOW}. ` +
         "Choose another local or cloud model on this Mac.",
     );
   }

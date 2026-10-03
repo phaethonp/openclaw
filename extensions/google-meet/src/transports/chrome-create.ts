@@ -158,7 +158,7 @@ const CREATE_MEET_FROM_BROWSER_SCRIPT = `async () => {
   };
   if (!current().startsWith("https://meet.google.com/")) {
     return {
-      manualAction: manualActionFor("google-login-required", "Sign in to Google in the OpenClaw browser profile, then retry meeting creation."),
+      manualAction: manualActionFor("google-login-required", "Sign in to Google in the Urbicana browser profile, then retry meeting creation."),
       browserUrl: current(),
       browserTitle: document.title,
       notes,
@@ -184,7 +184,7 @@ const CREATE_MEET_FROM_BROWSER_SCRIPT = `async () => {
   }
   if (/do you want people to hear you in the meeting/i.test(pageText)) {
     return {
-      manualAction: manualActionFor("meet-audio-choice-required", "Meet is showing the microphone choice. Click Use microphone in the OpenClaw browser profile, then retry meeting creation."),
+      manualAction: manualActionFor("meet-audio-choice-required", "Meet is showing the microphone choice. Click Use microphone in the Urbicana browser profile, then retry meeting creation."),
       browserUrl: href,
       browserTitle: document.title,
       notes,
@@ -192,7 +192,7 @@ const CREATE_MEET_FROM_BROWSER_SCRIPT = `async () => {
   }
   if (/allow.*(microphone|camera)|blocked.*(microphone|camera)|permission.*(microphone|camera)/i.test(pageText)) {
     return {
-      manualAction: manualActionFor("meet-permission-required", "Allow microphone/camera permissions for Meet in the OpenClaw browser profile, then retry meeting creation."),
+      manualAction: manualActionFor("meet-permission-required", "Allow microphone/camera permissions for Meet in the Urbicana browser profile, then retry meeting creation."),
       browserUrl: href,
       browserTitle: document.title,
       notes,
@@ -200,7 +200,7 @@ const CREATE_MEET_FROM_BROWSER_SCRIPT = `async () => {
   }
   if (/couldn't create|unable to create/i.test(pageText)) {
     return {
-      manualAction: manualActionFor("browser-control-unavailable", "Resolve the Google Meet page prompt in the OpenClaw browser profile, then retry meeting creation."),
+      manualAction: manualActionFor("browser-control-unavailable", "Resolve the Google Meet page prompt in the Urbicana browser profile, then retry meeting creation."),
       browserUrl: href,
       browserTitle: document.title,
       notes,
@@ -208,7 +208,7 @@ const CREATE_MEET_FROM_BROWSER_SCRIPT = `async () => {
   }
   if (location.hostname.toLowerCase() === "accounts.google.com" || /use your google account|to continue to google meet|choose an account|sign in to (join|continue)/i.test(pageText)) {
     return {
-      manualAction: manualActionFor("google-login-required", "Sign in to Google in the OpenClaw browser profile, then retry meeting creation."),
+      manualAction: manualActionFor("google-login-required", "Sign in to Google in the Urbicana browser profile, then retry meeting creation."),
       browserUrl: href,
       browserTitle: document.title,
       notes,

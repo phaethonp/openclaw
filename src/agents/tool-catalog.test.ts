@@ -48,7 +48,7 @@ describe("tool-catalog", () => {
       {
         id: "openclaw",
         label: "openclaw",
-        description: "Delegate OpenClaw setup and repair",
+        description: "Delegate Urbicana setup and repair",
       },
     ]);
     expect(

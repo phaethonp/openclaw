@@ -1,6 +1,6 @@
-# Signal OpenClaw channel
+# Signal Urbicana channel
 
-Official OpenClaw channel plugin for Signal.
+Official Urbicana channel plugin for Signal.
 
 ## Install
 
@@ -10,4 +10,4 @@ openclaw plugins install @openclaw/signal
 
 ## Docs
 
-See `docs/channels/signal.md` in the OpenClaw repository, or the published docs at `https://docs.openclaw.ai/channels/signal`.
+See `docs/channels/signal.md` in the Urbicana repository, or the published docs at `https://docs.openclaw.ai/channels/signal`.

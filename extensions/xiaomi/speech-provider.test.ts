@@ -32,7 +32,7 @@ describe("buildXiaomiSpeechProvider", () => {
   const provider = buildXiaomiSpeechProvider();
   const synthesize = (overrides: Partial<SpeechSynthesisRequest> = {}) =>
     provider.synthesize({
-      text: "Hello from OpenClaw.",
+      text: "Hello from Urbicana.",
       cfg: {},
       providerConfig: { apiKey: "sk-test" },
       target: "audio-file",
@@ -192,7 +192,7 @@ describe("buildXiaomiSpeechProvider", () => {
       expect(body.model).toBe("mimo-v2.5-tts");
       expect(body.messages).toEqual([
         { role: "user", content: "Bright." },
-        { role: "assistant", content: "Hello from OpenClaw." },
+        { role: "assistant", content: "Hello from Urbicana." },
       ]);
       expect(body.audio).toEqual({ format: "mp3", voice: "default_en" });
       expect(transcodeAudioBufferToOpusMock).not.toHaveBeenCalled();
@@ -233,7 +233,7 @@ describe("buildXiaomiSpeechProvider", () => {
       expect(body.model).toBe("mimo-v2.5-tts-voicedesign");
       expect(body.messages).toEqual([
         { role: "user", content: "Warm, bright, natural voice." },
-        { role: "assistant", content: "Hello from OpenClaw." },
+        { role: "assistant", content: "Hello from Urbicana." },
       ]);
       expect(body.audio).toEqual({ format: "wav" });
     });
@@ -266,7 +266,7 @@ describe("buildXiaomiSpeechProvider", () => {
       expect(body.audio).toEqual({ format: "wav" });
       expect(body.messages).toEqual([
         { role: "user", content: expect.stringContaining("natural") },
-        { role: "assistant", content: "Hello from OpenClaw." },
+        { role: "assistant", content: "Hello from Urbicana." },
       ]);
     });
 

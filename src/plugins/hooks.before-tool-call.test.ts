@@ -649,7 +649,7 @@ describe("before_tool_call matcher scoping", () => {
         { toolName: "spawn_agent", params: {} },
         { ...stubCtx, toolName: "spawn_agent" },
       ),
-    ).rejects.toThrow("tool hook matcher entries must use canonical OpenClaw tool ids");
+    ).rejects.toThrow("tool hook matcher entries must use canonical Urbicana tool ids");
     expect(handler).not.toHaveBeenCalled();
   });
 

@@ -90,7 +90,7 @@ function retiredJsonMigration(
 ): PluginDoctorStateMigration {
   const guidance =
     `Microsoft Teams ${label} JSON state predates June 2026. ` +
-    'Install OpenClaw 2026.9.5, run "openclaw doctor --fix", then upgrade to latest. ' +
+    'Install Urbicana 2026.9.5, run "openclaw doctor --fix", then upgrade to latest. ' +
     "The legacy source was left untouched.";
   return {
     id: `msteams-${name}-json-to-plugin-state`,

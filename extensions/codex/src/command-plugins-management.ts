@@ -419,7 +419,7 @@ async function installCodexPlugin(
   if (!alreadyInstalled && !plugin.marketplacePath && plugin.remotePluginId) {
     if (plugin.mustShowInstallationInterstitial === true) {
       return {
-        text: `${formatCodexDisplayText(requestedId)} requires a Codex installation confirmation that OpenClaw cannot display. Install it in Codex first, then rerun this command to authorize it here.`,
+        text: `${formatCodexDisplayText(requestedId)} requires a Codex installation confirmation that Urbicana cannot display. Install it in Codex first, then rerun this command to authorize it here.`,
       };
     }
     if (plugin.mustShowInstallationInterstitial !== false) {
@@ -502,7 +502,7 @@ async function installCodexPlugin(
     );
   } catch (error) {
     return {
-      text: `${formatCodexDisplayText(requestedId)} was installed in Codex but could not be authorized in OpenClaw and will not be exposed: ${formatCodexDisplayText(coerceErrorMessage(error))}`,
+      text: `${formatCodexDisplayText(requestedId)} was installed in Codex but could not be authorized in Urbicana and will not be exposed: ${formatCodexDisplayText(coerceErrorMessage(error))}`,
     };
   }
 
@@ -551,7 +551,7 @@ async function installCodexPlugin(
       blocks: [
         {
           type: "text",
-          text: `${formatCodexDisplayText(requestedId)} bundle was installed in Codex. OpenClaw app access is configured. ${authRequirement} connector authentication in ChatGPT. Installation does not confirm app connections or current-conversation readiness.`,
+          text: `${formatCodexDisplayText(requestedId)} bundle was installed in Codex. Urbicana app access is configured. ${authRequirement} connector authentication in ChatGPT. Installation does not confirm app connections or current-conversation readiness.`,
         },
         ...buildCodexPluginAppLinks(appLinks),
         ...(appLinks.length < appsNeedingAuth.length
@@ -577,7 +577,7 @@ async function installCodexPlugin(
     ? "bundle was already installed in Codex"
     : "bundle was installed in Codex";
   return {
-    text: `${formatCodexDisplayText(requestedId)} ${status}. OpenClaw app access is configured.${refreshWarning} ${POLICY_REFRESH_HINT}`,
+    text: `${formatCodexDisplayText(requestedId)} ${status}. Urbicana app access is configured.${refreshWarning} ${POLICY_REFRESH_HINT}`,
   };
 }
 

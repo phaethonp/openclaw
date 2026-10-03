@@ -86,7 +86,7 @@ defineDiscordVoiceTests(
         beginSpeakerTurn(getSessionEntry(manager));
         await emitFinalRealtimeUserTranscript(
           lastRealtimeBridgeParams(),
-          "OpenClaw, what is the next step?",
+          "Urbicana, what is the next step?",
         );
         expect(agentCommandMock).toHaveBeenCalledOnce();
         states = [];

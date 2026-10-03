@@ -576,7 +576,7 @@ describe("Claude native stdio boundary", () => {
     });
   });
 
-  it("leaves admitted OpenClaw MCP tools with their own host policy", async () => {
+  it("leaves admitted Urbicana MCP tools with their own host policy", async () => {
     const context = await createContext("mcp-hook", { liveSession: createLiveSession() });
     const detail = resultDetail(await collect(context));
     expect(detail.hookDecision).toEqual({ continue: true });
@@ -831,7 +831,7 @@ describe("Claude native stdio boundary", () => {
 
       expect(resultDetail(records).lateDecision).toMatchObject({
         behavior: "deny",
-        message: "The OpenClaw run is no longer active.",
+        message: "The Urbicana run is no longer active.",
       });
       expect(context.requestToolPermission).toHaveBeenCalledTimes(expectedCalls);
     },

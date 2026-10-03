@@ -153,7 +153,7 @@ function resolveCommandPath(params: {
     return undefined;
   }
   if (hasPathSeparator(params.command) && !isDurableRootedCommand(params.command)) {
-    // The setup probe and later OpenClaw turns intentionally use different
+    // The setup probe and later Urbicana turns intentionally use different
     // workspaces. A cwd-relative executable cannot name one durable owner.
     return undefined;
   }

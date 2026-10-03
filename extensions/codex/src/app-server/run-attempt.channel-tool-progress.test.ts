@@ -126,8 +126,8 @@ describe("Codex channel tool progress", () => {
         name: "web_search",
         item: {
           type: "webSearch",
-          query: "OpenClaw repository",
-          action: { type: "search", query: "OpenClaw repository" },
+          query: "Urbicana repository",
+          action: { type: "search", query: "Urbicana repository" },
         },
         completion: { durationMs: 1 },
       },
@@ -143,7 +143,7 @@ describe("Codex channel tool progress", () => {
         },
         completion: { result: { content: [{ type: "text", text: "ok" }] }, durationMs: 1 },
       },
-      { label: "OpenClaw dynamic tool", toolCallId: "dynamic-1", name: "agents_list" },
+      { label: "Urbicana dynamic tool", toolCallId: "dynamic-1", name: "agents_list" },
     ];
 
     for (const testCase of cases) {

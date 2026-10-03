@@ -136,7 +136,7 @@ describe("post-plugin update readiness", () => {
     async (phase) => {
       const refusal = { kind: "deferred", reason: "coordinator-contention" };
       const warning =
-        "Doctor maintenance is deferred; stop other OpenClaw processes and run openclaw doctor --fix.";
+        "Doctor maintenance is deferred; stop other Urbicana processes and run openclaw doctor --fix.";
       const onWarnings = vi.fn();
       mocks.runExec.mockImplementationOnce(async (_command, _args, options) => {
         await fs.writeFile(

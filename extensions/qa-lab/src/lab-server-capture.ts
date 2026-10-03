@@ -29,7 +29,7 @@ export function createQaCaptureLifecycle() {
       const { acquireDebugProxyCaptureStoreAsync } = proxyCapture;
       if (typeof acquireDebugProxyCaptureStoreAsync !== "function") {
         return Promise.reject(
-          new Error("QA capture requires async proxy capture support. Upgrade the OpenClaw host."),
+          new Error("QA capture requires async proxy capture support. Upgrade the Urbicana host."),
         );
       }
       const lease = acquireDebugProxyCaptureStoreAsync({ env: captureEnv });

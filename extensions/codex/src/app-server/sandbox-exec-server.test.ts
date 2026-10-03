@@ -77,7 +77,7 @@ async function openSandboxSocket(sandbox: ReturnType<typeof createSandboxContext
   return socket;
 }
 
-describe("OpenClaw Codex sandbox exec-server", () => {
+describe("Urbicana Codex sandbox exec-server", () => {
   it("rejects an incomplete sandbox environment before publishing an exec-server", async () => {
     const sandbox = createSandboxContext({});
     sandbox.fsBridge = undefined;
@@ -760,7 +760,7 @@ describe("OpenClaw Codex sandbox exec-server", () => {
     for (const method of ["fs/walk", "unsupported/method"]) {
       await expect(rpc(socket, method, {})).rejects.toMatchObject({
         code: -32601,
-        message: `Unsupported OpenClaw sandbox exec-server method: ${method}`,
+        message: `Unsupported Urbicana sandbox exec-server method: ${method}`,
       });
     }
     await expect(

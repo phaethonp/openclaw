@@ -33,7 +33,7 @@ export async function runAcpHarnessAttempt(params: {
 }): Promise<EmbeddedRunAttemptResult> {
   const { input, runtime } = params;
   if (!input.agentId || !input.sessionKey) {
-    throw new Error("ACP chat requires an owned OpenClaw session");
+    throw new Error("ACP chat requires an owned Urbicana session");
   }
   const agentId = input.agentId;
   const sessionKey = input.sessionKey;

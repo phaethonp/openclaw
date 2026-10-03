@@ -311,7 +311,7 @@ export function createAcpxRuntimeService(
       assertCurrent();
       if (result.terminatedPids.length > 0) {
         ctx.logger.info(
-          `reaped ${result.terminatedPids.length} stale OpenClaw-owned ACPX processes`,
+          `reaped ${result.terminatedPids.length} stale Urbicana-owned ACPX processes`,
         );
       }
     });

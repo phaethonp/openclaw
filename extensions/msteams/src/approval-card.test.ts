@@ -91,10 +91,10 @@ describe("Microsoft Teams approval Adaptive Cards", () => {
         ...createExecPendingView(),
         approvalId: "system-agent:change-1",
         approvalKind: "system-agent",
-        title: "OpenClaw change",
+        title: "Urbicana change",
         operationSummary: "restart the Gateway",
       } satisfies PendingApprovalView,
-      label: "OpenClaw Change",
+      label: "Urbicana Change",
       decision: "allow-once",
       decisionLabel: "Allowed once",
       subject: [
@@ -333,7 +333,7 @@ describe("Microsoft Teams approval Adaptive Cards", () => {
         approvalKind: "system-agent",
         approvalId: "system-agent:change-1",
         phase: "resolved",
-        title: "OpenClaw change",
+        title: "Urbicana change",
         metadata: [],
         commandText: "restart the Gateway",
         operationSummary: "restart the Gateway",
@@ -344,7 +344,7 @@ describe("Microsoft Teams approval Adaptive Cards", () => {
 
       expect(card.body).toEqual(
         expect.arrayContaining([
-          expect.objectContaining({ text: `OpenClaw Change Approval: ${label}` }),
+          expect.objectContaining({ text: `Urbicana Change Approval: ${label}` }),
         ]),
       );
     },
@@ -396,7 +396,7 @@ describe("Microsoft Teams approval Adaptive Cards", () => {
         ...result.approval,
         presentation: {
           kind: "system-agent",
-          title: "OpenClaw change",
+          title: "Urbicana change",
           description: "restart the Gateway",
           proposalHash: "a".repeat(64),
           allowedDecisions: ["allow-once", "deny"],

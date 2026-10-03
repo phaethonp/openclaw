@@ -1,8 +1,8 @@
-# OpenClaw Featherless AI Provider
+# Urbicana Featherless AI Provider
 
-Official OpenClaw provider plugin for Featherless AI's OpenAI-compatible API.
+Official Urbicana provider plugin for Featherless AI's OpenAI-compatible API.
 
-Install from OpenClaw:
+Install from Urbicana:
 
 ```bash
 openclaw plugins install @openclaw/featherless-provider

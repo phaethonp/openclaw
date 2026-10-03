@@ -650,7 +650,7 @@ suite.define(() => {
             "xdotool",
             "search",
             "--name",
-            "^OpenClaw resize proof$",
+            "^Urbicana resize proof$",
             "windowactivate",
             "--sync",
           ]);

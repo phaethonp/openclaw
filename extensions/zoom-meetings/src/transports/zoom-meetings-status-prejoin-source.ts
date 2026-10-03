@@ -173,9 +173,9 @@ export function zoomMeetingStatusPreludeSource(params: MeetingStatusPreludeParam
   const captchaRequired = Boolean(firstRaw(selectors.captcha)) ||
     /complete (?:the )?captcha|security check|verify (?:that )?you(?:'re| are) (?:a )?human/i.test(pageTextLower);
   if (identityVerified && !inCall && passcodeRequired) {
-    controlManualAction = manualActionFor("zoom-passcode-required", "Enter the Zoom meeting passcode in the OpenClaw browser profile, then retry joining.");
+    controlManualAction = manualActionFor("zoom-passcode-required", "Enter the Zoom meeting passcode in the Urbicana browser profile, then retry joining.");
   } else if (identityVerified && !inCall && captchaRequired) {
-    controlManualAction = manualActionFor("zoom-captcha-required", "Complete Zoom's security check in the OpenClaw browser profile, then retry joining.");
+    controlManualAction = manualActionFor("zoom-captcha-required", "Complete Zoom's security check in the Urbicana browser profile, then retry joining.");
   }
 
   if (
@@ -336,11 +336,11 @@ export function zoomMeetingStatusPreludeSource(params: MeetingStatusPreludeParam
   if (committedOwnerConflict && !canMutateSession) {
     manualAction = manualActionFor("zoom-session-conflict", "This Zoom tab is owned by another active meeting session.");
   } else if (!inCall && loginRequired) {
-    manualAction = manualActionFor("zoom-login-required", tenantLoginRequired ? "This Zoom tenant requires sign-in or email verification. Complete it in the OpenClaw browser profile, then retry." : "Sign in to Zoom in the OpenClaw browser profile, then retry the meeting join.");
+    manualAction = manualActionFor("zoom-login-required", tenantLoginRequired ? "This Zoom tenant requires sign-in or email verification. Complete it in the Urbicana browser profile, then retry." : "Sign in to Zoom in the Urbicana browser profile, then retry the meeting join.");
   } else if (!inCall && lobbyWaiting) {
-    manualAction = manualActionFor("zoom-admission-required", "Admit the OpenClaw guest from the Zoom lobby, then retry speech.");
+    manualAction = manualActionFor("zoom-admission-required", "Admit the Urbicana guest from the Zoom lobby, then retry speech.");
   } else if (!inCall && permissionRequired) {
-    manualAction = manualActionFor("zoom-permission-required", allowMicrophone ? "Allow microphone permission for Zoom in the OpenClaw browser profile, then retry." : "Dismiss the Zoom device-permission prompt or continue without devices, then retry.");
+    manualAction = manualActionFor("zoom-permission-required", allowMicrophone ? "Allow microphone permission for Zoom in the Urbicana browser profile, then retry." : "Dismiss the Zoom device-permission prompt or continue without devices, then retry.");
   } else if (controlManualAction) {
     manualAction = controlManualAction;
   }

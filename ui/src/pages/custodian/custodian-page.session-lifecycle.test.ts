@@ -55,7 +55,7 @@ describe("custodian page session lifecycle", () => {
           if (invalidated) {
             throw new GatewayProtocolRequestError({
               code: "UNAVAILABLE",
-              message: "OpenClaw inference became unavailable.",
+              message: "Urbicana inference became unavailable.",
               details: buildSystemAgentSessionInvalidatedErrorDetails(),
             });
           }
@@ -193,7 +193,7 @@ describe("custodian page session lifecycle", () => {
       const question = {
         id: "credentials",
         header: "Credentials",
-        question: "How should OpenClaw authenticate?",
+        question: "How should Urbicana authenticate?",
         options: [{ label: "Enter credential" }, { label: "Use environment" }],
       };
       const request = vi
@@ -276,7 +276,7 @@ describe("custodian page session lifecycle", () => {
       .mockRejectedValueOnce(
         new GatewayProtocolRequestError({
           code: "INVALID_REQUEST",
-          message: "No active OpenClaw chat session is awaiting that wizard answer.",
+          message: "No active Urbicana chat session is awaiting that wizard answer.",
           details: buildSystemAgentSessionInvalidatedErrorDetails(),
         }),
       )
@@ -329,7 +329,7 @@ describe("custodian page session lifecycle", () => {
       .mockRejectedValueOnce(
         new GatewayProtocolRequestError({
           code: "INVALID_REQUEST",
-          message: "No active OpenClaw chat session is awaiting that wizard cancel.",
+          message: "No active Urbicana chat session is awaiting that wizard cancel.",
           details: buildSystemAgentSessionInvalidatedErrorDetails(),
         }),
       )

@@ -1,5 +1,5 @@
 // Gateway OpenAI-compatible chat completions endpoint.
-// Translates OpenAI chat requests to OpenClaw agent runs and SSE/JSON responses.
+// Translates OpenAI chat requests to Urbicana agent runs and SSE/JSON responses.
 import { randomUUID } from "node:crypto";
 import type { IncomingMessage, ServerResponse } from "node:http";
 import { STREAM_ERROR_FALLBACK_TEXT } from "@openclaw/ai/internal/shared";
@@ -783,7 +783,7 @@ export async function handleOpenAiHttpRequest(
       const toolCalls =
         stopReason === "tool_calls" && pendingToolCalls?.length ? pendingToolCalls : undefined;
       const content =
-        resolveAssistantResultText(result) || (toolCalls ? "" : "No response from OpenClaw.");
+        resolveAssistantResultText(result) || (toolCalls ? "" : "No response from Urbicana.");
       sendJson(res, 200, {
         id: runId,
         object: "chat.completion",
@@ -873,7 +873,7 @@ export async function handleOpenAiHttpRequest(
         pending: pendingAssistantText,
         resultText: finalResultText,
         streamedText: streamedAssistantText.text,
-        fallbackText: finalToolCalls ? "" : "No response from OpenClaw.",
+        fallbackText: finalToolCalls ? "" : "No response from Urbicana.",
       });
       if (!text.startsWith(streamedAssistantText.text)) {
         finishStreamWithError({

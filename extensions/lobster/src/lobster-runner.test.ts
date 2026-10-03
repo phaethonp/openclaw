@@ -151,7 +151,7 @@ describe("createEmbeddedLobsterRunner", () => {
     runtime.runToolRequest.mockResolvedValue({ ...success, status: "needs_input" });
 
     await expect(runner.run(runParams())).rejects.toThrow(
-      "Lobster input requests are not supported by the OpenClaw Lobster tool yet",
+      "Lobster input requests are not supported by the Urbicana Lobster tool yet",
     );
   });
 

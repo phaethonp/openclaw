@@ -467,7 +467,7 @@ async function reconcilePreparedTranscriptIndexes(
       }
     } catch (error) {
       const failure = new Error(
-        `Transcript lease cleanup incomplete; restart OpenClaw before deleting this agent: ${toStringifiedError(error).message}`,
+        `Transcript lease cleanup incomplete; restart Urbicana before deleting this agent: ${toStringifiedError(error).message}`,
         { cause: error },
       );
       if (input.mode === "disk") {

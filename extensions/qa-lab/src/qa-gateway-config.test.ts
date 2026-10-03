@@ -27,7 +27,7 @@ function createQaChannelTransportParams(baseUrl = "http://127.0.0.1:43124") {
           enabled: true,
           baseUrl,
           botUserId: "openclaw",
-          botDisplayName: "OpenClaw QA",
+          botDisplayName: "Urbicana QA",
           allowFrom: ["*"],
           pollTimeoutMs: 250,
         },
@@ -420,7 +420,7 @@ describe("buildQaGatewayConfig", () => {
     expect(cfg.plugins?.entries?.anthropic).toEqual({ enabled: true });
   });
 
-  it("keeps forced Codex cells free of OpenClaw request params", () => {
+  it("keeps forced Codex cells free of Urbicana request params", () => {
     const cfg = buildConfig({
       providerMode: "live-frontier",
       forcedRuntime: "codex",

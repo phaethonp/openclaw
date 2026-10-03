@@ -1,6 +1,6 @@
 # Team Reports
 
-Official external OpenClaw plugin for daily, weekly, and monthly GitHub activity reports
+Official external Urbicana plugin for daily, weekly, and monthly GitHub activity reports
 with optional Discord discussion, model-written summaries, and a **Reports**
 tab in the Control UI. Installed on demand (`openclaw plugins install @openclaw/team-reports`);
 source checkouts load it from `extensions/team-reports`. Disabled by default.

@@ -320,7 +320,7 @@ export function createSlackSetupWizardBase(handlers: {
         return { cfg };
       }
       const identity = await prompter.select<"bot" | "user">({
-        message: "How should OpenClaw appear in Slack?",
+        message: "How should Urbicana appear in Slack?",
         options: [
           { value: "bot", label: "Slack bot", hint: "Post as the Slack app (default)" },
           { value: "user", label: "Slack user", hint: "Post as the authorizing human" },

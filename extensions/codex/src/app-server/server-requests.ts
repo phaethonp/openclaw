@@ -173,7 +173,7 @@ function defaultServerRequestResponse(request: ServerRequest): JsonValue {
       contentItems: [
         {
           type: "inputText",
-          text: "OpenClaw did not register a handler for this app-server tool call.",
+          text: "Urbicana did not register a handler for this app-server tool call.",
         },
       ],
       success: false,
@@ -195,7 +195,7 @@ function defaultServerRequestResponse(request: ServerRequest): JsonValue {
   }
   if (request.method === "mcpServer/elicitation/request") {
     return createCodexElicitationResponse("decline", null, {
-      message: "OpenClaw has no interactive handler for this elicitation.",
+      message: "Urbicana has no interactive handler for this elicitation.",
     });
   }
   return {};
@@ -206,7 +206,7 @@ function timeoutServerRequestResponse(timeoutMs: number): JsonValue {
     contentItems: [
       {
         type: "inputText",
-        text: `OpenClaw dynamic tool call timed out after ${timeoutMs}ms before sending a response to Codex.`,
+        text: `Urbicana dynamic tool call timed out after ${timeoutMs}ms before sending a response to Codex.`,
       },
     ],
     success: false,

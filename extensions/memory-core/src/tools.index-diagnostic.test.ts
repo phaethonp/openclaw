@@ -74,9 +74,9 @@ describe("memory_search retained sync diagnostics", () => {
       expect(result.details).toMatchObject({
         results: [],
         unavailable: true,
-        error: expect.stringContaining("newer OpenClaw"),
+        error: expect.stringContaining("newer Urbicana"),
         warning: expect.stringContaining("Previous memory sync failed: HTTP 400"),
-        action: expect.stringContaining("upgrade OpenClaw or reindex explicitly"),
+        action: expect.stringContaining("upgrade Urbicana or reindex explicitly"),
       });
       expect(manager.status().lastSyncError).toContain("HTTP 400");
       expect(readMemoryDatabaseRevision(db)).toBe(before);

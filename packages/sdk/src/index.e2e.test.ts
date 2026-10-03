@@ -297,7 +297,7 @@ async function createFakeGateway(port = 0): Promise<FakeGateway> {
   };
 }
 
-describe("OpenClaw SDK websocket e2e", () => {
+describe("Urbicana SDK websocket e2e", () => {
   afterEach(async () => {
     await Promise.all(
       servers.splice(0).map(
@@ -496,7 +496,7 @@ describe("OpenClaw SDK websocket e2e", () => {
   });
 });
 
-describe("OpenClaw SDK real Gateway e2e", () => {
+describe("Urbicana SDK real Gateway e2e", () => {
   installGatewayTestHooks({ scope: "test" });
 
   it("streams real Gateway agent events and preserves late replay order", async () => {
@@ -643,7 +643,7 @@ function expectArrayProperty(value: unknown, property: string): void {
   expect(Array.isArray(record[property])).toBe(true);
 }
 
-liveGatewayDescribe("OpenClaw SDK live Gateway e2e", () => {
+liveGatewayDescribe("Urbicana SDK live Gateway e2e", () => {
   it("connects to a configured Gateway, streams a real run, and waits for completion", async () => {
     const oc = new OpenClaw({
       url: liveGatewayUrl,

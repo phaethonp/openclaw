@@ -174,7 +174,7 @@ describe("shortenHomePath", () => {
   );
 
   it.skipIf(process.platform === "win32")("keeps POSIX home matching case-sensitive", () => {
-    withEnv({ OPENCLAW_HOME: "/srv/OpenClaw-Home", HOME: "/home/other" }, () => {
+    withEnv({ OPENCLAW_HOME: "/srv/Urbicana-Home", HOME: "/home/other" }, () => {
       expect(shortenHomePath("/srv/openclaw-home/workspace")).toBe("/srv/openclaw-home/workspace");
     });
   });
@@ -219,7 +219,7 @@ describe("shortenHomeInString", () => {
   it.skipIf(process.platform === "win32")(
     "keeps embedded POSIX home matching case-sensitive",
     () => {
-      withEnv({ OPENCLAW_HOME: "/srv/OpenClaw-Home", HOME: "/home/other" }, () => {
+      withEnv({ OPENCLAW_HOME: "/srv/Urbicana-Home", HOME: "/home/other" }, () => {
         expect(shortenHomeInString("config: /srv/openclaw-home/openclaw.json")).toBe(
           "config: /srv/openclaw-home/openclaw.json",
         );

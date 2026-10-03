@@ -937,7 +937,7 @@ async function writeUnifiedQaSuiteArtifacts(params: {
   const reportPath = path.join(params.outputDir, "qa-suite-report.md");
   const summaryPath = path.join(params.outputDir, "qa-suite-summary.json");
   const report = renderQaMarkdownReport({
-    title: "OpenClaw QA Scenario Suite",
+    title: "Urbicana QA Scenario Suite",
     finishedAt: params.finishedAt,
     scenarios: [...params.scenarios],
     startedAt: params.startedAt,

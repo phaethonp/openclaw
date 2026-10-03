@@ -375,7 +375,7 @@ async function resolveFromVault(ids) {
     return response;
   }
   // Address and authentication are provider-wide. Let those failures terminate the
-  // subprocess so OpenClaw fans one provider diagnostic out to every affected owner.
+  // subprocess so Urbicana fans one provider diagnostic out to every affected owner.
   const baseUrl = normalizeVaultAddress();
   const vaultToken = await resolveVaultClientToken(baseUrl);
   const results = await Promise.all(

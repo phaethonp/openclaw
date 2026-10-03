@@ -139,7 +139,7 @@ export function registerUpdateCli(program: Command) {
   program.enablePositionalOptions();
   const update = program
     .command("update")
-    .description("Update OpenClaw and inspect update channel status");
+    .description("Update Urbicana and inspect update channel status");
   for (const [flags, description, defaultValue] of UPDATE_OPTION_SPECS) {
     update.option(flags, description, defaultValue);
   }
@@ -266,8 +266,8 @@ ${theme.muted("Docs:")} ${formatDocsLink("/cli/update", "docs.openclaw.ai/cli/up
     .command("migration-plan", { hidden: true })
     .description("Plan Doctor-owned state migrations against an isolated snapshot")
     .requiredOption("--snapshot-home <path>", "Copied environment home")
-    .requiredOption("--snapshot-config <path>", "Copied OpenClaw config")
-    .requiredOption("--snapshot-state <path>", "Copied OpenClaw state directory")
+    .requiredOption("--snapshot-config <path>", "Copied Urbicana config")
+    .requiredOption("--snapshot-state <path>", "Copied Urbicana state directory")
     .option("--dry-run", "Accepted for parity; migration planning is always read-only", true)
     .option("--json", "Output result as JSON", true)
     .action(

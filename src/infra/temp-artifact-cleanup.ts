@@ -146,7 +146,7 @@ export async function maintainRetainedUpdateRuntimes(params: {
           }
           if (census.pids.length) {
             throw new Error(
-              `other OpenClaw processes are still running (PIDs: ${census.pids.join(", ")})`,
+              `other Urbicana processes are still running (PIDs: ${census.pids.join(", ")})`,
             );
           }
           params.assertCurrent();

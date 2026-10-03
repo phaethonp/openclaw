@@ -1,6 +1,6 @@
 import { IMAGE_BLOCK_TOKENS } from "openclaw/plugin-sdk/agent-core";
 /**
- * Projects OpenClaw context-engine assemblies into Codex prompt text while
+ * Projects Urbicana context-engine assemblies into Codex prompt text while
  * preserving safety boundaries and redacting tool payloads.
  */
 import {
@@ -36,7 +36,7 @@ export type CodexProjectedImageGroup = CodexProjectedContextRange & {
   images: ImageContent[];
 };
 
-const CONTEXT_HEADER = "OpenClaw assembled context for this turn:";
+const CONTEXT_HEADER = "Urbicana assembled context for this turn:";
 const CONTEXT_OPEN = "<conversation_context>";
 const CONTEXT_CLOSE = "</conversation_context>";
 const REQUEST_HEADER = "Current user request:";
@@ -110,7 +110,7 @@ export function isCodexDurableCustomMessage(message: AgentMessage): boolean {
   );
 }
 
-/** Projects assembled OpenClaw context-engine messages into Codex prompt inputs. */
+/** Projects assembled Urbicana context-engine messages into Codex prompt inputs. */
 export async function projectContextEngineAssemblyForCodex(params: {
   assembledMessages: AgentMessage[];
   prompt: string;

@@ -1,8 +1,8 @@
-# OpenClaw Cerebras Provider
+# Urbicana Cerebras Provider
 
-Official OpenClaw provider plugin for Cerebras.
+Official Urbicana provider plugin for Cerebras.
 
-Install from OpenClaw:
+Install from Urbicana:
 
 ```bash
 openclaw plugins install @openclaw/cerebras-provider

@@ -231,7 +231,7 @@ describe("HTTP continuation across a non-canonical replayed tool-call id (loopba
       }
       // resolveResponsesToolCallId pairs the wire call_id/id verbatim,
       // unreshaped -- confirms the scripted server's raw ids really did
-      // round-trip into OpenClaw's own internal representation unchanged.
+      // round-trip into Urbicana's own internal representation unchanged.
       expect(toolCall.id).toBe(`${RAW_CALL_ID}|${RAW_ITEM_ID}`);
 
       // Production mutates the stored tool-call id to this same reshaped

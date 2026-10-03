@@ -60,7 +60,7 @@ describe("delegated Windows registration and read-only native admission", () => 
     const f = setup();
     f.manage.mockResolvedValue({ ...f.response, ok: false, code: "browser_control_disabled" });
     const result = await installWindowsNativeHost({
-      pluginRoot: "C:\\OpenClaw",
+      pluginRoot: "C:\\Urbicana",
       extensionIds: [],
       deps: f.deps,
       requestStoreInstall: true,

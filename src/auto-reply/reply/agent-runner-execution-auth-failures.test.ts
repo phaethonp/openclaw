@@ -456,7 +456,7 @@ describe("executeAgentTurn: authentication failures", () => {
     expect(result.kind).toBe("final");
     if (result.kind === "final") {
       expect(result.payload.text).toBe(
-        "The selected auth profile is unavailable in this agent's OpenClaw credential store. Import or migrate that credential into the agent, select another configured profile, or run `openclaw configure`, then retry.",
+        "The selected auth profile is unavailable in this agent's Urbicana credential store. Import or migrate that credential into the agent, select another configured profile, or run `openclaw configure`, then retry.",
       );
       expect(result.payload.text).not.toContain("openai:private");
       expect(result.payload.text).not.toContain("arbitrary plugin detail");

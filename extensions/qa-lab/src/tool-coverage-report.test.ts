@@ -331,7 +331,7 @@ describe("qa tool coverage report", () => {
     );
   });
 
-  it("keeps searchable OpenClaw dynamic tool rows report-only by default", () => {
+  it("keeps searchable Urbicana dynamic tool rows report-only by default", () => {
     const report = buildQaToolCoverageReport({
       scenarios: [
         makeScenario("tool-searchable-web-search", "web-search", {
@@ -381,7 +381,7 @@ describe("qa tool coverage report", () => {
     );
   });
 
-  it("passes required OpenClaw dynamic tool coverage when Codex reports a soft tool error", () => {
+  it("passes required Urbicana dynamic tool coverage when Codex reports a soft tool error", () => {
     const report = buildQaToolCoverageReport({
       scenarios: [makeRequiredToolScenario("web-search", "web_search")],
       summary: {
@@ -419,7 +419,7 @@ describe("qa tool coverage report", () => {
     );
   });
 
-  it("fails required OpenClaw dynamic tool coverage when a runtime skips the tool", () => {
+  it("fails required Urbicana dynamic tool coverage when a runtime skips the tool", () => {
     const report = buildQaToolCoverageReport({
       scenarios: [makeRequiredToolScenario("web-search", "web_search")],
       summary: {
@@ -538,7 +538,7 @@ describe("qa tool coverage report", () => {
     expect(report.failures).toEqual(["web-fetch status openclaw=pass codex=fail"]);
   });
 
-  it("fails required OpenClaw dynamic tool coverage when the fixture failure mode is preserved", () => {
+  it("fails required Urbicana dynamic tool coverage when the fixture failure mode is preserved", () => {
     const report = buildQaToolCoverageReport({
       scenarios: [makeRequiredToolScenario("web-search", "web_search")],
       summary: {

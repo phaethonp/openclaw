@@ -307,7 +307,7 @@ describe("createCopilotByokProxy", () => {
         id: "deployment-gpt",
         baseUrl: "https://example.openai.azure.com/openai/v1",
         headers: {
-          "X-OpenClaw-Copilot-Byok-Proxy-Token": "configured-value",
+          "X-Urbicana-Copilot-Byok-Proxy-Token": "configured-value",
           "X-Trace": "test",
         },
       },
@@ -319,7 +319,7 @@ describe("createCopilotByokProxy", () => {
     const sdkHeaders = expectDefined(proxy?.provider.provider?.headers, "Azure SDK headers");
     const [proxyCredentialHeader] = getProxyCredentialHeader(sdkHeaders);
     expect(sdkHeaders).toMatchObject({
-      "X-OpenClaw-Copilot-Byok-Proxy-Token": "configured-value",
+      "X-Urbicana-Copilot-Byok-Proxy-Token": "configured-value",
       "X-Trace": "test",
     });
 

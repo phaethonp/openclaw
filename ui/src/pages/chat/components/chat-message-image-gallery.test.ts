@@ -58,7 +58,7 @@ describe("message image gallery loading", () => {
         renderMessageGroup(group, {
           showReasoning: true,
           showToolCalls: false,
-          assistantName: "OpenClaw",
+          assistantName: "Urbicana",
           assistantAvatar: null,
           resourceBasePath: "/openclaw",
           assistantAttachmentAuthToken: "test-auth-token",

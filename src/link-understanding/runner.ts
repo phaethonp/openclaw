@@ -78,7 +78,7 @@ async function fetchLinkContent(params: {
     init: {
       headers: {
         Accept: "text/*,application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "User-Agent": "OpenClaw-LinkUnderstanding/1.0",
+        "User-Agent": "Urbicana-LinkUnderstanding/1.0",
       },
     },
   });

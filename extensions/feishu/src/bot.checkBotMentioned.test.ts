@@ -47,7 +47,7 @@ describe("parseFeishuMessageEvent – mentionedBot", () => {
 
   it("recognizes bot mentions by ID when the display name is an alias", () => {
     const event = makeEvent("group", [
-      { key: "@_user_1", name: "OpenClaw Bot (Alias)", id: { open_id: BOT_OPEN_ID } },
+      { key: "@_user_1", name: "Urbicana Bot (Alias)", id: { open_id: BOT_OPEN_ID } },
     ]);
     const ctx = parseFeishuMessageEvent(event, BOT_OPEN_ID);
     expect(ctx.mentionedBot).toBe(true);

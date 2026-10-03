@@ -1,8 +1,8 @@
-# OpenClaw DuckDuckGo Plugin
+# Urbicana DuckDuckGo Plugin
 
-Official OpenClaw plugin for DuckDuckGo web search.
+Official Urbicana plugin for DuckDuckGo web search.
 
-Install from OpenClaw:
+Install from Urbicana:
 
 ```bash
 openclaw plugins install @openclaw/duckduckgo-plugin

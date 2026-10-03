@@ -20,7 +20,7 @@ describe("runObsidianAction", () => {
           obsidian: {
             enabled: true,
             useOfficialCli: true,
-            vaultName: "OpenClaw Wiki",
+            vaultName: "Urbicana Wiki",
           },
         },
         { homedir: "/Users/tester" },
@@ -47,7 +47,7 @@ describe("runObsidianAction", () => {
       expect(calls).toEqual([
         {
           command: "/usr/local/bin/obsidian",
-          argv: ["vault=OpenClaw Wiki", ...expectedArgv],
+          argv: ["vault=Urbicana Wiki", ...expectedArgv],
           options: { logOutput: false, timeoutMs: 10_000 },
         },
       ]);

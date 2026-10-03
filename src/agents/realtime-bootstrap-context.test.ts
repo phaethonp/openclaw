@@ -43,7 +43,7 @@ describe("resolveRealtimeBootstrapContextInstructions", () => {
       sessionKey: "agent:main:discord:channel:1001",
     });
 
-    expect(instructions).toContain("OpenClaw realtime voice profile context");
+    expect(instructions).toContain("Urbicana realtime voice profile context");
     expect(instructions).toContain("### IDENTITY.md");
     expect(instructions).toContain("Name: Wilfred");
     expect(instructions).toContain("### USER.md");
@@ -135,7 +135,7 @@ describe("resolveRealtimeVoiceAgentContextInstructions", () => {
     });
     expect(
       instructions.startsWith(
-        `${REALTIME_VOICE_AGENT_CONTEXT_INSTRUCTIONS}\n\nConfigured identity:\n- Name: Wilfred\n- Emoji: 🦞\n- Vibe: dry\n- Theme: friendly\n- Creature/persona: lobster\n\nOpenClaw realtime voice profile context:`,
+        `${REALTIME_VOICE_AGENT_CONTEXT_INSTRUCTIONS}\n\nConfigured identity:\n- Name: Wilfred\n- Emoji: 🦞\n- Vibe: dry\n- Theme: friendly\n- Creature/persona: lobster\n\nUrbicana realtime voice profile context:`,
       ),
     ).toBe(true);
     expect(instructions.split(REALTIME_VOICE_AGENT_CONTEXT_INSTRUCTIONS)).toHaveLength(2);

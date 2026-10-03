@@ -558,7 +558,7 @@ describe("ensureContainerImage", () => {
 
     expect(err).toBeInstanceOf(Error);
     expect((err as Error).message).toBe(
-      `Sandbox image not found: ${DEFAULT_SANDBOX_IMAGE}. Build it with scripts/sandbox-setup.sh before enabling Docker sandboxing. The default image includes python3 for sandbox write/edit helpers; OpenClaw will not substitute plain debian:bookworm-slim.`,
+      `Sandbox image not found: ${DEFAULT_SANDBOX_IMAGE}. Build it with scripts/sandbox-setup.sh before enabling Docker sandboxing. The default image includes python3 for sandbox write/edit helpers; Urbicana will not substitute plain debian:bookworm-slim.`,
     );
     expect(spawnState.calls).toEqual([
       {

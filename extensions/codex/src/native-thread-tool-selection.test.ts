@@ -323,7 +323,7 @@ describe("native Codex fork ownership", () => {
       }
     }));
 
-  it("unsubscribes a detached native fork without requiring an OpenClaw session", () =>
+  it("unsubscribes a detached native fork without requiring an Urbicana session", () =>
     withFork(async (fixture) => {
       fixture.forkResponse.resolve(fixture.response);
       await expect(

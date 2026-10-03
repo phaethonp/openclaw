@@ -8,7 +8,6 @@ import { renderAgentIdentityAvatar } from "../../../components/identity-avatar-v
 import { renderKbd } from "../../../components/kbd.ts";
 // Control UI chat module implements chat welcome behavior.
 import { t } from "../../../i18n/index.ts";
-import "../../../components/openclaw-mascot.ts";
 import { registerCommandPaletteEnglish } from "../../../i18n/locales/en-command-palette.ts";
 import { resolveAgentTextAvatar } from "../../../lib/agents/display.ts";
 import {
@@ -119,14 +118,6 @@ function selectWelcomeRecentSessions(
   );
 }
 
-function renderWelcomeClawd() {
-  return html`
-    <div class="agent-chat__welcome-clawd" aria-hidden="true">
-      <openclaw-mascot mood="idle" .size=${112}></openclaw-mascot>
-    </div>
-  `;
-}
-
 function renderWelcomeRecentSessions(
   rows: GatewaySessionRow[],
   onOpenSession: ((sessionKey: string) => void) | undefined,
@@ -206,7 +197,6 @@ export function renderWelcomeState(props: ChatWelcomeProps) {
   if (props.modelSetupRequired) {
     return html`
       <div class="agent-chat__welcome agent-chat__welcome--setup" role="alert">
-        ${renderWelcomeClawd()}
         <h2>${t("modelSetup.required.title")}</h2>
         <p class="agent-chat__hint">${t("modelSetup.required.body")}</p>
         ${

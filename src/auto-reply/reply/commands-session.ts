@@ -512,7 +512,7 @@ export const handleRestartCommand: CommandHandler = defineGatewayControlCommand(
         },
       });
       return sessionCommandReply(
-        "⚙️ Restarting OpenClaw in-process (SIGUSR2); back in a few seconds.",
+        "⚙️ Restarting Urbicana in-process (SIGUSR2); back in a few seconds.",
       );
     }
     let sentinelRevision: number | undefined;
@@ -542,7 +542,7 @@ export const handleRestartCommand: CommandHandler = defineGatewayControlCommand(
       return sessionCommandReply(`⚠️ Restart failed (${restartMethod.method}).${detail}`);
     }
     return sessionCommandReply(
-      `⚙️ Restarting OpenClaw via ${restartMethod.method}; give me a few seconds to come back online.`,
+      `⚙️ Restarting Urbicana via ${restartMethod.method}; give me a few seconds to come back online.`,
     );
   },
 );

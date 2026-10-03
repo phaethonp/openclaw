@@ -1,4 +1,4 @@
-// OpenClaw agent database tests cover agent-scoped DB storage and migrations.
+// Urbicana agent database tests cover agent-scoped DB storage and migrations.
 import { execFileSync, spawn } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";

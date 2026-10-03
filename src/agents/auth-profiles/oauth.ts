@@ -407,7 +407,7 @@ export async function resolveApiKeyForProfile(
     return null;
   }
   // Claude owns this native login slot. Legacy persisted copies must never
-  // resolve, refresh, or leave OpenClaw as bearer tokens.
+  // resolve, refresh, or leave Urbicana as bearer tokens.
   if (isRetiredOAuthProfileId(profileId)) {
     return null;
   }

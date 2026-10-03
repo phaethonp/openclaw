@@ -5,9 +5,9 @@ import { resolveCopilotProvider, supportsCopilotByokProviderShape } from "./prov
 const COPILOT_BYOK_PROVIDER_ERROR =
   "[copilot-attempt] BYOK requires an OpenAI-compatible or Anthropic model api and a non-empty baseUrl";
 const COPILOT_BYOK_TRANSPORT_POLICY_ERROR =
-  "[copilot-attempt] BYOK does not support OpenClaw provider request proxy, TLS, or private-network policy overrides";
+  "[copilot-attempt] BYOK does not support Urbicana provider request proxy, TLS, or private-network policy overrides";
 const COPILOT_BYOK_ENDPOINT_POLICY_ERROR =
-  "[copilot-attempt] BYOK endpoint is blocked by OpenClaw SSRF policy";
+  "[copilot-attempt] BYOK endpoint is blocked by Urbicana SSRF policy";
 
 type ModelInput = Parameters<typeof resolveCopilotProvider>[0]["model"];
 
@@ -264,7 +264,7 @@ describe("resolveCopilotProvider", () => {
     }
   });
 
-  it("rejects BYOK endpoints blocked by OpenClaw SSRF policy", () => {
+  it("rejects BYOK endpoints blocked by Urbicana SSRF policy", () => {
     for (const baseUrl of [
       "file://public.example/v1",
       "ftp://public.example/v1",

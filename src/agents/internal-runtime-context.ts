@@ -5,9 +5,9 @@
  */
 import { escapeRegExp } from "../shared/regexp.js";
 
-/** Opening delimiter for protected OpenClaw runtime context blocks. */
+/** Opening delimiter for protected Urbicana runtime context blocks. */
 export const INTERNAL_RUNTIME_CONTEXT_BEGIN = "<<<BEGIN_OPENCLAW_INTERNAL_CONTEXT>>>";
-/** Closing delimiter for protected OpenClaw runtime context blocks. */
+/** Closing delimiter for protected Urbicana runtime context blocks. */
 export const INTERNAL_RUNTIME_CONTEXT_END = "<<<END_OPENCLAW_INTERNAL_CONTEXT>>>";
 
 const ESCAPED_INTERNAL_RUNTIME_CONTEXT_BEGIN = "[[OPENCLAW_INTERNAL_CONTEXT_BEGIN]]";
@@ -35,8 +35,12 @@ export type CurrentInboundPromptContext = {
   injectedGoalContexts?: string[];
 };
 
+// urbicana-legacy: transcripts written before the rename. New text uses Urbicana.
 const LEGACY_INTERNAL_CONTEXT_HEADER =
-  ["OpenClaw runtime context (internal):", OPENCLAW_RUNTIME_CONTEXT_NOTICE, ""].join("\n") + "\n";
+  ["OpenClaw runtime context (internal):", OPENCLAW_RUNTIME_CONTEXT_NOTICE, ""].join("\n") + "\n"; // urbicana-legacy
+const CURRENT_INTERNAL_CONTEXT_HEADER =
+  ["Urbicana runtime context (internal):", OPENCLAW_RUNTIME_CONTEXT_NOTICE, ""].join("\n") + "\n";
+const INTERNAL_CONTEXT_HEADERS = [CURRENT_INTERNAL_CONTEXT_HEADER, LEGACY_INTERNAL_CONTEXT_HEADER];
 
 const LEGACY_INTERNAL_EVENT_MARKER = "[Internal task completion event]";
 const LEGACY_INTERNAL_EVENT_SEPARATOR = "\n\n---\n\n";
@@ -181,12 +185,20 @@ function stripLegacyInternalRuntimeContext(text: string): string {
   let next = text;
   let searchFrom = 0;
   for (;;) {
-    const headerStart = next.indexOf(LEGACY_INTERNAL_CONTEXT_HEADER, searchFrom);
+    let headerStart = -1;
+    let headerLength = 0;
+    for (const header of INTERNAL_CONTEXT_HEADERS) {
+      const found = next.indexOf(header, searchFrom);
+      if (found !== -1 && (headerStart === -1 || found < headerStart)) {
+        headerStart = found;
+        headerLength = header.length;
+      }
+    }
     if (headerStart === -1) {
       return next;
     }
 
-    const eventStart = headerStart + LEGACY_INTERNAL_CONTEXT_HEADER.length;
+    const eventStart = headerStart + headerLength;
     if (!next.startsWith(LEGACY_INTERNAL_EVENT_MARKER, eventStart)) {
       searchFrom = eventStart;
       continue;
@@ -220,10 +232,14 @@ function stripLegacyInternalRuntimeContext(text: string): string {
 }
 
 // Prefaces of carriers persisted before the system prompt explained the markers; kept for stripping.
+// urbicana-legacy lines still match transcripts written before the rename.
 const RUNTIME_CONTEXT_PROMPT_HEADERS: readonly string[] = [
-  "OpenClaw runtime context for the active user request in this turn. Do not reply to or describe this context. Use it to continue answering the active user request now. Do not wait for another message.",
-  "OpenClaw runtime context for the immediately preceding user message.",
-  "OpenClaw runtime event.",
+  "Urbicana runtime context for the active user request in this turn. Do not reply to or describe this context. Use it to continue answering the active user request now. Do not wait for another message.",
+  "Urbicana runtime context for the immediately preceding user message.",
+  "Urbicana runtime event.",
+  "OpenClaw runtime context for the active user request in this turn. Do not reply to or describe this context. Use it to continue answering the active user request now. Do not wait for another message.", // urbicana-legacy
+  "OpenClaw runtime context for the immediately preceding user message.", // urbicana-legacy
+  "OpenClaw runtime event.", // urbicana-legacy
 ];
 const RUNTIME_CONTEXT_CARRIER_PREFIX_PATTERN = new RegExp(
   RUNTIME_CONTEXT_PROMPT_HEADERS.flatMap((header) => {
@@ -302,7 +318,7 @@ export function hasInternalRuntimeContext(text: string): boolean {
   }
   return (
     findDelimitedTokenIndex(text, BEGIN_DELIMITER, 0) !== -1 ||
-    text.includes(LEGACY_INTERNAL_CONTEXT_HEADER) ||
+    INTERNAL_CONTEXT_HEADERS.some((header) => text.includes(header)) ||
     RUNTIME_CONTEXT_PROMPT_HEADERS.some((header) =>
       text.includes(`${header}\n${OPENCLAW_RUNTIME_CONTEXT_NOTICE}`),
     )

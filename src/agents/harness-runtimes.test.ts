@@ -30,7 +30,7 @@ function collectConfiguredAgentHarnessRuntimes(
 }
 
 describe("collectConfiguredAgentHarnessRuntimes", () => {
-  it("preloads explicit picker alternatives without changing an OpenClaw default", () => {
+  it("preloads explicit picker alternatives without changing an Urbicana default", () => {
     const config: OpenClawConfig = {
       agents: {
         defaults: {
@@ -122,7 +122,7 @@ describe("collectConfiguredAgentHarnessRuntimes", () => {
     expect(collectConfiguredAgentHarnessRuntimes(config)).toEqual(["codex"]);
   });
 
-  it("respects explicit OpenClaw runtime policy on selectable OpenAI agent models", () => {
+  it("respects explicit Urbicana runtime policy on selectable OpenAI agent models", () => {
     const config = {
       agents: {
         defaults: {

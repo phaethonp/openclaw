@@ -217,7 +217,7 @@ describe("Codex /codex plugins subcommand", () => {
       runtime,
     );
     expect(runtime.install).toHaveBeenCalledOnce();
-    expect(result.text).toContain("was installed in Codex but could not be authorized in OpenClaw");
+    expect(result.text).toContain("was installed in Codex but could not be authorized in Urbicana");
     expect(result.text).toContain("Command owner was revoked");
     expect(io.current()).toEqual({});
   });
@@ -882,7 +882,7 @@ describe("Codex /codex plugins subcommand", () => {
     );
 
     expect(result.text).toContain("bundle was installed in Codex");
-    expect(result.text).toContain("OpenClaw app access is configured");
+    expect(result.text).toContain("Urbicana app access is configured");
     expect(result.text).toContain("1 app still requires connector authentication in ChatGPT");
     expect(result.text).toContain("Installation does not confirm app connections");
     expect(result.text).toContain(installUrl);

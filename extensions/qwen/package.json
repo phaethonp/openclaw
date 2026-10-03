@@ -1,7 +1,7 @@
 {
   "name": "@openclaw/qwen-provider",
   "version": "2026.9.6",
-  "description": "OpenClaw Qwen Cloud provider plugin.",
+  "description": "Urbicana Qwen Cloud provider plugin.",
   "repository": {
     "type": "git",
     "url": "https://github.com/openclaw/openclaw"

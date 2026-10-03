@@ -43,7 +43,7 @@ export const chromiumEngine: BrowserEngineAdapter = {
             : "local-managed",
       isRemote,
       // A loopback attach-only endpoint can terminate in Docker or a tunnel.
-      // Only an OpenClaw-owned browser is known to share this filesystem.
+      // Only an Urbicana-owned browser is known to share this filesystem.
       browserFilesystemLocal: usesExtension || (localManaged && !profile.attachOnly),
       usesChromeMcp,
       usesPersistentPlaywright: usesExtension || isRemote,

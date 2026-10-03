@@ -62,7 +62,7 @@ export function isPolicyDenyNavigationError(err: unknown): boolean {
 }
 
 // Mark a page (and its CDP target id when resolvable) as blocked so subsequent
-// OpenClaw operations short-circuit instead of re-running the SSRF check on a
+// Urbicana operations short-circuit instead of re-running the SSRF check on a
 // page we have already proven is non-compliant. This is a pure bookkeeping
 // step; it does NOT close the tab. Read-only paths can call this safely on a
 // user-owned tab without losing the user's content.
@@ -80,12 +80,12 @@ export async function quarantineBlockedNavigationTarget(opts: {
   }
 }
 
-// Quarantine and close a tab that OpenClaw itself navigated to a blocked URL.
+// Quarantine and close a tab that Urbicana itself navigated to a blocked URL.
 // Only callers that own the navigation lifecycle (gotoPageWithNavigationGuard
 // and the navigate-style entry points that wrap it) may invoke this — closing
 // a tab is a destructive action that must not happen on user-owned tabs from
 // read-only operations like snapshot/screenshot/interactions.
-/** Quarantine and close a tab that OpenClaw navigated to a blocked URL. */
+/** Quarantine and close a tab that Urbicana navigated to a blocked URL. */
 export async function closeBlockedNavigationTarget(opts: {
   cdpUrl: string;
   page: Page;

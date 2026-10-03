@@ -95,16 +95,11 @@ it.each(["claw", "knot"] as const)(
   "resolves %s branding before the palette and catalog load",
   (id) => {
     patchSettings({ theme: id });
-    setCurrentThemeBranding({ mascot: "none", critters: [] });
+    setCurrentThemeBranding({});
     const { gateway } = createGatewayStoreTestStore();
     const theme = createApplicationTheme(loadSettings(), gateway);
     try {
-      expect(theme.branding).toEqual({
-        mascot: "claw",
-        workingPhrases: undefined,
-        critters: [],
-        avatarHat: undefined,
-      });
+      expect(theme.branding).toEqual({ workingPhrases: undefined });
       expect(currentThemeBranding()).toEqual(theme.branding);
     } finally {
       theme.dispose();
@@ -120,9 +115,7 @@ it("notifies leaf branding consumers when a newly selected built-in palette load
   const renderMark = vi.fn(() => render(renderAgentIdentityAvatar({ id: "openclaw" }), container));
   const unsubscribe = theme.subscribe(renderMark);
   gateway.start();
-  current().request.mockResolvedValue(
-    catalog({ ...definition, mascot: "none", avatarHat: "fedora" }),
-  );
+  current().request.mockResolvedValue(catalog(definition));
   current().opts.onHello?.(GATEWAY_STORE_TEST_HELLO);
   try {
     await vi.dynamicImportSettled();
@@ -131,14 +124,14 @@ it("notifies leaf branding consumers when a newly selected built-in palette load
     patchSettings({ theme: "knot" });
     expect(theme.settings.theme).toBe("knot");
     expect(renderMark).toHaveBeenCalledTimes(1);
-    expect(container.querySelector("img")?.getAttribute("src")).toBe("/favicon.svg");
+    expect(container.querySelector(".identity-avatar--neutral")).not.toBeNull();
     const palette = document.getElementById("openclaw-theme-palette-knot")!;
     expect(document.documentElement.dataset.themeId).toBe(descriptor.id);
     palette.dispatchEvent(new Event("load"));
     expect(renderMark).toHaveBeenCalledTimes(2);
     expect(document.documentElement.dataset.themeId).toBe("knot");
-    expect(document.documentElement.dataset.themeAvatarHat).toBeUndefined();
-    expect(container.querySelector("img")?.getAttribute("src")).toBe("/favicon.svg");
+    expect(container.querySelector(".identity-avatar--neutral")).not.toBeNull();
+    expect(container.querySelector("img")).toBeNull();
   } finally {
     unsubscribe();
     theme.dispose();
@@ -178,14 +171,10 @@ it("applies routed profile updates and plugin hot reloads, restoring an unavaila
       "--bg: #111122;",
     );
     expect(applicationTheme.catalog?.themes).toContainEqual(descriptor);
-    expect(applicationTheme.branding.mascot).toBe("claw");
 
     response = catalog({
       ...definition,
-      mascot: "none",
       workingPhrases: ["Building", "Compiling"],
-      critters: ["penguin", "fedora"],
-      avatarHat: "fedora",
       dark: createThemePaletteFixture({ background: "#221133" }),
     });
     current().opts.onEvent?.(
@@ -199,47 +188,23 @@ it("applies routed profile updates and plugin hot reloads, restoring an unavaila
         "--bg: #221133;",
       ),
     );
-    expect(applicationTheme.branding).toEqual({
-      mascot: "none",
-      workingPhrases: ["Building", "Compiling"],
-      critters: ["penguin", "fedora"],
-      avatarHat: "fedora",
-    });
-    expect(document.documentElement.dataset.themeMascot).toBe("none");
-    expect(document.documentElement.dataset.themeAvatarHat).toBe("fedora");
+    expect(applicationTheme.branding).toEqual({ workingPhrases: ["Building", "Compiling"] });
     await vi.dynamicImportSettled();
-    expect(decodeURIComponent(favicon.href)).toContain("<rect");
+    expect(favicon.getAttribute("href")).toBe("/favicon.svg");
 
-    const artwork = {
-      hats: {
-        beret: { url: "/__openclaw__/plugin-theme-art/space-pack/xenovessel/hat/beret?v=1" },
-      },
-      critters: {
-        ferris: {
-          url: "/__openclaw__/plugin-theme-art/space-pack/xenovessel/critter/ferris?v=1",
-          crossMs: 5000,
-        },
-      },
-    };
     response = catalog({
       ...definition,
-      mascot: "none",
-      avatarHat: "beret",
-      critters: ["ferris"],
       workingPhrases: [],
       dark: createThemePaletteFixture({ background: "#332244" }),
     });
-    response.theme = { ...descriptor, artwork };
     current().opts.onEvent?.(createGatewayEvent("plugins.changed", { generation: 1 }));
     await vi.waitFor(() =>
       expect(document.getElementById("openclaw-custom-theme")?.textContent).toContain(
         "--bg: #332244;",
       ),
     );
-    expect(applicationTheme.branding.artwork).toEqual(artwork);
-    expect(currentThemeBranding().artwork).toEqual(artwork);
-    expect(currentThemeBranding().avatarHat).toBe("beret");
-    expect(currentThemeBranding().critters).toEqual(["ferris"]);
+    expect(applicationTheme.branding).toEqual({ workingPhrases: [] });
+    expect(currentThemeBranding()).toEqual({ workingPhrases: [] });
 
     response = {
       themes: [...BUILTIN_THEMES],
@@ -250,9 +215,6 @@ it("applies routed profile updates and plugin hot reloads, restoring an unavaila
     await vi.waitFor(() => expect(document.documentElement.dataset.themeId).toBe("claw"));
     expect(applicationTheme.settings.theme).toBe(descriptor.id);
     expect(applicationTheme.catalog?.unavailableId).toBe(descriptor.id);
-    expect(applicationTheme.branding.mascot).toBe("claw");
-    expect(document.documentElement.dataset.themeMascot).toBe("claw");
-    expect(document.documentElement.dataset.themeAvatarHat).toBeUndefined();
     await vi.dynamicImportSettled();
     expect(favicon.getAttribute("href")).toBe("/favicon.svg");
 

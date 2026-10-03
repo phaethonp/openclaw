@@ -140,7 +140,7 @@ function preparedVerificationResults(
   return targets.map((target) => terminalVerificationResult(target.path));
 }
 
-describe("OpenClaw database integrity verifier", () => {
+describe("Urbicana database integrity verifier", () => {
   it("verifies an absent additive transcript eligibility projection without installing it", async () => {
     const stateDir = tempDirs.make("openclaw-database-verify-eligibility-");
     const agent = openOpenClawAgentDatabase({
@@ -186,7 +186,7 @@ describe("OpenClaw database integrity verifier", () => {
         ]);
       }
       const targets: OpenClawDatabaseVerifyTarget[] = [
-        { kind: "agent", label: "OpenClaw agent database worker-1", path: agent.path, check },
+        { kind: "agent", label: "Urbicana agent database worker-1", path: agent.path, check },
       ];
 
       await expect(runDatabaseVerifyWorker(targets)).resolves.toEqual([
@@ -233,7 +233,7 @@ describe("OpenClaw database integrity verifier", () => {
     const agentPath = openOpenClawAgentDatabase({ agentId: "worker-1", env }).path;
     createUnsafeIndexDrift(agentPath);
     const targets: OpenClawDatabaseVerifyTarget[] = [
-      { kind: "agent", label: "OpenClaw agent database worker-1", path: agentPath },
+      { kind: "agent", label: "Urbicana agent database worker-1", path: agentPath },
     ];
 
     const results = await runDatabaseVerifyWorker(targets);
@@ -369,7 +369,7 @@ describe("OpenClaw database integrity verifier", () => {
     fs.copyFileSync(agentPath, healthyReplacementPath);
     createUnsafeIndexDrift(agentPath);
     const targets: OpenClawDatabaseVerifyTarget[] = [
-      { kind: "agent", label: "OpenClaw agent database worker-1", path: agentPath },
+      { kind: "agent", label: "Urbicana agent database worker-1", path: agentPath },
     ];
     const results = preparedVerificationResults(targets);
 
@@ -392,7 +392,7 @@ describe("OpenClaw database integrity verifier", () => {
       await copyHealthyDatabase(agent.path, healthyReplacementPath);
       createUnsafeIndexDrift(agent.path);
       const targets: OpenClawDatabaseVerifyTarget[] = [
-        { kind: "agent", label: "OpenClaw agent database worker-1", path: agent.path },
+        { kind: "agent", label: "Urbicana agent database worker-1", path: agent.path },
       ];
       const results = preparedVerificationResults(targets);
 
@@ -417,7 +417,7 @@ describe("OpenClaw database integrity verifier", () => {
       await copyHealthyDatabase(state.path, healthyReplacementPath);
       createUnsafeIndexDrift(state.path);
       const targets: OpenClawDatabaseVerifyTarget[] = [
-        { kind: "state", label: "OpenClaw state database", path: state.path },
+        { kind: "state", label: "Urbicana state database", path: state.path },
       ];
       const results = preparedVerificationResults(targets);
 
@@ -439,7 +439,7 @@ describe("OpenClaw database integrity verifier", () => {
     closeOpenClawStateDatabaseForTest();
     createUnsafeIndexDrift(agentPath);
     const targets: OpenClawDatabaseVerifyTarget[] = [
-      { kind: "agent", label: "OpenClaw agent database worker-1", path: agentPath },
+      { kind: "agent", label: "Urbicana agent database worker-1", path: agentPath },
     ];
     const results = preparedVerificationResults(targets);
 
@@ -493,7 +493,7 @@ describe("OpenClaw database integrity verifier", () => {
     closeOpenClawStateDatabaseForTest();
     createUnsafeIndexDrift(agentPath);
     const targets: OpenClawDatabaseVerifyTarget[] = [
-      { kind: "agent", label: "OpenClaw agent database worker-1", path: agentPath },
+      { kind: "agent", label: "Urbicana agent database worker-1", path: agentPath },
     ];
     const results = preparedVerificationResults(targets);
 
@@ -513,8 +513,8 @@ describe("OpenClaw database integrity verifier", () => {
     const state = openOpenClawStateDatabase({ env });
     const agent = openOpenClawAgentDatabase({ agentId: "worker-1", env });
     const targets: OpenClawDatabaseVerifyTarget[] = [
-      { kind: "state", label: "OpenClaw state database", path: state.path },
-      { kind: "agent", label: "OpenClaw agent database worker-1", path: agent.path },
+      { kind: "state", label: "Urbicana state database", path: state.path },
+      { kind: "agent", label: "Urbicana agent database worker-1", path: agent.path },
     ];
 
     await applyOpenClawDatabaseVerificationResults({
@@ -548,7 +548,7 @@ describe("OpenClaw database integrity verifier", () => {
     fs.rmSync(agent.path);
     fs.renameSync(replacementPath, agent.path);
     const targets: OpenClawDatabaseVerifyTarget[] = [
-      { kind: "agent", label: "OpenClaw agent database worker-1", path: agent.path },
+      { kind: "agent", label: "Urbicana agent database worker-1", path: agent.path },
     ];
 
     await applyOpenClawDatabaseVerificationResults({
@@ -858,7 +858,7 @@ describe("OpenClaw database integrity verifier", () => {
     closeOpenClawAgentDatabasesForTest();
     closeOpenClawStateDatabaseForTest();
     const targets: OpenClawDatabaseVerifyTarget[] = [
-      { kind: "agent", label: "OpenClaw agent database worker-1", path: agentPath },
+      { kind: "agent", label: "Urbicana agent database worker-1", path: agentPath },
     ];
 
     await applyOpenClawDatabaseVerificationResults({

@@ -1,4 +1,4 @@
-# MiniMax (OpenClaw plugin)
+# MiniMax (Urbicana plugin)
 
 Bundled MiniMax plugin for both:
 

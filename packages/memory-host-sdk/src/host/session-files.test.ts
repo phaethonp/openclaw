@@ -739,7 +739,7 @@ describe("listSessionTranscriptCorpusEntriesForAgent", () => {
 });
 
 describe("memory session sync targets", () => {
-  it("parses deprecated canonical OpenClaw transcript paths into sync identity", () => {
+  it("parses deprecated canonical Urbicana transcript paths into sync identity", () => {
     const sessionFile = path.join(tmpDir, "agents", "main", "sessions", "active.jsonl");
     fsSync.mkdirSync(path.dirname(sessionFile), { recursive: true });
 

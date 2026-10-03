@@ -1,4 +1,4 @@
-// Provider-neutral live inference ladder for OpenClaw sessions.
+// Provider-neutral live inference ladder for Urbicana sessions.
 import { normalizeProviderId } from "@openclaw/model-catalog-core/provider-id";
 import { resolveAmbientOwnerAgentId } from "../agents/agent-scope-config.js";
 import { listAgentIds } from "../agents/agent-scope.js";
@@ -197,7 +197,7 @@ export async function verifySystemAgentInferenceWithFallback(
     lastFailure ?? {
       ok: false,
       status: "unknown",
-      error: "OpenClaw could not verify a usable inference route. Check model setup and try again.",
+      error: "Urbicana could not verify a usable inference route. Check model setup and try again.",
     }
   );
 }

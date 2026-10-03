@@ -1,6 +1,6 @@
-# IRC OpenClaw channel
+# IRC Urbicana channel
 
-Official OpenClaw channel plugin for IRC.
+Official Urbicana channel plugin for IRC.
 
 ## Install
 
@@ -10,4 +10,4 @@ openclaw plugins install @openclaw/irc
 
 ## Docs
 
-See `docs/channels/irc.md` in the OpenClaw repository, or the published docs at `https://docs.openclaw.ai/channels/irc`.
+See `docs/channels/irc.md` in the Urbicana repository, or the published docs at `https://docs.openclaw.ai/channels/irc`.

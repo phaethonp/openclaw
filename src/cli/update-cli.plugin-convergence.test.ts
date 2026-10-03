@@ -630,7 +630,7 @@ describe("update-cli", () => {
           pluginId: "demo",
           status: "skipped",
           message:
-            'Disabled "demo" after plugin update failure; OpenClaw will continue without it. Failed to update demo: registry timeout',
+            'Disabled "demo" after plugin update failure; Urbicana will continue without it. Failed to update demo: registry timeout',
         },
       ],
       true,

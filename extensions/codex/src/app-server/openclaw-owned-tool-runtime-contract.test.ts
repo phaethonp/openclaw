@@ -53,7 +53,7 @@ function expectAfterToolCall(
   );
 }
 
-describe("OpenClaw-owned tool runtime contract — Codex app-server adapter", () => {
+describe("Urbicana-owned tool runtime contract — Codex app-server adapter", () => {
   afterEach(() => {
     resetOpenClawOwnedToolHooks();
   });

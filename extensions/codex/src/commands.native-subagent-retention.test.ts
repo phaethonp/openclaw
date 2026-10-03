@@ -271,7 +271,7 @@ describe("codex command", () => {
         const reply = await command.handler(
           createContext(`resume ${threadId}`, undefined, context),
         );
-        expect(reply.text).toContain("Attached this OpenClaw session");
+        expect(reply.text).toContain("Attached this Urbicana session");
         expect(bindingStore.read(identity)).toMatchObject({
           threadId,
           clientId: harness.client.getInstanceId(),

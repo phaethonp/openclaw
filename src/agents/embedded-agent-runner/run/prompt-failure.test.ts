@@ -74,7 +74,7 @@ function makeParams(
 describe("handleEmbeddedPromptFailure", () => {
   it("records local profile absence without an HTTP status in the fallback trace", async () => {
     const code = "selected_auth_profile_unavailable";
-    const message = 'Selected auth profile "openai:work" was not found in OpenClaw.';
+    const message = 'Selected auth profile "openai:work" was not found in Urbicana.';
     const params = makeParams({
       promptError: Object.assign(new Error(message), { code }),
       failover: {

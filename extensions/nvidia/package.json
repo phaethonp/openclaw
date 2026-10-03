@@ -2,7 +2,7 @@
   "name": "@openclaw/nvidia-provider",
   "version": "2026.9.6",
   "private": true,
-  "description": "OpenClaw NVIDIA provider plugin",
+  "description": "Urbicana NVIDIA provider plugin",
   "type": "module",
   "devDependencies": {
     "@openclaw/plugin-sdk": "workspace:*"

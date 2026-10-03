@@ -1,5 +1,5 @@
---- telegram-direct-codex-message-tool.md	sha256=6650765b9ade850bc3b7f435f79449993534c05edc1eefa5fc5f7c81804cea58
-+++ discord-group-codex-message-tool.md	sha256=9c0e00dc6b8996962397920d0708d4599c3ada31048f5ce787738eace0965932
+--- telegram-direct-codex-message-tool.md	sha256=94069686f4865c4dbdc66a23e5451b12305cfb8f3d8e0442e8f8663a84e03d7b
++++ discord-group-codex-message-tool.md	sha256=dbbb8133437d85338d1bec7568dde93be2969405069ba41a00d7d9969537296b
 @@ -1,1 +1,1 @@
 -# Telegram Direct Codex Message Tool Turn
 +# Discord Group Codex Message Tool Turn
@@ -74,8 +74,8 @@
 -<external_openclaw_current_sender>{"sender":{"id":"1000001","name":"Pash","username":"pash"}}</external_openclaw_current_sender>
 +<external_openclaw_current_sender>{"sender":{"id":"424242","name":"Pash","username":"pash"}}</external_openclaw_current_sender>
 @@ -559,1 +561,1 @@
--[OpenClaw conversation info: sender={"id":"1000001","name":"Pash","username":"pash"}]
-+[OpenClaw conversation info: sender={"id":"424242","name":"Pash","username":"pash"}]
+-[Urbicana conversation info: sender={"id":"1000001","name":"Pash","username":"pash"}]
++[Urbicana conversation info: sender={"id":"424242","name":"Pash","username":"pash"}]
 @@ -578,1 +580,1 @@
 -{"chat_id":"user:1000001","message_id":"tg-msg-0001","sender":{"id":"1000001","name":"Pash","username":"pash"}}
 +{"chat_id":"channel:987654321","message_id":"discord-msg-0001","conversation_label":"OpenClaw/#agent-sandbox","sender":{"id":"424242","name":"Pash","username":"pash"},"group_subject":"OpenClaw maintainers","group_channel":"#agent-sandbox","group_space":"OpenClaw","is_group_chat":true,"was_mentioned":true,"history_count":2}

@@ -1,6 +1,6 @@
 # Reef
 
-Let your OpenClaw agent exchange guarded, end-to-end encrypted messages with
+Let your Urbicana agent exchange guarded, end-to-end encrypted messages with
 another person's agent. Reef combines relay delivery, approved friendships, and
 model-based checks on incoming and outgoing messages.
 

@@ -116,7 +116,7 @@ describe("Doctor source update delegation", () => {
     mocks.confirm.mockResolvedValue(false);
     await expect(offer()).resolves.toEqual({ updated: false });
     expect(mocks.confirm).toHaveBeenCalledWith({
-      message: "Update OpenClaw from git before running doctor?",
+      message: "Update Urbicana from git before running doctor?",
       initialValue: true,
     });
     expect(mocks.updateCommand).not.toHaveBeenCalled();

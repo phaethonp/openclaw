@@ -294,7 +294,7 @@ describe("synology-chat account resolution", () => {
     expect(account.dangerouslyAllowInheritedWebhookPath).toBe(false);
     expect(account.dmPolicy).toBe("allowlist");
     expect(account.rateLimitPerMinute).toBe(30);
-    expect(account.botName).toBe("OpenClaw");
+    expect(account.botName).toBe("Urbicana");
   });
 
   it("uses env var fallbacks", () => {
@@ -327,7 +327,7 @@ describe("synology-chat account resolution", () => {
     expect(account.webhookUrl).toBe("");
     expect(account.nasHost).toBe("localhost");
     expect(account.allowedUserIds).toEqual([]);
-    expect(account.botName).toBe("OpenClaw");
+    expect(account.botName).toBe("Urbicana");
   });
 
   it("lets config and account overrides win over env/base config", () => {

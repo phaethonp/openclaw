@@ -347,7 +347,7 @@ describe("CodexAppServerClient", () => {
       params: {
         clientInfo: {
           name: "openclaw",
-          title: "OpenClaw",
+          title: "Urbicana",
           version: OPENCLAW_VERSION,
         },
         capabilities: {
@@ -437,7 +437,7 @@ describe("CodexAppServerClient", () => {
     expect(warn).toHaveBeenCalledTimes(warnings);
     if (warnings > 0) {
       expect(warn).toHaveBeenCalledWith(
-        "codex app-server is newer than OpenClaw's managed runtime; continuing with normal startup validation",
+        "codex app-server is newer than Urbicana's managed runtime; continuing with normal startup validation",
         {
           detectedVersion: version,
           validatedVersion: CODEX_APP_SERVER_VERSION,
@@ -457,7 +457,7 @@ describe("CodexAppServerClient", () => {
 
       await expect(initializing).rejects.toThrow(
         `Codex app-server ${MIN_SUPPORTED_CODEX_APP_SERVER_VERSION} or newer is required, but ${
-          version ? `detected ${version}` : "OpenClaw could not determine the running Codex version"
+          version ? `detected ${version}` : "Urbicana could not determine the running Codex version"
         }`,
       );
       expect(harness.writes).toHaveLength(1);
@@ -894,7 +894,7 @@ describe("CodexAppServerClient", () => {
       result: {
         action: "decline",
         content: null,
-        _meta: { message: "OpenClaw has no interactive handler for this elicitation." },
+        _meta: { message: "Urbicana has no interactive handler for this elicitation." },
       },
     });
   });

@@ -1,6 +1,6 @@
-# ClickClack OpenClaw channel
+# ClickClack Urbicana channel
 
-Official OpenClaw channel plugin for ClickClack.
+Official Urbicana channel plugin for ClickClack.
 
 ## Install
 
@@ -17,7 +17,7 @@ openclaw channels add clickclack --code 'https://clickclack.example.com/#XXXX-XX
 ```
 
 Split-origin and path-mounted ClickClack deployments generate an exact
-`/api/bot-setup-codes/claim#CODE` endpoint. OpenClaw validates the versioned
+`/api/bot-setup-codes/claim#CODE` endpoint. Urbicana validates the versioned
 claim response and saves its canonical API base.
 
 For manual token setup:
@@ -56,7 +56,7 @@ different server-to-server endpoint:
 ```
 
 This same-host pattern lets the public hostname stay fully protected by an
-authentication gateway such as Cloudflare Access while the local OpenClaw
+authentication gateway such as Cloudflare Access while the local Urbicana
 gateway talks directly to ClickClack. REST requests, setup verification, and
 the realtime WebSocket use `apiBaseUrl`; browser-facing discussion links keep
 using `baseUrl`. When `apiBaseUrl` is unset, it defaults to `baseUrl`.
@@ -64,7 +64,7 @@ using `baseUrl`. When `apiBaseUrl` is unset, it defaults to `baseUrl`.
 ## Command menus
 
 ClickClack command menus are enabled by default. At gateway startup, the
-extension publishes OpenClaw's native commands for composer autocomplete,
+extension publishes Urbicana's native commands for composer autocomplete,
 labeled with the bot's handle. The bot token must include `commands:write`;
 current `bot:write` and `bot:admin` bundles include it.
 
@@ -74,7 +74,7 @@ continue to work without a menu.
 
 ## Discussions
 
-ClickClack can create one managed channel for each OpenClaw session:
+ClickClack can create one managed channel for each Urbicana session:
 
 The account token needs `channels:write`, which is included in `bot:admin` but
 not in the normal `bot:write` setup token. The ClickClack server must also
@@ -105,7 +105,7 @@ reset, and deletion never archive or replace it. ClickClack owns channel archive
 and restore independently. `workspace`
 defaults to the account workspace, and `section` defaults to `Sessions`.
 `controlUrlBase` adds canonical `/chat/<agent>/<session-ref>` links to the
-OpenClaw Control UI, preserving base paths. Main sessions use `/chat/<agent>`.
+Urbicana Control UI, preserving base paths. Main sessions use `/chat/<agent>`.
 
 ClickClack-managed embed URLs explicitly advertise host-theme support. The
 Control UI uses that provider-owned capability to apply its full palette before
@@ -136,7 +136,7 @@ server and channel id, so renaming the local account cannot turn a managed
 channel into an ordinary one.
 
 Managed-channel ownership references include a durable per-installation id, so
-two OpenClaw gateways using the same ClickClack workspace do not adopt each
+two Urbicana gateways using the same ClickClack workspace do not adopt each
 other's discussion channels. They also include the destination and a durable
 binding generation, so an account or workspace round trip cannot re-adopt a
 previous channel. Changing or removing `controlUrlBase` is reflected on the next
@@ -159,4 +159,4 @@ the discussion.
 
 ## Docs
 
-See `docs/channels/clickclack.md` in the OpenClaw repository, or the published docs at `https://docs.openclaw.ai/channels/clickclack`.
+See `docs/channels/clickclack.md` in the Urbicana repository, or the published docs at `https://docs.openclaw.ai/channels/clickclack`.

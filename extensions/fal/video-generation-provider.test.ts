@@ -321,7 +321,7 @@ describe("fal video generation provider", () => {
 
     const result = await generateVideo({
       model: "fal-ai/heygen/v2/video-agent",
-      prompt: "A founder explains OpenClaw in a concise studio video",
+      prompt: "A founder explains Urbicana in a concise studio video",
       durationSeconds: 8,
       aspectRatio: "16:9",
       resolution: "720P",
@@ -330,7 +330,7 @@ describe("fal video generation provider", () => {
 
     expect(fetchGuardUrl(1)).toBe("https://queue.fal.run/fal-ai/heygen/v2/video-agent");
     expect(getSubmitBody()).toEqual({
-      prompt: "A founder explains OpenClaw in a concise studio video",
+      prompt: "A founder explains Urbicana in a concise studio video",
     });
     expect(result.metadata).toEqual({
       requestId: "req-123",

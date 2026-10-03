@@ -985,7 +985,7 @@ describe("plugins cli install", () => {
     expect(installPluginFromClawHubMock).not.toHaveBeenCalled();
   });
 
-  it("uses bundled OpenClaw package specs instead of pinning stale managed npm overrides", async () => {
+  it("uses bundled Urbicana package specs instead of pinning stale managed npm overrides", async () => {
     primeSuccessfulPluginPersistence("discord");
     const bundledPath = "/app/dist/extensions/discord";
     findBundledPluginSourceMock.mockImplementation((params: unknown) => {
@@ -1016,7 +1016,7 @@ describe("plugins cli install", () => {
     expect(record.spec).toBe("@openclaw/discord@2026.5.20");
     expect(record.sourcePath).toBe(bundledPath);
     expect(record.installPath).toBe(bundledPath);
-    expect(runtimeLogsContain("ships with the current OpenClaw build")).toBe(true);
+    expect(runtimeLogsContain("ships with the current Urbicana build")).toBe(true);
     expect(runtimeLogsContain("npm:@openclaw/discord@2026.5.20")).toBe(true);
   });
 

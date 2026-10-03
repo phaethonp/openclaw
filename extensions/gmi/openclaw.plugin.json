@@ -2,7 +2,7 @@
   "id": "gmi",
   "categories": ["models"],
   "name": "GMI Cloud",
-  "description": "OpenClaw GMI Cloud provider plugin.",
+  "description": "Urbicana GMI Cloud provider plugin.",
   "activation": {
     "onStartup": false
   },

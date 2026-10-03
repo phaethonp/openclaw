@@ -643,7 +643,7 @@ describe("update-cli", () => {
 
     await expect(updateCommand({ tag: "next" })).rejects.toEqual(new ExitError(1));
 
-    expect(getLogOutput()).toContain("OpenClaw update skipped: downgrade-confirmation-required.");
+    expect(getLogOutput()).toContain("Urbicana update skipped: downgrade-confirmation-required.");
     expect(getLogOutput()).toContain(
       "Downgrade confirmation required.\nDowngrading can break configuration. Re-run in a TTY to confirm.",
     );

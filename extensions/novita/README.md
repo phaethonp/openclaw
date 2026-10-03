@@ -1,6 +1,6 @@
-# OpenClaw NovitaAI provider
+# Urbicana NovitaAI provider
 
-Official OpenClaw provider plugin for NovitaAI's OpenAI-compatible API.
+Official Urbicana provider plugin for NovitaAI's OpenAI-compatible API.
 
 ## Install
 
@@ -11,5 +11,5 @@ openclaw gateway restart
 
 ## Docs
 
-See `docs/providers/novita.md` in the OpenClaw repository, or the published
+See `docs/providers/novita.md` in the Urbicana repository, or the published
 docs at `https://docs.openclaw.ai/providers/novita`.

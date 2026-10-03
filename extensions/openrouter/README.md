@@ -2,7 +2,7 @@
 
 Access models from multiple providers through an OpenRouter account. Alongside
 chat models, the plugin supports audio transcription, speech output, and image,
-music, and video generation through OpenClaw's media features.
+music, and video generation through Urbicana's media features.
 
 ## Get started
 

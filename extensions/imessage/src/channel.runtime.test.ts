@@ -381,7 +381,7 @@ describe("imessagePlugin pairing.notifyApproval", () => {
       "send",
       expect.objectContaining({
         to: "+15551234567",
-        text: "✅ OpenClaw access approved. Send a message to start chatting.",
+        text: "✅ Urbicana access approved. Send a message to start chatting.",
       }),
       expect.any(Object),
     );

@@ -122,7 +122,7 @@ export async function createSlackQaTransportAdapter(
 ): Promise<AdapterDefinition> {
   const { createDebugProxyCaptureReaderAsync } = proxyCapture;
   if (typeof createDebugProxyCaptureReaderAsync !== "function") {
-    throw new Error("Slack QA requires async proxy capture support. Upgrade the OpenClaw host.");
+    throw new Error("Slack QA requires async proxy capture support. Upgrade the Urbicana host.");
   }
   const { createSlackWebClient, createSlackWriteClient, resolveSlackWebClientOptions } =
     loadSlackQaRuntime();

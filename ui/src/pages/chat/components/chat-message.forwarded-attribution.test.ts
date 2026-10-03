@@ -50,7 +50,7 @@ function renderTestMessageGroup(
   return renderMessageGroup(group, {
     showReasoning: true,
     showToolCalls: true,
-    assistantName: "OpenClaw",
+    assistantName: "Urbicana",
     assistantAvatar: null,
     ...options,
   });

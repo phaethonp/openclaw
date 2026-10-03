@@ -13,7 +13,7 @@ beforeEach(() => spawnSync.mockReset());
 const tempDirs = useAutoCleanupTempDirTracker(afterEach);
 
 it("excludes a static non-Gateway runtime command without admitting its missing profile", async () => {
-  const taskName = "\\OpenClaw Helper (non-gateway)";
+  const taskName = "\\Urbicana Helper (non-gateway)";
   const scriptPath = "C:\\openclaw-schtasks\\non-gateway\\non-gateway.cmd";
   const task = {
     taskPath: taskName,
@@ -60,12 +60,12 @@ it.each(["direct executable", "Node runtime", "CMD launcher"])(
     const direct = kind === "direct executable";
     const launcher = kind === "CMD launcher";
     const argv = direct
-      ? ["C:\\OpenClaw\\openclaw.exe", "--profile=rescue", "gateway"]
+      ? ["C:\\Urbicana\\openclaw.exe", "--profile=rescue", "gateway"]
       : [
           "C:\\Node\\node.exe",
           "--import",
           "bootstrap.mjs",
-          "C:\\OpenClaw\\openclaw.mjs",
+          "C:\\Urbicana\\openclaw.mjs",
           "--profile=rescue",
           "gateway",
         ];

@@ -95,7 +95,7 @@ describe("FaceTime talk driver lifecycle", () => {
     },
   );
 
-  it("fails closed when OpenClaw cannot forward authenticated sender identity", async () => {
+  it("fails closed when Urbicana cannot forward authenticated sender identity", async () => {
     mocks.senderAuthVersion = undefined;
 
     await expect(startFaceTimeTalkDriver(startParams())).rejects.toThrow(
@@ -473,7 +473,7 @@ describe("FaceTime talk driver lifecycle", () => {
   it("combines custom instructions with workspace identity and agent proxy policy", async () => {
     mocks.bridge.connect.mockResolvedValue();
     mocks.resolveAgentContext.mockResolvedValue(
-      "Agent context: shared voice agent context.\n\nOpenClaw realtime voice profile context:\n\n### IDENTITY.md\nName: Tide",
+      "Agent context: shared voice agent context.\n\nUrbicana realtime voice profile context:\n\n### IDENTITY.md\nName: Tide",
     );
     await startReadyFaceTimeTalkDriver(
       startParams({
@@ -487,7 +487,7 @@ describe("FaceTime talk driver lifecycle", () => {
     expect(mocks.sessionParams?.instructions).toContain("Speak warmly and keep answers short.");
     expect(mocks.sessionParams?.instructions?.match(/Agent context:/g)).toHaveLength(1);
     expect(mocks.sessionParams?.instructions).toContain("Name: Tide");
-    expect(mocks.sessionParams?.instructions).toContain("same configured OpenClaw agent");
+    expect(mocks.sessionParams?.instructions).toContain("same configured Urbicana agent");
     expect(mocks.sessionParams?.instructions).toContain(
       "authenticated owner/user described by the loaded workspace profile context",
     );

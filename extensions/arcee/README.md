@@ -1,8 +1,8 @@
-# OpenClaw Arcee AI Provider
+# Urbicana Arcee AI Provider
 
-Official OpenClaw provider plugin for Arcee AI.
+Official Urbicana provider plugin for Arcee AI.
 
-Install from OpenClaw:
+Install from Urbicana:
 
 ```bash
 openclaw plugins install @openclaw/arcee-provider

@@ -14,7 +14,7 @@ metadata:
 
 # Compaction Notifier
 
-Sends short user-visible status messages when OpenClaw compacts a session transcript. Enable with:
+Sends short user-visible status messages when Urbicana compacts a session transcript. Enable with:
 
 ```bash
 openclaw hooks enable compaction-notifier

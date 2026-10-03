@@ -1,11 +1,11 @@
 # @openclaw/logbook
 
-An automatic work journal for OpenClaw. Logbook captures periodic screen
+An automatic work journal for Urbicana. Logbook captures periodic screen
 snapshots from a paired node, builds a timeline of your day, and produces
 standup summaries and answers grounded in that timeline.
 
-The standalone package requires OpenClaw 2026.9.5 or newer. Logbook is also
-included in OpenClaw and disabled by default. Enable it only
+The standalone package requires Urbicana 2026.9.5 or newer. Logbook is also
+included in Urbicana and disabled by default. Enable it only
 after reviewing the capture and model setup in the
 [Logbook guide](https://docs.openclaw.ai/plugins/logbook).
 

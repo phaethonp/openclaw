@@ -62,7 +62,7 @@ crabbox run --provider <backend> --id <lease> --no-sync -- bash -lc '<tool> --ve
 crabbox stop --provider <backend> --id <lease>
 ```
 
-Record warmup total and compare against the pre-bake timing. Then confirm the OpenClaw path end to end: dispatch one session to the profile from a client (Cloud destination) and verify the placement reaches active. If any step fails, roll back the image selection and report the exact blocker.
+Record warmup total and compare against the pre-bake timing. Then confirm the Urbicana path end to end: dispatch one session to the profile from a client (Cloud destination) and verify the placement reaches active. If any step fails, roll back the image selection and report the exact blocker.
 
 ## Report
 

@@ -59,7 +59,7 @@ import {
 } from "./thread-lifecycle.test-fixtures.js";
 import { attestCodexRestrictedToolSurfaceMcpServersDisabled } from "./thread-requests.js";
 
-it("uses direct OpenClaw functions and hosted web search for subscription sharing", () => {
+it("uses direct Urbicana functions and hosted web search for subscription sharing", () => {
   const params = createAttemptParams({ provider: "openai", authProfileId: "openai:sharing" });
   const profile = params.authProfileStore!.profiles["openai:sharing"]!;
   params.authProfileStore!.profiles["openai:sharing"] = {
@@ -780,7 +780,7 @@ describe("Codex app-server native code mode config", () => {
       expect(instructions.includes("`openclaw_direct.sessions_yield`")).toBe(exposesNativeYield);
       expect(instructions.includes("native `wait_agent`")).toBe(exposesNativeYield);
       expect(instructions).toContain(
-        "Deferred searchable OpenClaw dynamic tools available: alpha_tool, skill_workshop, zeta_tool.",
+        "Deferred searchable Urbicana dynamic tools available: alpha_tool, skill_workshop, zeta_tool.",
       );
       expect(instructions).toContain("## Skill Workshop");
       if (!exposesNativeYield) {
@@ -795,7 +795,7 @@ describe("Codex app-server native code mode config", () => {
       );
       expect(instructions).toContain("call the matching entry through `tools`");
       expect(instructions).toContain(
-        "Use OpenClaw `sessions_spawn` only for OpenClaw or ACP delegation, never as a substitute for `spawn_agent` on internal legwork.",
+        "Use Urbicana `sessions_spawn` only for Urbicana or ACP delegation, never as a substitute for `spawn_agent` on internal legwork.",
       );
     },
   );
@@ -1184,7 +1184,7 @@ describe("Codex app-server turn input image sanitizing", () => {
 });
 
 describe("Codex app-server turn params", () => {
-  it("builds resume and turn params from the currently selected OpenClaw model", () => {
+  it("builds resume and turn params from the currently selected Urbicana model", () => {
     const params = createAttemptParams({ provider: "codex" });
     params.modelId = "gpt-5.4-codex";
     params.thinkLevel = "medium";
@@ -1271,7 +1271,7 @@ describe("Codex app-server turn params", () => {
     expect(cronCollaborationMode.settings.model).toBe("gpt-5.4-codex");
     expect(cronCollaborationMode.settings.reasoning_effort).toBe("medium");
     expect(cronCollaborationMode.settings.developer_instructions).toContain(
-      "This is an OpenClaw cron automation turn",
+      "This is an Urbicana cron automation turn",
     );
     expect(cronCollaborationMode.settings.developer_instructions).toContain(
       "If it asks you to run an exact command, run that command before doing any investigation",

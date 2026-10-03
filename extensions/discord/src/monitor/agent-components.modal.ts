@@ -15,7 +15,7 @@ import { dispatchPluginDiscordInteractiveEvent } from "./agent-components.plugin
 import type { AgentComponentContext } from "./agent-components.types.js";
 
 export class DiscordComponentModal extends Modal {
-  override title = "OpenClaw form";
+  override title = "Urbicana form";
   override customId = "__openclaw_discord_component_modal_wildcard__";
   override components = [];
   override customIdParser = parseDiscordModalCustomIdForInteraction;

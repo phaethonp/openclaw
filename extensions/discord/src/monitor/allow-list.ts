@@ -469,7 +469,7 @@ type DiscordMentionPolicyParams = {
   isAutoThreadOwnedByBot?: boolean;
 };
 
-/** Boolean runtime API retained for plugins built against OpenClaw 2026.9.6. */
+/** Boolean runtime API retained for plugins built against Urbicana 2026.9.6. */
 export function resolveDiscordShouldRequireMention(params: DiscordMentionPolicyParams): boolean {
   return resolveDiscordMentionPolicy(params).requireMention;
 }

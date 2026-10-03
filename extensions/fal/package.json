@@ -2,7 +2,7 @@
   "name": "@openclaw/fal-provider",
   "version": "2026.9.6",
   "private": true,
-  "description": "OpenClaw fal provider plugin",
+  "description": "Urbicana fal provider plugin",
   "type": "module",
   "devDependencies": {
     "@openclaw/plugin-sdk": "workspace:*"

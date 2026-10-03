@@ -1,6 +1,6 @@
 # @openclaw/google-meet
 
-Official Google Meet participant plugin for OpenClaw.
+Official Google Meet participant plugin for Urbicana.
 
 This plugin registers the `google_meet` tool so agents can join Google Meet calls through supported Chrome or Twilio transports.
 
@@ -23,4 +23,4 @@ Enable the plugin and follow the Google Meet docs for browser profile, transport
 - Plugin id: `google-meet`
 - Tool: `google_meet`
 - Package: `@openclaw/google-meet`
-- Minimum OpenClaw host: `2026.4.20`
+- Minimum Urbicana host: `2026.4.20`

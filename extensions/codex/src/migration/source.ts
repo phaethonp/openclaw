@@ -233,7 +233,7 @@ async function withPluginMigrationEligibility(params: {
         ...plugin,
         migratable: false,
         migrationBlock: { code: "plugin_disabled" },
-        message: `Codex plugin "${plugin.pluginName ?? plugin.name}" is installed in Codex but disabled; enable it in Codex before migrating it to OpenClaw.`,
+        message: `Codex plugin "${plugin.pluginName ?? plugin.name}" is installed in Codex but disabled; enable it in Codex before migrating it to Urbicana.`,
       });
       continue;
     }
@@ -476,11 +476,11 @@ function appInventoryBlockMessage(
           : app.isAccessible === undefined || app.isEnabled === undefined,
     ) ?? apps[0];
   const appLabel = blocking ? ` app "${blocking.name}"` : " an owned app";
-  return `Codex plugin "${plugin.pluginName ?? plugin.name}" owns${appLabel} but the source app inventory reports it is ${status}; authenticate or enable the app in Codex before migrating it to OpenClaw.`;
+  return `Codex plugin "${plugin.pluginName ?? plugin.name}" owns${appLabel} but the source app inventory reports it is ${status}; authenticate or enable the app in Codex before migrating it to Urbicana.`;
 }
 
 export function codexPluginMigrationSubscriptionWarning(): string {
-  return "Codex app-backed plugin migration requires the Codex app-server source account to be logged in with a ChatGPT subscription account. Log in to the Codex app with subscription auth; OpenClaw auth or API-key auth does not satisfy Codex app connector access.";
+  return "Codex app-backed plugin migration requires the Codex app-server source account to be logged in with a ChatGPT subscription account. Log in to the Codex app with subscription auth; Urbicana auth or API-key auth does not satisfy Codex app connector access.";
 }
 
 function pluginNameFromSummary(summary: v2.PluginSummary): string | undefined {

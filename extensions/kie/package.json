@@ -2,7 +2,7 @@
   "name": "@openclaw/kie-provider",
   "version": "2026.9.6",
   "private": true,
-  "description": "OpenClaw Kie AI video provider plugin",
+  "description": "Urbicana Kie AI video provider plugin",
   "type": "module",
   "devDependencies": {
     "@openclaw/plugin-sdk": "workspace:*"

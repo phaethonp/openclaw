@@ -1,6 +1,6 @@
 # OpenAI
 
-Connect OpenAI models to OpenClaw. The plugin also provides embeddings, media
+Connect OpenAI models to Urbicana. The plugin also provides embeddings, media
 understanding, image generation, speech output, realtime transcription,
 and realtime voice.
 

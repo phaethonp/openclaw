@@ -42,7 +42,7 @@ export function describeStateSchemaMigration(
     case "github-publication-requester-authority-v18":
       return "GitHub publication receipts → original requesting authority";
     case "operator-approvals-system-agent":
-      return "operator approvals → OpenClaw system changes";
+      return "operator approvals → Urbicana system changes";
     case "session-watch-cursor-provenance-v4":
       return "session watch cursors → provenance column";
     case "strict-tables-v3":

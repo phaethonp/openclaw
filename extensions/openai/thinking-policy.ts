@@ -132,7 +132,7 @@ export function resolveUnifiedOpenAIThinkingProfile(
     modelId.startsWith("gpt-5.6") && (agentRuntime !== "codex" || codexSupportsMax);
   const codexSupportsUltra = (resolvedCodexEfforts ?? knownCodexEfforts)?.includes("ultra");
   const supportsXHigh = OPENAI_UNIFIED_XHIGH_MODEL_IDS.some((prefix) => modelId.startsWith(prefix));
-  // OpenClaw owns its logical Ultra orchestration. Native Codex capabilities
+  // Urbicana owns its logical Ultra orchestration. Native Codex capabilities
   // come from native discovery or the selected ChatGPT route's catalog metadata.
   const supportsUltra =
     (modelId === OPENAI_GPT_56_MODEL_ID || isGpt56Variant) &&

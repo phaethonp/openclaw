@@ -18,7 +18,7 @@ function createEngine(requiredCapabilities: ContextEngineHostCapability[]): Cont
         "agent-run": {
           requiredCapabilities,
           unsupportedMessage:
-            "Use the native Codex or OpenClaw embedded runtime, or switch contextEngine to legacy.",
+            "Use the native Codex or Urbicana embedded runtime, or switch contextEngine to legacy.",
         },
       },
     },
@@ -68,7 +68,7 @@ describe("context engine host compatibility", () => {
     });
   });
 
-  it("allows native Codex and OpenClaw embedded hosts to satisfy pre-prompt assembly", () => {
+  it("allows native Codex and Urbicana embedded hosts to satisfy pre-prompt assembly", () => {
     const engine = createEngine(["assemble-before-prompt"]);
 
     assertContextEngineHostSupport({

@@ -567,7 +567,7 @@ export function createCopilotAgentHarness(
       }
       const openclawSessionId = typeof params.sessionId === "string" ? params.sessionId : undefined;
 
-      // Reuse the SDK session across turns within the same OpenClaw session so
+      // Reuse the SDK session across turns within the same Urbicana session so
       // Copilot's prompt cache, tool history, and compaction state survive.
       // Compatibility covers provider/model/cwd/auth; incompatible state starts
       // a fresh ordinary attempt but cannot be used for settled finalization.
@@ -887,13 +887,13 @@ export function createCopilotAgentHarness(
           typeof hostCapabilities.retainSourceAuthority !== "function"
         ) {
           throw new Error(
-            "This host did not provide compaction source authority. Update OpenClaw before compacting this session.",
+            "This host did not provide compaction source authority. Update Urbicana before compacting this session.",
           );
         }
         hostCapabilities.assertActive();
-        // The SDK owns Copilot history compaction. OpenClaw only resumes
+        // The SDK owns Copilot history compaction. Urbicana only resumes
         // the tracked SDK session and calls the session-scoped RPC; durable
-        // OpenClaw session/transcript state stays in SQLite, with no marker
+        // Urbicana session/transcript state stays in SQLite, with no marker
         // sidecars under the workspace.
         const openclawSessionId =
           typeof params.sessionId === "string" ? params.sessionId : undefined;
@@ -940,7 +940,7 @@ export function createCopilotAgentHarness(
             : undefined;
         if (!compatibleTracked) {
           // Durable bindings only carry SDK session ids. Manual SDK compaction also
-          // needs the live SessionConfig with OpenClaw hooks/tools, so preserve the
+          // needs the live SessionConfig with Urbicana hooks/tools, so preserve the
           // binding for the next attempt and let the host compact transcript state.
           return {
             ok: false,

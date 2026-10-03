@@ -118,7 +118,7 @@ export function sqliteInspectionTimeoutError(
   size: string,
 ): Error {
   return new Error(
-    `SQLite ${operation} timed out after ${timeoutMs / 1000} seconds (budget for ${size}) for ${pathname}. Stop the Gateway service and other OpenClaw processes using this database, then retry; if already stopped, check storage performance.`,
+    `SQLite ${operation} timed out after ${timeoutMs / 1000} seconds (budget for ${size}) for ${pathname}. Stop the Gateway service and other Urbicana processes using this database, then retry; if already stopped, check storage performance.`,
   );
 }
 

@@ -190,7 +190,7 @@ export function createSessionShareCatalog(api: OpenClawPluginApi): SessionCatalo
       error: {
         code: "NODE_INVOKE_FAILED",
         message:
-          "Cannot list OpenClaw sessions. Check the paired node's session-share configuration and connection.",
+          "Cannot list Urbicana sessions. Check the paired node's session-share configuration and connection.",
       },
     });
     const project = (page: CatalogPage): SessionCatalogHost => {
@@ -314,7 +314,7 @@ export function createSessionShareCatalog(api: OpenClawPluginApi): SessionCatalo
 
   return {
     id: "openclaw",
-    label: "OpenClaw sessions",
+    label: "Urbicana sessions",
     supportsProcessHomeIsolation: true,
     audience: "session-viewers",
     async list(query) {
@@ -385,7 +385,7 @@ export function createSessionShareCatalog(api: OpenClawPluginApi): SessionCatalo
     },
     async read(request) {
       if (!request.hostId.startsWith("node:") || !request.hostId.slice(5)) {
-        throw new Error("Select a paired node host to read an OpenClaw session");
+        throw new Error("Select a paired node host to read an Urbicana session");
       }
       const nodeId = request.hostId.slice(5);
       const node = (await api.runtime.nodes.list()).nodes.find(
@@ -394,7 +394,7 @@ export function createSessionShareCatalog(api: OpenClawPluginApi): SessionCatalo
       );
       if (!node) {
         throw new Error(
-          "OpenClaw session node is unavailable. Reconnect it and refresh the catalog.",
+          "Urbicana session node is unavailable. Reconnect it and refresh the catalog.",
         );
       }
       const raw = await api.runtime.nodes.invoke({

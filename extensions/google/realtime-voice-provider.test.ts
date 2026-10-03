@@ -307,7 +307,7 @@ describe("buildGoogleRealtimeVoiceProvider", () => {
         {
           type: "function",
           name: "openclaw_agent_consult",
-          description: "Ask OpenClaw",
+          description: "Ask Urbicana",
           parameters: {
             type: "object",
             properties: {
@@ -375,7 +375,7 @@ describe("buildGoogleRealtimeVoiceProvider", () => {
       required: ["query"],
     });
     expect(declarations[1]?.name).toBe("openclaw_agent_consult");
-    expect(declarations[1]?.description).toBe("Ask OpenClaw");
+    expect(declarations[1]?.description).toBe("Ask Urbicana");
     expect(declarations[1]?.parameters).toEqual({
       type: "object",
       properties: {
@@ -466,7 +466,7 @@ describe("buildGoogleRealtimeVoiceProvider", () => {
         {
           type: "function",
           name: "openclaw_agent_consult",
-          description: "Ask OpenClaw",
+          description: "Ask Urbicana",
           parameters: {
             type: "object",
             properties: {

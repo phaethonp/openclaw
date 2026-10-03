@@ -136,13 +136,13 @@ describe("iMessage sent-message echo cache", () => {
   it("matches persisted echoes written before the monitor cache is created", async () => {
     await rememberPersistedIMessageEcho({
       scope: "acct:imessage:+1555",
-      text: "OpenClaw imsg live test",
+      text: "Urbicana imsg live test",
       messageId: "guid-1",
     });
     const cache = createSentMessageCache();
 
-    expect(await cache.has("acct:imessage:+1555", { text: "OpenClaw imsg live test" })).toBe(true);
-    expect(await cache.has("acct:imessage:+1666", { text: "OpenClaw imsg live test" })).toBe(false);
+    expect(await cache.has("acct:imessage:+1555", { text: "Urbicana imsg live test" })).toBe(true);
+    expect(await cache.has("acct:imessage:+1666", { text: "Urbicana imsg live test" })).toBe(false);
     expect(await cache.has("acct:imessage:+1555", { messageId: "guid-1" })).toBe(true);
   });
 

@@ -212,6 +212,7 @@ suite.define(() => {
     ["manuscript", "Lora", "Lora", ["lora"], "auto"],
     ["rose", "DM Sans", "DM Sans", ["dm-sans"], "antialiased"],
     ["miami", "Space Grotesk", "Space Grotesk", ["space-grotesk"], "antialiased"],
+    ["urbicana", "Instrument Sans", "Instrument Sans", ["instrument-sans"], "antialiased"],
   ] as const)(
     "paints %s chrome and chat prose in its own faces",
     async (theme, body, chat, faces, chatSmoothing) => {
@@ -581,6 +582,7 @@ suite.define(() => {
     ["manuscript", "manuscript", "#211e18", "#f6f1e4"],
     ["rose", "rose", "#191724", "#faf4ed"],
     ["miami", "miami", "#140f1e", "#f7f3f6"],
+    ["urbicana", "urbicana", "#1a1713", "#fbf9f4"],
   ])(
     "loads %s before paint in both modes without the app bundle",
     async (theme, resolved, dark, light) => {

@@ -568,7 +568,7 @@ describe("createTelegramBot channel_post media", () => {
           date: 1736380799,
           chat: { id: -100456, type: "supergroup", title: "Ops Chat" },
           text: "previous bot reply",
-          from: { id: 999, is_bot: true, first_name: "OpenClaw" },
+          from: { id: 999, is_bot: true, first_name: "Urbicana" },
         },
       },
       ingest: false,

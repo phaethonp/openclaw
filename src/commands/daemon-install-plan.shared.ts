@@ -126,7 +126,7 @@ function addUniquePathDir(dirs: string[], dir: string | undefined): void {
   dirs.push(dir);
 }
 
-/** Merge runtime and active OpenClaw binary directories for the daemon service PATH. */
+/** Merge runtime and active Urbicana binary directories for the daemon service PATH. */
 export function resolveDaemonServicePathDirs(params: {
   runtimePath?: string;
   argv?: string[];

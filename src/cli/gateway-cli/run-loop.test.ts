@@ -2624,7 +2624,7 @@ describe("runGatewayLoop", () => {
   it("returns the supervisor-owned restart code after releasing the lock", async () => {
     vi.clearAllMocks();
     peekGatewayRestartReason.mockReturnValue(undefined);
-    process.env.OPENCLAW_WINDOWS_TASK_NAME = "OpenClaw Gateway";
+    process.env.OPENCLAW_WINDOWS_TASK_NAME = "Urbicana Gateway";
 
     try {
       await withIsolatedSignals(async ({ captureSignal }) => {

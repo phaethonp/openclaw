@@ -418,7 +418,7 @@ export async function ensureControlUiAssetsBuilt(
           ? `Incomplete Control UI assets${location} (missing ${health.missingAsset})`
           : `Missing Control UI assets${location}`;
     return controlUiAssetsFailure(
-      `${hint}. Reinstall OpenClaw to restore bundled Control UI assets.`,
+      `${hint}. Reinstall Urbicana to restore bundled Control UI assets.`,
     );
   }
 

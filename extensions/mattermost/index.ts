@@ -1,4 +1,4 @@
-// Mattermost plugin entrypoint registers its OpenClaw integration.
+// Mattermost plugin entrypoint registers its Urbicana integration.
 import {
   defineBundledChannelEntry,
   loadBundledEntryExportSync,

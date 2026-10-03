@@ -1,4 +1,4 @@
-// OpenClaw SDK tests cover transport behavior.
+// Urbicana SDK tests cover transport behavior.
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { OpenClaw } from "./client.js";
 import { createAgentEvent, createChatEvent } from "./client.test-support.js";

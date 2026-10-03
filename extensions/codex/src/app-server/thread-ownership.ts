@@ -86,7 +86,7 @@ export async function withExclusiveCodexAppServerThread<T>(params: {
   return await withCodexAppServerThreadMutation(params.threadId, async () => {
     if (await params.bindingStore.hasOtherThreadOwner(params.threadId, params.identity)) {
       throw new Error(
-        `Codex thread ${params.threadId} is owned by another OpenClaw session or conversation.`,
+        `Codex thread ${params.threadId} is owned by another Urbicana session or conversation.`,
       );
     }
     return await params.run();

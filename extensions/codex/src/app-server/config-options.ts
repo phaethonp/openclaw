@@ -398,7 +398,7 @@ export function resolveCodexAppServerStartOptionsForAgent(params: {
     return { ...startOptions, managedCommandOrder: "desktop-first" };
   }
   if (!params.agentDir) {
-    throw new Error("Agent-scoped Codex requires an OpenClaw agent directory");
+    throw new Error("Agent-scoped Codex requires an Urbicana agent directory");
   }
   const nativeComputerUseEnabled = codexConfigEnablesNativeComputerUse({
     agentDir: params.agentDir,

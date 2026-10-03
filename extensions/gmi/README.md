@@ -1,9 +1,9 @@
-# OpenClaw GMI Cloud Provider
+# Urbicana GMI Cloud Provider
 
-Official OpenClaw provider plugin for hosted GMI Cloud models through an
+Official Urbicana provider plugin for hosted GMI Cloud models through an
 OpenAI-compatible API.
 
-Install from OpenClaw:
+Install from Urbicana:
 
 ```bash
 openclaw plugins install @openclaw/gmi-provider

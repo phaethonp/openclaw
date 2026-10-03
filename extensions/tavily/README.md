@@ -1,6 +1,6 @@
-# Tavily OpenClaw plugin
+# Tavily Urbicana plugin
 
-Official OpenClaw plugin for Tavily.
+Official Urbicana plugin for Tavily.
 
 ## Install
 
@@ -10,4 +10,4 @@ openclaw plugins install @openclaw/tavily-plugin
 
 ## Docs
 
-See `docs/tools/tavily.md` in the OpenClaw repository, or the published docs at `https://docs.openclaw.ai/tools/tavily`.
+See `docs/tools/tavily.md` in the Urbicana repository, or the published docs at `https://docs.openclaw.ai/tools/tavily`.

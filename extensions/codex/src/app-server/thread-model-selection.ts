@@ -122,7 +122,7 @@ export function resolveCodexAppServerModelProvider(
     return CODEX_RESPONSES_OAUTH_PROVIDER;
   }
   if (!normalized || normalizedLower === "codex") {
-    // `codex` is OpenClaw's virtual provider; let Codex app-server keep its
+    // `codex` is Urbicana's virtual provider; let Codex app-server keep its
     // native provider/auth selection instead of forcing the legacy OpenAI path.
     return undefined;
   }

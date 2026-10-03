@@ -163,7 +163,7 @@ async function createLiveRedirectSandbox(
   };
 }
 
-describe("OpenClaw Codex sandbox exec-server HTTP", () => {
+describe("Urbicana Codex sandbox exec-server HTTP", () => {
   it("cancels an outstanding nonstreaming HTTP response when its exec-server socket closes", async () => {
     const responseClosed = vi.fn();
     const responseReceived = createDeferred<ServerResponse>();

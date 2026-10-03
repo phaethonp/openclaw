@@ -4,7 +4,7 @@ import { extractErrorCode } from "openclaw/plugin-sdk/error-runtime";
 import type { PluginDoctorStateMigration } from "openclaw/plugin-sdk/runtime-doctor-migrations";
 
 function retiredNostrStateMigration(namespace: string, label: string): PluginDoctorStateMigration {
-  const warning = `${label} JSON imports were retired. Upgrade to OpenClaw 2026.9.5 and run openclaw doctor --fix before upgrading to the latest version. Legacy files were left untouched.`;
+  const warning = `${label} JSON imports were retired. Upgrade to Urbicana 2026.9.5 and run openclaw doctor --fix before upgrading to the latest version. Legacy files were left untouched.`;
   const hasLegacyState = async (stateDir: string) => {
     try {
       const names = await fs.readdir(path.join(stateDir, "nostr"));
