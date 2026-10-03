@@ -3,7 +3,6 @@ import { property, state } from "lit/decorators.js";
 import { t } from "../i18n/index.ts";
 import type { ConfigAutoSaveStatus } from "../lib/config/config-state-model.ts";
 import { icons } from "./icons.ts";
-import { currentThemeBranding } from "./neutral-mark.ts";
 
 const SAVED_VISIBLE_MS = 2_000;
 
@@ -66,8 +65,8 @@ class SettingsSaveIndicator extends LitElement {
   }
 
   private renderClaw(modifier: string) {
-    return html`<span class="settings-save-indicator__claw ${modifier}" aria-hidden="true"
-      >${currentThemeBranding().mascot === "none" ? icons.mark : icons.claw}</span
+    return html`<span class="settings-save-indicator__mark ${modifier}" aria-hidden="true"
+      >${icons.mark}</span
     >`;
   }
 
@@ -86,7 +85,7 @@ class SettingsSaveIndicator extends LitElement {
         >
         <span>${t("configView.applying")}</span>`;
     } else if (props.status === "saving") {
-      content = html` ${this.renderClaw("settings-save-indicator__claw--saving")}
+      content = html` ${this.renderClaw("settings-save-indicator__mark--saving")}
         <span>${t("configView.autoSaveSaving")}</span>`;
     } else if (props.status === "recovery") {
       modifier = " settings-save-indicator--danger settings-save-indicator--recovery";
@@ -123,7 +122,7 @@ class SettingsSaveIndicator extends LitElement {
         ${renderAction(t("common.reload"), props.onReload)}`;
     } else if (this.savedVisible) {
       modifier = " settings-save-indicator--saved";
-      content = html` ${this.renderClaw("settings-save-indicator__claw--saved")}
+      content = html` ${this.renderClaw("settings-save-indicator__mark--saved")}
         <span class="settings-save-indicator__check" aria-hidden="true">${icons.check}</span>
         <span>${t("configView.autoSaveSaved")}</span>`;
     } else if (props.needsApply) {

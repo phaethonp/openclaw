@@ -3,6 +3,7 @@
 import { expectDefined } from "@openclaw/normalization-core";
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { flattenTranslations } from "../../../scripts/lib/control-ui-i18n-sync-plan.ts";
+import { brandText } from "../lib/product-name.ts";
 import {
   captureI18nStateForTesting,
   createI18nManagerForTesting,
@@ -47,10 +48,10 @@ describe("Apps English loading", () => {
     await load();
     const { registerAppsEnglish } = await import("./locales/en-apps.ts");
     for (const [key, value] of flattenTranslations(registerAppsEnglish.catalog)) {
-      expect(manager.t(key)).toBe(value);
+      expect(manager.t(key)).toBe(brandText(key, value));
     }
     expect(manager.t("common.health")).toBe("Gesundheit");
-    expect(manager.t("appsPage.heroTitle")).toBe("Take OpenClaw everywhere");
+    expect(manager.t("appsPage.heroTitle")).toBe("Take Urbicana everywhere");
     expect(manager.t("appsPage.cards.ios.title")).toBe("iPhone");
     expect(manager.t("appsPage.ctaChromeWebStore")).toBe("Chrome Web Store");
   });

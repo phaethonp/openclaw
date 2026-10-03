@@ -97,11 +97,7 @@ export function collectPluginSafetyInspectedFiles(
         listBuiltRuntimeEntryCandidates(source).forEach(add);
       }
       for (const theme of manifest?.themes ?? []) {
-        [
-          theme.source,
-          ...Object.values(theme.hats ?? {}),
-          ...Object.values(theme.critters ?? {}).map((critter) => critter.source),
-        ].forEach(add);
+        add(theme.source);
       }
       const activity = path.join(rootDir, PLUGIN_TOOL_ACTIVITY_ICON_DIR);
       const browser =

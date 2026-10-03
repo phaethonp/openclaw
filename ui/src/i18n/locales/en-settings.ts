@@ -1234,6 +1234,10 @@ const enSettings = {
         label: "Claw",
         description: "Chroma family",
       },
+      urbicana: {
+        label: "Urbicana",
+        description: "Paper, ink & rust",
+      },
       knot: {
         label: "Knot",
         description: "Black & red",

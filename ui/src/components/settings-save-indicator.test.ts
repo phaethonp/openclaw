@@ -59,13 +59,13 @@ describe("settings save indicator", () => {
     expect(indicator.querySelector('[role="status"]')).toBeNull();
   });
 
-  it("renders the shared working claw while saving", async () => {
+  it("renders the mark while saving", async () => {
     await update(props({ status: "saving" }));
 
     expect(indicator.textContent?.trim()).toBe("Saving…");
-    expect(indicator.querySelector(".settings-save-indicator__claw--saving svg")).not.toBeNull();
+    expect(indicator.querySelector(".settings-save-indicator__mark--saving svg")).not.toBeNull();
     expect(
-      indicator.querySelector(".settings-save-indicator__claw")?.getAttribute("aria-hidden"),
+      indicator.querySelector(".settings-save-indicator__mark")?.getAttribute("aria-hidden"),
     ).toBe("true");
   });
 
@@ -75,7 +75,7 @@ describe("settings save indicator", () => {
     await update(props({ status: "saved", needsApply: true }));
 
     expect(indicator.textContent).toContain("Saved");
-    expect(indicator.querySelector(".settings-save-indicator__claw--saved")).not.toBeNull();
+    expect(indicator.querySelector(".settings-save-indicator__mark--saved")).not.toBeNull();
     expect(indicator.querySelector(".settings-save-indicator__check")).not.toBeNull();
 
     await vi.advanceTimersByTimeAsync(1_999);

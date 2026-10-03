@@ -1,0 +1,10 @@
+{
+  "$comment": "Text that keeps upstream's name in the shipped image. A string or line containing any of these is left as written. Add an entry only with the reason.",
+  "literals": [
+    { "text": "OpenClaw Foundation", "why": "MIT copyright notice; the license requires it unchanged." },
+    { "text": "OpenClaw runtime context (internal):", "why": "Matches transcripts written before the rename (run-status-text, internal-runtime-context)." },
+    { "text": "OpenClaw runtime context for", "why": "Same: pre-rename transcript marker." },
+    { "text": "OpenClaw runtime event.", "why": "Same: pre-rename transcript marker." },
+    { "text": "CFBundleExecutable", "why": "Compares against the macOS worker app bundle's executable name." }
+  ]
+}

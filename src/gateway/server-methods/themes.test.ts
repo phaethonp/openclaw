@@ -119,19 +119,13 @@ async function invoke(
 
 function pluginTheme(): ThemeCatalogEntry {
   const definition = createThemeDefinitionFixture({
-    mascot: "none",
     workingPhrases: ["Building"],
-    critters: ["penguin", "fedora"],
-    avatarHat: "fedora",
   });
   return {
     id: "space-pack/xenovessel",
     name: definition.name,
     description: definition.description,
-    mascot: definition.mascot,
     workingPhrases: definition.workingPhrases,
-    critters: definition.critters,
-    avatarHat: definition.avatarHat,
     source: "plugin",
     pluginId: "space-pack",
     modes: ["dark"],
@@ -192,21 +186,7 @@ async function withConcurrentPreferenceSnapshots<T>(count: number, run: () => Pr
 
 describe("theme RPC", () => {
   it("lists descriptive choices and inspects a plugin definition without exposing palettes in list entries", async () => {
-    const entry = {
-      ...pluginTheme(),
-      artwork: {
-        hats: {
-          beret: { url: "/__openclaw__/plugin-theme-art/space-pack/xenovessel/hat/beret?v=abc" },
-        },
-        critters: {
-          ferris: {
-            url: "/__openclaw__/plugin-theme-art/space-pack/xenovessel/critter/ferris?v=def",
-            title: "a crab, allegedly",
-            crossMs: 15000,
-          },
-        },
-      },
-    };
+    const entry = pluginTheme();
     pluginThemes.push(entry);
     const { definition, ...descriptor } = entry;
     expect(await invoke("themes.list")).toMatchObject({
@@ -221,9 +201,9 @@ describe("theme RPC", () => {
     });
     expect(await invoke("themes.get", { id: descriptor.id })).toMatchObject({
       ok: true,
-      payload: { theme: descriptor, definition, artwork: entry.artwork },
+      payload: { theme: descriptor, definition },
     });
-    expect(await invoke("themes.get", { id: "claw" })).not.toHaveProperty("payload.artwork");
+    expect(await invoke("themes.get", { id: descriptor.id })).not.toHaveProperty("payload.artwork");
   });
 
   it("imports and applies in one durable profile mutation, preserving other preferences and notifying only that profile", async () => {
@@ -235,10 +215,7 @@ describe("theme RPC", () => {
     const other = { ...client(otherProfileId), connId: "other-browser" };
     const broadcastToConnIds = vi.fn();
     const definition = createThemeDefinitionFixture({
-      mascot: "none",
       workingPhrases: ["Building", "Compiling"],
-      critters: ["penguin", "fedora"],
-      avatarHat: "fedora",
     });
     expect(
       await invoke(
@@ -263,10 +240,7 @@ describe("theme RPC", () => {
         theme: {
           id: "user/xenovessel",
           source: "user",
-          mascot: "none",
           workingPhrases: ["Building", "Compiling"],
-          critters: ["penguin", "fedora"],
-          avatarHat: "fedora",
         },
         definition,
         application: "saved",
@@ -293,10 +267,7 @@ describe("theme RPC", () => {
       ok: true,
       payload: {
         theme: {
-          mascot: "none",
           workingPhrases: ["Building", "Compiling"],
-          critters: ["penguin", "fedora"],
-          avatarHat: "fedora",
         },
         definition,
       },
@@ -307,10 +278,7 @@ describe("theme RPC", () => {
         themes: expect.arrayContaining([
           expect.objectContaining({
             id: "user/xenovessel",
-            mascot: "none",
             workingPhrases: ["Building", "Compiling"],
-            critters: ["penguin", "fedora"],
-            avatarHat: "fedora",
           }),
         ]),
       },

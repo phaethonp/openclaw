@@ -49,12 +49,8 @@ export function createThemeCatalog(gateway: ApplicationGateway, onChange: () => 
 
   const rememberDefinition = (result: ThemesGetResult) => {
     let definition;
-    const artwork = result.theme.source === "plugin" ? result.theme.artwork : undefined;
     try {
-      definition = normalizeThemeDefinition(result.definition, {
-        hatIds: Object.keys(artwork?.hats ?? {}),
-        critterIds: Object.keys(artwork?.critters ?? {}),
-      });
+      definition = normalizeThemeDefinition(result.definition);
     } catch {
       return;
     }
@@ -65,7 +61,7 @@ export function createThemeCatalog(gateway: ApplicationGateway, onChange: () => 
       definitions.set(result.theme.id, {
         generation,
         theme: {
-          branding: { ...resolveThemeBranding(definition), ...(artwork ? { artwork } : {}) },
+          branding: resolveThemeBranding(definition),
           mode: !definition.light ? "dark" : !definition.dark ? "light" : undefined,
           palette: {
             light: normalizeThemePalette("light", light, undefined),

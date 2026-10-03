@@ -1,6 +1,7 @@
 /** Lightweight theme identifiers used while browser preferences boot. */
 export const BUILTIN_THEME_IDS = [
   "claw",
+  "urbicana",
   "knot",
   "dash",
   "absolutely",

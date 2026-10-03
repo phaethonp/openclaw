@@ -267,6 +267,7 @@ export const OpenClawSchemaShape = {
           theme: z
             .union([
               z.literal("claw"),
+              z.literal("urbicana"),
               z.literal("knot"),
               z.literal("dash"),
               z.literal("absolutely"),

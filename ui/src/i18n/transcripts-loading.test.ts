@@ -1,6 +1,7 @@
 import { expectDefined } from "@openclaw/normalization-core";
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { flattenTranslations } from "../../../scripts/lib/control-ui-i18n-sync-plan.ts";
+import { brandText } from "../lib/product-name.ts";
 import { SETTINGS_SEARCH_TARGETS } from "../pages/config/settings-targets.ts";
 import {
   captureI18nStateForTesting,
@@ -56,7 +57,7 @@ describe("transcript English loading", () => {
     await load();
     const { registerTranscriptsEnglish } = await import("./locales/en-transcripts.ts");
     for (const [key, value] of flattenTranslations(registerTranscriptsEnglish.catalog)) {
-      expect(manager.t(key)).toBe(value);
+      expect(manager.t(key)).toBe(brandText(key, value));
     }
     expect(manager.t("common.health")).toBe("Gesundheit");
     expect(manager.t("transcripts.savedCount", { count: "154" })).toBe("154 saved utterances");

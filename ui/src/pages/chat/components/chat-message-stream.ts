@@ -90,7 +90,6 @@ export function renderStreamGroupPart(
 ) {
   if (part.kind === "reading-indicator") {
     return renderChatWorkingIndicator(part, {
-      mascot: opts.branding?.mascot,
       workingPhrases: opts.branding?.workingPhrases,
       waitingApproval: opts.waitingApproval === true,
       startupLabel: opts.startupLabel,

@@ -31,6 +31,8 @@ const themeCases = [
   { family: "rose", mode: "light", resolved: "rose-light" },
   { family: "miami", mode: "dark", resolved: "miami" },
   { family: "miami", mode: "light", resolved: "miami-light" },
+  { family: "urbicana", mode: "dark", resolved: "urbicana" },
+  { family: "urbicana", mode: "light", resolved: "urbicana-light" },
 ] as const;
 
 const textTokens = [
@@ -56,7 +58,8 @@ function themeConfigResponse(
     | "crt"
     | "manuscript"
     | "rose"
-    | "miami",
+    | "miami"
+    | "urbicana",
   mode: "dark" | "light",
   accent?: string,
 ) {

@@ -1,4 +1,5 @@
 import { getOrCreatePromise } from "../../../../src/shared/lazy-promise.ts";
+import { brandText } from "../../lib/product-name.ts";
 import { getSafeLocalStorage } from "../../local-storage.ts";
 import { en } from "../locales/en.ts";
 import {
@@ -212,7 +213,7 @@ class I18nManager {
 
   public translateActive(key: string): string | undefined {
     const value = lookupTranslation(this.translations[this.locale], key.split("."));
-    return typeof value === "string" ? value : undefined;
+    return typeof value === "string" ? brandText(key, value) : undefined;
   }
 
   public t(key: string, params?: Record<string, string>): string {
@@ -228,6 +229,7 @@ class I18nManager {
     if (typeof value !== "string") {
       return key;
     }
+    value = brandText(key, value);
 
     if (params) {
       // ?? not ||: an empty-string param is a provided value (render empty),

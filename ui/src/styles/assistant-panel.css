@@ -67,13 +67,6 @@ openclaw-assistant-panel {
   font-size: 12px;
 }
 
-.assistant-panel-title openclaw-mascot {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  flex: none;
-}
-
 .assistant-panel-icon {
   flex: 0 0 auto;
 }

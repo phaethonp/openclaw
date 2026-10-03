@@ -8,6 +8,7 @@ import type {
 } from "./app/native-device-settings.ts";
 import type { IconName } from "./components/icons.ts";
 import { i18n, t } from "./i18n/index.ts";
+import { PRODUCT_NAME } from "./lib/product-name.ts";
 
 export type NavigationRouteId = RouteId;
 
@@ -316,7 +317,6 @@ const SETTINGS_SUBPAGE_ROUTES: readonly NavigationRouteId[] = [
   "config",
   "ai-agents",
   "model-setup",
-  "lobsterdex",
 ];
 export const SETTINGS_SEARCHABLE_SUBPAGE_ROUTES: readonly NavigationRouteId[] = ["ai-agents"];
 const SETTINGS_SUBPAGE_OWNER_ROUTES: Partial<
@@ -365,12 +365,11 @@ const NAVIGATION_PRESENTATION: Record<NavigationRouteId, NavigationPresentation>
   terminal: ["terminal", "terminal.title", "terminal.open"],
   dashboard: navigationPresentation("layoutDashboard", "chat"),
   dashboards: navigationPresentation("layoutDashboard", "dashboards"),
-  custodian: navigationPresentation("lobster", "custodian"),
+  custodian: navigationPresentation("mark", "custodian"),
   config: ["settings", "nav.settings", "subtitles.config"],
   profile: navigationPresentation("circleUser", "profile"),
   communications: navigationPresentation("send", "communications"),
   appearance: navigationPresentation("palette", "appearance"),
-  lobsterdex: navigationPresentation("bug", "lobsterdex"),
   automation: navigationPresentation("terminal", "automation"),
   mcp: navigationPresentation("wrench", "mcp"),
   memory: navigationPresentation("book", "memory"),
@@ -472,9 +471,9 @@ export function formatDocumentTitle(options: {
   attentionCount?: number;
   gatewayDisconnected?: boolean;
 }): string {
-  const base = options.context.endsWith("OpenClaw")
+  const base = options.context.endsWith(PRODUCT_NAME)
     ? options.context
-    : `${options.context} — OpenClaw`;
+    : `${options.context} — ${PRODUCT_NAME}`;
   if (options.gatewayDisconnected) {
     return `(${t("connection.disconnectedTitle")}) ${base}`;
   }

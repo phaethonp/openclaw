@@ -19,7 +19,7 @@ import {
 } from "./roster.test-support.ts";
 
 describe("AppSidebar agent roster", () => {
-  it("updates the workspace mark when switching to and from a theme without a mascot", async () => {
+  it("keeps the neutral workspace mark when switching between themes", async () => {
     const { sidebar, context, request } = await mountRoster();
     await toggleRoster(sidebar);
     const theme: ThemeDescriptor = {
@@ -28,7 +28,6 @@ describe("AppSidebar agent roster", () => {
       description: "Quiet workspace",
       source: "plugin",
       modes: ["dark"],
-      mascot: "none",
     };
     const original = request.getMockImplementation();
     request.mockImplementation((...args) =>
@@ -36,7 +35,7 @@ describe("AppSidebar agent roster", () => {
         ? {
             themes: [...BUILTIN_THEMES, theme],
             theme,
-            definition: { ...createThemeDefinitionFixture(), mascot: "none" },
+            definition: createThemeDefinitionFixture(),
             current: { id: theme.id, mode: "dark", scope: "profile", overrides: {} },
           }
         : original?.(...args),
@@ -49,11 +48,12 @@ describe("AppSidebar agent roster", () => {
     const header = sidebar.querySelector(".sidebar-workspace-header");
     expect(header?.querySelector(".sidebar-workspace-header__mark--neutral svg")).not.toBeNull();
     expect(header?.querySelector("img")).toBeNull();
-    expect(header?.textContent).toContain("OpenClaw");
+    expect(header?.textContent).toContain("Urbicana");
     patchSettings({ theme: "claw" });
     context.theme.refresh();
     await sidebar.updateComplete;
-    expect(header?.querySelector("img")?.getAttribute("src")).toBe("/favicon.svg");
+    expect(header?.querySelector(".sidebar-workspace-header__mark--neutral svg")).not.toBeNull();
+    expect(header?.querySelector("img")).toBeNull();
   });
 
   it.each([undefined, "Studio workspace", "   "])(
@@ -73,9 +73,11 @@ describe("AppSidebar agent roster", () => {
           expect(sidebar.querySelector(".sidebar-workspace-header__main")).not.toBeNull(),
         );
         const header = sidebar.querySelector(".sidebar-workspace-header");
-        expect(header?.textContent).toContain(name?.trim() || "OpenClaw");
+        expect(header?.textContent).toContain(name?.trim() || "Urbicana");
         expect(header?.querySelector(".sidebar-agent-card__avatar")).toBeNull();
-        expect(header?.querySelector("img")?.getAttribute("src")).toBe("/favicon.svg");
+        expect(
+          header?.querySelector(".sidebar-workspace-header__mark--neutral svg"),
+        ).not.toBeNull();
         expect(sidebar.querySelector("openclaw-sidebar-agent-card")).toBeNull();
         sidebar.querySelector<HTMLButtonElement>(".sidebar-workspace-header__main")?.click();
         await vi.waitFor(() => expect(sidebar.querySelector(".sidebar-agent-menu")).not.toBeNull());
@@ -91,7 +93,6 @@ describe("AppSidebar agent roster", () => {
         ).toEqual([
           "https://docs.openclaw.ai",
           "https://docs.openclaw.ai/help",
-          "https://discord.gg/clawd",
           "https://docs.openclaw.ai/releases",
         ]);
         menu?.dispatchEvent(
@@ -294,7 +295,7 @@ describe("AppSidebar agent roster", () => {
       expect.objectContaining({ pathname: "/chat/working/recent" }),
     );
     expect(sidebar.querySelector(".sidebar-workspace-header__main")?.textContent).toContain(
-      "OpenClaw",
+      "Urbicana",
     );
     expect(sidebar.querySelector("openclaw-sidebar-agent-card")).toBeNull();
     sidebar

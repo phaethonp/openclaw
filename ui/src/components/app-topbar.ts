@@ -4,6 +4,7 @@ import type { ControlUiEnvironment } from "../../../src/gateway/control-ui-boots
 import { beginNativeWindowDrag } from "../app/native-window-drag.ts";
 import { controlUiPublicAssetPath } from "../app/public-assets.ts";
 import { t } from "../i18n/index.ts";
+import { PRODUCT_NAME } from "../lib/product-name.ts";
 import { OpenClawLightDomContentsElement } from "../lit/openclaw-element.ts";
 import { icons } from "./icons.ts";
 import { renderKbd, renderShortcutText } from "./kbd.ts";
@@ -37,14 +38,14 @@ class AppTopbar extends OpenClawLightDomContentsElement {
             </button>
           </openclaw-tooltip>
           <div class="topnav-shell__content" @mousedown=${beginNativeWindowDrag}>
-            <div class="topbar-brand" aria-label="OpenClaw">
+            <div class="topbar-brand" aria-label=${PRODUCT_NAME}>
               <img
                 class="topbar-brand__logo"
                 src=${controlUiPublicAssetPath("apple-touch-icon.png", this.resourceBasePath)}
                 alt=""
                 aria-hidden="true"
               />
-              <span class="topbar-brand__title">OpenClaw</span>
+              <span class="topbar-brand__title">${PRODUCT_NAME}</span>
               ${
                 this.environment &&
                 html`<span class="control-ui-environment-pill">${this.environment.label}</span>`

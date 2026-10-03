@@ -22,7 +22,6 @@ const EXPECTED_EXTERNAL_HREFS = [
   "https://chromewebstore.google.com/detail/openclaw/kcdjddhmeafeomebliikmbpblkmkfoig",
   "https://docs.openclaw.ai/tools/chrome-extension",
   "https://clawhub.ai",
-  "https://discord.gg/clawd",
   "https://docs.openclaw.ai",
 ];
 
@@ -41,7 +40,7 @@ describe("renderApps", () => {
   it("renders the hero and one heading per section", () => {
     const container = renderIntoContainer();
     expect(container.querySelector(".apps-hero__title")?.textContent).toBe(
-      "Take OpenClaw everywhere",
+      "Take Urbicana everywhere",
     );
     expect(container.querySelector(".apps-hero__tagline")?.textContent).toContain(
       "Companion apps for your phone",

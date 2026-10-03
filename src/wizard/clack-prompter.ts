@@ -36,8 +36,7 @@ import {
 import type { WizardProgress, WizardPrompter, WizardPromptNavigation } from "./prompts.js";
 import { WizardCancelledError, WizardNavigationError } from "./prompts.js";
 
-// Same species as the pixel-mascot banner, compressed into a four-column
-// spinner for long-running wizard steps.
+// Four-column spinner for long-running wizard steps.
 const CLAW_SPINNER_FRAMES = ["(\\/)", "(||)", "(--)", "(||)"];
 function guardCancel<T>(value: T | symbol, output: NodeJS.WriteStream, signal?: AbortSignal): T {
   if (value === CANCEL_SYMBOL) {

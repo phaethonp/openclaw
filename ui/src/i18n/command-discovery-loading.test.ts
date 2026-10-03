@@ -1,6 +1,7 @@
-/* @vitest-environment jsdom */
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { flattenTranslations } from "../../../scripts/lib/control-ui-i18n-sync-plan.ts";
+/* @vitest-environment jsdom */
+import { brandText } from "../lib/product-name.ts";
 import {
   captureI18nStateForTesting,
   createI18nManagerForTesting,
@@ -54,7 +55,7 @@ describe("command discovery English loading", () => {
     await load();
     const { registerCommandPaletteEnglish } = await import("./locales/en-command-palette.ts");
     for (const [key, value] of flattenTranslations(registerCommandPaletteEnglish.catalog)) {
-      expect(manager.t(key)).toBe(value);
+      expect(manager.t(key)).toBe(brandText(key, value));
     }
     expect(manager.t("common.health")).toBe("Gesundheit");
     expect(manager.t("commandPalette.newSessionSettings")).toBe("New session settings");

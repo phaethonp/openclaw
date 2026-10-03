@@ -15,10 +15,7 @@ vi.mock("./in-process-gateway.js", () => ({ callAgentToolGatewayRequest: vi.fn()
 
 const callGateway = vi.mocked(callAgentToolGatewayRequest);
 const definition = createThemeDefinitionFixture({
-  mascot: "none",
   workingPhrases: ["Building", "Compiling"],
-  critters: ["penguin", "fedora"],
-  avatarHat: "fedora",
 });
 
 describe("theme tool", () => {
@@ -67,10 +64,7 @@ describe("theme tool", () => {
         description: definition.description,
         modes: ["dark"],
         source: "user",
-        mascot: "none",
         workingPhrases: ["Building", "Compiling"],
-        critters: ["penguin", "fedora"],
-        avatarHat: "fedora",
       },
       definition,
     };

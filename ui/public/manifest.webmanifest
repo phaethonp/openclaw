@@ -1,7 +1,7 @@
 {
-  "name": "OpenClaw Control",
+  "name": "OpenClaw",
   "short_name": "OpenClaw",
-  "description": "Multi-channel AI gateway control panel",
+  "description": "Your OpenClaw business agent",
   "start_url": "./",
   "display": "standalone",
   "theme_color": "#0a0a0a",

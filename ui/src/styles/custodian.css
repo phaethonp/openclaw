@@ -50,11 +50,6 @@ openclaw-custodian-page {
   text-align: center;
 }
 
-.custodian__setup-state openclaw-mascot {
-  display: block;
-  margin-bottom: 4px;
-}
-
 .custodian__setup-state h2 {
   margin: 0;
   color: var(--text-strong);
@@ -109,7 +104,7 @@ openclaw-custodian-page {
   gap: 8px;
 }
 
-/* Onboarding: the thread already introduces the mascot, so the header keeps
+/* Onboarding: the thread already introduces the agent, so the header keeps
    only its actions as a quiet top-right row. */
 .custodian__header--minimal {
   justify-content: flex-end;
@@ -146,10 +141,6 @@ openclaw-custodian-page {
   height: 38px;
   flex: 0 0 38px;
   place-items: center;
-}
-
-.custodian__mark openclaw-mascot {
-  display: block;
 }
 
 .custodian__messages {
@@ -342,10 +333,6 @@ openclaw-custodian-page {
 .custodian__mascot-avatar {
   overflow: visible;
   background: transparent;
-}
-
-.custodian__mascot-avatar openclaw-mascot {
-  display: block;
 }
 
 .custodian-surface > .agent-chat__composer-shell {

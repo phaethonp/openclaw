@@ -177,6 +177,11 @@ RUN set -eu; \
     fi; \
     OPENCLAW_INTERNAL_DOCKER_BUILD_PLUGIN_IDS="$selected_plugin_dirs" OPENCLAW_RUN_NODE_SKIP_DTS_BUILD="$OPENCLAW_DOCKER_BUILD_SKIP_DTS" OPENCLAW_TSDOWN_MAX_OLD_SPACE_MB="$OPENCLAW_DOCKER_BUILD_TSDOWN_MAX_OLD_SPACE_MB" NODE_OPTIONS="$OPENCLAW_DOCKER_BUILD_NODE_OPTIONS" pnpm_config_verify_deps_before_run=false pnpm build:docker; \
     pnpm_config_verify_deps_before_run=false pnpm ui:build
+# Brand at the edge: the product name is applied to what ships (string
+# literals in the built JavaScript, shipped text assets), never to the source,
+# so syncs from upstream stay clean. --check fails the build if any display-form
+# occurrence remains outside scripts/rebrand/exceptions.json.
+RUN node scripts/rebrand/rewrite-shipped.mjs --root /app --check
 RUN if grep -qx 'qa-lab' /tmp/openclaw-selected-plugin-dirs; then \
       pnpm_config_verify_deps_before_run=false pnpm qa:lab:build && \
       mkdir -p dist/extensions/qa-lab/web && \

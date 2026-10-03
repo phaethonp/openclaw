@@ -1,8 +1,3 @@
-/**
- * OpenClaw system prompt renderer.
- *
- * Assembles runtime, workspace, tooling, memory, delegation, channel, and cache-boundary prompt sections.
- */
 import { createHmac } from "node:crypto";
 import {
   normalizePromptCapabilityIds,
@@ -39,6 +34,12 @@ import type { AgentPromptSurfaceKind } from "../plugins/types.js";
 import { parseCronRunScopeSuffix } from "../sessions/session-key-utils.js";
 import { listDeliverableMessageChannels } from "../utils/message-channel.js";
 import { truncateUtf8Prefix } from "../utils/utf8-truncate.js";
+/**
+ * OpenClaw system prompt renderer.
+ *
+ * Assembles runtime, workspace, tooling, memory, delegation, channel, and cache-boundary prompt sections.
+ */
+import { AGENT_IDENTITY_LINE } from "./agent-identity-line.js";
 import type { BootstrapMode } from "./bootstrap-mode.js";
 import {
   buildFullBootstrapPromptLines,
@@ -567,9 +568,7 @@ export function buildAgentSystemPrompt(params: {
   const runtimeInfo = params.runtimeInfo;
   const modelIdentityLine = buildModelIdentityPromptLine(runtimeInfo?.model);
   if (promptMode === "none") {
-    return ["You are a personal assistant running inside OpenClaw.", modelIdentityLine]
-      .filter(Boolean)
-      .join("\n");
+    return [AGENT_IDENTITY_LINE, modelIdentityLine].filter(Boolean).join("\n");
   }
 
   const acpEnabled = params.acpEnabled === true;
@@ -810,7 +809,7 @@ export function buildAgentSystemPrompt(params: {
   });
   const stablePrefix = cacheStablePromptPrefix(stablePrefixCacheKey, () => {
     const lines = [
-      "You are a personal assistant running inside OpenClaw.",
+      AGENT_IDENTITY_LINE,
       "",
       ...(includeToolGuidance
         ? [

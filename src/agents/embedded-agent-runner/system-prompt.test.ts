@@ -331,7 +331,7 @@ describe("buildEmbeddedSystemPrompt", () => {
     "preserves the fixed embedded prompt in %s mode",
     (promptMode) => {
       const prompt = buildEmbeddedSystemPrompt({ ...fixedEmbeddedPromptInputs(), promptMode });
-      expect(prompt).toContain("You are a personal assistant running inside OpenClaw.");
+      expect(prompt).toContain("You are a personal assistant running inside Urbicana.");
       if (promptMode === "none") {
         expect(prompt).not.toContain("Fixture");
         expect(prompt).not.toContain("## Tooling");

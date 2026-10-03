@@ -12,7 +12,6 @@ import {
 import {
   identityAvatarClass,
   renderAgentIdentityAvatar,
-  renderAgentAvatarHat,
   renderIdentityAvatarImage,
   resolveIdentityAvatarView,
 } from "../../components/identity-avatar-view.ts";
@@ -146,7 +145,7 @@ function renderAgentAvatar(
       fallbackSelector: ".chat-avatar-slot",
       className: "chat-avatar assistant",
       alt: name,
-    })}${fallback}${renderAgentAvatarHat(id)}
+    })}${fallback}
   </span>`;
 }
 

@@ -1,5 +1,5 @@
 import type { UsersMentionableResult } from "@openclaw/gateway-protocol";
-import { nothing, render } from "lit";
+import { render } from "lit";
 import { onTestFinished, vi } from "vitest";
 import { GatewayBrowserClient } from "../../api/gateway.ts";
 import type { HumanMention } from "../../lib/chat/chat-types.ts";
@@ -81,7 +81,6 @@ export function composerFixture(
             onSend: () => send({ draft, mentions }),
           })
         : renderNewSessionComposer({
-            renderCritters: () => nothing,
             message: draft,
             mentions,
             getMentions: () => mentions,

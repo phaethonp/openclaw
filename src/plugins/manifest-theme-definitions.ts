@@ -1,15 +1,13 @@
-import { isSelfContainedSvg } from "../../packages/gateway-protocol/src/svg-image.js";
 import {
   MAX_THEME_DEFINITION_BYTES,
   isThemeId,
   normalizeThemeDefinition,
 } from "../../packages/gateway-protocol/src/theme.js";
-import type { PluginManifestRecord, PluginThemeArtwork } from "./manifest-registry.types.js";
+import type { PluginManifestRecord } from "./manifest-registry.types.js";
 import type { PluginDiagnostic, PluginManifestTheme } from "./manifest-types.js";
 import { readPluginCacheFile } from "./plugin-cache-files.js";
-import { PLUGIN_ACTIVITY_ICON_MAX_BYTES } from "./portable-icon-paths.js";
 
-/** Capture palettes and artwork so a published generation never reads changed files. */
+/** Capture palettes so a published generation never reads changed files. */
 export function loadManifestThemeDefinitions(params: {
   pluginId: string;
   rootDir: string;
@@ -37,51 +35,11 @@ export function loadManifestThemeDefinitions(params: {
       if (!file.ok) {
         throw new Error("source must be a readable JSON file inside the plugin root");
       }
-      const definition = normalizeThemeDefinition(JSON.parse(file.contents.toString("utf8")), {
-        hatIds: Object.keys(theme.hats ?? {}),
-        critterIds: Object.keys(theme.critters ?? {}),
-      });
+      const definition = normalizeThemeDefinition(JSON.parse(file.contents.toString("utf8")));
       if (definition.name !== theme.name || definition.description !== theme.description) {
         throw new Error("name and description must match the manifest declaration");
       }
-      const readSvg = (source: string): string => {
-        const svgFile = readPluginCacheFile({
-          rootDir: params.rootDir,
-          relativePath: source,
-          rejectHardlinks: params.rejectHardlinks,
-          maxBytes: PLUGIN_ACTIVITY_ICON_MAX_BYTES,
-        });
-        if (!svgFile.ok) {
-          throw new Error(
-            `artwork ${source} must be a readable SVG inside the plugin root, at most ${PLUGIN_ACTIVITY_ICON_MAX_BYTES} bytes`,
-          );
-        }
-        const svg = svgFile.contents.toString("utf8");
-        if (!isSelfContainedSvg(svg)) {
-          throw new Error(`artwork ${source} must be a self-contained SVG`);
-        }
-        return svg;
-      };
-      const artwork: PluginThemeArtwork = {
-        ...(theme.hats
-          ? {
-              hats: Object.fromEntries(
-                Object.entries(theme.hats).map(([id, source]) => [id, { svg: readSvg(source) }]),
-              ),
-            }
-          : {}),
-        ...(theme.critters
-          ? {
-              critters: Object.fromEntries(
-                Object.entries(theme.critters).map(([id, { source, ...metadata }]) => [
-                  id,
-                  { svg: readSvg(source), ...metadata },
-                ]),
-              ),
-            }
-          : {}),
-      };
-      return [{ id: theme.id, definition, ...(theme.hats || theme.critters ? { artwork } : {}) }];
+      return [{ id: theme.id, definition }];
     } catch (error) {
       params.diagnostics.push({
         level: "warn",

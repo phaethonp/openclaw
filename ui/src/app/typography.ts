@@ -45,6 +45,7 @@ export const TYPEFACES = Object.fromEntries(
 
 const THEME_TYPEFACES = {
   claw: { ui: "instrument-sans", chat: "instrument-sans" },
+  urbicana: { ui: "instrument-sans", chat: "instrument-sans" },
   knot: { ui: "geist", chat: "geist" },
   dash: { ui: "dm-sans", chat: "fraunces" },
   absolutely: { ui: "space-grotesk", chat: "lora" },

@@ -55,7 +55,7 @@ export function serveControlUiShareDocument(
 <meta property="og:title" content="${title}"><meta property="og:description" content="${description}">
 <meta property="og:url" content="${canonical}"><meta property="og:image" content="${image}">
 <meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="OpenClaw logo and lobster mascot">
+<meta property="og:image:alt" content="OpenClaw logo">
 <meta name="twitter:card" content="summary_large_image">
 <style>
 :root{color-scheme:dark;font-family:system-ui,sans-serif;background:#0b1016;color:#f5f7fa}
@@ -64,7 +64,7 @@ img{display:block;width:100%;height:auto;border-radius:20px}h1{font-size:clamp(2
 p{color:#b2bdc9;line-height:1.6;margin:0 0 28px}a{display:inline-block;border-radius:12px;padding:14px 22px;background:#ff5c50;color:#160b0a;font-weight:700;text-decoration:none}
 a:focus-visible{outline:3px solid #fff;outline-offset:5px}
 </style></head><body><main>
-<img src="${image}" width="1200" height="630" alt="OpenClaw logo and lobster mascot">
+<img src="${image}" width="1200" height="630" alt="OpenClaw logo">
 <h1>${title}</h1><p>${description}</p><a href="${target}">Open ${title === "OpenClaw dashboard" ? "dashboard" : "session"}</a>
 </main></body></html>`;
   res.statusCode = 200;

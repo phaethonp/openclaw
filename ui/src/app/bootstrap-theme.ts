@@ -63,13 +63,6 @@ function applyThemePresentation(settings: UiPreferences, catalogTheme?: CatalogT
   root.dataset.themeId = effectiveTheme;
   root.dataset.theme = resolvedTheme;
   root.dataset.themeMode = resolvedTheme.endsWith("light") ? "light" : "dark";
-  const branding = themeBranding(settings, catalogTheme);
-  root.dataset.themeMascot = branding.mascot;
-  if (branding.avatarHat) {
-    root.dataset.themeAvatarHat = branding.avatarHat;
-  } else {
-    delete root.dataset.themeAvatarHat;
-  }
   // Plugin semantic styles select on [data-theme-resolved]; keep it in lockstep
   // with data-theme-mode before their lazy stylesheet loads.
   root.dataset.themeResolved = root.dataset.themeMode;

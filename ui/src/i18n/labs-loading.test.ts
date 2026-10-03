@@ -3,6 +3,7 @@
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { flattenTranslations } from "../../../scripts/lib/control-ui-i18n-sync-plan.ts";
 import { titleForRoute } from "../app-navigation.ts";
+import { brandText } from "../lib/product-name.ts";
 import {
   captureI18nStateForTesting,
   createI18nManagerForTesting,
@@ -43,7 +44,7 @@ describe("Labs English loading", () => {
     const { LAB_FEATURES } = await import("../pages/labs/labs-registry.ts");
     const { registerLabsEnglish } = await import("./locales/en-labs.ts");
     for (const [key, value] of flattenTranslations(registerLabsEnglish.catalog)) {
-      expect(manager.t(key)).toBe(value);
+      expect(manager.t(key)).toBe(brandText(key, value));
     }
     for (const feature of LAB_FEATURES) {
       expect(feature.title()).toBe(manager.t(`labsPage.${feature.id}.title`));

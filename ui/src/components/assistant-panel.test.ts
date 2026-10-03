@@ -685,26 +685,4 @@ describe("assistant panel", () => {
     expect(request).toHaveBeenCalledOnce();
     expect(panel.textContent).toContain("Continue setup");
   });
-
-  it("updates the panel mascot mood with shared sending state", async () => {
-    const { panel, store } = await mountPanel();
-    store.messages = [
-      { id: 1, role: "user", text: "Check this system", at: 1, question: null, step: null },
-    ];
-    panel.custodianSuppressed = false;
-    panel.minimizeRequestId = 1;
-    await panel.updateComplete;
-
-    store.sending = true;
-    store.setInput("status");
-    await panel.updateComplete;
-
-    expect(
-      (
-        panel.querySelector(".assistant-panel-title openclaw-mascot") as HTMLElement & {
-          mood: string;
-        }
-      ).mood,
-    ).toBe("thinking");
-  });
 });
