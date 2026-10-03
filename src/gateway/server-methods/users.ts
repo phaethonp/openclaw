@@ -52,6 +52,7 @@ import {
 import type { GatewayRequestHandlerOptions, GatewayRequestHandlers } from "./types.js";
 import { publishUserPreferencesChanged } from "./user-preference-events.js";
 import { usersAuthConnectHandlers } from "./users-auth-connect.js";
+import { usersBoosttHandlers } from "./users-boostt.js";
 import { usersChannelIdentityHandlers } from "./users-channel-identities.js";
 import { usersGitHubHandlers } from "./users-github.js";
 import { usersPersonalFileHandlers } from "./users-personal-file.js";
@@ -110,6 +111,7 @@ export const usersHandlers: GatewayRequestHandlers = {
   ...usersAuthConnectHandlers,
   ...usersChannelIdentityHandlers,
   ...usersGitHubHandlers,
+  ...usersBoosttHandlers,
   ...usersPersonalFileHandlers,
   "users.list": async ({ params, respond, context }) => {
     if (!assertValidParams(params, validateUsersListParams, "users.list", respond)) {

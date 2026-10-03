@@ -93,6 +93,13 @@ export type GatewayCoreRequestParams = {
     typeof UsersSchema.UsersGitHubAuthorizeCancelParamsSchema
   >;
   "users.github.disconnect": Static<typeof UsersSchema.UsersGitHubDisconnectParamsSchema>;
+  "users.boostt.status": Static<typeof UsersSchema.UsersBoosttStatusParamsSchema>;
+  "users.boostt.authorize.start": Static<typeof UsersSchema.UsersBoosttAuthorizeStartParamsSchema>;
+  "users.boostt.authorize.poll": Static<typeof UsersSchema.UsersBoosttAuthorizePollParamsSchema>;
+  "users.boostt.authorize.cancel": Static<
+    typeof UsersSchema.UsersBoosttAuthorizeCancelParamsSchema
+  >;
+  "users.boostt.disconnect": Static<typeof UsersSchema.UsersBoosttDisconnectParamsSchema>;
   "users.mentionable": HumanMentionsSchema.UsersMentionableParams;
   "ui.command": UiCommandParams;
   "themes.list": ThemesListParams;

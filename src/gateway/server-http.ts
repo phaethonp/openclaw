@@ -130,6 +130,7 @@ export function createGatewayHttpServer(opts: {
   openResponsesEnabled?: boolean;
   handleHooksRequest: HooksRequestHandler;
   handleMcpOAuthCallbackRequest?: McpOAuthCallbackHandler;
+  handleBoosttOAuthCallbackRequest?: McpOAuthCallbackHandler;
   handleWatchNodeRequest?: WatchNodeHttpRequestHandler;
   handlePluginRequest?: PluginHttpRequestHandler;
   shouldEnforcePluginGatewayAuth?: (pathContext: PluginRoutePathContext) => boolean;
@@ -476,6 +477,13 @@ export function createGatewayHttpServer(opts: {
           scopedRequestPath === "/oauth/mcp/callback" &&
           Boolean(opts.handleMcpOAuthCallbackRequest),
         () => opts.handleMcpOAuthCallbackRequest?.(req, res) ?? false,
+      );
+      // Boostt redirects the member here after they approve the connection.
+      addAdmittedStage(
+        req.method === "GET" &&
+          scopedRequestPath === "/oauth/boostt/callback" &&
+          Boolean(opts.handleBoosttOAuthCallbackRequest),
+        () => opts.handleBoosttOAuthCallbackRequest?.(req, res) ?? false,
       );
       // The hook owner claims only its configured base path before entering HTTP admission;
       // this unconditional dispatcher must stay plain so unrelated routes can fall through.

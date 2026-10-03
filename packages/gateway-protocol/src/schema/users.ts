@@ -451,3 +451,57 @@ export type PersonalGitHubStatus = Static<typeof PersonalGitHubStatusSchema>;
 export type UsersGitHubStatusResult = Static<typeof UsersGitHubStatusResultSchema>;
 export type UsersGitHubAuthorizeStartResult = Static<typeof UsersGitHubAuthorizeStartResultSchema>;
 export type UsersGitHubAuthorizePollResult = Static<typeof UsersGitHubAuthorizePollResultSchema>;
+
+// Settings → Profile → Boostt account: a personal connection the profile holds,
+// in the shape of My GitHub. A credential, not a profile identity.
+export const BoosttAccountSchema = closedObject({
+  userId: Type.Integer({ minimum: 1, maximum: Number.MAX_SAFE_INTEGER }),
+  email: Type.String({ minLength: 3, maxLength: 320 }),
+  displayName: Type.Union([Type.String({ minLength: 1, maxLength: 256 }), Type.Null()]),
+  handle: Type.Union([Type.String({ minLength: 1, maxLength: 128 }), Type.Null()]),
+});
+export const UsersBoosttPendingSchema = closedObject({
+  requestId: PersonalGitHubGenerationSchema,
+  authorizeUrl: Type.String({ minLength: 1, maxLength: 4096 }),
+  expiresAtMs: Type.Integer({ minimum: 0 }),
+});
+export const UsersBoosttStatusParamsSchema = closedObject({});
+export const UsersBoosttStatusResultSchema = closedObject({
+  state: Type.Union([Type.Literal("connected"), Type.Literal("disconnected")]),
+  account: Type.Union([BoosttAccountSchema, Type.Null()]),
+  connectedAtMs: Type.Union([Type.Integer({ minimum: 0 }), Type.Null()]),
+  accessExpiresAtMs: Type.Union([Type.Integer({ minimum: 0 }), Type.Null()]),
+  refreshState: Type.Union([
+    Type.Literal("available"),
+    Type.Literal("not_applicable"),
+    Type.Literal("expired"),
+    Type.Literal("failed"),
+  ]),
+  pending: Type.Union([UsersBoosttPendingSchema, Type.Null()]),
+});
+export const UsersBoosttAuthorizeStartParamsSchema = closedObject({
+  /** The browser origin the member is on; Boostt redirects back to it. */
+  redirectOrigin: Type.String({ minLength: 8, maxLength: 2048 }),
+});
+export const UsersBoosttAuthorizeStartResultSchema = UsersBoosttPendingSchema;
+export const UsersBoosttAuthorizePollParamsSchema = closedObject({
+  requestId: PersonalGitHubGenerationSchema,
+});
+export const UsersBoosttAuthorizePollResultSchema = Type.Union([
+  closedObject({
+    status: Type.Literal("pending"),
+    retryAfterMs: Type.Integer({ minimum: 1, maximum: 60000 }),
+  }),
+  closedObject({ status: Type.Literal("success"), account: BoosttAccountSchema }),
+  closedObject({ status: Type.Literal("expired") }),
+]);
+export const UsersBoosttAuthorizeCancelParamsSchema = closedObject({
+  requestId: PersonalGitHubGenerationSchema,
+});
+export const UsersBoosttAuthorizeCancelResultSchema = closedObject({ cancelled: Type.Boolean() });
+export const UsersBoosttDisconnectParamsSchema = closedObject({});
+export const UsersBoosttDisconnectResultSchema = closedObject({ disconnected: Type.Literal(true) });
+export type BoosttAccount = Static<typeof BoosttAccountSchema>;
+export type UsersBoosttStatusResult = Static<typeof UsersBoosttStatusResultSchema>;
+export type UsersBoosttAuthorizeStartResult = Static<typeof UsersBoosttAuthorizeStartResultSchema>;
+export type UsersBoosttAuthorizePollResult = Static<typeof UsersBoosttAuthorizePollResultSchema>;

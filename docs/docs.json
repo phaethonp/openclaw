@@ -2448,7 +2448,8 @@
                       },
                       "gateway/1password",
                       "gateway/secrets-plan-contract",
-                      "gateway/trusted-proxy-auth"
+                      "gateway/trusted-proxy-auth",
+                      "gateway/boostt-account"
                     ]
                   },
                   {
