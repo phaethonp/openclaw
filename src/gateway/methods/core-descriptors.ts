@@ -696,4 +696,16 @@ export const CORE_GATEWAY_METHOD_SPECS = [
   ["mcp.app.subscribeResource", "mcp-app", "operator.read", "2026.9"],
   ["mcp.app.unsubscribeResource", "mcp-app", "operator.read", "2026.9"],
   ["mcp.app.openFile", "mcp-app", "operator.read", "2026.9"],
+  // Settings → Profile → Boostt account. Appended: client method indices stay put.
+  ["users.boostt.status", "users", "operator.read", "2026.9", { startup: true }],
+  ["users.boostt.authorize.start", "users", "operator.read", "2026.9", SIDECAR_CONTROL_PLANE_WRITE],
+  ["users.boostt.authorize.poll", "users", "operator.read", "2026.9", SIDECAR_CONTROL_PLANE_WRITE],
+  [
+    "users.boostt.authorize.cancel",
+    "users",
+    "operator.read",
+    "2026.9",
+    SIDECAR_CONTROL_PLANE_WRITE,
+  ],
+  ["users.boostt.disconnect", "users", "operator.read", "2026.9", SIDECAR_CONTROL_PLANE_WRITE],
 ] as const satisfies readonly CoreGatewayMethodSpecRow[];

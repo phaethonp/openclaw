@@ -270,6 +270,11 @@ describe("listGatewayMethods", () => {
       "storage.locations.list",
       "storage.locations.probe",
       ...mcpAppExtensionMethods,
+      "users.boostt.status",
+      "users.boostt.authorize.start",
+      "users.boostt.authorize.poll",
+      "users.boostt.authorize.cancel",
+      "users.boostt.disconnect",
     ];
     expect(listGatewayMethods().slice(-expectedSuffix.length)).toEqual(expectedSuffix);
     const methods = listGatewayMethods();
@@ -346,6 +351,11 @@ describe("listGatewayMethods", () => {
       "storage.locations.list",
       "storage.locations.probe",
       ...mcpAppExtensionMethods,
+      "users.boostt.status",
+      "users.boostt.authorize.start",
+      "users.boostt.authorize.poll",
+      "users.boostt.authorize.cancel",
+      "users.boostt.disconnect",
     ]);
   });
 
@@ -550,6 +560,11 @@ describe("listGatewayMethods", () => {
       "storage.locations.list",
       "storage.locations.probe",
       ...mcpAppExtensionMethods,
+      "users.boostt.status",
+      "users.boostt.authorize.start",
+      "users.boostt.authorize.poll",
+      "users.boostt.authorize.cancel",
+      "users.boostt.disconnect",
     ];
     expect(coreMethods.slice(-expectedCoreSuffix.length)).toEqual(expectedCoreSuffix);
     expect(methods.indexOf("approval.get")).toBeGreaterThan(methods.indexOf("tts.speak"));
