@@ -41,7 +41,7 @@ const IDENTITY_MENU_LINKS: ReadonlyArray<{
 
 const AGENT_VALUE_PREFIX = "agent:";
 export const COMMAND_VALUE_PREFIX = "command:";
-export const LINK_VALUE_PREFIX = "link:";
+const LINK_VALUE_PREFIX = "link:";
 const sidebarMenuTypeahead = new WeakMap<
   HTMLElement,
   { query: string; timeout: ReturnType<typeof setTimeout> }
@@ -90,6 +90,10 @@ export function consumeSidebarMenuSelection(
   const value = item.value;
   if (value) {
     onClose(false);
+    if (value.startsWith(LINK_VALUE_PREFIX)) {
+      openExternalUrlSafe(decodeURIComponent(value.slice(LINK_VALUE_PREFIX.length)));
+      return undefined;
+    }
   }
   return value;
 }
@@ -317,10 +321,6 @@ export function renderSidebarAgentMenu(params: SidebarAgentMenuParams) {
       @wa-select=${(event: CustomEvent<{ item: HTMLElement & { value?: string } }>) => {
         const value = consumeSidebarMenuSelection(event, params.onClose);
         if (!value) {
-          return;
-        }
-        if (value.startsWith(LINK_VALUE_PREFIX)) {
-          openExternalUrlSafe(decodeURIComponent(value.slice(LINK_VALUE_PREFIX.length)));
           return;
         }
         if (value.startsWith(AGENT_VALUE_PREFIX)) {

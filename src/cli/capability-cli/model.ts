@@ -12,6 +12,7 @@ import {
   GATEWAY_CLIENT_NAMES,
 } from "../../../packages/gateway-protocol/src/client-info.js";
 import { AGENT_IDENTITY_LINE } from "../../agents/agent-identity-line.js";
+import { collectTextContentBlocks } from "../../agents/content-blocks.js";
 import { DEFAULT_PROVIDER } from "../../agents/defaults.js";
 import {
   normalizeThinkLevel,
@@ -46,13 +47,6 @@ async function loadModelCatalogForInspection(cfg: OpenClawConfig, rawAgentId?: s
   return prepared.toSorted(
     (a, b) => a.provider.localeCompare(b.provider) || a.id.localeCompare(b.id),
   );
-}
-
-function collectModelRunText(content: Array<{ type: string; text?: string }>): string {
-  return content
-    .map((block) => (block.type === "text" && typeof block.text === "string" ? block.text : ""))
-    .join("")
-    .trim();
 }
 
 function requireModelRunPrompt(value: unknown): string {
@@ -218,7 +212,7 @@ async function runModelRun(params: {
                 ...(params.thinking ? { reasoning: params.thinking } : {}),
               },
             });
-            const text = collectModelRunText(result.content);
+            const text = collectTextContentBlocks(result.content).join("").trim();
             if (!text) {
               const providerErrorMessage = (result as { errorMessage?: unknown }).errorMessage;
               const detail =

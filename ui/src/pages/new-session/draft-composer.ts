@@ -86,7 +86,7 @@ export function renderNewSessionDraftComposer(
     permissionControl?: TemplateResult;
   },
 ) {
-  const readSignal = options.attachmentDraft.readSignal;
+  const readSignal = options.attachmentDraft.reads.readSignal;
   const commandClient = options.nativeTerminal
     ? null
     : (options.context?.gateway.snapshot.client ?? null);
@@ -114,7 +114,7 @@ export function renderNewSessionDraftComposer(
           context: options.context,
           sending: options.submitting,
         }),
-    pendingAttachmentReads: options.attachmentDraft.pendingReads,
+    pendingAttachmentReads: options.attachmentDraft.reads.pendingReads,
     attachmentReads: options.attachmentDraft.reads,
     readSignal,
     refreshCommands: commandClient
@@ -144,6 +144,6 @@ export function renderNewSessionDraftComposer(
         options.attachmentDraft.replace(attachments);
       }
     },
-    onPendingReadsChange: (delta) => options.attachmentDraft.updatePending(readSignal, delta),
+    onPendingReadsChange: (delta) => options.attachmentDraft.reads.updatePending(readSignal, delta),
   });
 }

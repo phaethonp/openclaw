@@ -150,8 +150,8 @@ export type ConfigProps = {
   hiddenSessionCatalogIds: ReadonlySet<string>;
   hiddenSessionCatalogLabels: ReadonlyMap<string, string>;
   setSessionCatalogHidden: (catalogId: string, hidden: boolean) => void;
-  openLinksExternally?: boolean;
-  setOpenLinksExternally?: (enabled: boolean) => void;
+  openLinksExternally: boolean;
+  setOpenLinksExternally: (enabled: boolean) => void;
   chatMessageMaxWidth?: string;
   setChatMessageMaxWidth: (value: string | undefined) => void;
   chatShowTaskProgress: boolean;
@@ -170,10 +170,8 @@ export type ConfigProps = {
   sessionObserverDisabled?: boolean;
   setSessionObserverEnabled?: (enabled: boolean) => void;
   setSessionObserverUtilityModel?: (selection: SessionObserverModelSelection) => void;
-  setLobsterPetVisits?: (enabled: boolean) => void;
-  sessionDeleteConfirm?: boolean;
-  setSessionDeleteConfirm?: (enabled: boolean) => void;
-  setLobsterPetSounds?: (enabled: boolean) => void;
+  sessionDeleteConfirm: boolean;
+  setSessionDeleteConfirm: (enabled: boolean) => void;
   chatSendShortcut: ChatSendShortcut;
   chatSendShortcutOverridden: boolean;
   chatSendShortcutProvenance: ServerUiPrefProvenance;
@@ -193,8 +191,8 @@ export type ConfigProps = {
   camera?: SettingsMediaDeviceState;
   onCameraRefresh?: () => void;
   onCameraSelect?: (deviceId: string) => void;
-  composerHoldToRecord?: boolean;
-  setComposerHoldToRecord?: (enabled: boolean) => void;
+  composerHoldToRecord: boolean;
+  setComposerHoldToRecord: (enabled: boolean) => void;
   gatewayUrl: string;
   pluginsHref?: string;
   installedSessionSourcePluginIds?: ReadonlySet<string> | null;

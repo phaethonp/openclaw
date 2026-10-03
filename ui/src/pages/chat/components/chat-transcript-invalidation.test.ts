@@ -242,7 +242,7 @@ describe("chat transcript invalidation", () => {
         const owner = new EventTarget();
         let visible = true;
         if (parent === "parked") {
-          props.transcriptPresentation = { owner, isPresented: () => visible };
+          props.transcriptVisible = { owner, isPresented: () => visible };
         }
         await renderPreview();
         expect(container.querySelector(".chat-video-preview img")).toBeInstanceOf(HTMLImageElement);
@@ -258,7 +258,9 @@ describe("chat transcript invalidation", () => {
         expect(revokeObjectURL).toHaveBeenCalledWith("blob:transcript-poster");
         visible = true;
         owner.dispatchEvent(new Event(PRESENTATION_CHANGED_EVENT));
-        props.transcriptVisible = true;
+        if (parent === "rendered") {
+          props.transcriptVisible = true;
+        }
         await renderPreview();
         expect(container.querySelector(".chat-video-preview img")).toBeInstanceOf(HTMLImageElement);
       },

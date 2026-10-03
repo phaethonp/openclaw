@@ -1426,7 +1426,8 @@ openclaw-settings-save-indicator:empty {
   cursor: not-allowed;
 }
 
-.sidebar-session-toolbar__button svg {
+.sidebar-session-toolbar__button svg,
+.sidebar-session-group-actions svg {
   width: 14px;
   height: 14px;
   stroke: currentColor;
@@ -1637,7 +1638,10 @@ openclaw-settings-save-indicator:empty {
   opacity: 0.75;
 }
 
-.sidebar-session-group-toggle__icon svg {
+.sidebar-session-group-toggle__icon svg,
+.sidebar-session-catalog-host__count--error svg,
+.sidebar-session__archive-glyph svg,
+.sidebar-child-session-toggle__icon svg {
   width: 11px;
   height: 11px;
   stroke: currentColor;
@@ -1830,16 +1834,6 @@ openclaw-settings-save-indicator:empty {
   opacity: 1;
 }
 
-.sidebar-session-group-actions svg {
-  width: 14px;
-  height: 14px;
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 1.7px;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
 @media (hover: none), (pointer: coarse) {
   /* No hover on touch: the clear icon is the resting lead glyph. */
   .sidebar-session-filter-summary__glyph {
@@ -1974,14 +1968,6 @@ openclaw-settings-save-indicator:empty {
   color: var(--warn);
 }
 
-.sidebar-session-catalog-host__count--error svg {
-  width: 11px;
-  height: 11px;
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 1.8px;
-}
-
 .sidebar-session-catalog-project__head {
   display: flex;
   align-items: center;
@@ -2095,14 +2081,6 @@ openclaw-settings-save-indicator:empty {
   display: inline-flex;
   margin-right: 5px;
   vertical-align: -2px;
-}
-
-.sidebar-session__archive-glyph svg {
-  width: 11px;
-  height: 11px;
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 1.8px;
 }
 
 .sidebar-recent-session--dragging {
@@ -2239,14 +2217,6 @@ openclaw-settings-save-indicator:empty {
 
 .sidebar-child-session-toggle__icon {
   display: inline-flex;
-}
-
-.sidebar-child-session-toggle__icon svg {
-  width: 11px;
-  height: 11px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.8px;
 }
 
 .sidebar-child-session-toggle__count {
@@ -2501,6 +2471,23 @@ openclaw-settings-save-indicator:empty {
   border-radius: 0;
 }
 
+.sidebar-online__filter-toggle {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sidebar-online:where(:hover, :has(:focus-visible)) .sidebar-online__filter-toggle {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .sidebar-online__filter-toggle {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
 .sidebar-online__list {
   display: flex;
   flex-direction: column;
@@ -2619,6 +2606,10 @@ openclaw-settings-save-indicator:empty {
 .sidebar-online__person:hover .sidebar-online__counts,
 .sidebar-online__person:focus-visible .sidebar-online__counts {
   background: color-mix(in srgb, var(--text) 10%, transparent);
+}
+
+.sidebar-online__count {
+  font-variant-numeric: tabular-nums;
 }
 
 .sidebar-online__open,

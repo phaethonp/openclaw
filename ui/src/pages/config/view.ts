@@ -57,8 +57,6 @@ export function renderConfig(props: ConfigProps) {
   const analysis = getConfigSchemaAnalysis(
     viewState,
     asConfigSchema(props.schema),
-    props.includeSections,
-    props.excludeSections,
     include,
     exclude,
   );
