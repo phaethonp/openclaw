@@ -4,6 +4,7 @@ import type { TranslationMap } from "../lib/types.ts";
 import * as agentEn from "./en-agents.ts";
 
 export const en: TranslationMap & {
+  mcpApp: TranslationMap;
   linkReader: TranslationMap;
   agentTools: TranslationMap;
   board: TranslationMap & { widget: TranslationMap };
@@ -252,19 +253,7 @@ export const en: TranslationMap & {
     bundle: {},
     label: "Support files",
   },
-  mcpApp: {
-    title: "MCP App",
-    unavailable: "MCP App unavailable: {error}",
-    errors: {
-      gatewayUnavailable: "MCP App gateway unavailable",
-      mountUnavailable: "MCP App mount unavailable",
-      sandboxTimedOut: "MCP App sandbox timed out",
-      sandboxUnavailable: "MCP App sandbox unavailable",
-      initializationTimedOut: "MCP App initialization timed out",
-      requestFailed: "Request failed",
-      invalidSandboxUrl: "MCP App sandbox URL is invalid",
-    },
-  },
+  mcpApp: {},
   sessionHovercard: {
     ariaLabel: "Session information",
     agentNotepad: "Agent Notepad",
@@ -958,7 +947,7 @@ export const en: TranslationMap & {
     actionRequiresConnection: "Connect to the Gateway to change sessions.",
     actionUnavailable: "This Gateway does not support this session action.",
     actionRequiresScope: "This action requires {scope} access.",
-    actionRequiresOwnership: "Only the session owner can make this change.",
+    actionRequiresOwnership: "Only the session creator or an admin can make this change.",
     deletePreservedReasons: {
       "owner-mismatch": "owned elsewhere",
       busy: "live run or cleanup active",
@@ -1003,6 +992,17 @@ export const en: TranslationMap & {
     unknown: "Unknown",
     sessionState: "Session state",
     all: "All",
+    snooze: "Snooze",
+    wakeSession: "Wake session",
+    snoozeHour: "In 1 hour",
+    snoozeThreeHours: "In 3 hours",
+    snoozeEvening: "This evening",
+    snoozeTomorrow: "Tomorrow",
+    snoozeNextWeek: "Next week",
+    snoozed: "Snoozed",
+    snoozeWakes: "Wakes {time}",
+    sessionSnoozed: "Snoozed until {time}",
+    snoozeTomorrowTime: "tomorrow {time}",
     sessionArchived: "Session archived",
     archiving: "Archiving…",
     sessionsArchived: "Archived {count} sessions",
@@ -1252,6 +1252,8 @@ export const en: TranslationMap & {
     groupDefaultsWorktree: "New worktree",
     groupDefaultsWorktreeHint: "Runs each session in an isolated Git worktree.",
     groupDefaultsFailed: "Could not save the group defaults.",
+    groupDefaultsRequiresAdmin:
+      "This folder is outside agent workspaces. Saving defaults for it requires operator.admin. Open Inbox, select Limited access, request admin, then approve in Devices.",
     groupDefaultsStale: "Gateway connection replaced before the defaults were saved. Try again.",
     renameGroupMenu: "Rename group",
     renameGroupTitle: 'Rename group "{group}"',
@@ -2446,6 +2448,7 @@ export const en: TranslationMap & {
     publishAs: "Publish as @{account}",
     account: "Publication account",
     newAction: "Choose a new publication",
+    failedAttempt: "Publication attempt failed",
     capacity:
       'Too many publications are awaiting review. Finish an existing publication, then select "{newAction}" to make room. Existing retries remain available.',
     confirm: "Confirm original publication",
@@ -2662,6 +2665,9 @@ export const en: TranslationMap & {
       frameResolverMissing: "Widget content is unavailable.",
       sandboxUnavailable: "Widget sandbox host is unavailable.",
       runtimeError: "Script error: {message}",
+      waitingForConnection: "Waiting for the connection. This view will recover automatically.",
+      resourceUnavailable:
+        "A widget resource could not load. Retry when the connection is available.",
       frameAuthorizationFailed: "Widget authorization failed after repeated refresh attempts.",
       sandboxOriginRequired:
         "Widget authorization failed after repeated refresh attempts. If the gateway runs behind a reverse proxy or tunnel that does not route the widget sandbox port, set mcp.apps.sandboxOrigin to a dedicated public origin routed to the sandbox listener.",
@@ -2966,6 +2972,10 @@ export const en: TranslationMap & {
     },
     cloudWorkerFailed: "Runner failed: {error}",
     errorDetails: "Error details",
+    errorReplySummary: "Couldn't finish this reply. Check the conversation before trying again.",
+    errorBusySummary: "OpenClaw is busy. Check status before trying again.",
+    errorSignInSummary: "Couldn't sign in to the AI service. Sign in again under Models.",
+    errorStartSummary: "Couldn't start this conversation. Open Settings → Logs for details.",
     checkStatus: "Check status",
     details: "Details",
     copyError: "Copy error",
@@ -3176,6 +3186,20 @@ export const en: TranslationMap & {
       publicDisabled: "Public access disabled.",
       publicUnavailable: "Public access requires a saved, non-incognito session.",
     },
+    reactions: {
+      add: "Add reaction",
+      quick: "Quick reactions",
+      emoji: "Emoji",
+      more: "More…",
+      back: "Back to quick reactions",
+      placeholder: "Any emoji",
+      shortcut: "{shortcut} opens your emoji picker.",
+      hint: "Type or paste an emoji.",
+      invalid: "Reactions are a single emoji.",
+      you: "You",
+      andOthers: "{names} and {count} others",
+      reactedWith: "{names} reacted with {emoji}",
+    },
     sessionSuggestions: {
       suggest: "Suggest",
       suggestMessage: "Suggest message",
@@ -3257,6 +3281,12 @@ export const en: TranslationMap & {
       unsupportedViewOnly: "This external session source is view-only.",
       sessionMenu: "External session actions",
       openInOpenClaw: "Open in OpenClaw",
+      importToOpenClaw: "Import to OpenClaw",
+      importComplete: "Imported {count} transcript items.",
+      importUnchanged: "The imported transcript is up to date.",
+      importIncomplete:
+        "Imported {count} transcript items. Older history exceeded the import limit.",
+      openImportedSession: "Open imported session",
       openInTerminal: "Open in terminal",
       deleteSession: "Delete",
       deleteSessionConfirm:
@@ -3555,7 +3585,6 @@ export const en: TranslationMap & {
       sortUpdated: "Last updated",
       sessionMenu: "Actions for {session}",
       sessionMenuMany: "Actions for {count} sessions",
-      toolActivity: "Using {tool}",
       catalogDiscoveryHelp:
         "{error}. Configure automatic session discovery in Settings > Appearance > Session sources.",
       catalogPaginationFailed: "Session catalog returned a repeated page cursor",
@@ -3640,6 +3669,9 @@ export const en: TranslationMap & {
       draftConflict: "This question was edited in another tab. Copy your answer before reloading.",
     },
     questions: {
+      resourcePreview: "Preview resource",
+      addResources: "Add resources",
+      resourceUploadTooLarge: "Selected resources exceed the upload limits.",
       other: "Type your own answer here",
       multilineHint: "Enter adds a line · {shortcut} to continue",
       answer: "Answer",
@@ -4505,6 +4537,7 @@ export const en: TranslationMap & {
       mainTimelineMessage: "Main timeline message",
       assistantTaskPrompt: "Prompt",
       deliveryModeLabel: "Mode",
+      selectDeliveryMode: "Choose a delivery mode",
       announceDefault: "Announce summary",
       webhookPost: "Webhook POST",
       noneInternal: "None (internal)",
@@ -4620,6 +4653,8 @@ export const en: TranslationMap & {
       systemTextRequired: "System text is required.",
       agentMessageRequired: "Agent message is required.",
       timeoutInvalid: "If set, timeout must be 0 or greater (0 disables this timeout).",
+      deliveryModeRequired:
+        "Choose a delivery mode explicitly, or run openclaw doctor --fix to repair legacy settings.",
       webhookUrlRequired: "Webhook URL is required.",
       webhookUrlInvalid: "Webhook URL must be a valid http(s):// URL without embedded credentials.",
       invalidRunTime: "Invalid run time.",

@@ -85,7 +85,6 @@ type ComfyApiKeyResolution =
   | {
       status: "available";
       apiKey: string;
-      source: string;
     }
   | {
       status: "missing";
@@ -160,7 +159,6 @@ function resolveComfyApiKey(
       ? {
           status: "available",
           apiKey,
-          source: "plugins.entries.comfy.config.apiKey",
         }
       : { status: "missing" };
   }
@@ -183,7 +181,6 @@ function resolveComfyApiKey(
       ? {
           status: "available",
           apiKey,
-          source: `plugins.entries.comfy.config.apiKey (${envVarName})`,
         }
       : { status: "configured_unavailable" };
   }
@@ -198,30 +195,19 @@ function getRequiredConfigString(config: ComfyProviderConfig, key: string): stri
   return value;
 }
 
-function resolveComfyWorkflowSource(config: ComfyProviderConfig): {
-  workflow?: ComfyWorkflow;
-  workflowPath?: string;
-} {
+async function loadComfyWorkflow(config: ComfyProviderConfig): Promise<ComfyWorkflow> {
   const workflow = config.workflow;
   if (isRecord(workflow)) {
-    return { workflow: structuredClone(workflow) };
+    return structuredClone(workflow);
   }
   const workflowPath = normalizeOptionalString(config.workflowPath);
-  return { workflowPath };
-}
-
-async function loadComfyWorkflow(config: ComfyProviderConfig): Promise<ComfyWorkflow> {
-  const source = resolveComfyWorkflowSource(config);
-  if (source.workflow) {
-    return source.workflow;
-  }
-  if (!source.workflowPath) {
+  if (!workflowPath) {
     throw new Error(
       "plugins.entries.comfy.config.<capability>.workflow or workflowPath is required",
     );
   }
 
-  const resolvedPath = resolveUserPath(source.workflowPath);
+  const resolvedPath = resolveUserPath(workflowPath);
   const raw = await fs.readFile(resolvedPath, "utf8");
   const parsed = JSON.parse(raw) as unknown;
   if (!isRecord(parsed)) {
@@ -281,10 +267,8 @@ function resolveComfyNetworkPolicy(params: {
   explicitAllowPrivateNetwork: boolean;
   mode: ComfyMode;
 }): SsrFPolicy | undefined {
-  let parsed: URL;
-  try {
-    parsed = new URL(params.baseUrl);
-  } catch {
+  const parsed = URL.parse(params.baseUrl);
+  if (!parsed) {
     return undefined;
   }
 
@@ -629,8 +613,7 @@ export function isComfyCapabilityConfigured(params: {
   const { config } = getComfyConfig(params.cfg);
   const capabilityConfig = getComfyCapabilityConfig(config, params.capability);
   const hasWorkflow = Boolean(
-    resolveComfyWorkflowSource(capabilityConfig).workflow ||
-    normalizeOptionalString(capabilityConfig.workflowPath),
+    isRecord(capabilityConfig.workflow) || normalizeOptionalString(capabilityConfig.workflowPath),
   );
   const hasPromptNode = Boolean(normalizeOptionalString(capabilityConfig.promptNodeId));
   if (!hasWorkflow || !hasPromptNode) {
@@ -708,24 +691,22 @@ export async function runComfyWorkflow(params: {
   }
 
   const pluginApiKey = resolveComfyApiKey(capabilityConfig, params.cfg);
-  const resolvedAuth =
+  const apiKey =
     mode === "cloud"
       ? pluginApiKey.status === "available"
-        ? {
-            apiKey: pluginApiKey.apiKey,
-            source: pluginApiKey.source,
-            mode: "api-key" as const,
-          }
+        ? pluginApiKey.apiKey
         : pluginApiKey.status === "configured_unavailable"
-          ? null
-          : await resolveApiKeyForProvider({
-              provider: "comfy",
-              cfg: params.cfg,
-              agentDir: params.agentDir,
-              store: params.authStore,
-            })
-      : null;
-  if (mode === "cloud" && !resolvedAuth?.apiKey) {
+          ? undefined
+          : (
+              await resolveApiKeyForProvider({
+                provider: "comfy",
+                cfg: params.cfg,
+                agentDir: params.agentDir,
+                store: params.authStore,
+              })
+            ).apiKey
+      : undefined;
+  if (mode === "cloud" && !apiKey) {
     throw new Error("Comfy Cloud API key missing");
   }
 
@@ -740,7 +721,7 @@ export async function runComfyWorkflow(params: {
       defaultHeaders:
         mode === "cloud"
           ? {
-              "X-API-Key": resolvedAuth?.apiKey ?? "",
+              "X-API-Key": apiKey ?? "",
               "Content-Type": "application/json",
             }
           : {
@@ -786,9 +767,7 @@ export async function runComfyWorkflow(params: {
 
   const submitPayload = {
     prompt: workflow,
-    ...(mode === "cloud" && resolvedAuth?.apiKey
-      ? { extra_data: { api_key_comfy_org: resolvedAuth.apiKey } }
-      : {}),
+    ...(mode === "cloud" && apiKey ? { extra_data: { api_key_comfy_org: apiKey } } : {}),
   };
 
   const promptResponse = await readJsonResponse<ComfyPromptResponse>({

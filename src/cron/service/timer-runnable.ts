@@ -1,17 +1,18 @@
 import { parseAbsoluteTimeMs } from "../parse.js";
-import type { CronJob } from "../types.js";
+import { hasCanonicalCronDeliveryMode } from "../store/delivery-codec.js";
+import type { CronJob, CronRunStatus } from "../types.js";
 import {
   computeJobPreviousRunAtOrBeforeMs,
   DEFAULT_ERROR_BACKOFF_SCHEDULE_MS,
   hasActiveCronRun,
   hasScheduledNextRunAtMs,
+  HEARTBEAT_SKIP_DISABLED,
   isJobEnabled,
   isTimeScheduledJob,
   resolveJobErrorBackoffUntilMs,
   resolveJobLastRunStatus,
 } from "./jobs-scheduling.js";
 import type { CronServiceState } from "./state.js";
-import { isScheduledTerminalOneShotRetry } from "./timer-trigger.js";
 import { hasPendingCronTriggerInterval } from "./trigger-interval.js";
 
 /**
@@ -66,15 +67,20 @@ export function isRunnableJob(params: {
   nowMs: number;
   skipAtIfAlreadyRan?: boolean;
   allowCronMissedRunByLastRun?: boolean;
+  activeInProcess?: boolean;
 }): boolean {
   const { job, nowMs } = params;
   if (!job.state) {
     job.state = {};
   }
-  if (!isJobEnabled(job) || !isTimeScheduledJob(job)) {
+  if (
+    !isJobEnabled(job) ||
+    !hasCanonicalCronDeliveryMode(job.delivery) ||
+    !isTimeScheduledJob(job)
+  ) {
     return false;
   }
-  if (hasActiveCronRun(job)) {
+  if (hasActiveCronRun(job, params.activeInProcess)) {
     return false;
   }
   const next = job.state.nextRunAtMs;
@@ -146,6 +152,31 @@ export function isRunnableJob(params: {
   return hasMissedCronSlotSinceLastRun(job, nowMs);
 }
 
+function isScheduledTerminalOneShotRetry(
+  job: CronJob,
+  lastRunStatus: CronRunStatus,
+  lastRun: unknown,
+  nextRun: unknown,
+): boolean {
+  if (
+    !isJobEnabled(job) ||
+    typeof nextRun !== "number" ||
+    typeof lastRun !== "number" ||
+    nextRun <= lastRun
+  ) {
+    return false;
+  }
+  if (lastRunStatus === "error") {
+    return true;
+  }
+  return (
+    lastRunStatus === "skipped" &&
+    job.sessionTarget === "main" &&
+    job.wakeMode === "now" &&
+    job.state.lastError === HEARTBEAT_SKIP_DISABLED
+  );
+}
+
 function isErrorBackoffPending(
   job: CronJob,
   nowMs: number,
@@ -159,5 +190,12 @@ function isErrorBackoffPending(
 }
 
 export function collectRunnableJobs(state: CronServiceState, nowMs: number): CronJob[] {
-  return state.store?.jobs.filter((job) => isRunnableJob({ job, nowMs })) ?? [];
+  return (
+    state.store?.jobs.filter((job) =>
+      isRunnableJob({
+        job,
+        nowMs,
+      }),
+    ) ?? []
+  );
 }

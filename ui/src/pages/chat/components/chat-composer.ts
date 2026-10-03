@@ -15,6 +15,7 @@ import {
 } from "../../../lib/chat/commands.ts";
 import { updateHumanMentions } from "../../../lib/chat/human-mentions.ts";
 import { PRODUCT_NAME } from "../../../lib/product-name.ts";
+import { clearCompositionEnd, recordCompositionEnd } from "../../../lib/ime.ts";
 import { detectTextDirection } from "../../../lib/text-direction.ts";
 import { ComposerDictationController, insertComposerDictation } from "../composer-dictation.ts";
 import { normalizeChatComposerDraft } from "../composer-draft.ts";
@@ -378,6 +379,7 @@ export function renderChatComposer(props: ChatComposerProps) {
     updateSkillMenu(target.value, target.selectionStart, state, skillMenuHost, requestUpdate);
   };
   const handleCompositionEnd = (event: CompositionEvent) => {
+    recordCompositionEnd(event);
     state.composerComposing = false;
     if (state.composingDraft?.key === draftKey) {
       state.composingDraft = null;
@@ -387,6 +389,7 @@ export function renderChatComposer(props: ChatComposerProps) {
     props.onTypingChange?.(Boolean(value.trim()), value);
   };
   const handleBlur = (event: FocusEvent) => {
+    clearCompositionEnd(event);
     const emojiWasOpen = state.emojiMenu.open;
     state.emojiMenu.close();
     if (emojiWasOpen) {

@@ -1,6 +1,7 @@
 import { toErrorObject } from "@openclaw/normalization-core/error-coercion";
+import { resolveCronJobEffectiveAgentId } from "../cron/agent-id.js";
 import { errorBackoffMs } from "../cron/service/jobs-scheduling.js";
-import { cronStreamScheduleKey } from "../cron/stream-schedule.js";
+import { CronStreamSourceRetirementError, cronStreamScheduleKey } from "../cron/stream-schedule.js";
 import type { CronJob, CronJobState } from "../cron/types.js";
 import { formatErrorMessage } from "../infra/errors.js";
 import type { GatewayScheduledJob, GatewayScheduler } from "../infra/gateway-scheduler.js";
@@ -8,6 +9,7 @@ import { markOpenClawExecEnv } from "../infra/openclaw-exec-env.js";
 import type { ManagedRun, ProcessSupervisor } from "../process/supervisor/index.js";
 import type { RunExit } from "../process/supervisor/types.js";
 import { runInDetachedAsyncContext } from "../shared/async-work-scope.js";
+import { settlesWithin } from "../shared/settle-within.js";
 import {
   CronStreamOutput,
   type CronStreamFireDisposition,
@@ -36,6 +38,7 @@ export type CronStreamStopReason = DisableStop | LifecycleStop;
 
 export type CronStreamOwnerParams = {
   scheduler: GatewayScheduler;
+  getDefaultAgentId?: () => string | undefined;
   getProcessSupervisor: () => ProcessSupervisor;
   minIntervalMs: number;
   retryBackoffMs?: number[];
@@ -101,23 +104,12 @@ async function stopManagedRun(run: ManagedRun): Promise<void> {
   // Detach first so pipe drains cannot enqueue after the owner starts stopping.
   run.detachOutput?.();
   run.cancel("manual-cancel");
-  let timeout: NodeJS.Timeout | undefined;
-  try {
-    const exited = await Promise.race([
-      run.wait().then(
-        () => true,
-        () => true,
-      ),
-      new Promise<false>((resolve) => {
-        timeout = setTimeout(() => resolve(false), STOP_SETTLE_TIMEOUT_MS);
-        timeout.unref?.();
-      }),
-    ]);
-    if (!exited) {
-      throw new Error(`stream source did not exit within ${STOP_SETTLE_TIMEOUT_MS}ms`);
-    }
-  } finally {
-    clearTimeout(timeout);
+  const exited = await settlesWithin(
+    run.wait().catch(() => undefined),
+    STOP_SETTLE_TIMEOUT_MS,
+  );
+  if (!exited) {
+    throw new Error(`stream source did not exit within ${STOP_SETTLE_TIMEOUT_MS}ms`);
   }
 }
 
@@ -382,6 +374,13 @@ export class CronStreamJobOwner {
       return;
     }
 
+    try {
+      resolveCronJobEffectiveAgentId(this.job, this.params.getDefaultAgentId?.());
+    } catch (error) {
+      await this.stopOperation("disabled");
+      throw error;
+    }
+
     let run: ManagedRun;
     try {
       run = await this.params.getProcessSupervisor().spawn({
@@ -509,6 +508,13 @@ export class CronStreamJobOwner {
 
     let retirementError: unknown;
     if (stopRequiresSourceRetirement(reason)) {
+      const adoptRetiredIdentity = (identity: string) => {
+        const retiredJob = {
+          ...this.job,
+          state: { ...this.job.state, streamSourceIdentity: identity },
+        };
+        this.adoptJob(retiredJob, this.scheduleKey, identity);
+      };
       try {
         const retiredIdentity = await this.params.retireSource(
           this.job.id,
@@ -516,14 +522,18 @@ export class CronStreamJobOwner {
           this.sourceIdentity,
         );
         if (retiredIdentity !== undefined) {
-          const retiredJob = {
-            ...this.job,
-            state: { ...this.job.state, streamSourceIdentity: retiredIdentity },
-          };
-          this.adoptJob(retiredJob, this.scheduleKey, retiredIdentity);
+          adoptRetiredIdentity(retiredIdentity);
         }
       } catch (error) {
-        // Teardown continues, but the caller still sees the failed durable fence.
+        if (
+          error instanceof CronStreamSourceRetirementError &&
+          error.retirement.jobId === this.job.id &&
+          error.retirement.scheduleKey === this.scheduleKey &&
+          error.retirement.previousIdentity === this.sourceIdentity
+        ) {
+          adoptRetiredIdentity(error.retirement.identity);
+        }
+        // Reconcile a known retirement before final status; the original failure still reaches the caller.
         retirementError = error;
       }
     }
