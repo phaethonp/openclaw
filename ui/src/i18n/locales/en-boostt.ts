@@ -5,6 +5,15 @@ import { en } from "./en.ts";
 // catalog beside the identity and access copy, loaded with its element.
 const enBoostt = {
   profilePage: {
+    identity: {
+      boosttAccount: "Boostt account",
+      boosttAccountDescription:
+        "Verified sign-in identity: the Boostt account this profile is. The credential for Boostt tools is managed under Boostt account below.",
+      boosttVerified: "Verified from your Boostt sign-in",
+      boosttUnavailable: "Not signed in with Boostt",
+      boosttUnavailableDescription:
+        "A Boostt-backed sign-in through the trusted proxy provides this identity.",
+    },
     boosttAccount: {
       title: "Boostt account",
       description:
@@ -36,6 +45,7 @@ const enBoostt = {
 
 export const registerBoosttEnglish = Object.assign(
   () => {
+    Object.assign(en.profilePage.identity, enBoostt.profilePage.identity);
     Object.assign(en.profilePage, { boosttAccount: enBoostt.profilePage.boosttAccount });
   },
   { catalog: enBoostt },

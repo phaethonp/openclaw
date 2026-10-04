@@ -23,10 +23,10 @@ import {
 } from "../../../utils/message-channel.js";
 import { resolveRuntimeServiceBuildId, resolveRuntimeServiceVersion } from "../../../version.js";
 import { verifyAgentRuntimeIdentityToken } from "../../agent-runtime-identity-token.js";
+import { createAuthenticatedIdentitySync } from "../../authenticated-identity.js";
 import { buildAuthenticatedPresenceUser } from "../../authenticated-presence-user.js";
 import { prepareGatewayRecipientProfile } from "../../expected-profile.js";
 import { shouldUseGatewayOwnerProfile } from "../../gateway-owner-profile.js";
-import { createAuthenticatedGitHubIdentitySync } from "../../github-user-identity.js";
 import {
   attachGatewayLocalUserIngress,
   prepareGatewayLocalUserIngress,
@@ -184,7 +184,7 @@ export async function attachAuthenticatedGatewayConnect(
     : undefined;
   const authenticatedUserIsTailscaleProvider = tailscaleLogin?.kind === "provider";
   const profileLifecycle = createGatewayConnectProfileLifecycle(context, state);
-  const resolveAuthenticatedGitHubIdentity = createAuthenticatedGitHubIdentitySync({
+  const resolveAuthenticatedGitHubIdentity = createAuthenticatedIdentitySync({
     authResult,
     authConfig: context.configSnapshot.gateway?.auth,
     requestHeaders: context.handler.upgradeReq.headers,

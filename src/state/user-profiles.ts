@@ -8,6 +8,7 @@ import {
   openOpenClawStateDatabase,
   type OpenClawStateDatabaseOptions,
 } from "./openclaw-state-db.js";
+import { selectUserProfileBoosttIdentities } from "./user-profile-boostt-identity.js";
 import {
   ensureProfileForEmailInDatabase,
   normalizeProfileEmail as normalizeEmail,
@@ -94,6 +95,7 @@ export function selectUserProfileListItemById(
     ...toUserProfile(profile),
     emails: selectUserProfileEmails(db, profileId),
     githubIdentity: selectUserProfileGitHubIdentities(db, [profileId]).get(profileId) ?? null,
+    boosttIdentity: selectUserProfileBoosttIdentities(db, [profileId]).get(profileId) ?? null,
     hasAvatar: profile.has_avatar === 1,
   };
 }

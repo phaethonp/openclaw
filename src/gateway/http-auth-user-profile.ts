@@ -16,8 +16,8 @@ import {
 } from "../state/user-profile-writes.js";
 import { getUserProfileDisplay, getUserProfileListItem } from "../state/user-profiles.js";
 import type { GatewayAuthResult } from "./auth.js";
+import { createAuthenticatedIdentitySync } from "./authenticated-identity.js";
 import { shouldUseGatewayOwnerProfile } from "./gateway-owner-profile.js";
-import { createAuthenticatedGitHubIdentitySync } from "./github-user-identity.js";
 import {
   GatewayOperatorAccessDeniedError,
   hasGatewayOperatorAccessPolicies,
@@ -158,7 +158,7 @@ export async function resolveAuthenticatedHttpUserProfile(params: {
     throw new Error("operator role policies require a verified durable user profile");
   }
   try {
-    const syncGitHubIdentity = createAuthenticatedGitHubIdentitySync({
+    const syncGitHubIdentity = createAuthenticatedIdentitySync({
       authResult: params.authResult,
       authConfig: params.cfg.gateway?.auth,
       requestHeaders: params.req.headers,

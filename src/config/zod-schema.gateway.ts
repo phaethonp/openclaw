@@ -369,6 +369,20 @@ export const GatewayConfigSchema = z
                 githubAccountIdClaim: z.string().trim().min(1),
               })
               .optional(),
+            /** Optional verified Boostt identity from a trusted proxy that signs people in against Boostt. */
+            boostt: z
+              .strictObject({
+                /** Boostt API origin the Gateway asks whose token it is, without a trailing slash. */
+                apiUrl: z
+                  .string()
+                  .regex(
+                    /^https?:\/\/[^\s/]+$/u,
+                    "Expected an http(s) origin without a path or trailing slash",
+                  ),
+                /** Header the proxy sets with the person's Boostt access token; list it in requiredHeaders too. */
+                assertionHeader: z.string().trim().min(1),
+              })
+              .optional(),
             /**
              * Automatically approve new browser/native UI operator devices and same-key scope upgrades after
              * trusted-proxy authentication. Disabled by default; configured scopes cap grants.

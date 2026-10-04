@@ -55,6 +55,12 @@ export const UserProfileGitHubIdentitySchema = closedObject({
   avatarUrl: NonEmptyString,
 });
 
+/** The verified Boostt account on a profile: the Boostt user id and the person's handle. */
+export const UserProfileBoosttIdentitySchema = closedObject({
+  userId: Type.Integer({ minimum: 1, maximum: Number.MAX_SAFE_INTEGER }),
+  handle: Type.Union([Type.String({ minLength: 1, maxLength: 128 }), Type.Null()]),
+});
+
 export const UserProfileSchema = closedObject({
   id: UserProfileIdSchema,
   displayName: Type.Union([UserProfileDisplayNameSchema, Type.Null()]),
@@ -64,6 +70,7 @@ export const UserProfileSchema = closedObject({
   updatedAt: Type.Integer({ minimum: 0 }),
   emails: Type.Array(NonEmptyString),
   githubIdentity: Type.Union([UserProfileGitHubIdentitySchema, Type.Null()]),
+  boosttIdentity: Type.Optional(Type.Union([UserProfileBoosttIdentitySchema, Type.Null()])),
   hasAvatar: Type.Boolean(),
   role: Type.Optional(UserProfileRoleSchema),
   effectiveRole: Type.Optional(UserProfileRoleSchema),
@@ -332,6 +339,7 @@ export const UsersPrefsChangedEventSchema = closedObject({
 
 export type UserProfile = Static<typeof UserProfileSchema>;
 export type UserProfileGitHubIdentity = Static<typeof UserProfileGitHubIdentitySchema>;
+export type UserProfileBoosttIdentity = Static<typeof UserProfileBoosttIdentitySchema>;
 export type UsersListParams = Static<typeof UsersListParamsSchema>;
 export type UsersListResult = Static<typeof UsersListResultSchema>;
 export type UsersSelfParams = Static<typeof UsersSelfParamsSchema>;
