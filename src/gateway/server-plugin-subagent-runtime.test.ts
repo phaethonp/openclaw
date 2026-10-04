@@ -447,7 +447,7 @@ describe("plugin background completions", () => {
         const entered = createDeferred();
         const verification = createDeferred();
         const client = createSyntheticPluginRuntimeClient({ scopes: ["operator.write"] });
-        client.authenticatedGitHubIdentitySync = async () => {
+        client.authenticatedIdentitySync = async () => {
           entered.resolve();
           await verification.promise;
           client.authenticatedUserProfile = profile;

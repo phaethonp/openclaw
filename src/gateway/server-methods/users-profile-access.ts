@@ -16,7 +16,7 @@ export async function prepareAuthenticatedProfile(options: GatewayRequestHandler
   const lifetime = readGatewayRequestMutationAuthority(options);
   const profileReference = client?.authenticatedUserProfile?.profileId;
   const email = client?.authenticatedUserId;
-  const sync = client?.authenticatedGitHubIdentitySync;
+  const sync = client?.authenticatedIdentitySync;
   const provider = client?.authenticatedUserIsTailscaleProvider;
   const connectionId = client?.connId;
   const role = client?.connect.role;
@@ -32,7 +32,7 @@ export async function prepareAuthenticatedProfile(options: GatewayRequestHandler
       client?.connectionSignal?.aborted ||
       client?.authenticatedUserProfile?.profileId !== profileReference ||
       client?.authenticatedUserId !== email ||
-      client?.authenticatedGitHubIdentitySync !== sync ||
+      client?.authenticatedIdentitySync !== sync ||
       client?.authenticatedUserIsTailscaleProvider !== provider
     ) {
       throw new Error("Gateway requester profile changed");

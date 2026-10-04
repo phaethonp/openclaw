@@ -154,9 +154,9 @@ export const usersHandlers: GatewayRequestHandlers = {
       return;
     }
     try {
-      if (client.authenticatedGitHubIdentitySync) {
+      if (client.authenticatedIdentitySync) {
         try {
-          await client.authenticatedGitHubIdentitySync();
+          await client.authenticatedIdentitySync();
         } catch {
           // A previously attached immutable profile stays usable; unresolved aliases stay hidden.
         }

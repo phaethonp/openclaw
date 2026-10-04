@@ -87,7 +87,7 @@ function fixture(
   } as unknown as GatewayRequestContext;
   const client = createOperatorWsClient({ scopes });
   if (phase === "authorization") {
-    client.authenticatedGitHubIdentitySync = async () => {
+    client.authenticatedIdentitySync = async () => {
       entered.resolve();
       await release.promise;
       client.authenticatedUserProfile = {

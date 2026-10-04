@@ -259,7 +259,7 @@ describe("personal publication authority and recovery", () => {
       }
       if (change === "sync-failed") {
         delete client.authenticatedUserProfile;
-        client.authenticatedGitHubIdentitySync = async () => {
+        client.authenticatedIdentitySync = async () => {
           throw new Error("verification unavailable");
         };
       }

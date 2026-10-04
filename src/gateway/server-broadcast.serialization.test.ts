@@ -493,7 +493,7 @@ describe("presence recipient projection", () => {
       const solo = makeClient("solo").client;
       solo.connect.scopes = ["operator.write"];
       const pending = makeClient("pending").client;
-      pending.authenticatedGitHubIdentitySync = async () => ({
+      pending.authenticatedIdentitySync = async () => ({
         profileId: "creator",
         updatedAt: 1,
       });

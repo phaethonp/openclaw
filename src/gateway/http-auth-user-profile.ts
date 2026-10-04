@@ -158,14 +158,14 @@ export async function resolveAuthenticatedHttpUserProfile(params: {
     throw new Error("operator role policies require a verified durable user profile");
   }
   try {
-    const syncGitHubIdentity = createAuthenticatedIdentitySync({
+    const syncIdentity = createAuthenticatedIdentitySync({
       authResult: params.authResult,
       authConfig: params.cfg.gateway?.auth,
       requestHeaders: params.req.headers,
       assertCurrent,
     });
-    const profile = syncGitHubIdentity
-      ? await syncGitHubIdentity()
+    const profile = syncIdentity
+      ? await syncIdentity()
       : params.authResult.tailscaleIdentity
         ? await ensureCanonicalUserProfileForTailscaleIdentity(
             params.authResult.tailscaleIdentity,

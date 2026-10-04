@@ -987,7 +987,7 @@ describe("attachGatewayWsMessageHandler post-connect health refresh", () => {
           }),
         }),
       );
-      expect(first.harness.client).not.toHaveProperty("authenticatedGitHubIdentitySync");
+      expect(first.harness.client).not.toHaveProperty("authenticatedIdentitySync");
       const profileId = first.presence.user?.id;
       expect(first.presence.user).toEqual({
         id: expect.stringMatching(
@@ -1182,7 +1182,7 @@ describe("attachGatewayWsMessageHandler post-connect health refresh", () => {
           expect(harness.socketSend).toHaveBeenCalled();
           expect(harness.client).toMatchObject({
             authenticatedUserId: "ada@github",
-            authenticatedGitHubIdentitySync: expect.any(Function),
+            authenticatedIdentitySync: expect.any(Function),
           });
           expect(harness.client).not.toHaveProperty("authenticatedUserProfile");
           expect(localUserIngressFor(harness.client)).toMatchObject({
@@ -1563,7 +1563,7 @@ describe("attachGatewayWsMessageHandler post-connect health refresh", () => {
     await waitForFast(() => {
       expect(harness.client).toMatchObject({
         authenticatedUserId: "ada@example.com",
-        authenticatedGitHubIdentitySync: expect.any(Function),
+        authenticatedIdentitySync: expect.any(Function),
       });
       expect(createAuthenticatedGitHubIdentitySyncMock).toHaveBeenCalledWith(
         expect.objectContaining({

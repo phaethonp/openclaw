@@ -3,7 +3,7 @@ import type { GatewayAuthConfig } from "../config/types.gateway.js";
 import type { GatewayAuthResult } from "./auth.js";
 import { createAuthenticatedBoosttIdentitySync } from "./boostt-user-identity.js";
 import { createAuthenticatedGitHubIdentitySync } from "./github-user-identity.js";
-import type { AuthenticatedGitHubIdentitySync } from "./github-user-identity.types.js";
+import type { AuthenticatedIdentitySync } from "./github-user-identity.types.js";
 
 /**
  * The one verified-identity sync a connection may carry: GitHub through
@@ -16,7 +16,7 @@ export function createAuthenticatedIdentitySync(params: {
   authConfig?: GatewayAuthConfig;
   requestHeaders?: IncomingHttpHeaders;
   assertCurrent?: () => void;
-}): AuthenticatedGitHubIdentitySync | undefined {
+}): AuthenticatedIdentitySync | undefined {
   return (
     createAuthenticatedGitHubIdentitySync(params) ?? createAuthenticatedBoosttIdentitySync(params)
   );

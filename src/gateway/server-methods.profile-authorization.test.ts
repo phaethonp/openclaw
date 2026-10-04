@@ -110,7 +110,7 @@ describe("Gateway pending-profile authorization", () => {
         if (groupRead) {
           client.authenticatedUserProfile = identity;
         }
-        client.authenticatedGitHubIdentitySync = vi.fn(async () => {
+        client.authenticatedIdentitySync = vi.fn(async () => {
           entered.resolve();
           await release.promise;
           client.authenticatedUserProfile = identity;
@@ -119,7 +119,7 @@ describe("Gateway pending-profile authorization", () => {
         const pending = dispatchPendingProfileMethod({ client, method, handler });
         try {
           await Promise.race([entered.promise, pending]);
-          expect(client.authenticatedGitHubIdentitySync).toHaveBeenCalledTimes(groupRead ? 0 : 1);
+          expect(client.authenticatedIdentitySync).toHaveBeenCalledTimes(groupRead ? 0 : 1);
           if (groupRead) {
             expect(catalogPreparation).toHaveBeenCalledOnce();
           }
@@ -328,7 +328,7 @@ describe("Gateway pending-profile authorization", () => {
       const client = createPendingProfileClient();
       const entered = createDeferredCore();
       const release = createDeferredCore();
-      client.authenticatedGitHubIdentitySync = vi.fn(async () => {
+      client.authenticatedIdentitySync = vi.fn(async () => {
         entered.resolve();
         await release.promise;
         client.authenticatedUserProfile = {
@@ -349,7 +349,7 @@ describe("Gateway pending-profile authorization", () => {
       try {
         await Promise.race([entered.promise, request]);
         expect(handler).not.toHaveBeenCalled();
-        expect(client.authenticatedGitHubIdentitySync).toHaveBeenCalledOnce();
+        expect(client.authenticatedIdentitySync).toHaveBeenCalledOnce();
       } finally {
         release.resolve();
         await request;
@@ -445,7 +445,7 @@ describe("Gateway pending-profile authorization", () => {
     async (method) => {
       const deferred = createDeferredCore<{ profileId: string; updatedAt: number }>();
       const client = createPendingProfileClient();
-      client.authenticatedGitHubIdentitySync = vi.fn(async () => await deferred.promise);
+      client.authenticatedIdentitySync = vi.fn(async () => await deferred.promise);
       const handler = vi.fn<GatewayRequestHandler>(({ respond }) => respond(true, { ok: true }));
 
       const request = dispatchPendingProfileMethod({
@@ -475,7 +475,7 @@ describe("Gateway pending-profile authorization", () => {
 
   it("returns retryable unavailability without dispatch and retries on the next request", async () => {
     const client = createPendingProfileClient();
-    client.authenticatedGitHubIdentitySync = vi
+    client.authenticatedIdentitySync = vi
       .fn()
       .mockRejectedValueOnce(new Error("private provider detail"))
       .mockImplementationOnce(async () => {
@@ -505,7 +505,7 @@ describe("Gateway pending-profile authorization", () => {
     const retried = await dispatchPendingProfileMethod({ client, handler, method: "agent" });
     expect(handler).toHaveBeenCalledOnce();
     expect(retried).toHaveBeenCalledWith(true, { ok: true });
-    expect(client.authenticatedGitHubIdentitySync).toHaveBeenCalledTimes(2);
+    expect(client.authenticatedIdentitySync).toHaveBeenCalledTimes(2);
   });
 
   it("classifies profile-owned core families and plugin or auxiliary methods fail-closed", async () => {
@@ -546,7 +546,7 @@ describe("Gateway pending-profile authorization", () => {
     ];
     for (const method of methods) {
       const client = createPendingProfileClient();
-      client.authenticatedGitHubIdentitySync = vi.fn().mockRejectedValue(new Error("offline"));
+      client.authenticatedIdentitySync = vi.fn().mockRejectedValue(new Error("offline"));
       const handler = vi.fn<GatewayRequestHandler>();
       const respond = await dispatchPendingProfileMethod({
         client,
@@ -568,7 +568,7 @@ describe("Gateway pending-profile authorization", () => {
       { kind: "aux" as const, area: "identity-reader" },
     ]) {
       const client = createPendingProfileClient();
-      client.authenticatedGitHubIdentitySync = vi.fn().mockRejectedValue(new Error("offline"));
+      client.authenticatedIdentitySync = vi.fn().mockRejectedValue(new Error("offline"));
       const handler = vi.fn<GatewayRequestHandler>();
       const method = `${owner.kind}.identity.read`;
       const methodRegistry = createGatewayMethodRegistry([
@@ -581,7 +581,7 @@ describe("Gateway pending-profile authorization", () => {
 
   it("dispatches explicitly independent plugin status while profile sync is unavailable", async () => {
     const client = createPendingProfileClient();
-    client.authenticatedGitHubIdentitySync = vi.fn().mockRejectedValue(new Error("offline"));
+    client.authenticatedIdentitySync = vi.fn().mockRejectedValue(new Error("offline"));
     const handler = vi.fn<GatewayRequestHandler>(({ respond }) => respond(true, { ok: true }));
     const method = "logbook.status";
     const methodRegistry = createGatewayMethodRegistry([
@@ -603,12 +603,12 @@ describe("Gateway pending-profile authorization", () => {
 
     expect(handler).toHaveBeenCalledOnce();
     expect(respond).toHaveBeenCalledWith(true, { ok: true });
-    expect(client.authenticatedGitHubIdentitySync).not.toHaveBeenCalled();
+    expect(client.authenticatedIdentitySync).not.toHaveBeenCalled();
   });
 
   it("gates parameter-dependent incognito access without blocking ordinary independent requests", async () => {
     const client = createPendingProfileClient();
-    client.authenticatedGitHubIdentitySync = vi.fn().mockRejectedValue(new Error("offline"));
+    client.authenticatedIdentitySync = vi.fn().mockRejectedValue(new Error("offline"));
     const handler = vi.fn<GatewayRequestHandler>(({ respond }) => respond(true, { ok: true }));
 
     const blocked = await dispatchPendingProfileMethod({
@@ -632,13 +632,13 @@ describe("Gateway pending-profile authorization", () => {
     });
     expect(handler).toHaveBeenCalledOnce();
     expect(allowed).toHaveBeenCalledWith(true, { ok: true });
-    expect(client.authenticatedGitHubIdentitySync).toHaveBeenCalledOnce();
+    expect(client.authenticatedIdentitySync).toHaveBeenCalledOnce();
   });
 
   it("keeps profile bootstrap and identity-independent status available while sync is pending", async () => {
     for (const method of ["users.self", "status"]) {
       const client = createPendingProfileClient();
-      client.authenticatedGitHubIdentitySync = vi.fn(
+      client.authenticatedIdentitySync = vi.fn(
         () => new Promise<{ profileId: string; updatedAt: number }>(() => {}),
       );
       const handler = vi.fn<GatewayRequestHandler>(({ respond }) => respond(true, { ok: true }));
@@ -661,7 +661,7 @@ describe("Gateway pending-profile authorization", () => {
 
       expect(handler, method).toHaveBeenCalledOnce();
       expect(respond, method).toHaveBeenCalledWith(true, { ok: true });
-      expect(client.authenticatedGitHubIdentitySync, method).not.toHaveBeenCalled();
+      expect(client.authenticatedIdentitySync, method).not.toHaveBeenCalled();
     }
   });
 });

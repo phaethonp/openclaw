@@ -5,7 +5,7 @@ import type { GatewayAuthConfig } from "../config/types.gateway.js";
 import type { VerifiedBoosttAccount } from "../state/user-profile-boostt-identity.js";
 import { syncCanonicalBoosttIdentity } from "../state/user-profile-writes.js";
 import type { GatewayAuthResult } from "./auth.js";
-import type { AuthenticatedGitHubIdentitySync } from "./github-user-identity.types.js";
+import type { AuthenticatedIdentitySync } from "./github-user-identity.types.js";
 import { firstHeaderValue } from "./http-header-value.js";
 
 // Boostt as a sign-in identity behind a trusted proxy.
@@ -138,7 +138,7 @@ export function createAuthenticatedBoosttIdentitySync(params: {
   requestHeaders?: IncomingHttpHeaders;
   assertCurrent?: () => void;
   fetchImpl?: typeof fetch;
-}): AuthenticatedGitHubIdentitySync | undefined {
+}): AuthenticatedIdentitySync | undefined {
   const found = boosttAssertion(params);
   if (!found) {
     return undefined;

@@ -183,7 +183,7 @@ export function resolveSessionSharingRole(
   const identity = sharingIdentity(params.client, operatorActor);
   // Solo ownership is independent of the shared-secret connection's attribution profile.
   if (!identity) {
-    return params.client?.authenticatedGitHubIdentitySync ||
+    return params.client?.authenticatedIdentitySync ||
       (params.cfg?.gateway?.roles && operatorActor?.kind !== "system")
       ? "viewer"
       : "owner";

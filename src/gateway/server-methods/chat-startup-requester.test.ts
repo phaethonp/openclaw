@@ -162,13 +162,11 @@ it("preserves legacy email creation and failed identity synchronization", async 
       if (kind !== "missing profile") {
         delete client.authenticatedUserProfile;
       }
-      const sync = vi.fn<NonNullable<GatewayClient["authenticatedGitHubIdentitySync"]>>(
-        async () => {
-          throw new Error("unexpected identity synchronization");
-        },
-      );
+      const sync = vi.fn<NonNullable<GatewayClient["authenticatedIdentitySync"]>>(async () => {
+        throw new Error("unexpected identity synchronization");
+      });
       if (kind === "github sync") {
-        client.authenticatedGitHubIdentitySync = sync;
+        client.authenticatedIdentitySync = sync;
       }
       if (kind === "tailscale sync") {
         client.authenticatedUserIsTailscaleProvider = true;

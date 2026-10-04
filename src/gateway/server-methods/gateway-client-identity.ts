@@ -19,7 +19,7 @@ import { isSyntheticGatewayCaller } from "./gateway-personal-caller.js";
 import type { GatewayClient, GatewayRequestOptions } from "./shared-types.js";
 
 export function isGatewayClientProfilePending(client: GatewayClient | null): boolean {
-  return Boolean(client?.authenticatedGitHubIdentitySync && !client.authenticatedUserProfile);
+  return Boolean(client?.authenticatedIdentitySync && !client.authenticatedUserProfile);
 }
 
 export function authenticatedProfileUnavailableError(
@@ -45,7 +45,7 @@ export async function authorizeAuthenticatedProfileForMethod(params: {
       ? errorShape(ErrorCodes.FORBIDDEN, "Session-scoped access requires a verified user profile.")
       : null;
   };
-  const sync = params.client?.authenticatedGitHubIdentitySync;
+  const sync = params.client?.authenticatedIdentitySync;
   if (!sync || params.client?.authenticatedUserProfile?.profileId.trim()) {
     return sessionProfileError();
   }
@@ -80,7 +80,7 @@ export function gatewayClientSenderFields(client: GatewayClient | null): {
       },
     };
   }
-  if (client?.authenticatedGitHubIdentitySync) {
+  if (client?.authenticatedIdentitySync) {
     return {};
   }
   return client?.authenticatedUserId ? { sender: { id: client.authenticatedUserId } } : {};
