@@ -88,6 +88,32 @@ describe("gateway ingress attribution", () => {
     },
   );
 
+  it("refuses a loopback client from a trusted proxy unless allowLoopbackClients is set", async () => {
+    const req = request({ remoteAddress: "127.0.0.1", forwardedFor: "127.0.0.1" });
+    expect(prepareGatewayIngressAttribution({ req, trustedProxies: ["127.0.0.1"] })).toMatchObject({
+      kind: "unattributable-proxy",
+      reason: "proxy_attribution_required",
+    });
+    const allowed = prepareGatewayIngressAttribution({
+      req: request({ remoteAddress: "127.0.0.1", forwardedFor: "127.0.0.1" }),
+      trustedProxies: ["127.0.0.1"],
+      allowLoopbackClients: true,
+    });
+    expect(allowed).toMatchObject({
+      kind: "trusted-proxy",
+      clientIp: "127.0.0.1",
+      rateLimit: { subject: { key: "127.0.0.1" } },
+    });
+    // The proxy itself must still be trusted; the flag opens nothing else.
+    expect(
+      prepareGatewayIngressAttribution({
+        req: request({ remoteAddress: "10.1.2.3", forwardedFor: "127.0.0.1" }),
+        trustedProxies: ["127.0.0.1"],
+        allowLoopbackClients: true,
+      }),
+    ).toMatchObject({ kind: "unattributable-proxy" });
+  });
+
   it("rejects a proxy that falls outside an IPv4-mapped trusted range", async () => {
     const attribution = prepareGatewayIngressAttribution({
       req: request({ remoteAddress: "11.1.2.3", forwardedFor: "203.0.113.9" }),

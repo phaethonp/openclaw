@@ -203,6 +203,8 @@ export function attachGatewayUpgradeHandler(opts: {
         req,
         trustedProxies,
         allowRealIpFallback,
+        allowLoopbackClients:
+          configSnapshot.gateway?.auth?.trustedProxy?.allowLoopbackClients === true,
       });
       const requestClientIp =
         ingressAttribution.kind === "unattributable-proxy"

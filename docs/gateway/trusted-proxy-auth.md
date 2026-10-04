@@ -90,7 +90,7 @@ read_when:
 <Warning>
 **Runtime rules, in order of evaluation**
 
-1. Proxy-shaped traffic is attributed before Gateway auth. The request's source IP must match `gateway.trustedProxies` (CIDR-aware), and its client-address headers must resolve to a non-loopback client. Otherwise Gateway-authenticated routes reject it with `proxy_attribution_required` before identity headers are accepted. Plugin-authenticated webhook routes may still handle the request, but they ignore the untrusted forwarded address and use the socket source for their own limits.
+1. Proxy-shaped traffic is attributed before Gateway auth. The request's source IP must match `gateway.trustedProxies` (CIDR-aware), and its client-address headers must resolve to a non-loopback client, unless `gateway.auth.trustedProxy.allowLoopbackClients` is set for a same-machine proxy. Otherwise Gateway-authenticated routes reject it with `proxy_attribution_required` before identity headers are accepted. Plugin-authenticated webhook routes may still handle the request, but they ignore the untrusted forwarded address and use the socket source for their own limits.
 2. The proxy must overwrite `X-Forwarded-For` with a safe chain. If `gateway.allowRealIpFallback = true`, an overwritten `X-Real-IP` is also accepted when `X-Forwarded-For` is absent. Do not enable that fallback unless the proxy removes client-supplied `X-Real-IP`.
 3. Loopback-source requests (`127.0.0.1`, `::1`) are rejected unless `gateway.auth.trustedProxy.allowLoopback = true` and the loopback address is also in `trustedProxies` (`trusted_proxy_loopback_source`). This check runs before header checks, so a loopback source fails this way even if required headers are also missing.
 4. Non-loopback sources that match one of the Gateway host's own local network interface addresses are rejected as a spoofing guard (`trusted_proxy_local_interface_source`). If interface discovery itself fails, the request is rejected too (`trusted_proxy_local_interface_check_failed`).
@@ -129,6 +129,9 @@ Update and restart health checks can also reuse the local CLI's existing paired 
 </ParamField>
 <ParamField path="gateway.auth.trustedProxy.allowLoopback" type="boolean" default="false">
   Opt-in support for same-host loopback reverse proxies.
+</ParamField>
+<ParamField path="gateway.auth.trustedProxy.allowLoopbackClients" type="boolean" default="false">
+  Accept a loopback client address from a trusted proxy. For a proxy that runs on the same machine as the browser it serves, such as a local helper that signs the person in and fronts a Gateway on `localhost`. Needs `allowLoopback` too; the proxy must still be in `trustedProxies`.
 </ParamField>
 <ParamField path="gateway.auth.trustedProxy.deviceAutoApprove.enabled" type="boolean" default="false">
   Automatically approve new browser and native UI operator devices and same-key scope upgrades after trusted-proxy authentication.
