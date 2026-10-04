@@ -41,7 +41,7 @@ function requesterKey(client: GatewayClient | null): string | undefined {
   if (profile) {
     return `profile:${profile.profileId}`;
   }
-  return client?.authenticatedUserId && !client.authenticatedGitHubIdentitySync
+  return client?.authenticatedUserId && !client.authenticatedIdentitySync
     ? presenceUserKey({ id: client.authenticatedUserId })
     : undefined;
 }

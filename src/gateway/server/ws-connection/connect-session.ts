@@ -23,10 +23,10 @@ import {
 } from "../../../utils/message-channel.js";
 import { resolveRuntimeServiceBuildId, resolveRuntimeServiceVersion } from "../../../version.js";
 import { verifyAgentRuntimeIdentityToken } from "../../agent-runtime-identity-token.js";
+import { createAuthenticatedIdentitySync } from "../../authenticated-identity.js";
 import { buildAuthenticatedPresenceUser } from "../../authenticated-presence-user.js";
 import { prepareGatewayRecipientProfile } from "../../expected-profile.js";
 import { shouldUseGatewayOwnerProfile } from "../../gateway-owner-profile.js";
-import { createAuthenticatedGitHubIdentitySync } from "../../github-user-identity.js";
 import {
   attachGatewayLocalUserIngress,
   prepareGatewayLocalUserIngress,
@@ -184,7 +184,7 @@ export async function attachAuthenticatedGatewayConnect(
     : undefined;
   const authenticatedUserIsTailscaleProvider = tailscaleLogin?.kind === "provider";
   const profileLifecycle = createGatewayConnectProfileLifecycle(context, state);
-  const resolveAuthenticatedGitHubIdentity = createAuthenticatedGitHubIdentitySync({
+  const resolveAuthenticatedIdentity = createAuthenticatedIdentitySync({
     authResult,
     authConfig: context.configSnapshot.gateway?.auth,
     requestHeaders: context.handler.upgradeReq.headers,
@@ -202,7 +202,7 @@ export async function attachAuthenticatedGatewayConnect(
     state,
     ownerProfileExpected,
     authenticatedUserId,
-    resolveAuthenticatedGitHubIdentity,
+    resolveAuthenticatedIdentity,
     assertCurrent: profileLifecycle.assertCurrent,
   });
   if (!profileAdmission.ok) {
@@ -413,9 +413,9 @@ export async function attachAuthenticatedGatewayConnect(
       : {}),
   };
   attachGatewayLocalUserIngress(nextClient, localUserIngress);
-  if (resolveAuthenticatedGitHubIdentity) {
-    nextClient.authenticatedGitHubIdentitySync = async () => {
-      const result = await resolveAuthenticatedGitHubIdentity();
+  if (resolveAuthenticatedIdentity) {
+    nextClient.authenticatedIdentitySync = async () => {
+      const result = await resolveAuthenticatedIdentity();
       await profileLifecycle.attach(result.profileId, result.updatedAt, prepareLocalUserIngress);
       return result;
     };
@@ -565,7 +565,7 @@ export async function attachAuthenticatedGatewayConnect(
   }
 
   const currentAuthenticatedPresenceUser = () =>
-    nextClient.authenticatedGitHubIdentitySync && !nextClient.authenticatedUserProfile
+    nextClient.authenticatedIdentitySync && !nextClient.authenticatedUserProfile
       ? undefined
       : buildAuthenticatedPresenceUser({
           authenticatedUserId,
@@ -682,10 +682,10 @@ export async function attachAuthenticatedGatewayConnect(
       await profileLifecycle.attach(updated.id, updated.updatedAt, prepareLocalUserIngress);
     }
   };
-  if (nextClient.authenticatedGitHubIdentitySync) {
+  if (nextClient.authenticatedIdentitySync) {
     runDetachedConnectWork(
       async () => {
-        const result = await nextClient.authenticatedGitHubIdentitySync!();
+        const result = await nextClient.authenticatedIdentitySync!();
         const profile = nextClient.authenticatedUserProfile;
         const profilePic = authResult.tailscaleIdentity?.profilePic;
         if (!profile?.hasAvatar && profilePic) {
@@ -699,7 +699,7 @@ export async function attachAuthenticatedGatewayConnect(
         }
       },
       (error) => {
-        logGateway.warn(`GitHub identity sync failed conn=${connId}: ${formatForLog(error)}`);
+        logGateway.warn(`Identity sync failed conn=${connId}: ${formatForLog(error)}`);
       },
     );
   }
@@ -707,7 +707,7 @@ export async function attachAuthenticatedGatewayConnect(
   const tailscaleProfilePic = authResult.tailscaleIdentity?.profilePic;
   const tailscaleProfileId = nextClient.authenticatedUserProfile?.profileId;
   if (
-    !nextClient.authenticatedGitHubIdentitySync &&
+    !nextClient.authenticatedIdentitySync &&
     tailscaleProfileId &&
     !nextClient.authenticatedUserProfile?.hasAvatar &&
     tailscaleProfilePic

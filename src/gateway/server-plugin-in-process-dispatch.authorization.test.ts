@@ -906,7 +906,7 @@ describe("typed in-process agent authorization", () => {
   it("applies the pending-profile gate to typed in-process agent dispatch", async () => {
     const client = createOperatorClient({ profileName: "pending", scopes: ["operator.write"] });
     delete client.authenticatedUserProfile;
-    client.authenticatedGitHubIdentitySync = vi
+    client.authenticatedIdentitySync = vi
       .fn()
       .mockRejectedValue(new Error("private provider detail"));
 

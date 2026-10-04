@@ -90,6 +90,7 @@ describe("renderIdentitySection", () => {
       "Display name",
       "Linked emails",
       "GitHub account",
+      "Boostt account",
       "Git co-author credit",
     ]);
     expect(container.textContent).toContain("ada@example.test, ada@work.test");

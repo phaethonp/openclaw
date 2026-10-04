@@ -16,7 +16,7 @@ import { classifyTailscaleLogin } from "../state/user-profiles-tailscale-login.j
 import { normalizeGitHubLogin } from "../utils/github-login.js";
 import type { GatewayAuthResult } from "./auth.js";
 import { gitHubPublicApi, githubApiToken } from "./github-public-api.js";
-import type { AuthenticatedGitHubIdentitySync } from "./github-user-identity.types.js";
+import type { AuthenticatedIdentitySync } from "./github-user-identity.types.js";
 import { firstHeaderValue } from "./http-header-value.js";
 
 const CLOUDFLARE_ACCESS_USER_HEADER = "cf-access-authenticated-user-email";
@@ -293,7 +293,7 @@ export function createAuthenticatedGitHubIdentitySync(params: {
   authConfig?: GatewayAuthConfig;
   requestHeaders?: IncomingHttpHeaders;
   assertCurrent?: () => void;
-}): AuthenticatedGitHubIdentitySync | undefined {
+}): AuthenticatedIdentitySync | undefined {
   const options = { assertCurrent: params.assertCurrent };
   const tailscaleLogin = params.authResult.tailscaleIdentity
     ? classifyTailscaleLogin(params.authResult.tailscaleIdentity.login)

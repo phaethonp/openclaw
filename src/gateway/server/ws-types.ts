@@ -3,7 +3,7 @@ import type { WebSocket } from "ws";
 import type { ConnectParams } from "../../../packages/gateway-protocol/src/schema/frames.js";
 import type { AgentRuntimeIdentity } from "../agent-runtime-identity-token.js";
 import type { GatewayAuthPolicy } from "../auth-policy.types.js";
-import type { AuthenticatedGitHubIdentitySync } from "../github-user-identity.types.js";
+import type { AuthenticatedIdentitySync } from "../github-user-identity.types.js";
 import type { GatewayOperatorAccessAuthority } from "../operator-access-policy.types.js";
 import type { GatewayOperatorRoleActor } from "../operator-role-actor.js";
 import type { PluginNodeCapabilityClient } from "../plugin-node-capability.js";
@@ -52,7 +52,7 @@ export type GatewayWsClient = PluginNodeCapabilityClient & {
   authenticatedUserId?: string;
   /** Verified Tailscale provider identity; generic proxy identities must not infer this. */
   authenticatedUserIsTailscaleProvider?: boolean;
-  authenticatedGitHubIdentitySync?: AuthenticatedGitHubIdentitySync;
+  authenticatedIdentitySync?: AuthenticatedIdentitySync;
   /** Lifecycle-prepared canonical recipient; never a scope or authorization grant. */
   preparedRecipientProfileId?: string;
   preparedSessionProfile?: PreparedSessionProfile;

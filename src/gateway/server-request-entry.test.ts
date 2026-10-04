@@ -132,7 +132,7 @@ describe("Gateway request entry lifetime", { concurrent: false }, () => {
       if (boundary === "router" || boundary === "start") {
         boundaries[boundary].mockImplementation(pause);
       } else if (boundary === "profile") {
-        client.authenticatedGitHubIdentitySync = async () => {
+        client.authenticatedIdentitySync = async () => {
           await pause();
           client.authenticatedUserProfile = {
             profileId: "entry-profile",
@@ -407,7 +407,7 @@ describe("Gateway request entry lifetime", { concurrent: false }, () => {
     const held = createDeferredCore();
     const reached = createDeferredCore();
     const client = createOperatorWsClient();
-    client.authenticatedGitHubIdentitySync = async () => {
+    client.authenticatedIdentitySync = async () => {
       reached.resolve();
       await held.promise;
       client.authenticatedUserProfile = {

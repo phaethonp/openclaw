@@ -119,7 +119,7 @@ it("keeps public sign-in, durable roles and privileged dispatch independent of c
               state: { authResult, authMethod: authResult.method, role: "operator" },
               ownerProfileExpected: false,
               authenticatedUserId: authResult.user,
-              resolveAuthenticatedGitHubIdentity: createAuthenticatedGitHubIdentitySync({
+              resolveAuthenticatedIdentity: createAuthenticatedGitHubIdentitySync({
                 authResult,
               }),
             });

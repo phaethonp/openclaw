@@ -1,6 +1,7 @@
 import { getRuntimeConfig } from "../config/config.js";
 import type { GatewayScheduler } from "../infra/gateway-scheduler.js";
 import { purgeExpiredSecretStoreEntries } from "../secrets/store/secret-store.js";
+import { createBoosttAccountService } from "./boostt-account.js";
 import {
   createGitHubOAuthLifecycle,
   installActiveGitHubOAuthLifecycle,
@@ -59,6 +60,15 @@ export async function attachInitialGatewayLifetimeSidecars(params: {
     warn: params.logWarning,
   });
   params.gatewayRequestContext.githubOAuthService = githubOAuth;
+  const boosttAccount = createBoosttAccountService();
+  params.gatewayRequestContext.boosttAccountService = boosttAccount;
+  params.publishSidecars({
+    stop: async () => {
+      if (params.gatewayRequestContext.boosttAccountService === boosttAccount) {
+        delete params.gatewayRequestContext.boosttAccountService;
+      }
+    },
+  });
   const uninstallGitHubOAuth = installActiveGitHubOAuthLifecycle(githubOAuth);
   if (!params.minimalTestGateway) {
     githubOAuth.start();

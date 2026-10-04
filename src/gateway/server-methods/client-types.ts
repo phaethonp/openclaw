@@ -6,7 +6,7 @@ import type { PluginSubagentRequesterContext } from "../../plugins/runtime/subag
 import type { RuntimePluginToolGrant } from "../../plugins/runtime/tool-grant.js";
 import type { AgentRuntimeIdentity } from "../agent-runtime-identity-token.js";
 import type { GatewayAuthPolicy } from "../auth-policy.types.js";
-import type { AuthenticatedGitHubIdentitySync } from "../github-user-identity.types.js";
+import type { AuthenticatedIdentitySync } from "../github-user-identity.types.js";
 import type { GatewayOperatorAccessAuthority } from "../operator-access-policy.types.js";
 import type { GatewayOperatorRoleActor } from "../operator-role-actor.js";
 import type { PluginNodeCapabilitySurface } from "../plugin-node-capability.js";
@@ -55,7 +55,7 @@ export type GatewayClient = {
   authenticatedUserId?: string;
   /** Verified Tailscale provider identity; generic proxy identities must not infer this. */
   authenticatedUserIsTailscaleProvider?: boolean;
-  authenticatedGitHubIdentitySync?: AuthenticatedGitHubIdentitySync;
+  authenticatedIdentitySync?: AuthenticatedIdentitySync;
   /** Prepared at identity admission and profile publication, before session reads or events. */
   preparedSessionProfile?: PreparedSessionProfile;
   authenticatedUserProfile?: {

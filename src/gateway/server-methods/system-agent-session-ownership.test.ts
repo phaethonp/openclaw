@@ -127,7 +127,7 @@ function makeClient(params: {
       : {}),
     ...(params.githubSyncPending
       ? {
-          authenticatedGitHubIdentitySync: async () => ({ profileId: "pending", updatedAt: 1 }),
+          authenticatedIdentitySync: async () => ({ profileId: "pending", updatedAt: 1 }),
         }
       : {}),
   } as GatewayClient;

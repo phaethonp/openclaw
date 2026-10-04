@@ -292,7 +292,7 @@ describe("users gateway methods", () => {
       authenticatedUserIsTailscaleProvider: true,
       connect: { scopes: ["operator.write"] },
     };
-    const authenticatedGitHubIdentitySync = vi.fn(
+    const authenticatedIdentitySync = vi.fn(
       async () =>
         await new Promise<{ profileId: string; updatedAt: number }>((resolve) => {
           finishSync = () => {
@@ -306,13 +306,13 @@ describe("users gateway methods", () => {
           };
         }),
     );
-    providerClient.authenticatedGitHubIdentitySync = authenticatedGitHubIdentitySync;
+    providerClient.authenticatedIdentitySync = authenticatedIdentitySync;
     getUserProfileListItem.mockReturnValue(profile);
 
     const pending = runUsersHandler("users.self", {}, providerClient);
     await Promise.resolve();
 
-    expect(authenticatedGitHubIdentitySync).toHaveBeenCalledOnce();
+    expect(authenticatedIdentitySync).toHaveBeenCalledOnce();
     expect(getUserProfileListItem).not.toHaveBeenCalled();
     finishSync?.();
     const respond = await pending;
@@ -325,7 +325,7 @@ describe("users gateway methods", () => {
       authenticatedUserIsTailscaleProvider: true,
       connect: { scopes: ["operator.write"] },
     };
-    const authenticatedGitHubIdentitySync = vi
+    const authenticatedIdentitySync = vi
       .fn()
       .mockRejectedValueOnce(new Error("network unavailable"))
       .mockImplementationOnce(async () => {
@@ -337,7 +337,7 @@ describe("users gateway methods", () => {
         };
         return { profileId: profile.id, updatedAt: profile.updatedAt };
       });
-    providerClient.authenticatedGitHubIdentitySync = authenticatedGitHubIdentitySync;
+    providerClient.authenticatedIdentitySync = authenticatedIdentitySync;
     getUserProfileListItem.mockReturnValue(profile);
 
     expect(await runUsersHandler("users.self", {}, providerClient)).toHaveBeenCalledWith(
@@ -352,7 +352,7 @@ describe("users gateway methods", () => {
     expect(await runUsersHandler("users.self", {}, providerClient)).toHaveBeenCalledWith(true, {
       profile,
     });
-    expect(authenticatedGitHubIdentitySync).toHaveBeenCalledTimes(2);
+    expect(authenticatedIdentitySync).toHaveBeenCalledTimes(2);
   });
 
   it.each([

@@ -430,7 +430,7 @@ describe("live person presence timing", () => {
     const delayed = await connect("pending@timing.test", "delayed-person");
     const profile = delayed.client.authenticatedUserProfile;
     delete delayed.client.authenticatedUserProfile;
-    delayed.client.authenticatedGitHubIdentitySync = async () => ({
+    delayed.client.authenticatedIdentitySync = async () => ({
       profileId: "delayed-person",
       updatedAt: 1,
     });

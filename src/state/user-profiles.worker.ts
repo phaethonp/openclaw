@@ -16,6 +16,7 @@ import {
   setAvatar,
   setDisplayName,
   setUserProfileRole,
+  syncBoosttIdentity,
   syncGitHubIdentity,
 } from "./user-profile-writes.worker.js";
 import {
@@ -71,6 +72,10 @@ const userProfileWriteOperations = {
   "userProfiles.syncGitHub": createUserProfileWriteOperation(
     "userProfiles.syncGitHub",
     (input: Parameters<typeof syncGitHubIdentity>[0], owned) => syncGitHubIdentity(input, owned),
+  ),
+  "userProfiles.syncBoostt": createUserProfileWriteOperation(
+    "userProfiles.syncBoostt",
+    (input: Parameters<typeof syncBoosttIdentity>[0], owned) => syncBoosttIdentity(input, owned),
   ),
   "userProfiles.ensureOwner": createUserProfileWriteOperation(
     "userProfiles.ensureOwner",

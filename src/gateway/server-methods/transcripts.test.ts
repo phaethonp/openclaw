@@ -318,7 +318,7 @@ describe("transcript Gateway read authorization and errors", () => {
   it("waits for the authenticated profile before reading the library", async () => {
     const caller = client();
     caller.authenticatedUserId = "pending@example.test";
-    caller.authenticatedGitHubIdentitySync = vi
+    caller.authenticatedIdentitySync = vi
       .fn()
       .mockRejectedValue(new Error("private identity detail"));
     const result = await request("transcripts.status", {}, roles("view"), caller);
