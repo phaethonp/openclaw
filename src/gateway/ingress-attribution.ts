@@ -6,6 +6,7 @@ import {
   hasForwardedRequestHeaders,
   isLoopbackAddress,
   isTrustedProxyAddress,
+  parseIpLiteral,
   resolveClientIp,
   resolveRequestClientIpFromHeaders,
 } from "./net.js";
@@ -199,6 +200,8 @@ function resolveGatewayIngressAttribution(params: {
   req: IncomingMessage;
   trustedProxies?: string[];
   allowRealIpFallback?: boolean;
+  /** A trusted proxy may name a loopback client: the browser runs on this machine. */
+  allowLoopbackClients?: boolean;
   tailscaleWhois?: TailscaleWhoisLookup;
 }): GatewayIngressAttribution {
   const { req } = params;
@@ -223,12 +226,23 @@ function resolveGatewayIngressAttribution(params: {
     return attributed("direct-local", remoteAddress);
   }
   if (isTrustedProxyAddress(remoteAddress, params.trustedProxies)) {
-    const clientIp = resolveRequestClientIpFromHeaders(
+    let clientIp = resolveRequestClientIpFromHeaders(
       req,
       params.trustedProxies,
       params.allowRealIpFallback === true,
     );
-    if (!clientIp || isLoopbackAddress(clientIp)) {
+    if (!clientIp && params.allowLoopbackClients === true) {
+      // A loopback client behind a loopback proxy carries the proxy's own
+      // address, so the chain walk above finds no untrusted hop. The proxy is
+      // trusted and has said who its client is; take its word for loopback only.
+      const first = parseIpLiteral(
+        firstHeaderValue(req.headers?.["x-forwarded-for"])?.split(",")[0],
+      );
+      if (first && isLoopbackAddress(first)) {
+        clientIp = first;
+      }
+    }
+    if (!clientIp || (isLoopbackAddress(clientIp) && params.allowLoopbackClients !== true)) {
       return unattributableProxy(remoteAddress);
     }
     return {
