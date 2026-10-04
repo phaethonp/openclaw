@@ -1,0 +1,124 @@
+{
+  "displayName": "Urbicana",
+  "associationName": "Urbicana × OpenClaw",
+  "associationLine": "An Urbicana product, built on OpenClaw.",
+  "keeps": [
+    "The command stays openclaw.",
+    "The copyright line stays © 2026 OpenClaw Foundation — MIT License.",
+    "Instructions that tell a person to run an openclaw command stay OpenClaw."
+  ],
+  "changes": [
+    {
+      "id": "sidebar-invitation",
+      "why": "The sidebar card invites people to the OpenClaw Discord. Urbicana does not show it.",
+      "file": "ui/src/components/app-sidebar.ts",
+      "find": "<div class=\"sidebar-shell__invite\">\n            ${this.communityInvitePresentation === \"shown\" ? renderCommunityInviteCard(this.dismissCommunityInvite, this.context?.theme.resolvedMode ?? \"dark\") : nothing}\n          </div>",
+      "replace": "<div class=\"sidebar-shell__invite\"></div>"
+    },
+    {
+      "id": "window-title",
+      "why": "The browser tab names the product. The short name is Urbicana. About carries the OpenClaw association.",
+      "file": "ui/src/app-navigation.ts",
+      "find": "  const base = options.context.endsWith(\"OpenClaw\")\n    ? options.context\n    : `${options.context} — OpenClaw`;",
+      "replace": "  const base = options.context.endsWith(\"Urbicana\")\n    ? options.context\n    : `${options.context} — Urbicana`;"
+    },
+    {
+      "id": "sidebar-name",
+      "why": "The sidebar shows this name when the gateway has no name of its own.",
+      "file": "ui/src/components/app-sidebar-render.ts",
+      "find": "const name = readSidebarNativeGateway()?.name.trim() || \"OpenClaw\";",
+      "replace": "const name = readSidebarNativeGateway()?.name.trim() || \"Urbicana\";"
+    },
+    {
+      "id": "first-paint-title",
+      "why": "The tab title before the app starts.",
+      "file": "ui/index.html",
+      "find": "<title>OpenClaw Control</title>",
+      "replace": "<title>Urbicana</title>"
+    },
+    {
+      "id": "startup-failure-mark",
+      "why": "The line above the startup failure card.",
+      "file": "ui/index.html",
+      "find": "<p class=\"mount-fallback__eyebrow\">OpenClaw Control UI</p>",
+      "replace": "<p class=\"mount-fallback__eyebrow\">Urbicana</p>"
+    },
+    {
+      "id": "installed-app-name",
+      "why": "The name of the installed app.",
+      "file": "ui/public/manifest.webmanifest",
+      "find": "\"name\": \"OpenClaw Control\",\n  \"short_name\": \"OpenClaw\",",
+      "replace": "\"name\": \"Urbicana\",\n  \"short_name\": \"Urbicana\","
+    },
+    {
+      "id": "approval-brand",
+      "why": "The name on the approval card and its window title.",
+      "file": "ui/src/i18n/locales/en.ts",
+      "find": "brandName: \"OpenClaw\",",
+      "replace": "brandName: \"Urbicana\","
+    },
+    {
+      "id": "ask-button",
+      "why": "The Ask button in the shell.",
+      "file": "ui/src/i18n/locales/en.ts",
+      "find": "askOpenClaw: \"Ask OpenClaw\",",
+      "replace": "askOpenClaw: \"Ask Urbicana\","
+    },
+    {
+      "id": "setup-title",
+      "why": "The setup card title.",
+      "file": "ui/src/i18n/locales/en.ts",
+      "find": "custodian: {\n    title: \"OpenClaw\",",
+      "replace": "custodian: {\n    title: \"Urbicana\","
+    },
+    {
+      "id": "composer-placeholder",
+      "why": "The message box on the setup card.",
+      "file": "ui/src/i18n/locales/en.ts",
+      "find": "placeholder: \"Message OpenClaw…\",",
+      "replace": "placeholder: \"Message Urbicana…\","
+    },
+    {
+      "id": "thinking",
+      "why": "The line shown while a reply is in progress.",
+      "file": "ui/src/i18n/locales/en.ts",
+      "find": "thinking: \"OpenClaw is thinking\",",
+      "replace": "thinking: \"Urbicana is thinking\","
+    },
+    {
+      "id": "reply-failed",
+      "why": "The line shown when a reply fails.",
+      "file": "ui/src/i18n/locales/en.ts",
+      "find": "requestFailed: \"OpenClaw could not reply. Try again.\",",
+      "replace": "requestFailed: \"Urbicana could not reply. Try again.\","
+    },
+    {
+      "id": "session-restarted",
+      "why": "The setup card's note when a session starts over.",
+      "file": "ui/src/i18n/locales/en.ts",
+      "find": "\"{error} OpenClaw started a fresh session; earlier messages remain for context.\",",
+      "replace": "\"{error} Urbicana started a fresh session; earlier messages remain for context.\","
+    },
+    {
+      "id": "setup-gateway",
+      "why": "The setup card's note when the Gateway is too old.",
+      "file": "ui/src/i18n/locales/en.ts",
+      "find": "unsupportedGateway: \"Update the Gateway to continue setup with OpenClaw.\",",
+      "replace": "unsupportedGateway: \"Update the Gateway to continue setup with Urbicana.\","
+    },
+    {
+      "id": "ask-panel",
+      "why": "The Ask panel title and its controls.",
+      "file": "ui/src/i18n/locales/en.ts",
+      "find": "title: \"OpenClaw\",\n      toggle: \"Toggle Ask OpenClaw\",\n      close: \"Close Ask OpenClaw\",\n      resize: \"Resize Ask OpenClaw\",\n      dockBottom: \"Dock Ask OpenClaw at bottom\",\n      dockRight: \"Dock Ask OpenClaw at right\",",
+      "replace": "title: \"Urbicana\",\n      toggle: \"Toggle Ask Urbicana\",\n      close: \"Close Ask Urbicana\",\n      resize: \"Resize Ask Urbicana\",\n      dockBottom: \"Dock Ask Urbicana at bottom\",\n      dockRight: \"Dock Ask Urbicana at right\","
+    },
+    {
+      "id": "about-association",
+      "why": "About is where the relationship is stated. Urbicana made Urbicana × OpenClaw on top of OpenClaw. The copyright line under it stays OpenClaw Foundation.",
+      "file": "ui/src/i18n/locales/en.ts",
+      "find": "productName: \"OpenClaw\",\n    tagline: \"Your personal AI assistant, running on your own devices.\",",
+      "replace": "productName: \"Urbicana × OpenClaw\",\n    tagline: \"An Urbicana product, built on OpenClaw.\","
+    }
+  ]
+}
