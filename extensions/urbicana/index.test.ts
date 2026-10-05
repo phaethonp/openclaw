@@ -79,12 +79,18 @@ function stubBoostt(
 let workspace: string;
 /** An in-memory agent config; the mutator applies the extension's writes to it. */
 let config: Record<string, unknown>;
-const mutateConfig: ConfigMutator = async (mutate) => {
-  mutate(config as Parameters<typeof mutate>[0]);
+let writes = 0;
+const mutateConfig: ConfigMutator = {
+  current: () => config as ReturnType<ConfigMutator["current"]>,
+  mutate: async (mutate) => {
+    writes += 1;
+    mutate(config as Parameters<typeof mutate>[0]);
+  },
 };
 beforeEach(() => {
   workspace = fs.mkdtempSync(path.join(os.tmpdir(), "urbicana-ws-"));
   config = {};
+  writes = 0;
 });
 afterEach(() => {
   fs.rmSync(workspace, { recursive: true, force: true });
@@ -438,11 +444,20 @@ describe("the marketplace, a config entry the extension owns", () => {
       url: settings.marketplaceMcpUrl,
       enabled: false,
     });
+
+    // A restore that finds the entry already right writes nothing: a write reloads the Gateway.
+    const before = writes;
+    await service.reconcile();
+    await service.reconcile();
+    expect(writes).toBe(before);
   });
 
   it("a config write that fails does not fail the sign-in", async () => {
-    const failing: ConfigMutator = async () => {
-      throw new Error("config locked");
+    const failing: ConfigMutator = {
+      current: () => ({}),
+      mutate: async () => {
+        throw new Error("config locked");
+      },
     };
     const warn = vi.fn();
     const service = createUrbicanaService({
