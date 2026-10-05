@@ -452,9 +452,36 @@ export function pathForMcpServer(name: string, basePath = ""): string {
   return `${pathForRoute("mcp-servers", basePath)}/${name}`;
 }
 
+export function pathForMcpServerTool(server: string, tool: string, basePath = ""): string {
+  if (!MCP_SERVER_NAME_RE.test(tool)) {
+    throw new Error("Invalid MCP tool name for a route path.");
+  }
+  return `${pathForMcpServer(server, basePath)}/${tool}`;
+}
+
+/** /settings/mcp/servers/<server>[/<tool>]: the server, and the tool when one is opened. */
+export function mcpServerRouteFromPath(
+  pathname: string,
+  basePath = "",
+): { server: string; tool: string | null } | null {
+  const suffix = routePathSuffix(pathname, "mcp-servers", basePath);
+  if (!suffix) {
+    return null;
+  }
+  const [server, tool, ...rest] = suffix.split("/");
+  if (
+    rest.length > 0 ||
+    !server ||
+    !MCP_SERVER_NAME_RE.test(server) ||
+    (tool !== undefined && !MCP_SERVER_NAME_RE.test(tool))
+  ) {
+    return null;
+  }
+  return { server, tool: tool ?? null };
+}
+
 export function mcpServerNameFromPath(pathname: string, basePath = ""): string | null {
-  const name = routePathSuffix(pathname, "mcp-servers", basePath);
-  return name && MCP_SERVER_NAME_RE.test(name) ? name : null;
+  return mcpServerRouteFromPath(pathname, basePath)?.server ?? null;
 }
 
 const DYNAMIC_ROUTE_PATH_PARAMS = {
