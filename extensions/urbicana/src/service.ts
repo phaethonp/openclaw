@@ -132,8 +132,10 @@ export function createUrbicanaService(opts: UrbicanaServiceOptions) {
   /** The marketplace as the owner, or disabled; a failure here is logged, never fatal to the sign-in. */
   async function marketplace(owner: BoosttAccount | null): Promise<void> {
     try {
-      await applyMarketplace(opts.mutateConfig, opts.settings, owner);
-      log.info(owner ? "marketplace connected as the owner" : "marketplace disabled");
+      const outcome = await applyMarketplace(opts.mutateConfig, opts.settings, owner);
+      if (outcome === "written") {
+        log.info(owner ? "marketplace connected as the owner" : "marketplace disabled");
+      }
     } catch (error) {
       log.warn(
         `marketplace entry not written: ${error instanceof Error ? error.message : String(error)}`,

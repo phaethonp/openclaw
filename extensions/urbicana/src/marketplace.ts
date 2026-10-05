@@ -48,27 +48,53 @@ export function writeMarketplaceEntry(draft: ConfigDraft, entry: MarketplaceServ
   servers[MARKETPLACE_SERVER_NAME] = entry;
 }
 
-export type ConfigMutator = (mutate: (draft: ConfigDraft) => void) => Promise<void>;
+export type ConfigMutator = {
+  /** The config as the Gateway holds it now. */
+  current: () => ConfigDraft;
+  mutate: (mutate: (draft: ConfigDraft) => void) => Promise<void>;
+};
 
-/** The runtime's config mutation, narrowed to what this extension uses. */
+/** The runtime's config access, narrowed to what this extension uses. */
 export function createConfigMutator(runtimeConfig: {
+  current: () => unknown;
   mutateConfigFile: (params: {
     base: "runtime";
     afterWrite: { mode: "auto" };
     mutate: (draft: ConfigDraft) => void;
   }) => Promise<unknown>;
 }): ConfigMutator {
-  return async (mutate) => {
-    await runtimeConfig.mutateConfigFile({ base: "runtime", afterWrite: { mode: "auto" }, mutate });
+  return {
+    current: () => (runtimeConfig.current() ?? {}) as ConfigDraft,
+    mutate: async (mutate) => {
+      await runtimeConfig.mutateConfigFile({
+        base: "runtime",
+        afterWrite: { mode: "auto" },
+        mutate,
+      });
+    },
   };
 }
 
-/** Applies the owner's marketplace entry to the agent's config. */
+/** The entry the config holds now, if any. */
+export function readMarketplaceEntry(config: ConfigDraft): unknown {
+  return config.mcp?.servers?.[MARKETPLACE_SERVER_NAME];
+}
+
+/**
+ * Applies the owner's marketplace entry to the agent's config, and only when
+ * it differs from what the config holds: a config write makes the Gateway
+ * reload and restart plugin services, and a service that wrote on every
+ * start looped (1,328 writes across 4 boots, live, 2026-10-05).
+ */
 export async function applyMarketplace(
-  mutateConfig: ConfigMutator,
+  config: ConfigMutator,
   settings: Pick<BoosttSettings, "marketplaceMcpUrl">,
   owner: Pick<BoosttAccount, "accessToken"> | null,
-): Promise<void> {
+): Promise<"written" | "unchanged"> {
   const entry = marketplaceServerEntry(settings, owner);
-  await mutateConfig((draft) => writeMarketplaceEntry(draft, entry));
+  if (JSON.stringify(readMarketplaceEntry(config.current())) === JSON.stringify(entry)) {
+    return "unchanged";
+  }
+  await config.mutate((draft) => writeMarketplaceEntry(draft, entry));
+  return "written";
 }
