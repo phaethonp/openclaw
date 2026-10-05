@@ -18,6 +18,8 @@ import {
   pathForWorkboardBoard,
   pathForTerminalSession,
   terminalSessionIdFromPath,
+  mcpServerNameFromPath,
+  pathForMcpServer,
   pluginSettingsIdFromPath,
   restoreBridgedRouteLocation,
   routeIdFromPath,
@@ -762,6 +764,23 @@ describe("Plugin Settings route paths", () => {
     expect(pluginSettingsIdFromPath(reservedIdPath)).toBe("discover");
     expect(routeIdFromPath(reservedIdPath)).toBe("plugin-settings");
     expect(pluginSettingsIdFromPath("/settings/plugins/calendar/extra")).toBeNull();
+  });
+});
+
+describe("mcp server route paths", () => {
+  it.each(["", "/ui"])("round-trips a server name under %s", (basePath) => {
+    expect(routeIdFromPath(`${basePath}/settings/mcp/servers`, basePath)).toBe("mcp-servers");
+    const path = pathForMcpServer("boostt.v2", basePath);
+    expect(path).toBe(`${basePath}/settings/mcp/servers/boostt.v2`);
+    expect(mcpServerNameFromPath(path, basePath)).toBe("boostt.v2");
+    expect(routeIdFromPath(path, basePath)).toBe("mcp-servers");
+  });
+
+  it("rejects names the MCP settings form would not accept", () => {
+    expect(() => pathForMcpServer("../etc")).toThrow();
+    expect(mcpServerNameFromPath("/settings/mcp/servers/a/b")).toBeNull();
+    expect(mcpServerNameFromPath("/settings/mcp/servers/%20")).toBeNull();
+    expect(mcpServerNameFromPath("/settings/mcp/servers")).toBeNull();
   });
 });
 
