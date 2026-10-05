@@ -132,7 +132,7 @@ export function createHumanMentionPolicy(params: {
     const verifiedProfile = client.authenticatedUserProfile;
     if (!verifiedProfile?.profileId) {
       return err(
-        client.authenticatedIdentitySync
+        client.authenticatedGitHubIdentitySync
           ? authenticatedProfileUnavailableError()
           : errorShape(
               ErrorCodes.FORBIDDEN,

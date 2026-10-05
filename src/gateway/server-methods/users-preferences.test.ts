@@ -259,7 +259,7 @@ test.each(["current", "scope", "source", "identity", "error-response", "staff"] 
         }
         return { profileId: owner.id, updatedAt: owner.updatedAt };
       });
-      client.authenticatedIdentitySync = sync;
+      client.authenticatedGitHubIdentitySync = sync;
       let current = true;
       const respond = vi.fn();
       const request = handleGatewayRequest({

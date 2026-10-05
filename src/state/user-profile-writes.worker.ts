@@ -16,11 +16,7 @@ import {
 } from "../shared/avatar-limits.js";
 import { CHANNEL_IDENTITY_PROVIDER } from "./user-channel-identities.js";
 import { ensureUserPreferencesSchema } from "./user-preferences.store.js";
-import { applyBoosttIdentity, type VerifiedBoosttAccount } from "./user-profile-boostt-identity.js";
-import {
-  ensureProfileForEmailInDatabase,
-  normalizeProfileEmail as normalizeEmail,
-} from "./user-profile-email.kernel.js";
+import { normalizeProfileEmail as normalizeEmail } from "./user-profile-email.kernel.js";
 import { publishUserProfileAuthorityChange } from "./user-profile-events.js";
 import {
   applyVerifiedGitHubIdentity,
@@ -459,60 +455,6 @@ export function syncGitHubIdentity(
     },
     options,
     { operationLabel: "user-profiles.sync-github-identity" },
-  );
-}
-
-/**
- * Boostt-backed sign-in: the person Boostt named gets their profile by verified
- * email and their verified Boostt identity. An empty display name takes Boostt's.
- */
-export function syncBoosttIdentity(
-  params: { account: VerifiedBoosttAccount },
-  options: UserProfileMutationOptions = {},
-): UserProfileListItem {
-  const email = normalizeEmail(params.account.email);
-  const boosttDisplayName = normalizeInitialDisplayName(params.account.displayName ?? undefined);
-  ensureUserProfilesSchema(options);
-  const now = Date.now();
-  return runUserProfileWriteTransaction(
-    ({ db }) => {
-      const owner = ensureProfileForEmailInDatabase(
-        db,
-        email,
-        boosttDisplayName,
-        now,
-        options.mutation,
-      );
-      applyBoosttIdentity({
-        db,
-        profileId: owner.id,
-        identity: { userId: params.account.userId, handle: params.account.handle },
-        mutation: options.mutation,
-      });
-      const profile = selectUserProfileListItemById(db, owner.id);
-      // Only the email-derived default name is upgraded to Boostt's; a chosen name stays.
-      const emailDefaultName = email.split("@", 1)[0] || email;
-      if (
-        !boosttDisplayName ||
-        profile.displayName === boosttDisplayName ||
-        (profile.displayName?.trim() && profile.displayName !== emailDefaultName)
-      ) {
-        return profile;
-      }
-      options.mutation?.before(db, profile.id);
-      executeSqliteQuerySync(
-        db,
-        userProfilesDb(db)
-          .updateTable("user_profiles")
-          .set({ display_name: boosttDisplayName, updated_at: now })
-          .where("id", "=", profile.id),
-      );
-      options.mutation?.publish(profile.id);
-      publishUserProfilesChange(db, profile.id);
-      return { ...profile, displayName: boosttDisplayName, updatedAt: now };
-    },
-    options,
-    { operationLabel: "user-profiles.sync-boostt-identity" },
   );
 }
 

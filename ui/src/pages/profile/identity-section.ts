@@ -12,7 +12,6 @@ import {
   renderSettingsValue,
 } from "../../components/settings-ui.ts";
 import { t } from "../../i18n/index.ts";
-import { registerBoosttEnglish } from "../../i18n/locales/en-boostt.ts";
 import { registerProfileEnglish } from "../../i18n/locales/en-profile.ts";
 import { buildExternalLinkRel, EXTERNAL_LINK_TARGET } from "../../lib/external-link.ts";
 import "../../components/viewer-facepile.ts";
@@ -21,7 +20,6 @@ import { uploadsEnabled } from "../../lib/uploads.ts";
 import { PROFILE_SETTINGS_TARGET_IDS } from "../config/settings-targets.ts";
 
 registerProfileEnglish();
-registerBoosttEnglish();
 
 type IdentitySectionProps = {
   config?: ApplicationConfigCapability;
@@ -54,7 +52,6 @@ export function renderIdentitySection(props: IdentitySectionProps) {
   const nameChanged = props.displayName.trim() !== savedName;
   const emails = props.profile.emails.join(", ");
   const githubIdentity = props.profile.githubIdentity;
-  const boosttIdentity = props.profile.boosttIdentity ?? null;
   const isOwnerProfile = props.profile.id === GATEWAY_OWNER_PROFILE_ID;
   return html`<div id=${PROFILE_SETTINGS_TARGET_IDS.identity}>
     ${renderSettingsSection(
@@ -185,30 +182,6 @@ export function renderIdentitySection(props: IdentitySectionProps) {
             : renderSettingsStatus({
                 kind: "muted",
                 label: t("profilePage.identity.githubUnavailable"),
-              }),
-        })}
-        ${renderSettingsRow({
-          title: t("profilePage.identity.boosttAccount"),
-          description: boosttIdentity
-            ? t("profilePage.identity.boosttAccountDescription")
-            : t("profilePage.identity.boosttUnavailableDescription"),
-          control: boosttIdentity
-            ? html`
-                <span class="settings-row__value settings-row__value--mono"
-                  >${
-                    boosttIdentity.handle
-                      ? `@${boosttIdentity.handle}`
-                      : `#${boosttIdentity.userId}`
-                  }</span
-                >
-                ${renderSettingsStatus({
-                  kind: "ok",
-                  label: t("profilePage.identity.boosttVerified"),
-                })}
-              `
-            : renderSettingsStatus({
-                kind: "muted",
-                label: t("profilePage.identity.boosttUnavailable"),
               }),
         })}
         ${renderSettingsToggleRow({

@@ -53,7 +53,7 @@ export async function createExpectedProfileBinding(
   }
   let prepared: Awaited<ReturnType<typeof prepareUserProfileSelectionAuthority>>;
   const authenticatedUserId = client?.authenticatedUserId;
-  const synchronizeProfile = client?.authenticatedIdentitySync;
+  const synchronizeProfile = client?.authenticatedGitHubIdentitySync;
   let profileReference = client?.authenticatedUserProfile?.profileId;
   try {
     assertRequestCurrent?.();
@@ -62,7 +62,7 @@ export async function createExpectedProfileBinding(
       assertRequestCurrent?.();
       if (
         client?.authenticatedUserId !== authenticatedUserId ||
-        client?.authenticatedIdentitySync !== synchronizeProfile
+        client?.authenticatedGitHubIdentitySync !== synchronizeProfile
       ) {
         throw new Error("Gateway requester identity changed");
       }

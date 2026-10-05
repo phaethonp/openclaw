@@ -191,14 +191,10 @@ export async function prepareGitHubPublicationOptionsRead(
   };
 }
 
-/**
- * Authority stays in this direct connection closure; a profile or request id alone grants nothing.
- * Shared by every personal connection a profile can hold; `feature` names it in errors.
- */
-export function preparePersonalConnectionAction(
+/** Authority stays in this direct connection closure; a profile or request id alone grants nothing. */
+export function preparePersonalGitHubAction(
   options: Request,
-  scope: "operator.read" | "operator.write",
-  feature: string,
+  scope: "operator.read" | "operator.write" = "operator.read",
 ): PersonalGitHubAction {
   const { client, context } = options;
   const resolveOwner = () => {
@@ -209,14 +205,12 @@ export function preparePersonalConnectionAction(
       options.signal?.aborted ||
       !context.getClientConnIds?.((current) => current === client).has(client.connId)
     ) {
-      throw new Error(`${feature} requires a current authenticated human Gateway connection.`);
+      throw new Error("My GitHub requires a current authenticated human Gateway connection.");
     }
     const profile = client.authenticatedUserProfile?.profileId;
     const owner = profile ? resolvePersonalGitHubOwner(profile) : undefined;
     if (!owner) {
-      throw new Error(
-        `${feature} requires a verified durable user profile; sign in and try again.`,
-      );
+      throw new Error("My GitHub requires a verified durable user profile; sign in and try again.");
     }
     currentGitHubClient(options, scope, owner);
     return owner;
@@ -226,17 +220,10 @@ export function preparePersonalConnectionAction(
     owner,
     assertCurrent: () => {
       if (resolveOwner() !== owner) {
-        throw new Error(`${feature} owner changed; retry from your current profile.`);
+        throw new Error("My GitHub owner changed; retry from your current profile.");
       }
     },
   };
-}
-
-export function preparePersonalGitHubAction(
-  options: Request,
-  scope: "operator.read" | "operator.write" = "operator.read",
-): PersonalGitHubAction {
-  return preparePersonalConnectionAction(options, scope, "My GitHub");
 }
 
 export function preparePersonalGitHubSessionAction(

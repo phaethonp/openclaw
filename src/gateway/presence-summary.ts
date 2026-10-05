@@ -62,7 +62,7 @@ function collectObservations(entries: readonly PresenceEntry[], nodes: readonly 
     const existing = observations.get(node.connId);
     const user =
       node.client.authenticatedUserProfile?.profileId === GATEWAY_OWNER_PROFILE_ID ||
-      (node.client.authenticatedIdentitySync && !node.client.authenticatedUserProfile)
+      (node.client.authenticatedGitHubIdentitySync && !node.client.authenticatedUserProfile)
         ? undefined
         : buildAuthenticatedPresenceUser(node.client);
     const entry: PresenceEntry = {

@@ -45,7 +45,6 @@ import { OpenClawLightDomElement } from "../../lit/openclaw-element.ts";
 import { SubscriptionsController } from "../../lit/subscriptions-controller.ts";
 import { PROFILE_SETTINGS_TARGET_IDS } from "../config/settings-targets.ts";
 import "../../styles/profile.css";
-import "../../features/boostt-account/boostt-account.ts";
 import "../../features/github-connections/github-connections.ts";
 import { processProfileAvatar, ProfileAvatarError } from "./avatar-processing.ts";
 import "./model-accounts.ts";
@@ -491,7 +490,6 @@ export class ProfilePage extends OpenClawLightDomElement {
         connected
           ? html`
               ${this.renderModelAccounts()}
-              <urbicana-boostt-account></urbicana-boostt-account>
               <openclaw-github-connections></openclaw-github-connections>
               ${renderSettingsGroup(
                 renderSettingsNavRow({

@@ -47,9 +47,6 @@ export const GATEWAY_FIELD_LABELS: Record<string, string> = {
   "gateway.auth.trustedProxy.cloudflareAccessOidc.issuer": "Cloudflare Access Issuer",
   "gateway.auth.trustedProxy.cloudflareAccessOidc.providerId": "Cloudflare Access OIDC Provider ID",
   "gateway.auth.trustedProxy.cloudflareAccessOidc.githubAccountIdClaim": "GitHub Account ID Claim",
-  "gateway.auth.trustedProxy.boostt": "Boostt Sign-in Identity",
-  "gateway.auth.trustedProxy.boostt.apiUrl": "Boostt API URL",
-  "gateway.auth.trustedProxy.boostt.assertionHeader": "Boostt Assertion Header",
   "gateway.auth.trustedProxy.deviceAutoApprove": "Trusted Proxy Device Auto-Approval",
   "gateway.auth.trustedProxy.deviceAutoApprove.enabled":
     "Trusted Proxy Device Auto-Approval Enabled",
