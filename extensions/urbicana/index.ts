@@ -36,10 +36,13 @@ export default definePluginEntry({
       log: { info: (m) => api.logger.info(m), warn: (m) => api.logger.warn(m) },
       mutateConfig: createConfigMutator(api.runtime.config),
     });
-    // The marketplace entry follows the stored owner from the first start.
-    void service
-      .reconcile()
-      .catch((error) => api.logger.warn(`urbicana: marketplace not reconciled: ${String(error)}`));
+    // The marketplace entry follows the stored owner, once the Gateway's state is open.
+    api.registerService({
+      id: "urbicana-marketplace",
+      start: async () => {
+        await service.reconcile();
+      },
+    });
     api.registerHttpRoute({
       path: "/plugins/urbicana",
       auth: "gateway",
