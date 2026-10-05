@@ -22,6 +22,7 @@ export const INTERNAL_MEMORY_PATH_PARAM = "__openclawMemoryPath";
 export const INTERNAL_PLUGINS_PATH_PARAM = "__openclawPluginsPath";
 export const INTERNAL_PLUGIN_SETTINGS_PATH_PARAM = "__openclawPluginSettingsPath";
 export const INTERNAL_WORKBOARD_PATH_PARAM = "__openclawWorkboardPath";
+export const INTERNAL_MCP_SERVERS_PATH_PARAM = "__openclawMcpServersPath";
 export const CONTROL_UI_DOCUMENT_ROUTE_PATHS = {
   approval: "/approve",
   question: "/ask",
@@ -441,6 +442,21 @@ export function workboardBoardIdFromPath(pathname: string, basePath = ""): strin
   return isValidWorkboardBoardId(boardId) ? boardId : null;
 }
 
+// Config server names: the same shape the MCP settings form accepts.
+const MCP_SERVER_NAME_RE = /^[a-zA-Z0-9][a-zA-Z0-9._-]*$/u;
+
+export function pathForMcpServer(name: string, basePath = ""): string {
+  if (!MCP_SERVER_NAME_RE.test(name)) {
+    throw new Error("Invalid MCP server name for a route path.");
+  }
+  return `${pathForRoute("mcp-servers", basePath)}/${name}`;
+}
+
+export function mcpServerNameFromPath(pathname: string, basePath = ""): string | null {
+  const name = routePathSuffix(pathname, "mcp-servers", basePath);
+  return name && MCP_SERVER_NAME_RE.test(name) ? name : null;
+}
+
 const DYNAMIC_ROUTE_PATH_PARAMS = {
   terminal: INTERNAL_TERMINAL_PATH_PARAM,
   plugin: INTERNAL_PLUGIN_PATH_PARAM,
@@ -450,6 +466,7 @@ const DYNAMIC_ROUTE_PATH_PARAMS = {
   memory: INTERNAL_MEMORY_PATH_PARAM,
   plugins: INTERNAL_PLUGINS_PATH_PARAM,
   "plugin-settings": INTERNAL_PLUGIN_SETTINGS_PATH_PARAM,
+  "mcp-servers": INTERNAL_MCP_SERVERS_PATH_PARAM,
   chat: INTERNAL_SESSION_PATH_PARAM,
   dashboard: INTERNAL_SESSION_PATH_PARAM,
 } as const;
@@ -481,6 +498,9 @@ function dynamicRouteIdFromPath(
   }
   if (pluginSettingsIdFromPath(pathname, basePath)) {
     return "plugin-settings";
+  }
+  if (mcpServerNameFromPath(pathname, basePath)) {
+    return "mcp-servers";
   }
   return sessionRouteNamespaceFromPath(pathname, basePath);
 }

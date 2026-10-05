@@ -28,6 +28,12 @@ const probed: McpProbeResult = {
         { name: "search_members" },
       ],
     },
+  ],
+};
+
+const unreachable: McpProbeResult = {
+  generatedAt: "2026-10-06T00:00:00.000Z",
+  servers: [
     { name: "docs", status: "error", toolCount: 0, tools: [], error: "connect ECONNREFUSED" },
   ],
 };
@@ -42,10 +48,23 @@ const config = {
   },
 };
 
-async function mount(options: { methods?: string[]; result?: Promise<McpProbeResult> } = {}) {
-  const request = createGatewayRequestMock((method) =>
-    method === "mcp.probe" ? (options.result ?? Promise.resolve(probed)) : Promise.resolve({}),
-  );
+type TestPage = OpenClawLightDomElement & {
+  routeData?: { location: { pathname: string; search: string; hash: string } };
+};
+
+async function mount(
+  options: { methods?: string[]; pathname?: string; result?: Promise<McpProbeResult> } = {},
+) {
+  const request = createGatewayRequestMock((method, params) => {
+    if (method !== "mcp.probe") {
+      return Promise.resolve({});
+    }
+    if (options.result) {
+      return options.result;
+    }
+    const server = (params as { server?: string }).server;
+    return Promise.resolve(server === "docs" ? unreachable : probed);
+  });
   const client = createTestGatewayClient(request);
   const snapshot = {
     phase: "connected",
@@ -63,20 +82,29 @@ async function mount(options: { methods?: string[]; result?: Promise<McpProbeRes
     ensureLoaded: vi.fn().mockResolvedValue(undefined),
     subscribe: () => () => {},
   };
+  const navigate = vi.fn();
   const context = {
     basePath: "",
     gateway: gateway.gateway,
     runtimeConfig: runtime,
-    navigate: vi.fn(),
+    navigate,
   } as unknown as ApplicationContext;
   const host = createApplicationContextProvider(context);
-  const element = document.createElement("openclaw-mcp-servers-page") as OpenClawLightDomElement;
+  const element = document.createElement("openclaw-mcp-servers-page") as TestPage;
+  element.routeData = {
+    location: { pathname: options.pathname ?? "/settings/mcp/servers", search: "", hash: "" },
+  };
   host.append(element);
   document.body.append(host);
+  await settle(element);
+  return { element, request, navigate };
+}
+
+async function settle(element: OpenClawLightDomElement) {
   await element.updateComplete;
   await Promise.resolve();
+  await Promise.resolve();
   await element.updateComplete;
-  return { element, request };
 }
 
 function text(node: Element | null): string {
@@ -88,37 +116,93 @@ afterEach(() => {
 });
 
 describe("openclaw-mcp-servers-page", () => {
-  it("lists every configured server with the tools the probe returned", async () => {
-    const { element, request } = await mount();
+  it("lists every configured server by name without probing any", async () => {
+    const { element, request, navigate } = await mount();
 
-    expect(request).toHaveBeenCalledWith("mcp.probe", {});
-    const boostt = element.querySelector('[data-mcp-name="boostt"]');
-    expect(text(boostt)).toContain("2 tools");
-    expect(text(boostt)).toContain("Notifications");
-    expect(text(boostt)).toContain("Unread notifications.");
-    expect(text(boostt)).toContain("search_members");
+    expect(request).not.toHaveBeenCalledWith("mcp.probe", expect.anything());
+    const rows = Array.from(element.querySelectorAll(".settings-row--nav"));
+    expect(rows.map((row) => text(row.querySelector("[data-mcp-name]")))).toEqual([
+      "boostt",
+      "docs",
+      "local",
+    ]);
+    expect(text(rows[0] ?? null)).toContain(
+      "https://marketplace.example.com/mcp · streamable-http",
+    );
+    expect(text(rows[2] ?? null)).toContain("Disabled");
 
-    const docs = element.querySelector('[data-mcp-name="docs"]');
-    expect(text(docs)).toContain("Unreachable");
-    expect(text(docs)).toContain("connect ECONNREFUSED");
+    (rows[0] as HTMLButtonElement).click();
+    expect(navigate).toHaveBeenCalledWith("mcp-servers", {
+      pathname: "/settings/mcp/servers/boostt",
+    });
+  });
 
-    const local = element.querySelector('[data-mcp-name="local"]');
-    expect(text(local)).toContain("Disabled servers are not read.");
+  it("opens a server and shows the tools the probe returned", async () => {
+    const { element, request } = await mount({ pathname: "/settings/mcp/servers/boostt" });
+
+    expect(request).toHaveBeenCalledWith("mcp.probe", { server: "boostt" });
+    const detail = element.querySelector('[data-mcp-name="boostt"]');
+    expect(text(element.querySelector(".plugins-settings-breadcrumb"))).toContain("MCP Servers");
+    expect(text(element.querySelector("h1"))).toBe("boostt");
+    expect(text(detail)).toContain("2 tools");
+    expect(text(detail)).toContain("Notifications");
+    expect(text(detail)).toContain("Unread notifications.");
+    expect(text(detail)).toContain("search_members");
+  });
+
+  it("shows the server's connection error in place", async () => {
+    const { element } = await mount({ pathname: "/settings/mcp/servers/docs" });
+
+    const detail = element.querySelector('[data-mcp-name="docs"]');
+    expect(text(detail)).toContain("Unreachable");
+    expect(text(detail)).toContain("connect ECONNREFUSED");
+  });
+
+  it("does not probe a disabled server", async () => {
+    const { element, request } = await mount({ pathname: "/settings/mcp/servers/local" });
+
+    expect(request).not.toHaveBeenCalledWith("mcp.probe", expect.anything());
+    expect(text(element.querySelector('[data-mcp-name="local"]'))).toContain(
+      "Disabled servers are not read.",
+    );
+  });
+
+  it("says when the name is not a configured server", async () => {
+    const { element, request } = await mount({ pathname: "/settings/mcp/servers/ghost" });
+
+    expect(request).not.toHaveBeenCalledWith("mcp.probe", expect.anything());
+    expect(text(element)).toContain("MCP server “ghost” was not found in the configuration.");
   });
 
   it("does not probe a gateway that lacks the method and says so", async () => {
-    const { element, request } = await mount({ methods: ["mcp.authLogin"] });
+    const { element, request } = await mount({
+      pathname: "/settings/mcp/servers/boostt",
+      methods: ["mcp.authLogin"],
+    });
 
     expect(request).not.toHaveBeenCalledWith("mcp.probe", expect.anything());
     expect(text(element)).toContain("This gateway does not list server tools.");
-    expect(element.querySelectorAll("[data-mcp-name]")).toHaveLength(3);
   });
 
   it("shows the probe failure with a retry", async () => {
-    const { element } = await mount({ result: Promise.reject(new Error("probe exploded")) });
+    const { element } = await mount({
+      pathname: "/settings/mcp/servers/boostt",
+      result: Promise.reject(new Error("probe exploded")),
+    });
 
     const alert = element.querySelector('[role="alert"]');
     expect(text(alert)).toContain("probe exploded");
     expect(alert?.querySelector("button")?.textContent?.trim()).toBe("Retry");
+  });
+
+  it("returns to the list from the breadcrumb", async () => {
+    const { element, navigate } = await mount({ pathname: "/settings/mcp/servers/boostt" });
+
+    const back = element.querySelector(".plugins-settings-breadcrumb__parent");
+    expect(back).toBeInstanceOf(HTMLAnchorElement);
+    (back as HTMLAnchorElement).dispatchEvent(
+      new MouseEvent("click", { bubbles: true, cancelable: true, button: 0 }),
+    );
+    expect(navigate).toHaveBeenCalledWith("mcp-servers", { pathname: "/settings/mcp/servers" });
   });
 });
