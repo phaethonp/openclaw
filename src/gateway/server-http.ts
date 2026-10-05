@@ -297,8 +297,6 @@ export function createGatewayHttpServer(opts: {
         req,
         trustedProxies,
         allowRealIpFallback,
-        allowLoopbackClients:
-          configSnapshot.gateway?.auth?.trustedProxy?.allowLoopbackClients === true,
         // HTTP authorization must observe Tailnet revocation on the next request.
         // WebSocket upgrades retain the ordinary cache because they authenticate once.
         tailscaleWhois: (ip) =>

@@ -353,14 +353,6 @@ export const GatewayConfigSchema = z
              * trust boundary and direct Gateway access is otherwise locked down.
              */
             allowLoopback: z.boolean().optional(),
-            /**
-             * Accept a loopback client address from a trusted proxy. Default false:
-             * a proxied request whose forwarded client is loopback is otherwise
-             * unattributable. Enable only for a proxy that runs on the same machine
-             * as the browser it serves (a local helper), with that proxy the sole
-             * listener and `allowLoopback` set.
-             */
-            allowLoopbackClients: z.boolean().optional(),
             /** Optional verified GitHub identity from one explicitly trusted Access OIDC provider. */
             cloudflareAccessOidc: z
               .strictObject({
