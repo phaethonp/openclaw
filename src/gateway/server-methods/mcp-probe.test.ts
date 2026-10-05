@@ -129,7 +129,14 @@ describe("mcp.probe", () => {
               toolName: "get_notifications",
               title: "Your notifications",
               description: "Your Boostt notifications, newest first.",
-              inputSchema: {} as never,
+              inputSchema: {
+                type: "object",
+                properties: {
+                  unread: { type: "boolean", description: "Only unread ones." },
+                  limit: { type: "integer" },
+                },
+                required: ["unread"],
+              } as never,
               fallbackDescription: "",
             },
             {
@@ -177,6 +184,15 @@ describe("mcp.probe", () => {
               name: "get_notifications",
               title: "Your notifications",
               description: "Your Boostt notifications, newest first.",
+              parameters: [
+                {
+                  name: "unread",
+                  required: true,
+                  type: "boolean",
+                  description: "Only unread ones.",
+                },
+                { name: "limit", required: false, type: "integer" },
+              ],
             },
             { name: "send_message", description: "Sends a message in a conversation." },
           ],

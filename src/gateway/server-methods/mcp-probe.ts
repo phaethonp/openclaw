@@ -8,6 +8,7 @@ import {
 } from "../../../packages/gateway-protocol/src/index.js";
 import { createSessionMcpRuntime } from "../../agents/agent-bundle-mcp-runtime.js";
 import { resolveAgentWorkspaceDir, resolveDefaultAgentId } from "../../agents/agent-scope.js";
+import { summarizeToolParameters } from "./tools-catalog.js";
 import type { GatewayRequestHandlers } from "./types.js";
 import { assertValidParams } from "./validation.js";
 
@@ -107,6 +108,10 @@ export const mcpProbeHandlers: GatewayRequestHandlers = {
             }
             if (tool.description) {
               entry.description = tool.description;
+            }
+            const parameters = summarizeToolParameters(tool.inputSchema);
+            if (parameters?.length) {
+              entry.parameters = parameters;
             }
             tools.push(entry);
           }
