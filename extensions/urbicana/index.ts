@@ -10,7 +10,7 @@
 import { resolveAgentWorkspaceDir, resolveDefaultAgentId } from "openclaw/plugin-sdk/health";
 import { definePluginEntry } from "openclaw/plugin-sdk/plugin-entry";
 import { resolveBoosttSettings, type BoosttAccount } from "./src/account.js";
-import { createMarketplaceConnectionResolver } from "./src/marketplace.js";
+import { createConfigMutator } from "./src/marketplace.js";
 import { createUrbicanaRouteHandler } from "./src/routes.js";
 import { createUrbicanaService } from "./src/service.js";
 
@@ -34,14 +34,12 @@ export default definePluginEntry({
       },
       workspaceDir: () => resolveAgentWorkspaceDir(api.config, resolveDefaultAgentId(api.config)),
       log: { info: (m) => api.logger.info(m), warn: (m) => api.logger.warn(m) },
+      mutateConfig: createConfigMutator(api.runtime.config),
     });
-    // The marketplace MCP server the manifest declares, bound to the owner's account.
-    api.registerMcpServerConnectionResolver(
-      createMarketplaceConnectionResolver({
-        settings,
-        store: { lookup: (key) => store.lookup(key) },
-      }),
-    );
+    // The marketplace entry follows the stored owner from the first start.
+    void service
+      .reconcile()
+      .catch((error) => api.logger.warn(`urbicana: marketplace not reconciled: ${String(error)}`));
     api.registerHttpRoute({
       path: "/plugins/urbicana",
       auth: "gateway",

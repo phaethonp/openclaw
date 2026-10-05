@@ -49,11 +49,5 @@
         "type": "string"
       }
     }
-  },
-  "mcpServers": {
-    "boostt": {
-      "transport": "streamable-http",
-      "url": "https://geo.boostt.org/marketplace/mcp"
-    }
   }
 }
