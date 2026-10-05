@@ -84,17 +84,6 @@ export const validateUsersPrefsSetParams = compile(S.UsersPrefsSetParamsSchema);
 export const validateUsersPersonalFileGetParams = compile(S.UsersPersonalFileGetParamsSchema);
 export const validateUsersPersonalFileSetParams = compile(S.UsersPersonalFileSetParamsSchema);
 export const validateUsersSelfParams = compile(S.UsersSelfParamsSchema);
-export const validateUsersBoosttStatusParams = compile(S.UsersBoosttStatusParamsSchema);
-export const validateUsersBoosttAuthorizeStartParams = compile(
-  S.UsersBoosttAuthorizeStartParamsSchema,
-);
-export const validateUsersBoosttAuthorizePollParams = compile(
-  S.UsersBoosttAuthorizePollParamsSchema,
-);
-export const validateUsersBoosttAuthorizeCancelParams = compile(
-  S.UsersBoosttAuthorizeCancelParamsSchema,
-);
-export const validateUsersBoosttDisconnectParams = compile(S.UsersBoosttDisconnectParamsSchema);
 export const validateUsersGitHubStatusParams = compile(S.UsersGitHubStatusParamsSchema);
 export const validateUsersGitHubAuthorizeStartParams = compile(
   S.UsersGitHubAuthorizeStartParamsSchema,

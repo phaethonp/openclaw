@@ -260,12 +260,6 @@ export async function syncCanonicalGitHubIdentity(
 ) {
   return unwrap(await write("userProfiles.syncGitHub", input, options));
 }
-export async function syncCanonicalBoosttIdentity(
-  input: UserProfileWriteOperations["userProfiles.syncBoostt"]["input"],
-  options: ProfileWriteOptions = {},
-) {
-  return unwrap(await write("userProfiles.syncBoostt", input, options));
-}
 export async function ensureCanonicalGatewayOwnerProfile(
   displayName: string | null,
   options: ProfileWriteOptions = {},

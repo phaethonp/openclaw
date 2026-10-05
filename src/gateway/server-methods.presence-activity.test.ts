@@ -94,7 +94,7 @@ describe("presence.activity registered request", () => {
     async (closed) => {
       const { tabs, clients, request, publish, started } = setup();
       const client = tabs[0]!;
-      client.authenticatedIdentitySync = async () => {
+      client.authenticatedGitHubIdentitySync = async () => {
         client.authenticatedUserProfile = {
           profileId: "activity-profile",
           displayName: "Activity Person",

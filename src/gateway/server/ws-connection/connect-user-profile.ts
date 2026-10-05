@@ -124,7 +124,7 @@ export async function resolveGatewayConnectProfileAdmission(params: {
   state: Pick<DeviceAuthorizedGatewayConnect, "authResult" | "role" | "authMethod">;
   ownerProfileExpected: boolean;
   authenticatedUserId: string | undefined;
-  resolveAuthenticatedIdentity: ReturnType<typeof createAuthenticatedGitHubIdentitySync>;
+  resolveAuthenticatedGitHubIdentity: ReturnType<typeof createAuthenticatedGitHubIdentitySync>;
   assertCurrent?: () => void;
 }): Promise<{ ok: true; prepared?: PreparedConnectProfile } | { ok: false }> {
   const { context, state, ownerProfileExpected, authenticatedUserId } = params;
@@ -133,7 +133,7 @@ export async function resolveGatewayConnectProfileAdmission(params: {
     hasGatewayOperatorAccessPolicies(context.configSnapshot);
   if (
     !ownerProfileExpected &&
-    (!authenticatedUserId || (params.resolveAuthenticatedIdentity && !profileRequired))
+    (!authenticatedUserId || (params.resolveAuthenticatedGitHubIdentity && !profileRequired))
   ) {
     return { ok: true };
   }
@@ -144,8 +144,8 @@ export async function resolveGatewayConnectProfileAdmission(params: {
     params.assertCurrent?.();
     const profile = ownerProfileExpected
       ? await ensureCanonicalGatewayOwnerProfile(ownerDisplayName ?? null, options)
-      : params.resolveAuthenticatedIdentity
-        ? await params.resolveAuthenticatedIdentity()
+      : params.resolveAuthenticatedGitHubIdentity
+        ? await params.resolveAuthenticatedGitHubIdentity()
         : state.authResult.tailscaleIdentity
           ? await ensureCanonicalUserProfileForTailscaleIdentity(
               state.authResult.tailscaleIdentity,

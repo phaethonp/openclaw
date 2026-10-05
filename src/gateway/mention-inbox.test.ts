@@ -683,7 +683,7 @@ describe("temporary human mention Inbox", () => {
         error: { code: "FORBIDDEN" },
       });
       expect(
-        await listInbox(f.inbox, { ...raw, authenticatedIdentitySync: vi.fn() }),
+        await listInbox(f.inbox, { ...raw, authenticatedGitHubIdentitySync: vi.fn() }),
       ).toMatchObject({
         ok: false,
         error: { code: "UNAVAILABLE", retryable: true },

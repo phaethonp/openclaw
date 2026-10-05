@@ -18,7 +18,7 @@ function presenceIdentity(client: GatewayWsClient): string | undefined {
   const profileId = client.authenticatedUserProfile?.profileId;
   return profileId
     ? presenceUserKey({ id: profileId, identity: { type: "profile", id: profileId } })
-    : client.authenticatedUserId && !client.authenticatedIdentitySync
+    : client.authenticatedUserId && !client.authenticatedGitHubIdentitySync
       ? presenceUserKey({ id: client.authenticatedUserId })
       : undefined;
 }

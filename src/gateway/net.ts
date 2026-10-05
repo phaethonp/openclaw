@@ -137,7 +137,7 @@ function stripOptionalPort(ip: string): string {
   return ip;
 }
 
-export function parseIpLiteral(raw: string | undefined): string | undefined {
+function parseIpLiteral(raw: string | undefined): string | undefined {
   const trimmed = raw?.trim();
   if (!trimmed) {
     return undefined;

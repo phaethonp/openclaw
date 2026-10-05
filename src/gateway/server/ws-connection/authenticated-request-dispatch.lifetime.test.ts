@@ -190,7 +190,7 @@ describe("authenticated request completion", { concurrent: false }, () => {
       });
       const client = createOperatorWsClient({ socket: new EventEmitter() });
       if (stage === "profile authorization") {
-        client.authenticatedIdentitySync = async () => {
+        client.authenticatedGitHubIdentitySync = async () => {
           await hold();
           client.authenticatedUserProfile = {
             profileId: "lifetime-profile",

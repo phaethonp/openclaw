@@ -353,14 +353,6 @@ export const GatewayConfigSchema = z
              * trust boundary and direct Gateway access is otherwise locked down.
              */
             allowLoopback: z.boolean().optional(),
-            /**
-             * Accept a loopback client address from a trusted proxy. Default false:
-             * a proxied request whose forwarded client is loopback is otherwise
-             * unattributable. Enable only for a proxy that runs on the same machine
-             * as the browser it serves (a local helper), with that proxy the sole
-             * listener and `allowLoopback` set.
-             */
-            allowLoopbackClients: z.boolean().optional(),
             /** Optional verified GitHub identity from one explicitly trusted Access OIDC provider. */
             cloudflareAccessOidc: z
               .strictObject({
@@ -375,20 +367,6 @@ export const GatewayConfigSchema = z
                 providerId: z.string().trim().min(1),
                 /** Forwarded claim containing a verified numeric GitHub account ID as a decimal string. */
                 githubAccountIdClaim: z.string().trim().min(1),
-              })
-              .optional(),
-            /** Optional verified Boostt identity from a trusted proxy that signs people in against Boostt. */
-            boostt: z
-              .strictObject({
-                /** Boostt API origin the Gateway asks whose token it is, without a trailing slash. */
-                apiUrl: z
-                  .string()
-                  .regex(
-                    /^https?:\/\/[^\s/]+$/u,
-                    "Expected an http(s) origin without a path or trailing slash",
-                  ),
-                /** Header the proxy sets with the person's Boostt access token; list it in requiredHeaders too. */
-                assertionHeader: z.string().trim().min(1),
               })
               .optional(),
             /**

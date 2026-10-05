@@ -58,7 +58,7 @@ export async function prepareUserModelAccountAction(
   const actorReference =
     profileReference ??
     (userReference &&
-    !client?.authenticatedIdentitySync &&
+    !client?.authenticatedGitHubIdentitySync &&
     !client?.authenticatedUserIsTailscaleProvider
       ? await ensureProfileIdForEmail(userReference, {}, assertConnectionCurrent)
       : undefined);

@@ -10,7 +10,6 @@ import {
   type OpenClawStateDatabaseOptions,
 } from "./openclaw-state-db.js";
 import { resolveOpenClawStateSqlitePath } from "./openclaw-state-db.paths.js";
-import { selectUserProfileBoosttIdentities } from "./user-profile-boostt-identity.js";
 import {
   selectProfileAccessEntries,
   selectStoredGitHubIdentities,
@@ -122,7 +121,6 @@ export function readUserProfileSnapshotSync(
           .orderBy("email", "asc"),
       ).rows;
       const githubIdentities = selectUserProfileGitHubIdentities(database.db);
-      const boosttIdentities = selectUserProfileBoosttIdentities(database.db);
       const emailsByProfile = new Map<string, string[]>(profiles.map(({ id }) => [id, []]));
       for (const { profile_id, email } of emails) {
         emailsByProfile.get(profile_id)?.push(email);
@@ -132,7 +130,6 @@ export function readUserProfileSnapshotSync(
           Object.assign(toUserProfile(profile), {
             emails: emailsByProfile.get(profile.id) ?? [],
             githubIdentity: githubIdentities.get(profile.id) ?? null,
-            boosttIdentity: boosttIdentities.get(profile.id) ?? null,
             hasAvatar: profile.has_avatar === 1,
           }),
         ),

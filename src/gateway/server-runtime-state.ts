@@ -208,10 +208,6 @@ export async function createGatewayHttpTransport(params: {
       log: params.log,
     });
   };
-  const handleBoosttOAuthCallbackRequest = async (req: IncomingMessage, res: ServerResponse) => {
-    const { handleBoosttOAuthCallback } = await import("./boostt-account.js");
-    return await handleBoosttOAuthCallback(req, res, { log: params.log });
-  };
 
   let loadedPluginRequestHandler: PluginHttpRequestHandler | null = null;
   let loadedPluginUpgradeHandler: PluginHttpUpgradeHandler | null = null;
@@ -342,7 +338,6 @@ export async function createGatewayHttpTransport(params: {
       handleWatchNodeRequest: params.handleWatchNodeRequest,
       handleHooksRequest,
       handleMcpOAuthCallbackRequest,
-      handleBoosttOAuthCallbackRequest,
       handlePluginRequest,
       shouldEnforcePluginGatewayAuth,
       isPluginAuthenticatedRoute,

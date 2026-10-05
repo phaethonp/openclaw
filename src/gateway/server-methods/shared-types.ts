@@ -424,8 +424,6 @@ type GatewayResidentBridgeContext = {
   githubOAuthService?: ReturnType<
     typeof import("../github-oauth-lifecycle.js").createGitHubOAuthLifecycle
   >;
-  /** Settings → Profile → Boostt account: connect the profile to a Boostt member. */
-  boosttAccountService?: import("../boostt-account.js").BoosttAccountService;
   modelAccountConnectService?: ReturnType<
     typeof import("../model-account-connect.js").createModelAccountConnectService
   >;

@@ -135,12 +135,6 @@ export const CORE_FIELD_HELP: Record<string, string> = {
     "Exact Access identity-provider ID for the trusted OIDC integration. A provider display name or a matching claim name alone does not establish trust.",
   "gateway.auth.trustedProxy.cloudflareAccessOidc.githubAccountIdClaim":
     "Exact forwarded OIDC claim whose value is a verified positive decimal-string GitHub account ID. Configure Access to forward it, then inspect the authenticated Access identity response. OpenClaw reads oidc_fields, or custom when oidc_fields is absent. Never use an unverified user-editable claim.",
-  "gateway.auth.trustedProxy.boostt":
-    "Optional verified Boostt identity for a trusted proxy that signs people in against Boostt. The proxy forwards the person's Boostt access token in the assertion header; the Gateway asks Boostt whose token it is and requires the same email the user header named before recording the identity on the profile.",
-  "gateway.auth.trustedProxy.boostt.apiUrl":
-    "Boostt API origin, such as https://api.boostt.org, without a path or trailing slash. The Gateway calls its /api/v1/auth/me with the forwarded token.",
-  "gateway.auth.trustedProxy.boostt.assertionHeader":
-    "Header carrying the person's Boostt access token, set by the proxy and never by the client. List it in requiredHeaders so a request without it fails authentication.",
   "gateway.auth.trustedProxy.deviceAutoApprove":
     "Optional policy for automatically approving new browser and native UI operator devices and same-key scope upgrades after trusted-proxy authentication. Grants are capped by deviceAutoApprove.scopes and the proxy's x-openclaw-scopes header when present.",
   "gateway.auth.trustedProxy.deviceAutoApprove.enabled":

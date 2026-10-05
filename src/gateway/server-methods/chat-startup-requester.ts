@@ -9,7 +9,7 @@ export async function prepareChatStartupRequester(client: GatewayClient | null) 
   if (
     !profileId &&
     (!client?.authenticatedUserId ||
-      client.authenticatedIdentitySync ||
+      client.authenticatedGitHubIdentitySync ||
       client.authenticatedUserIsTailscaleProvider)
   ) {
     return () => undefined;
@@ -24,7 +24,7 @@ export async function prepareChatStartupRequester(client: GatewayClient | null) 
         ? client?.authenticatedUserProfile?.profileId !== attachedProfileId
         : client?.authenticatedUserProfile?.profileId ||
           client?.authenticatedUserId !== email ||
-          client?.authenticatedIdentitySync ||
+          client?.authenticatedGitHubIdentitySync ||
           client?.authenticatedUserIsTailscaleProvider
     ) {
       throw new Error("Startup requester changed during metadata preparation");

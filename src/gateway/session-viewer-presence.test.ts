@@ -118,7 +118,7 @@ describe("presence projection without resident session facts", () => {
       const person = { text: "watcher", ts: 1 };
       const presence = [{ ...person, watchedSessions: ["agent:main:presence-cold"] }];
       const pending = recipient(["operator.read"]);
-      pending.authenticatedIdentitySync = async () => ({
+      pending.authenticatedGitHubIdentitySync = async () => ({
         profileId: "pending",
         updatedAt: 1,
       });

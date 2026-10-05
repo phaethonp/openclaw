@@ -274,7 +274,7 @@ describe("session resource admission", () => {
       const profile = test.client.authenticatedUserProfile;
       delete test.client.authenticatedUserProfile;
       test.client.authenticatedUserId = "original-operator";
-      test.client.authenticatedIdentitySync = vi.fn(async () => {
+      test.client.authenticatedGitHubIdentitySync = vi.fn(async () => {
         await Promise.resolve();
         test.client.authenticatedUserProfile = profile;
         return { profileId: "alice", updatedAt: 1 };
@@ -298,7 +298,7 @@ describe("session resource admission", () => {
         respond(true, {});
       });
       await dispatchSession(test, handler);
-      expect(test.client.authenticatedIdentitySync).toHaveBeenCalledOnce();
+      expect(test.client.authenticatedGitHubIdentitySync).toHaveBeenCalledOnce();
       expect(handler).toHaveBeenCalledOnce();
       expect(effect).not.toHaveBeenCalled();
     },
