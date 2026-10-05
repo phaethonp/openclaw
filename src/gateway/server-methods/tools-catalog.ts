@@ -28,7 +28,9 @@ import { assertValidParams } from "./validation.js";
 
 type ToolCatalogGroup = ToolsCatalogResult["groups"][number];
 
-function summarizeToolParameters(schema: unknown): ToolCatalogGroup["tools"][number]["parameters"] {
+export function summarizeToolParameters(
+  schema: unknown,
+): ToolCatalogGroup["tools"][number]["parameters"] {
   if (!isRecord(schema) || schema.type !== "object" || !isRecord(schema.properties)) {
     return undefined;
   }

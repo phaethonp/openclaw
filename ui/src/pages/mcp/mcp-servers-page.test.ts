@@ -27,7 +27,14 @@ const probed: McpProbeResult = {
       description: "# Boostt\n\nJobs, proposals and messages, as the signed-in member.",
       toolCount: 2,
       tools: [
-        { name: "get_notifications", title: "Notifications", description: "Unread notifications." },
+        {
+          name: "get_notifications",
+          title: "Notifications",
+          description: "Unread notifications.",
+          parameters: [
+            { name: "unread", required: true, type: "boolean", description: "Only unread ones." },
+          ],
+        },
         { name: "search_members" },
       ],
     },
@@ -159,10 +166,40 @@ describe("openclaw-mcp-servers-page", () => {
     expect(text(detail?.querySelector(".plugin-catalog-detail__readme") ?? null)).toContain(
       "Jobs, proposals and messages, as the signed-in member.",
     );
+    // The tools come first; the server's document follows them, as a plugin's README follows its panel.
+    const headings = Array.from(detail?.querySelectorAll(".settings-section__heading") ?? []).map(
+      (heading) => text(heading),
+    );
+    expect(headings.indexOf("Tools")).toBeLessThan(headings.indexOf("About"));
     expect(text(detail)).toContain("2 tools");
     expect(text(detail)).toContain("Notifications");
     expect(text(detail)).toContain("Unread notifications.");
     expect(text(detail)).toContain("search_members");
+  });
+
+  it("opens a tool in the tool dialog with its description and inputs; a bare name has nothing to open", async () => {
+    const { element } = await mount({ pathname: "/settings/mcp/servers/boostt" });
+
+    const rows = Array.from(element.querySelectorAll(".plugin-capability"));
+    expect(rows.map((row) => text(row.querySelector("strong")))).toEqual([
+      "Notifications",
+      "search_members",
+    ]);
+    expect(rows[0]?.querySelector("button")).toBeInstanceOf(HTMLButtonElement);
+    expect(rows[1]?.querySelector("button")).toBeNull();
+
+    rows[0]?.querySelector("button")?.click();
+    await element.updateComplete;
+    await Promise.resolve();
+    const dialog = document.querySelector(".plugin-tool-preview");
+    expect(text(dialog?.querySelector("h2") ?? null)).toBe("get_notifications");
+    expect(text(dialog)).toContain("Unread notifications.");
+    expect(text(dialog?.querySelector(".plugin-tool-preview__parameters") ?? null)).toContain(
+      "unread",
+    );
+    expect(text(dialog?.querySelector(".plugin-tool-preview__parameters") ?? null)).toContain(
+      "Only unread ones.",
+    );
   });
 
   it("shows the server's connection error in place", async () => {

@@ -4,6 +4,7 @@ import { property, state } from "lit/decorators.js";
 import type {
   McpProbeResult,
   McpProbeServerResult,
+  McpProbeTool,
 } from "../../../../packages/gateway-protocol/src/index.js";
 import { mcpServerNameFromPath, pathForMcpServer, pathForRoute } from "../../app-route-paths.ts";
 import { applicationContext, type ApplicationContext } from "../../app/context.ts";
@@ -31,6 +32,7 @@ import { SubscriptionsController } from "../../lit/subscriptions-controller.ts";
 import { renderPluginReadme } from "../plugins/catalog-detail.ts";
 import { renderPluginDetailBreadcrumb } from "../plugins/detail-shell.ts";
 import { renderPluginAskAction, renderPluginCapabilitySection } from "../plugins/overview.ts";
+import { showPluginToolPreview } from "../plugins/tool-preview.ts";
 import type { McpServersRouteData } from "./route.ts";
 import { McpServerHelpController } from "./server-help-controller.ts";
 import "../../styles/plugins.css";
@@ -54,6 +56,7 @@ class McpServersPage extends OpenClawLightDomElement {
   private generation = 0;
   private probedName: string | null = null;
   private readonly help = new McpServerHelpController(this);
+  private toolAbort = new AbortController();
 
   private readonly gateway = new GatewayPageController(this, {
     getGateway: () => this.context?.gateway,
@@ -85,7 +88,21 @@ class McpServersPage extends OpenClawLightDomElement {
     return pathname ? mcpServerNameFromPath(pathname, this.context?.basePath ?? "") : null;
   }
 
+  private closeTool() {
+    this.toolAbort.abort();
+    this.toolAbort = new AbortController();
+  }
+
+  private openTool(tool: McpProbeTool) {
+    this.closeTool();
+    void showPluginToolPreview(
+      { name: tool.name, description: tool.description, parameters: tool.parameters },
+      this.toolAbort.signal,
+    );
+  }
+
   private invalidate() {
+    this.closeTool();
     this.generation++;
     this.probe = null;
     this.probedName = null;
@@ -189,8 +206,10 @@ class McpServersPage extends OpenClawLightDomElement {
       probe.tools.map((tool) => ({
         name: tool.title ?? tool.name,
         description: tool.description,
-        details: html`<p><code>${tool.name}</code></p>
-          ${tool.description ? html`<p>${tool.description}</p>` : nothing}`,
+        onOpen:
+          tool.description?.trim() || tool.parameters?.length
+            ? () => this.openTool(tool)
+            : undefined,
       })),
       icons.wrench,
     );
@@ -257,6 +276,7 @@ class McpServersPage extends OpenClawLightDomElement {
     })}${renderSettingsWorkspace(
       renderSettingsPage(
         html`<div data-mcp-name=${server.name}>
+          ${renderSettingsSection({ title: t("mcpPage.tools"), actions: status }, body)}
           ${
             probe?.description
               ? renderSettingsSection(
@@ -267,7 +287,6 @@ class McpServersPage extends OpenClawLightDomElement {
                 )
               : nothing
           }
-          ${renderSettingsSection({ title: t("mcpPage.tools"), actions: status }, body)}
         </div>`,
       ),
     )}`;
