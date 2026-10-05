@@ -308,6 +308,7 @@ const SETTINGS_SUBPAGE_ROUTES: readonly NavigationRouteId[] = [
   "ai-agents",
   "model-setup",
   "lobsterdex",
+  "mcp-servers",
 ];
 export const SETTINGS_SEARCHABLE_SUBPAGE_ROUTES: readonly NavigationRouteId[] = ["ai-agents"];
 const SETTINGS_SUBPAGE_OWNER_ROUTES: Partial<
@@ -315,6 +316,7 @@ const SETTINGS_SUBPAGE_OWNER_ROUTES: Partial<
 > = {
   "ai-agents": "agents",
   "model-setup": "model-providers",
+  "mcp-servers": "mcp",
 };
 
 const SETTINGS_NAVIGATION_ROUTES: ReadonlySet<NavigationRouteId> = new Set([
@@ -364,6 +366,7 @@ const NAVIGATION_PRESENTATION: Record<NavigationRouteId, NavigationPresentation>
   lobsterdex: navigationPresentation("bug", "lobsterdex"),
   automation: navigationPresentation("terminal", "automation"),
   mcp: navigationPresentation("wrench", "mcp"),
+  "mcp-servers": navigationPresentation("wrench", "mcpServers"),
   memory: navigationPresentation("book", "memory"),
   search: navigationPresentation("search", "search"),
   talk: navigationPresentation("mic", "talk"),
