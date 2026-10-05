@@ -3,8 +3,8 @@
   "categories": [
     "infrastructure"
   ],
-  "name": "Urbicana",
-  "description": "Connects this Gateway to its owner's Boostt account: holds the owner's Boostt user id, keeps the owner's A2A card in the agent workspace, and binds the Boostt marketplace MCP server to the owner's account.",
+  "name": "Urbicana protocol",
+  "description": "This agent is yours. Urbicana gave it your account, your card and your Boostt marketplace.",
   "enabledByDefault": true,
   "activation": {
     "onStartup": true

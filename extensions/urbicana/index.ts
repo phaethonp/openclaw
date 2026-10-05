@@ -16,9 +16,9 @@ import { createUrbicanaService } from "./src/service.js";
 
 export default definePluginEntry({
   id: "urbicana",
-  name: "Urbicana",
+  name: "Urbicana protocol",
   description:
-    "Connects this Gateway to its owner's Boostt account and keeps the owner's A2A card in the agent workspace.",
+    "This agent is yours. Urbicana gave it your account, your card and your Boostt marketplace.",
   register(api) {
     const settings = resolveBoosttSettings(api.pluginConfig);
     const store = api.runtime.state.openKeyedStore<BoosttAccount>({

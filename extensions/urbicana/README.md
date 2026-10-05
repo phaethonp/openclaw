@@ -1,6 +1,6 @@
-# Urbicana plugin
+# Urbicana protocol
 
-Connects an OpenClaw Gateway to its owner's Boostt account without changing the Gateway's own code.
+The part of Urbicana that lives inside the member's agent: their account, their card, their Boostt marketplace. Internal, shipped enabled, never a choice for the member. It is an extension only so the Gateway's base code stays unpatched and keeps merging with the open-source line.
 
 What it holds: the owner's Boostt user id, email, handle and display name, and the owner's Boostt access token, in this plugin's own state inside the Gateway's database (`plugin_state_entries`, namespace `owner`). What it writes: the owner's A2A Agent Card, as Boostt holds it, into the agent workspace as a file of its own, `urbicana/IDENTITY.md` by default, loaded by the bundled `bootstrap-extra-files` hook so the model reads it at the start of every session. The document is written verbatim; nothing is rewritten into the Gateway's own templates.
 
