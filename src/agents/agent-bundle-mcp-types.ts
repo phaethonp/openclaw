@@ -42,6 +42,8 @@ export type McpServerCatalog = {
   pluginId?: string;
   marketplace?: string;
   title?: string;
+  /** The server's own description of itself and its tools, from initialize. */
+  instructions?: string;
   icons?: McpAppIcon[];
   settings?: McpAppSettingsCapability;
   toolCount: number;
