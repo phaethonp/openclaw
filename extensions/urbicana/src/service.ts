@@ -66,11 +66,7 @@ export function createUrbicanaService(opts: UrbicanaServiceOptions) {
       handle: handleOf(ownerCard.card) ?? owner.handle,
     };
     const writtenAt = now();
-    writeCardFile(
-      opts.workspaceDir(),
-      opts.settings.cardFile,
-      renderCardFile(withHandle, ownerCard, writtenAt),
-    );
+    writeCardFile(opts.workspaceDir(), opts.settings.cardFile, renderCardFile(ownerCard));
     const version = typeof ownerCard.card.version === "string" ? ownerCard.card.version : null;
     const updated: BoosttAccount = {
       ...withHandle,

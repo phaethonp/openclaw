@@ -35,24 +35,11 @@ export function assertCardFileName(cardFile: string): void {
   }
 }
 
-export function renderCardFile(
-  owner: { userId: number; handle: string | null; email: string },
-  ownerCard: OwnerCard,
-  writtenAt: Date,
-): string {
-  const who = owner.handle
-    ? `@${owner.handle} (Boostt user ${owner.userId})`
-    : `Boostt user ${owner.userId}`;
-  const lines = [
-    `# The owner's Agent Card`,
-    ``,
-    `This Gateway acts for ${who}, ${owner.email}. The document below is the owner's A2A Agent Card as Boostt holds it, written here unchanged on ${writtenAt.toISOString()} by the Urbicana plugin. It says who the agent is, what the owner offers, and what the public record shows. Act as its subject.`,
-  ];
-  if (ownerCard.missing.length > 0) {
-    lines.push(``, `The card is still missing: ${ownerCard.missing.join(", ")}.`);
-  }
-  lines.push(``, "```json", JSON.stringify(ownerCard.card, null, 2), "```", ``);
-  return lines.join("\n");
+export function renderCardFile(ownerCard: OwnerCard): string {
+  // The card, verbatim, under one heading. No preface: the card is the document.
+  return ["# Agent Card", "", "```json", JSON.stringify(ownerCard.card, null, 2), "```", ""].join(
+    "\n",
+  );
 }
 
 /** Writes the card file atomically; the directory is created if needed. */
