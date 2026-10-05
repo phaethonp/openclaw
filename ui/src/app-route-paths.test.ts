@@ -19,7 +19,9 @@ import {
   pathForTerminalSession,
   terminalSessionIdFromPath,
   mcpServerNameFromPath,
+  mcpServerRouteFromPath,
   pathForMcpServer,
+  pathForMcpServerTool,
   pluginSettingsIdFromPath,
   restoreBridgedRouteLocation,
   routeIdFromPath,
@@ -776,9 +778,25 @@ describe("mcp server route paths", () => {
     expect(routeIdFromPath(path, basePath)).toBe("mcp-servers");
   });
 
+  it.each(["", "/ui"])("round-trips a tool under its server under %s", (basePath) => {
+    const path = pathForMcpServerTool("boostt", "accept_proposal", basePath);
+    expect(path).toBe(`${basePath}/settings/mcp/servers/boostt/accept_proposal`);
+    expect(mcpServerRouteFromPath(path, basePath)).toEqual({
+      server: "boostt",
+      tool: "accept_proposal",
+    });
+    expect(mcpServerRouteFromPath(pathForMcpServer("boostt", basePath), basePath)).toEqual({
+      server: "boostt",
+      tool: null,
+    });
+    expect(routeIdFromPath(path, basePath)).toBe("mcp-servers");
+  });
+
   it("rejects names the MCP settings form would not accept", () => {
     expect(() => pathForMcpServer("../etc")).toThrow();
-    expect(mcpServerNameFromPath("/settings/mcp/servers/a/b")).toBeNull();
+    expect(() => pathForMcpServerTool("boostt", "../etc")).toThrow();
+    expect(mcpServerRouteFromPath("/settings/mcp/servers/a/b/c")).toBeNull();
+    expect(mcpServerRouteFromPath("/settings/mcp/servers/a/%20")).toBeNull();
     expect(mcpServerNameFromPath("/settings/mcp/servers/%20")).toBeNull();
     expect(mcpServerNameFromPath("/settings/mcp/servers")).toBeNull();
   });

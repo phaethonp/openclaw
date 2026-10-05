@@ -6,7 +6,12 @@ import type {
   McpProbeServerResult,
   McpProbeTool,
 } from "../../../../packages/gateway-protocol/src/index.js";
-import { mcpServerNameFromPath, pathForMcpServer, pathForRoute } from "../../app-route-paths.ts";
+import {
+  mcpServerRouteFromPath,
+  pathForMcpServer,
+  pathForMcpServerTool,
+  pathForRoute,
+} from "../../app-route-paths.ts";
 import { applicationContext, type ApplicationContext } from "../../app/context.ts";
 import { icons } from "../../components/icons.ts";
 import {
@@ -16,7 +21,6 @@ import {
   renderSettingsNavRow,
   renderSettingsPage,
   renderSettingsPageHeader,
-  renderSettingsSection,
   renderSettingsStatus,
 } from "../../components/settings-ui.ts";
 import { renderSettingsWorkspace } from "../../components/settings-workspace.ts";
@@ -30,9 +34,8 @@ import { GatewayPageController } from "../../lit/gateway-page-controller.ts";
 import { OpenClawLightDomElement } from "../../lit/openclaw-element.ts";
 import { SubscriptionsController } from "../../lit/subscriptions-controller.ts";
 import { renderPluginReadme } from "../plugins/catalog-detail.ts";
-import { renderPluginDetailBreadcrumb } from "../plugins/detail-shell.ts";
+import { renderPluginDetailShell } from "../plugins/detail-shell.ts";
 import { renderPluginAskAction, renderPluginCapabilitySection } from "../plugins/overview.ts";
-import { showPluginToolPreview } from "../plugins/tool-preview.ts";
 import type { McpServersRouteData } from "./route.ts";
 import { McpServerHelpController } from "./server-help-controller.ts";
 import "../../styles/plugins.css";
@@ -41,8 +44,9 @@ registerMcpEnglish();
 
 /**
  * Settings › MCP › Servers. The list names every configured server from the
- * config; a server opens at /settings/mcp/servers/<name>, where its tools are
- * read live through mcp.probe. Only the opened server is probed.
+ * config. A server opens at /settings/mcp/servers/<name> and a tool at
+ * /settings/mcp/servers/<name>/<tool>, both on the plugin detail shell; the
+ * opened server's tools are read live through mcp.probe, once per server.
  */
 class McpServersPage extends OpenClawLightDomElement {
   @consume({ context: applicationContext, subscribe: true })
@@ -56,7 +60,6 @@ class McpServersPage extends OpenClawLightDomElement {
   private generation = 0;
   private probedName: string | null = null;
   private readonly help = new McpServerHelpController(this);
-  private toolAbort = new AbortController();
 
   private readonly gateway = new GatewayPageController(this, {
     getGateway: () => this.context?.gateway,
@@ -71,7 +74,7 @@ class McpServersPage extends OpenClawLightDomElement {
   );
 
   override willUpdate(changed: PropertyValues<this>) {
-    if (changed.has("routeData") && this.selectedName !== this.probedName) {
+    if (changed.has("routeData") && this.selected?.server !== this.probedName) {
       this.invalidate();
       void this.load();
     }
@@ -83,26 +86,12 @@ class McpServersPage extends OpenClawLightDomElement {
     super.disconnectedCallback();
   }
 
-  private get selectedName(): string | null {
+  private get selected(): { server: string; tool: string | null } | null {
     const pathname = this.routeData?.location.pathname;
-    return pathname ? mcpServerNameFromPath(pathname, this.context?.basePath ?? "") : null;
-  }
-
-  private closeTool() {
-    this.toolAbort.abort();
-    this.toolAbort = new AbortController();
-  }
-
-  private openTool(tool: McpProbeTool) {
-    this.closeTool();
-    void showPluginToolPreview(
-      { name: tool.name, description: tool.description, parameters: tool.parameters },
-      this.toolAbort.signal,
-    );
+    return pathname ? mcpServerRouteFromPath(pathname, this.context?.basePath ?? "") : null;
   }
 
   private invalidate() {
-    this.closeTool();
     this.generation++;
     this.probe = null;
     this.probedName = null;
@@ -121,7 +110,7 @@ class McpServersPage extends OpenClawLightDomElement {
 
   /** Only a configured, enabled server is probed; the others render from the config alone. */
   private async load() {
-    const name = this.selectedName;
+    const name = this.selected?.server;
     const scope = this.gateway.capture();
     if (!name || !scope || !this.canProbe || !this.configuredServer(name)?.enabled) {
       return;
@@ -149,23 +138,12 @@ class McpServersPage extends OpenClawLightDomElement {
     }
   }
 
-  private open(name: string) {
-    this.context.navigate("mcp-servers", {
-      pathname: pathForMcpServer(name, this.context.basePath),
-    });
+  private navigateTo(pathname: string) {
+    this.context.navigate("mcp-servers", { pathname });
   }
 
-  private back() {
-    this.context.navigate("mcp-servers", {
-      pathname: pathForRoute("mcp-servers", this.context.basePath),
-    });
-  }
-
-  private renderStatus(server: McpServerSummary): TemplateResult {
-    return renderSettingsStatus({
-      kind: server.enabled ? "ok" : "muted",
-      label: server.enabled ? t("common.enabled") : t("common.disabled"),
-    });
+  private serverTarget(server: McpServerSummary): string {
+    return [server.target || t("mcpServers.missingTransport"), server.transport].join(" · ");
   }
 
   private renderList(servers: McpServerSummary[] | null): TemplateResult {
@@ -177,12 +155,13 @@ class McpServersPage extends OpenClawLightDomElement {
             servers.map((server) =>
               renderSettingsNavRow({
                 title: html`<span data-mcp-name=${server.name}>${server.name}</span>`,
-                description: [
-                  server.target || t("mcpServers.missingTransport"),
-                  server.transport,
-                ].join(" · "),
-                control: this.renderStatus(server),
-                onClick: () => this.open(server.name),
+                description: this.serverTarget(server),
+                control: renderSettingsStatus({
+                  kind: server.enabled ? "ok" : "muted",
+                  label: server.enabled ? t("common.enabled") : t("common.disabled"),
+                }),
+                onClick: () =>
+                  this.navigateTo(pathForMcpServer(server.name, this.context.basePath)),
               }),
             ),
           );
@@ -192,7 +171,37 @@ class McpServersPage extends OpenClawLightDomElement {
     })}${renderSettingsWorkspace(renderSettingsPage(body))}`;
   }
 
-  private renderTools(probe: McpProbeServerResult): TemplateResult {
+  /** The identity line under a detail title, in the plugin detail's own markup. */
+  private renderIdentity(primary: TemplateResult | string, secondary?: string): TemplateResult {
+    return html`<div class="plugin-catalog-detail__publisher">
+      <span class="plugin-catalog-detail__publisher-name"><strong>${primary}</strong></span>
+      ${secondary ? html`<span>${secondary}</span>` : nothing}
+    </div>`;
+  }
+
+  /** What the server's Tools panel holds before, instead of, or as its tools. */
+  private renderToolsPanel(server: McpServerSummary): TemplateResult {
+    const probe = this.probe;
+    if (!server.enabled) {
+      return renderSettingsEmpty(t("mcpPage.serverDisabled"));
+    }
+    if (!this.gateway.connected) {
+      return renderSettingsEmpty(t("mcpPage.offline"));
+    }
+    if (!this.canProbe) {
+      return renderSettingsEmpty(t("mcpPage.probeUnavailable"));
+    }
+    if (this.error) {
+      return html`<div role="alert" class="callout danger">
+        ${this.error}
+        <button type="button" class="btn btn--sm" @click=${() => void this.load()}>
+          ${t("common.retry")}
+        </button>
+      </div>`;
+    }
+    if (!probe) {
+      return renderSettingsLoadingSkeleton({ rows: 3 });
+    }
     if (probe.status === "error") {
       return html`<div role="alert" class="callout danger">
         ${probe.error ?? t("mcpPage.probeFailed")}
@@ -206,103 +215,149 @@ class McpServersPage extends OpenClawLightDomElement {
       probe.tools.map((tool) => ({
         name: tool.title ?? tool.name,
         description: tool.description,
-        onOpen:
-          tool.description?.trim() || tool.parameters?.length
-            ? () => this.openTool(tool)
-            : undefined,
+        onOpen: () =>
+          this.navigateTo(pathForMcpServerTool(server.name, tool.name, this.context.basePath)),
       })),
       icons.wrench,
     );
   }
 
-  private renderDetail(name: string, server: McpServerSummary | undefined): TemplateResult {
-    const breadcrumb = renderPluginDetailBreadcrumb({
-      name,
-      backHref: pathForRoute("mcp-servers", this.context.basePath),
-      backLabel: t("tabs.mcpServers"),
-      onBack: () => this.back(),
-    });
-    if (!server) {
-      return html`${breadcrumb}${renderSettingsWorkspace(
-        renderSettingsPage(renderSettingsEmpty(t("mcpServers.missing", { name }))),
-      )}`;
-    }
+  private renderServer(name: string, server: McpServerSummary | undefined): TemplateResult {
     const probe = this.probe;
+    const title = probe?.title ?? name;
     this.help.update({
       context: this.context,
       connected: this.gateway.connected,
-      server: { name, probe },
+      subject: server
+        ? {
+            id: name,
+            name: title,
+            server: name,
+            tools: probe?.tools.map((tool) => tool.name) ?? [],
+          }
+        : null,
     });
     const ask = this.help.available ? this.help.ask : undefined;
-    const status = !server.enabled
-      ? renderSettingsStatus({ kind: "muted", label: t("common.disabled") })
-      : probe?.status === "ok"
-        ? renderSettingsStatus({
-            kind: "ok",
-            label: t("mcpPage.toolCount", { count: String(probe.toolCount) }),
-          })
-        : probe?.status === "error"
-          ? renderSettingsStatus({ kind: "danger", label: t("mcpPage.unreachable") })
-          : this.loading
-            ? renderSettingsStatus({ kind: "muted", label: t("mcpPage.probing") })
-            : undefined;
-    const body = !server.enabled
-      ? renderSettingsEmpty(t("mcpPage.serverDisabled"))
-      : !this.gateway.connected
-        ? renderSettingsEmpty(t("mcpPage.offline"))
-        : !this.canProbe
-          ? renderSettingsEmpty(t("mcpPage.probeUnavailable"))
-          : this.error
-            ? html`<div role="alert" class="callout danger">
-                ${this.error}
-                <button type="button" class="btn btn--sm" @click=${() => void this.load()}>
-                  ${t("common.retry")}
-                </button>
-              </div>`
-            : probe
-              ? this.renderTools(probe)
-              : renderSettingsLoadingSkeleton({ rows: 3 });
-    return html`${breadcrumb}${renderSettingsPageHeader({
-      title: probe?.title ?? server.name,
-      subtitle: [server.target || t("mcpServers.missingTransport"), server.transport].join(" · "),
-      actions: html`${renderPluginAskAction(ask ? () => void ask() : undefined)}<button
-          type="button"
-          class="btn btn--sm"
-          ?disabled=${this.loading || !server.enabled || !this.canProbe}
-          @click=${() => void this.load()}
-        >
-          ${this.loading ? t("mcpPage.probing") : t("mcpPage.probeAgain")}
-        </button>`,
-    })}${renderSettingsWorkspace(
-      renderSettingsPage(
-        html`<div data-mcp-name=${server.name}>
-          ${renderSettingsSection({ title: t("mcpPage.tools"), actions: status }, body)}
-          ${
-            probe?.description
-              ? renderSettingsSection(
-                  { title: t("mcpPage.about") },
-                  html`<div class="settings-row settings-row--stacked">
-                    ${renderPluginReadme(probe.description)}
-                  </div>`,
-                )
-              : nothing
+    const back = {
+      backHref: pathForRoute("mcp-servers", this.context.basePath),
+      backLabel: t("tabs.mcpServers"),
+      onBack: () => this.navigateTo(pathForRoute("mcp-servers", this.context.basePath)),
+    };
+    if (!server) {
+      return renderSettingsPage(
+        renderPluginDetailShell({
+          ...back,
+          id: `mcp-server-${name}`,
+          name,
+          identity: nothing,
+          panel: renderSettingsEmpty(t("mcpServers.missing", { name })),
+        }),
+      );
+    }
+    return html`<div data-mcp-name=${server.name}>
+      ${renderSettingsPage(
+        renderPluginDetailShell({
+          ...back,
+          id: `mcp-server-${server.name}`,
+          name: title,
+          identity: this.renderIdentity(server.name, this.serverTarget(server)),
+          titleAction: html`${renderPluginAskAction(ask ? () => void ask() : undefined)}<button
+              type="button"
+              class="btn oc-action oc-action-secondary"
+              ?disabled=${this.loading || !server.enabled || !this.canProbe}
+              @click=${() => void this.load()}
+            >
+              ${this.loading ? t("mcpPage.probing") : t("mcpPage.probeAgain")}
+            </button>`,
+          panel: this.renderToolsPanel(server),
+          readme: probe?.description ? renderPluginReadme(probe.description) : undefined,
+        }),
+      )}
+    </div>`;
+  }
+
+  private renderTool(serverName: string, toolName: string): TemplateResult {
+    const server = this.configuredServer(serverName);
+    const probe = this.probe;
+    const tool: McpProbeTool | undefined = probe?.tools.find((entry) => entry.name === toolName);
+    const serverTitle = probe?.title ?? serverName;
+    this.help.update({
+      context: this.context,
+      connected: this.gateway.connected,
+      subject: tool
+        ? {
+            id: `${serverName}/${tool.name}`,
+            name: tool.title ?? tool.name,
+            server: serverName,
+            tools: [tool.name],
           }
-        </div>`,
-      ),
-    )}`;
+        : null,
+    });
+    const ask = this.help.available ? this.help.ask : undefined;
+    const back = {
+      backHref: pathForMcpServer(serverName, this.context.basePath),
+      backLabel: serverTitle,
+      onBack: () => this.navigateTo(pathForMcpServer(serverName, this.context.basePath)),
+    };
+    const id = `mcp-tool-${serverName}-${toolName}`;
+    if (!server || !tool) {
+      const panel = !server
+        ? renderSettingsEmpty(t("mcpServers.missing", { name: serverName }))
+        : this.loading || (!probe && !this.error && this.canProbe && server.enabled)
+          ? renderSettingsLoadingSkeleton({ rows: 3 })
+          : this.error
+            ? html`<div role="alert" class="callout danger">${this.error}</div>`
+            : renderSettingsEmpty(t("mcpPage.toolNotFound", { name: toolName }));
+      return renderSettingsPage(
+        renderPluginDetailShell({ ...back, id, name: toolName, identity: nothing, panel }),
+      );
+    }
+    const inputs = tool.parameters?.length
+      ? renderPluginCapabilitySection(
+          t("pluginsPage.detailToolInputs"),
+          tool.parameters.map((parameter) => ({
+            name: parameter.name,
+            description: [
+              t(parameter.required ? "pluginsPage.detailRequired" : "pluginsPage.detailOptional"),
+              parameter.type,
+              parameter.description,
+            ]
+              .filter((part): part is string => Boolean(part))
+              .join(" · "),
+          })),
+          icons.wrench,
+        )
+      : renderSettingsEmpty(t("mcpPage.noInputs"));
+    return html`<div data-mcp-tool=${tool.name}>
+      ${renderSettingsPage(
+        renderPluginDetailShell({
+          ...back,
+          id,
+          name: tool.title ?? tool.name,
+          identity: this.renderIdentity(html`<code>${tool.name}</code>`, serverTitle),
+          titleAction: ask ? html`${renderPluginAskAction(() => void ask())}` : undefined,
+          panel: inputs,
+          readme: tool.description ? renderPluginReadme(tool.description) : undefined,
+        }),
+      )}
+    </div>`;
   }
 
   override render() {
     if (!this.context) {
       return nothing;
     }
-    const servers = summarizeMcpServers(currentConfigObject(this.context.runtimeConfig.state));
-    const name = this.selectedName;
-    if (!name) {
-      this.help.update({ context: this.context, connected: this.gateway.connected, server: null });
-      return this.renderList(servers);
+    const selected = this.selected;
+    if (!selected) {
+      this.help.update({ context: this.context, connected: this.gateway.connected, subject: null });
+      return this.renderList(
+        summarizeMcpServers(currentConfigObject(this.context.runtimeConfig.state)),
+      );
     }
-    return this.renderDetail(name, this.configuredServer(name));
+    if (selected.tool) {
+      return this.renderTool(selected.server, selected.tool);
+    }
+    return this.renderServer(selected.server, this.configuredServer(selected.server));
   }
 }
 

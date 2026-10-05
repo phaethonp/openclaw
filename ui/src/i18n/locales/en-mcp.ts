@@ -44,6 +44,8 @@ const enMcp = {
     serversHint: "Browse each server and the tools it offers.",
     tools: "Tools",
     about: "About",
+    noInputs: "This tool takes no inputs.",
+    toolNotFound: "This server lists no tool named “{name}”.",
     askAbout: "Ask about {name}",
     toolCount: "{count} tools",
     noTools: "This server lists no tools.",

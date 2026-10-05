@@ -155,58 +155,92 @@ describe("openclaw-mcp-servers-page", () => {
     });
   });
 
-  it("opens a server and shows the tools the probe returned", async () => {
-    const { element, request } = await mount({ pathname: "/settings/mcp/servers/boostt" });
+  it("opens a server on the detail shell: title, tools, and its document after them", async () => {
+    const { element, request, navigate } = await mount({
+      pathname: "/settings/mcp/servers/boostt",
+    });
 
     expect(request).toHaveBeenCalledWith("mcp.probe", { server: "boostt" });
-    const detail = element.querySelector('[data-mcp-name="boostt"]');
-    expect(text(element.querySelector(".plugins-settings-breadcrumb"))).toContain("MCP Servers");
-    expect(text(element.querySelector("h1"))).toBe("Boostt marketplace");
-    expect(text(detail)).toContain("About");
-    expect(text(detail?.querySelector(".plugin-catalog-detail__readme") ?? null)).toContain(
-      "Jobs, proposals and messages, as the signed-in member.",
+    const detail = element.querySelector('[data-mcp-name="boostt"] .plugin-catalog-detail');
+    expect(detail).not.toBeNull();
+    expect(text(detail?.querySelector(".plugins-settings-breadcrumb") ?? null)).toContain(
+      "MCP Servers",
     );
-    // The tools come first; the server's document follows them, as a plugin's README follows its panel.
-    const headings = Array.from(detail?.querySelectorAll(".settings-section__heading") ?? []).map(
-      (heading) => text(heading),
+    expect(text(detail?.querySelector("h1") ?? null)).toBe("Boostt marketplace");
+    expect(text(detail?.querySelector(".plugin-catalog-detail__publisher") ?? null)).toContain(
+      "https://marketplace.example.com/mcp · streamable-http",
     );
-    expect(headings.indexOf("Tools")).toBeLessThan(headings.indexOf("About"));
-    expect(text(detail)).toContain("2 tools");
-    expect(text(detail)).toContain("Notifications");
-    expect(text(detail)).toContain("Unread notifications.");
-    expect(text(detail)).toContain("search_members");
-  });
 
-  it("opens a tool in the tool dialog with its description and inputs; a bare name has nothing to open", async () => {
-    const { element } = await mount({ pathname: "/settings/mcp/servers/boostt" });
-
-    const rows = Array.from(element.querySelectorAll(".plugin-capability"));
+    const rows = Array.from(detail?.querySelectorAll(".plugin-capability") ?? []);
     expect(rows.map((row) => text(row.querySelector("strong")))).toEqual([
       "Notifications",
       "search_members",
     ]);
-    expect(rows[0]?.querySelector("button")).toBeInstanceOf(HTMLButtonElement);
-    expect(rows[1]?.querySelector("button")).toBeNull();
+    expect(text(detail?.querySelector(".plugin-catalog-detail__readme") ?? null)).toContain(
+      "Jobs, proposals and messages, as the signed-in member.",
+    );
+    expect(
+      detail
+        ?.querySelector(".plugin-catalog-detail__panel")
+        ?.compareDocumentPosition(
+          detail.querySelector(".plugin-catalog-detail__readme-section") as Node,
+        ) ?? 0,
+    ).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
 
-    rows[0]?.querySelector("button")?.click();
-    await element.updateComplete;
-    await Promise.resolve();
-    const dialog = document.querySelector(".plugin-tool-preview");
-    expect(text(dialog?.querySelector("h2") ?? null)).toBe("get_notifications");
-    expect(text(dialog)).toContain("Unread notifications.");
-    expect(text(dialog?.querySelector(".plugin-tool-preview__parameters") ?? null)).toContain(
-      "unread",
+    rows[1]?.querySelector("button")?.click();
+    expect(navigate).toHaveBeenCalledWith("mcp-servers", {
+      pathname: "/settings/mcp/servers/boostt/search_members",
+    });
+  });
+
+  it("opens a tool on the detail shell: title, its id and server, inputs, and the full description", async () => {
+    const { element, request, navigate } = await mount({
+      pathname: "/settings/mcp/servers/boostt/get_notifications",
+    });
+
+    expect(request).toHaveBeenCalledWith("mcp.probe", { server: "boostt" });
+    const detail = element.querySelector(
+      '[data-mcp-tool="get_notifications"] .plugin-catalog-detail',
     );
-    expect(text(dialog?.querySelector(".plugin-tool-preview__parameters") ?? null)).toContain(
-      "Only unread ones.",
+    expect(detail).not.toBeNull();
+    expect(text(detail?.querySelector("h1") ?? null)).toBe("Notifications");
+    expect(text(detail?.querySelector(".plugin-catalog-detail__publisher") ?? null)).toContain(
+      "get_notifications",
     );
+    expect(text(detail?.querySelector(".plugin-catalog-detail__publisher") ?? null)).toContain(
+      "Boostt marketplace",
+    );
+    const inputs = text(detail?.querySelector(".plugin-catalog-detail__panel") ?? null);
+    expect(inputs).toContain("Inputs");
+    expect(inputs).toContain("unread");
+    expect(inputs).toContain("Required · boolean · Only unread ones.");
+    expect(text(detail?.querySelector(".plugin-catalog-detail__readme") ?? null)).toContain(
+      "Unread notifications.",
+    );
+
+    const back = detail?.querySelector(".plugins-settings-breadcrumb__parent");
+    expect(text(back ?? null)).toBe("Boostt marketplace");
+    back?.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true, button: 0 }));
+    expect(navigate).toHaveBeenCalledWith("mcp-servers", {
+      pathname: "/settings/mcp/servers/boostt",
+    });
+  });
+
+  it("says when the server lists no tool by that name, and when a tool takes no inputs", async () => {
+    const missing = await mount({ pathname: "/settings/mcp/servers/boostt/ghost" });
+    expect(text(missing.element)).toContain("This server lists no tool named “ghost”.");
+    document.body.replaceChildren();
+
+    const bare = await mount({ pathname: "/settings/mcp/servers/boostt/search_members" });
+    expect(text(bare.element.querySelector("h1"))).toBe("search_members");
+    expect(text(bare.element)).toContain("This tool takes no inputs.");
+    expect(bare.element.querySelector(".plugin-catalog-detail__readme")).toBeNull();
   });
 
   it("shows the server's connection error in place", async () => {
     const { element } = await mount({ pathname: "/settings/mcp/servers/docs" });
 
     const detail = element.querySelector('[data-mcp-name="docs"]');
-    expect(text(detail)).toContain("Unreachable");
     expect(text(detail)).toContain("connect ECONNREFUSED");
   });
 
@@ -247,22 +281,36 @@ describe("openclaw-mcp-servers-page", () => {
     expect(alert?.querySelector("button")?.textContent?.trim()).toBe("Retry");
   });
 
-  it("publishes the opened server to the Ask panel for an admin who can chat", async () => {
-    const { element, context } = await mount({
-      pathname: "/settings/mcp/servers/boostt",
-      methods: ["mcp.probe", "openclaw.chat"],
-      scopes: ["operator.admin"],
-    });
-
-    const ask = Array.from(element.querySelectorAll("button")).find(
-      (button) => button.textContent?.trim() === "Ask OpenClaw",
-    );
-    expect(ask).toBeInstanceOf(HTMLButtonElement);
-    expect(currentPluginHelpReference(context)).toEqual({
+  it("publishes the opened server, then the opened tool, to the Ask panel for an admin who can chat", async () => {
+    const admin = { methods: ["mcp.probe", "openclaw.chat"], scopes: ["operator.admin"] };
+    const server = await mount({ pathname: "/settings/mcp/servers/boostt", ...admin });
+    expect(
+      Array.from(server.element.querySelectorAll("button")).some(
+        (button) => button.textContent?.trim() === "Ask OpenClaw",
+      ),
+    ).toBe(true);
+    expect(currentPluginHelpReference(server.context)).toEqual({
       id: "boostt",
       name: "Boostt marketplace",
       installed: true,
       declared: { mcpServers: ["boostt"], tools: ["get_notifications", "search_members"] },
+    });
+    document.body.replaceChildren();
+
+    const tool = await mount({
+      pathname: "/settings/mcp/servers/boostt/get_notifications",
+      ...admin,
+    });
+    expect(
+      Array.from(tool.element.querySelectorAll("button")).some(
+        (button) => button.textContent?.trim() === "Ask OpenClaw",
+      ),
+    ).toBe(true);
+    expect(currentPluginHelpReference(tool.context)).toEqual({
+      id: "boostt/get_notifications",
+      name: "Notifications",
+      installed: true,
+      declared: { mcpServers: ["boostt"], tools: ["get_notifications"] },
     });
   });
 
@@ -283,7 +331,7 @@ describe("openclaw-mcp-servers-page", () => {
     expect(currentPluginHelpReference(list.context)).toBeUndefined();
   });
 
-  it("returns to the list from the breadcrumb", async () => {
+  it("returns to the list from the server's breadcrumb", async () => {
     const { element, navigate } = await mount({ pathname: "/settings/mcp/servers/boostt" });
 
     const back = element.querySelector(".plugins-settings-breadcrumb__parent");
