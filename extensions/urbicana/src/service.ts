@@ -95,12 +95,15 @@ export function createUrbicanaService(opts: UrbicanaServiceOptions) {
         `this Gateway acts for Boostt user ${current.userId}; it does not take a second owner`,
       );
     }
+    // The Gateway's state store refuses a value with an undefined field, so
+    // the card fields are present only once a card has been written.
     const owner: BoosttAccount = {
       ...who,
       accessToken,
       connectedAt: current?.connectedAt ?? now().toISOString(),
-      cardWrittenAt: current?.cardWrittenAt,
-      cardVersion: current?.cardVersion,
+      ...(current?.cardWrittenAt
+        ? { cardWrittenAt: current.cardWrittenAt, cardVersion: current.cardVersion ?? null }
+        : {}),
     };
     await opts.store.register(OWNER_KEY, owner);
     try {

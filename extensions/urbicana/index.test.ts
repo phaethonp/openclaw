@@ -9,12 +9,27 @@ import { assertCardFileName, writeCardFile } from "./src/workspace.js";
 
 const RAILS = "https://boostt.test";
 
+/** Refuses what the Gateway's state store refuses: a value with an undefined field anywhere. */
+function assertStorable(value: unknown, at = "value"): void {
+  if (value === undefined) {
+    throw new Error(`plugin state value at ${at} must be JSON-serializable`);
+  }
+  if (value && typeof value === "object") {
+    for (const [k, v] of Object.entries(value as Record<string, unknown>)) {
+      assertStorable(v, `${at}.${k}`);
+    }
+  }
+}
+
 function memoryStore(): OwnerStore & { map: Map<string, BoosttAccount> } {
   const map = new Map<string, BoosttAccount>();
   return {
     map,
     lookup: async (k) => map.get(k),
-    register: async (k, v) => void map.set(k, v),
+    register: async (k, v) => {
+      assertStorable(v);
+      map.set(k, structuredClone(v));
+    },
     delete: async (k) => map.delete(k),
   };
 }
