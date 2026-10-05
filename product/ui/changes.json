@@ -126,6 +126,13 @@
       "file": "ui/src/pages/profile/profile-hero.ts",
       "find": "<span class=\"profile-hero__badge\">OpenClaw</span>",
       "replace": "<span class=\"profile-hero__badge\">Urbicana</span>"
+    },
+    {
+      "id": "chat-heartbeat-title",
+      "why": "The chat header names a heartbeat session from its OpenClaw heartbeat title. The visible title says Urbicana.",
+      "file": "ui/src/lib/session-display.ts",
+      "find": "  const name = resolveNamedOrFallback();",
+      "replace": "  const name = resolveNamedOrFallback().replaceAll(\"OpenClaw heartbeat\", \"Urbicana heartbeat\");"
     }
   ]
 }
