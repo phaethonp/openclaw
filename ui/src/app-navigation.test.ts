@@ -43,6 +43,7 @@ const ALL_ROUTES: RouteId[] = Array.from(
     "ai-agents",
     "model-setup",
     "lobsterdex",
+    "mcp-servers",
     ...visibleSettingsNavigationGroups(true).flatMap((group) => group.routes),
   ]),
 );

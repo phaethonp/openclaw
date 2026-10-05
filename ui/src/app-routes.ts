@@ -48,6 +48,7 @@ import { page as devicesPage } from "./pages/devices/route.ts";
 import { page as labsPage } from "./pages/labs/route.ts";
 import { page as lobsterdexPage } from "./pages/lobsterdex/route.ts";
 import { page as logsPage } from "./pages/logs/route.ts";
+import { page as mcpServersPage } from "./pages/mcp/route.ts";
 import { page as meetingsPage } from "./pages/meetings/route.ts";
 import { page as memoryImportPage } from "./pages/memory-import/route.ts";
 import { page as modelProvidersPage } from "./pages/model-providers/route.ts";
@@ -103,6 +104,7 @@ const APP_ROUTE_TREE = [
   aboutPage,
   lobsterdexPage,
   ...configPages,
+  mcpServersPage,
   modelSetupPage,
   modelProvidersPage,
   memoryImportPage,

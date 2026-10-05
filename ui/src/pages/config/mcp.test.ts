@@ -1,7 +1,7 @@
 /* @vitest-environment jsdom */
 
 import { html, render } from "lit";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { renderMcp } from "./mcp.ts";
 
 type McpViewProps = Parameters<typeof renderMcp>[0];
@@ -57,6 +57,27 @@ describe("renderMcp", () => {
     const card = container.querySelector("openclaw-mcp-servers-card");
     expect(card).not.toBeNull();
     expect(card?.pluginsHref).toBe("/settings/plugins");
+  });
+
+  it("opens the servers page from the Servers row when a handler is given", () => {
+    const container = document.createElement("div");
+    const onOpenServers = vi.fn();
+
+    render(renderMcp(createProps({ onOpenServers })), container);
+
+    const row = container.querySelector(".mcp-page__summary .settings-row--nav");
+    expect(row).toBeInstanceOf(HTMLButtonElement);
+    expect(row?.textContent?.replace(/\s+/gu, " ")).toContain("Servers");
+    (row as HTMLButtonElement).click();
+    expect(onOpenServers).toHaveBeenCalledTimes(1);
+  });
+
+  it("renders the Servers row as a plain count without a handler", () => {
+    const container = document.createElement("div");
+
+    render(renderMcp(createProps()), container);
+
+    expect(container.querySelector(".mcp-page__summary .settings-row--nav")).toBeNull();
   });
 
   it("keeps the summary free of save actions and preserves the embedded editor", () => {

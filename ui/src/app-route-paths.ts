@@ -66,6 +66,7 @@ const APP_ROUTE_DEFINITIONS = {
   approvals: { path: "/settings/approvals" },
   automation: { path: "/settings/automation", aliases: ["/automation"] },
   mcp: { path: "/settings/mcp", aliases: ["/mcp"] },
+  "mcp-servers": { path: "/settings/mcp/servers" },
   memory: { path: "/settings/memory" },
   search: { path: "/settings/search" },
   talk: { path: "/settings/talk" },

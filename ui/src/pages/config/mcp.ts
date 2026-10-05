@@ -2,6 +2,7 @@ import { html, type TemplateResult } from "lit";
 import { shellLayoutTraits } from "../../app/shell-layout-traits.ts";
 import {
   renderLearnMoreLink,
+  renderSettingsNavRow,
   renderSettingsRow,
   renderSettingsValue,
 } from "../../components/settings-ui.ts";
@@ -17,6 +18,8 @@ const MCP_DOCS_URL = "https://docs.openclaw.ai/tools/mcp";
 type McpViewProps = {
   configObject: Record<string, unknown>;
   pluginsHref: string;
+  /** Opens the servers page; the summary row is a plain count without it. */
+  onOpenServers?: () => void;
   /** Embedded schema editor; it owns autosave status and the restart banner. */
   editor: TemplateResult;
 };
@@ -35,9 +38,21 @@ export function renderMcp(props: McpViewProps) {
             <h2 class="settings-section__heading">${t("mcpPage.servers")}</h2>
           </div>
           <div class="settings-group">
+            ${
+              props.onOpenServers
+                ? renderSettingsNavRow({
+                    title: t("mcpPage.servers"),
+                    description: t("mcpPage.serversHint"),
+                    control: renderSettingsValue(rows.length),
+                    onClick: props.onOpenServers,
+                  })
+                : renderSettingsRow({
+                    title: t("mcpPage.servers"),
+                    control: renderSettingsValue(rows.length),
+                  })
+            }
             ${(
               [
-                ["mcpPage.servers", rows.length],
                 ["common.enabled", rows.filter((row) => row.enabled).length],
                 ["mcpPage.oauth", rows.filter((row) => row.auth === "oauth").length],
                 ["mcpPage.filtered", rows.filter((row) => row.toolFilter).length],

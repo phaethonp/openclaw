@@ -1149,6 +1149,7 @@ export class ConfigPage extends OpenClawLightDomElement {
       return renderMcp({
         configObject,
         pluginsHref: pathForRoute("plugins", this.context.basePath),
+        onOpenServers: () => this.context.navigate("mcp-servers"),
         editor: renderSectionEditor("mcp", "MCP"),
       });
     }
