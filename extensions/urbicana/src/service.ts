@@ -1,7 +1,3 @@
-/**
- * The plugin's work, independent of the Gateway's HTTP and state plumbing so
- * it can be tested with a stub Boostt and a temp workspace.
- */
 import {
   handleOf,
   readOwnerCard,
@@ -9,6 +5,11 @@ import {
   type BoosttAccount,
   type BoosttSettings,
 } from "./account.js";
+/**
+ * The plugin's work, independent of the Gateway's HTTP and state plumbing so
+ * it can be tested with a stub Boostt and a temp workspace.
+ */
+import { applyMarketplace, type ConfigMutator } from "./marketplace.js";
 import { removeCardFile, renderCardFile, writeCardFile } from "./workspace.js";
 
 export type OwnerStore = {
@@ -27,6 +28,8 @@ export type UrbicanaServiceOptions = {
   fetchImpl?: typeof fetch;
   now?: () => Date;
   log?: { info: (msg: string) => void; warn: (msg: string) => void };
+  /** The agent's config mutation; the marketplace entry is written through it. */
+  mutateConfig: ConfigMutator;
 };
 
 export type OwnerStatus = {
@@ -106,6 +109,7 @@ export function createUrbicanaService(opts: UrbicanaServiceOptions) {
         : {}),
     };
     await opts.store.register(OWNER_KEY, owner);
+    await marketplace(owner);
     try {
       await refreshCard(owner);
     } catch (error) {
@@ -125,13 +129,31 @@ export function createUrbicanaService(opts: UrbicanaServiceOptions) {
     return status();
   }
 
+  /** The marketplace as the owner, or disabled; a failure here is logged, never fatal to the sign-in. */
+  async function marketplace(owner: BoosttAccount | null): Promise<void> {
+    try {
+      await applyMarketplace(opts.mutateConfig, opts.settings, owner);
+      log.info(owner ? "marketplace connected as the owner" : "marketplace disabled");
+    } catch (error) {
+      log.warn(
+        `marketplace entry not written: ${error instanceof Error ? error.message : String(error)}`,
+      );
+    }
+  }
+
+  /** At start: the config entry follows the stored owner (token rotated while the Gateway was down, or a fresh config). */
+  async function reconcile(): Promise<void> {
+    await marketplace((await opts.store.lookup(OWNER_KEY)) ?? null);
+  }
+
   async function disconnect(): Promise<OwnerStatus> {
     await opts.store.delete(OWNER_KEY);
+    await marketplace(null);
     removeCardFile(opts.workspaceDir(), opts.settings.cardFile);
     return status();
   }
 
-  return { status, connect, refresh, disconnect };
+  return { status, connect, refresh, disconnect, reconcile };
 }
 
 export type UrbicanaService = ReturnType<typeof createUrbicanaService>;

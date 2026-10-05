@@ -3,6 +3,12 @@ import os from "node:os";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { handleOf, resolveBoosttSettings, whoIs, type BoosttAccount } from "./src/account.js";
+import {
+  applyMarketplace,
+  marketplaceServerEntry,
+  writeMarketplaceEntry,
+  type ConfigMutator,
+} from "./src/marketplace.js";
 import { createUrbicanaRouteHandler } from "./src/routes.js";
 import { createUrbicanaService, OWNER_KEY, type OwnerStore } from "./src/service.js";
 import { assertCardFileName, writeCardFile } from "./src/workspace.js";
@@ -71,8 +77,14 @@ function stubBoostt(
 }
 
 let workspace: string;
+/** An in-memory agent config; the mutator applies the extension's writes to it. */
+let config: Record<string, unknown>;
+const mutateConfig: ConfigMutator = async (mutate) => {
+  mutate(config as Parameters<typeof mutate>[0]);
+};
 beforeEach(() => {
   workspace = fs.mkdtempSync(path.join(os.tmpdir(), "urbicana-ws-"));
+  config = {};
 });
 afterEach(() => {
   fs.rmSync(workspace, { recursive: true, force: true });
@@ -83,11 +95,17 @@ describe("settings", () => {
     expect(resolveBoosttSettings({ railsUrl: "https://boostt.test/" })).toEqual({
       railsUrl: "https://boostt.test",
       cardFile: "urbicana/IDENTITY.md",
+      marketplaceMcpUrl: "https://geo.boostt.org/marketplace/mcp",
     });
     expect(resolveBoosttSettings(undefined)).toEqual({
       railsUrl: "",
       cardFile: "urbicana/IDENTITY.md",
+      marketplaceMcpUrl: "https://geo.boostt.org/marketplace/mcp",
     });
+    expect(
+      resolveBoosttSettings({ marketplaceMcpUrl: "http://host.docker.internal:4110/mcp" })
+        .marketplaceMcpUrl,
+    ).toBe("http://host.docker.internal:4110/mcp");
   });
 });
 
@@ -138,6 +156,7 @@ describe("service", () => {
     const store = memoryStore();
     const now = new Date("2026-10-05T12:00:00Z");
     const service = createUrbicanaService({
+      mutateConfig,
       settings: { railsUrl: RAILS, cardFile: "urbicana/IDENTITY.md" },
       store,
       workspaceDir: () => workspace,
@@ -169,6 +188,7 @@ describe("service", () => {
   it("names what the card still lacks", async () => {
     const { fetchImpl } = stubBoostt({ missing: ["description"] });
     const service = createUrbicanaService({
+      mutateConfig,
       settings: { railsUrl: RAILS, cardFile: "urbicana/IDENTITY.md" },
       store: memoryStore(),
       workspaceDir: () => workspace,
@@ -189,6 +209,7 @@ describe("service", () => {
         : inner(input, init);
     const warn = vi.fn();
     const service = createUrbicanaService({
+      mutateConfig,
       settings: { railsUrl: RAILS, cardFile: "urbicana/IDENTITY.md" },
       store: memoryStore(),
       workspaceDir: () => workspace,
@@ -212,6 +233,7 @@ describe("service", () => {
     const store = memoryStore();
     const first = stubBoostt({ token: "tok-1" }).fetchImpl;
     const service = createUrbicanaService({
+      mutateConfig,
       settings: { railsUrl: RAILS, cardFile: "urbicana/IDENTITY.md" },
       store,
       workspaceDir: () => workspace,
@@ -227,6 +249,7 @@ describe("service", () => {
       return first(input, init);
     };
     const asOther = createUrbicanaService({
+      mutateConfig,
       settings: { railsUrl: RAILS, cardFile: "urbicana/IDENTITY.md" },
       store,
       workspaceDir: () => workspace,
@@ -236,6 +259,7 @@ describe("service", () => {
     expect(store.map.get(OWNER_KEY)?.userId).toBe(42);
 
     const renewed = createUrbicanaService({
+      mutateConfig,
       settings: { railsUrl: RAILS, cardFile: "urbicana/IDENTITY.md" },
       store,
       workspaceDir: () => workspace,
@@ -248,6 +272,7 @@ describe("service", () => {
   it("disconnect forgets the owner and removes the card file", async () => {
     const store = memoryStore();
     const service = createUrbicanaService({
+      mutateConfig,
       settings: { railsUrl: RAILS, cardFile: "urbicana/IDENTITY.md" },
       store,
       workspaceDir: () => workspace,
@@ -264,6 +289,7 @@ describe("service", () => {
 
   it("refuses to connect without a Boostt origin", async () => {
     const service = createUrbicanaService({
+      mutateConfig,
       settings: { railsUrl: "", cardFile: "urbicana/IDENTITY.md" },
       store: memoryStore(),
       workspaceDir: () => workspace,
@@ -302,6 +328,7 @@ describe("routes", () => {
 
   it("serves status, connect, refresh and disconnect under /plugins/urbicana, and leaves other paths alone", async () => {
     const service = createUrbicanaService({
+      mutateConfig,
       settings: { railsUrl: RAILS, cardFile: "urbicana/IDENTITY.md" },
       store: memoryStore(),
       workspaceDir: () => workspace,
@@ -335,5 +362,105 @@ describe("routes", () => {
       handled: false,
       sent: null,
     });
+  });
+});
+
+describe("the marketplace, a config entry the extension owns", () => {
+  const settings = { marketplaceMcpUrl: "http://host.docker.internal:4110/mcp" };
+
+  it("is connected as the owner with the token as the Authorization header, and present but disabled without an owner", () => {
+    expect(marketplaceServerEntry(settings, { accessToken: "tok-1" })).toEqual({
+      transport: "streamable-http",
+      url: "http://host.docker.internal:4110/mcp",
+      enabled: true,
+      headers: { Authorization: "Bearer tok-1" },
+    });
+    expect(marketplaceServerEntry(settings, null)).toEqual({
+      transport: "streamable-http",
+      url: "http://host.docker.internal:4110/mcp",
+      enabled: false,
+    });
+  });
+
+  it("writes mcp.servers.boostt into the draft and keeps other servers", async () => {
+    const draft = { mcp: { servers: { other: { url: "http://x" } } } };
+    writeMarketplaceEntry(draft, marketplaceServerEntry(settings, null));
+    expect(Object.keys(draft.mcp.servers)).toEqual(["other", "boostt"]);
+    await applyMarketplace(mutateConfig, settings, { accessToken: "tok-9" });
+    expect(
+      (config as { mcp: { servers: { boostt: { headers: Record<string, string> } } } }).mcp.servers
+        .boostt.headers,
+    ).toEqual({ Authorization: "Bearer tok-9" });
+  });
+
+  it("follows the sign-in: connected on connect, disabled on disconnect, restored by reconcile", async () => {
+    const store = memoryStore();
+    const service = createUrbicanaService({
+      mutateConfig,
+      settings: {
+        railsUrl: RAILS,
+        cardFile: "urbicana/IDENTITY.md",
+        marketplaceMcpUrl: settings.marketplaceMcpUrl,
+      },
+      store,
+      workspaceDir: () => workspace,
+      fetchImpl: stubBoostt().fetchImpl,
+    });
+    const entry = () =>
+      (
+        config as {
+          mcp?: { servers?: { boostt?: { enabled: boolean; headers?: Record<string, string> } } };
+        }
+      ).mcp?.servers?.boostt;
+
+    await service.reconcile();
+    expect(entry()).toEqual({
+      transport: "streamable-http",
+      url: settings.marketplaceMcpUrl,
+      enabled: false,
+    });
+
+    await service.connect("tok-1");
+    expect(entry()).toEqual({
+      transport: "streamable-http",
+      url: settings.marketplaceMcpUrl,
+      enabled: true,
+      headers: { Authorization: "Bearer tok-1" },
+    });
+
+    config = {};
+    await service.reconcile();
+    expect(entry()?.headers).toEqual({ Authorization: "Bearer tok-1" });
+
+    await service.disconnect();
+    expect(entry()).toEqual({
+      transport: "streamable-http",
+      url: settings.marketplaceMcpUrl,
+      enabled: false,
+    });
+  });
+
+  it("a config write that fails does not fail the sign-in", async () => {
+    const failing: ConfigMutator = async () => {
+      throw new Error("config locked");
+    };
+    const warn = vi.fn();
+    const service = createUrbicanaService({
+      mutateConfig: failing,
+      settings: {
+        railsUrl: RAILS,
+        cardFile: "urbicana/IDENTITY.md",
+        marketplaceMcpUrl: settings.marketplaceMcpUrl,
+      },
+      store: memoryStore(),
+      workspaceDir: () => workspace,
+      fetchImpl: stubBoostt().fetchImpl,
+      log: { info: () => undefined, warn },
+    });
+    const status = await service.connect("tok-1");
+    expect(status.connected).toBe(true);
+    expect(warn).toHaveBeenCalledWith(
+      expect.stringContaining("marketplace entry not written: config locked"),
+    );
   });
 });

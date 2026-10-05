@@ -1,7 +1,7 @@
 {
   "name": "@urbicana/openclaw-plugin",
   "version": "2026.9.8",
-  "description": "OpenClaw plugin connecting a Gateway to its owner's Boostt account and keeping the owner's A2A card in the agent workspace.",
+  "description": "Urbicana protocol: the part of Urbicana that lives inside the member's agent. Their account, their card, their Boostt marketplace.",
   "repository": {
     "type": "git",
     "url": "https://github.com/phaethonp/openclaw"

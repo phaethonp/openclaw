@@ -4,19 +4,21 @@
  * Boostt user id lives in this plugin's state, and the owner's A2A card lives
  * in the agent workspace as a file of its own, loaded by the bundled
  * bootstrap-extra-files hook. The Urbicana proxy hands this plugin the
- * owner's Boostt token at sign-in; nothing is asked of the person.
+ * owner's Boostt token at sign-in; nothing is asked of the person. The same
+ * token binds the Boostt marketplace MCP server to the owner's account.
  */
 import { resolveAgentWorkspaceDir, resolveDefaultAgentId } from "openclaw/plugin-sdk/health";
 import { definePluginEntry } from "openclaw/plugin-sdk/plugin-entry";
 import { resolveBoosttSettings, type BoosttAccount } from "./src/account.js";
+import { createConfigMutator } from "./src/marketplace.js";
 import { createUrbicanaRouteHandler } from "./src/routes.js";
 import { createUrbicanaService } from "./src/service.js";
 
 export default definePluginEntry({
   id: "urbicana",
-  name: "Urbicana",
+  name: "Urbicana protocol",
   description:
-    "Connects this Gateway to its owner's Boostt account and keeps the owner's A2A card in the agent workspace.",
+    "This agent is yours. Urbicana gave it your account, your card and your Boostt marketplace.",
   register(api) {
     const settings = resolveBoosttSettings(api.pluginConfig);
     const store = api.runtime.state.openKeyedStore<BoosttAccount>({
@@ -32,6 +34,14 @@ export default definePluginEntry({
       },
       workspaceDir: () => resolveAgentWorkspaceDir(api.config, resolveDefaultAgentId(api.config)),
       log: { info: (m) => api.logger.info(m), warn: (m) => api.logger.warn(m) },
+      mutateConfig: createConfigMutator(api.runtime.config),
+    });
+    // The marketplace entry follows the stored owner, once the Gateway's state is open.
+    api.registerService({
+      id: "urbicana-marketplace",
+      start: async () => {
+        await service.reconcile();
+      },
     });
     api.registerHttpRoute({
       path: "/plugins/urbicana",
