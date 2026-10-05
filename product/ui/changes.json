@@ -119,6 +119,13 @@
       "file": "ui/src/i18n/locales/en.ts",
       "find": "productName: \"OpenClaw\",\n    tagline: \"Your personal AI assistant, running on your own devices.\",",
       "replace": "productName: \"Urbicana × OpenClaw\",\n    tagline: \"An Urbicana product, built on OpenClaw.\","
+    },
+    {
+      "id": "profile-badge",
+      "why": "The badge beside the name on the profile page.",
+      "file": "ui/src/pages/profile/profile-hero.ts",
+      "find": "<span class=\"profile-hero__badge\">OpenClaw</span>",
+      "replace": "<span class=\"profile-hero__badge\">Urbicana</span>"
     }
   ]
 }
