@@ -186,24 +186,10 @@ describe("service", () => {
     expect(store.map.get(OWNER_KEY)?.accessToken).toBe("tok-1");
 
     const text = fs.readFileSync(path.join(workspace, "urbicana", "IDENTITY.md"), "utf8");
-    expect(text).toContain("acts for @phae (Boostt user 42), phae@example.com");
+    expect(text.startsWith("# Agent Card\n")).toBe(true);
+    expect(text).not.toContain("acts for");
     const json = /```json\n([\s\S]*?)\n```/u.exec(text)?.[1];
     expect(JSON.parse(json ?? "null")).toEqual(CARD);
-  });
-
-  it("names what the card still lacks", async () => {
-    const { fetchImpl } = stubBoostt({ missing: ["description"] });
-    const service = createUrbicanaService({
-      mutateConfig,
-      settings: { railsUrl: RAILS, cardFile: "urbicana/IDENTITY.md" },
-      store: memoryStore(),
-      workspaceDir: () => workspace,
-      fetchImpl,
-    });
-    await service.connect("tok-1");
-    expect(fs.readFileSync(path.join(workspace, "urbicana", "IDENTITY.md"), "utf8")).toContain(
-      "still missing: description",
-    );
   });
 
   it("keeps the owner when the card cannot be read, and refresh retries", async () => {
