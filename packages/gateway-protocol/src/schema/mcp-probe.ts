@@ -17,10 +17,12 @@ export const McpProbeToolSchema = closedObject({
   description: Type.Optional(Type.String()),
 });
 
-/** Secret-free outcome for one server: its tools, or why it could not be reached. */
+/** Secret-free outcome for one server: how it names and describes itself, its tools, or why it could not be reached. */
 export const McpProbeServerResultSchema = closedObject({
   name: NonEmptyString,
   status: Type.Union([Type.Literal("ok"), Type.Literal("error")]),
+  title: Type.Optional(NonEmptyString),
+  description: Type.Optional(Type.String()),
   toolCount: Type.Integer({ minimum: 0 }),
   tools: Type.Array(McpProbeToolSchema),
   error: Type.Optional(Type.String()),

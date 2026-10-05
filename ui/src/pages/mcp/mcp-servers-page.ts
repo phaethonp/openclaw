@@ -28,9 +28,11 @@ import { canCallGatewayMethod } from "../../lib/gateway-methods.ts";
 import { GatewayPageController } from "../../lit/gateway-page-controller.ts";
 import { OpenClawLightDomElement } from "../../lit/openclaw-element.ts";
 import { SubscriptionsController } from "../../lit/subscriptions-controller.ts";
+import { renderPluginReadme } from "../plugins/catalog-detail.ts";
 import { renderPluginDetailBreadcrumb } from "../plugins/detail-shell.ts";
-import { renderPluginCapabilitySection } from "../plugins/overview.ts";
+import { renderPluginAskAction, renderPluginCapabilitySection } from "../plugins/overview.ts";
 import type { McpServersRouteData } from "./route.ts";
+import { McpServerHelpController } from "./server-help-controller.ts";
 import "../../styles/plugins.css";
 
 registerMcpEnglish();
@@ -51,6 +53,7 @@ class McpServersPage extends OpenClawLightDomElement {
   @state() private loading = false;
   private generation = 0;
   private probedName: string | null = null;
+  private readonly help = new McpServerHelpController(this);
 
   private readonly gateway = new GatewayPageController(this, {
     getGateway: () => this.context?.gateway,
@@ -206,6 +209,12 @@ class McpServersPage extends OpenClawLightDomElement {
       )}`;
     }
     const probe = this.probe;
+    this.help.update({
+      context: this.context,
+      connected: this.gateway.connected,
+      server: { name, probe },
+    });
+    const ask = this.help.available ? this.help.ask : undefined;
     const status = !server.enabled
       ? renderSettingsStatus({ kind: "muted", label: t("common.disabled") })
       : probe?.status === "ok"
@@ -235,19 +244,29 @@ class McpServersPage extends OpenClawLightDomElement {
               ? this.renderTools(probe)
               : renderSettingsLoadingSkeleton({ rows: 3 });
     return html`${breadcrumb}${renderSettingsPageHeader({
-      title: server.name,
+      title: probe?.title ?? server.name,
       subtitle: [server.target || t("mcpServers.missingTransport"), server.transport].join(" · "),
-      actions: html`<button
-        type="button"
-        class="btn btn--sm"
-        ?disabled=${this.loading || !server.enabled || !this.canProbe}
-        @click=${() => void this.load()}
-      >
-        ${this.loading ? t("mcpPage.probing") : t("mcpPage.probeAgain")}
-      </button>`,
+      actions: html`${renderPluginAskAction(ask ? () => void ask() : undefined)}<button
+          type="button"
+          class="btn btn--sm"
+          ?disabled=${this.loading || !server.enabled || !this.canProbe}
+          @click=${() => void this.load()}
+        >
+          ${this.loading ? t("mcpPage.probing") : t("mcpPage.probeAgain")}
+        </button>`,
     })}${renderSettingsWorkspace(
       renderSettingsPage(
         html`<div data-mcp-name=${server.name}>
+          ${
+            probe?.description
+              ? renderSettingsSection(
+                  { title: t("mcpPage.about") },
+                  html`<div class="settings-row settings-row--stacked">
+                    ${renderPluginReadme(probe.description)}
+                  </div>`,
+                )
+              : nothing
+          }
           ${renderSettingsSection({ title: t("mcpPage.tools"), actions: status }, body)}
         </div>`,
       ),
@@ -261,6 +280,7 @@ class McpServersPage extends OpenClawLightDomElement {
     const servers = summarizeMcpServers(currentConfigObject(this.context.runtimeConfig.state));
     const name = this.selectedName;
     if (!name) {
+      this.help.update({ context: this.context, connected: this.gateway.connected, server: null });
       return this.renderList(servers);
     }
     return this.renderDetail(name, this.configuredServer(name));

@@ -43,6 +43,8 @@ const enMcp = {
     servers: "Servers",
     serversHint: "Browse each server and the tools it offers.",
     tools: "Tools",
+    about: "About",
+    askAbout: "Ask about {name}",
     toolCount: "{count} tools",
     noTools: "This server lists no tools.",
     probing: "Reading tools…",

@@ -110,7 +110,20 @@ export const mcpProbeHandlers: GatewayRequestHandlers = {
             }
             tools.push(entry);
           }
-          return { name: serverName, status: "ok", toolCount: tools.length, tools };
+          const server = catalog.servers[serverName];
+          const result: McpProbeServerResult = {
+            name: serverName,
+            status: "ok",
+            toolCount: tools.length,
+            tools,
+          };
+          if (server.title) {
+            result.title = server.title;
+          }
+          if (server.instructions) {
+            result.description = server.instructions;
+          }
+          return result;
         });
       const result: McpProbeResult = {
         generatedAt: new Date(catalog.generatedAt).toISOString(),

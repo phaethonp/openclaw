@@ -14,6 +14,7 @@ import {
   createTestGatewayClient,
 } from "../../test-helpers/gateway-client.ts";
 import { gatewayHelloForMethods } from "../../test-helpers/gateway-methods.ts";
+import { currentPluginHelpReference } from "../custodian/plugin-help.ts";
 import "./mcp-servers-page.ts";
 
 const probed: McpProbeResult = {
@@ -22,6 +23,8 @@ const probed: McpProbeResult = {
     {
       name: "boostt",
       status: "ok",
+      title: "Boostt marketplace",
+      description: "# Boostt\n\nJobs, proposals and messages, as the signed-in member.",
       toolCount: 2,
       tools: [
         { name: "get_notifications", title: "Notifications", description: "Unread notifications." },
@@ -53,7 +56,12 @@ type TestPage = OpenClawLightDomElement & {
 };
 
 async function mount(
-  options: { methods?: string[]; pathname?: string; result?: Promise<McpProbeResult> } = {},
+  options: {
+    methods?: string[];
+    scopes?: string[];
+    pathname?: string;
+    result?: Promise<McpProbeResult>;
+  } = {},
 ) {
   const request = createGatewayRequestMock((method, params) => {
     if (method !== "mcp.probe") {
@@ -69,7 +77,10 @@ async function mount(
   const snapshot = {
     phase: "connected",
     client,
-    hello: gatewayHelloForMethods(options.methods ?? ["mcp.probe"], ["operator.read"]),
+    hello: gatewayHelloForMethods(
+      options.methods ?? ["mcp.probe"],
+      options.scopes ?? ["operator.read"],
+    ),
   } as ApplicationGatewaySnapshot;
   const gateway = createApplicationGateway(snapshot);
   const configState = {
@@ -83,21 +94,21 @@ async function mount(
     subscribe: () => () => {},
   };
   const navigate = vi.fn();
+  const pathname = options.pathname ?? "/settings/mcp/servers";
   const context = {
     basePath: "",
     gateway: gateway.gateway,
     runtimeConfig: runtime,
+    router: { getState: () => ({ location: { pathname } }), subscribe: () => () => {} },
     navigate,
   } as unknown as ApplicationContext;
   const host = createApplicationContextProvider(context);
   const element = document.createElement("openclaw-mcp-servers-page") as TestPage;
-  element.routeData = {
-    location: { pathname: options.pathname ?? "/settings/mcp/servers", search: "", hash: "" },
-  };
+  element.routeData = { location: { pathname, search: "", hash: "" } };
   host.append(element);
   document.body.append(host);
   await settle(element);
-  return { element, request, navigate };
+  return { element, request, navigate, context };
 }
 
 async function settle(element: OpenClawLightDomElement) {
@@ -143,7 +154,11 @@ describe("openclaw-mcp-servers-page", () => {
     expect(request).toHaveBeenCalledWith("mcp.probe", { server: "boostt" });
     const detail = element.querySelector('[data-mcp-name="boostt"]');
     expect(text(element.querySelector(".plugins-settings-breadcrumb"))).toContain("MCP Servers");
-    expect(text(element.querySelector("h1"))).toBe("boostt");
+    expect(text(element.querySelector("h1"))).toBe("Boostt marketplace");
+    expect(text(detail)).toContain("About");
+    expect(text(detail?.querySelector(".plugin-catalog-detail__readme") ?? null)).toContain(
+      "Jobs, proposals and messages, as the signed-in member.",
+    );
     expect(text(detail)).toContain("2 tools");
     expect(text(detail)).toContain("Notifications");
     expect(text(detail)).toContain("Unread notifications.");
@@ -193,6 +208,42 @@ describe("openclaw-mcp-servers-page", () => {
     const alert = element.querySelector('[role="alert"]');
     expect(text(alert)).toContain("probe exploded");
     expect(alert?.querySelector("button")?.textContent?.trim()).toBe("Retry");
+  });
+
+  it("publishes the opened server to the Ask panel for an admin who can chat", async () => {
+    const { element, context } = await mount({
+      pathname: "/settings/mcp/servers/boostt",
+      methods: ["mcp.probe", "openclaw.chat"],
+      scopes: ["operator.admin"],
+    });
+
+    const ask = Array.from(element.querySelectorAll("button")).find(
+      (button) => button.textContent?.trim() === "Ask OpenClaw",
+    );
+    expect(ask).toBeInstanceOf(HTMLButtonElement);
+    expect(currentPluginHelpReference(context)).toEqual({
+      id: "boostt",
+      name: "Boostt marketplace",
+      installed: true,
+      declared: { mcpServers: ["boostt"], tools: ["get_notifications", "search_members"] },
+    });
+  });
+
+  it("offers no Ask action to a reader, and none on the list", async () => {
+    const reader = await mount({ pathname: "/settings/mcp/servers/boostt" });
+    expect(
+      Array.from(reader.element.querySelectorAll("button")).some(
+        (button) => button.textContent?.trim() === "Ask OpenClaw",
+      ),
+    ).toBe(false);
+    expect(currentPluginHelpReference(reader.context)).toBeUndefined();
+    document.body.replaceChildren();
+
+    const list = await mount({
+      methods: ["mcp.probe", "openclaw.chat"],
+      scopes: ["operator.admin"],
+    });
+    expect(currentPluginHelpReference(list.context)).toBeUndefined();
   });
 
   it("returns to the list from the breadcrumb", async () => {

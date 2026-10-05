@@ -109,7 +109,7 @@ describe("mcp.probe", () => {
     );
   });
 
-  it("lists a server's tools as the server advertises them, and disposes the probe runtime", async () => {
+  it("lists a server's tools, title and description as the server advertises them, and disposes the probe runtime", async () => {
     mocks.createSessionMcpRuntime.mockReturnValue(
       runtimeWith(
         catalog({
@@ -117,6 +117,8 @@ describe("mcp.probe", () => {
             boostt: {
               serverName: "boostt",
               launchSummary: "https://geo.example/marketplace/mcp",
+              title: "Boostt marketplace",
+              instructions: "Jobs, proposals and messages on Boostt, as the signed-in member.",
               toolCount: 2,
             },
           },
@@ -168,6 +170,8 @@ describe("mcp.probe", () => {
           name: "boostt",
           status: "ok",
           toolCount: 2,
+          title: "Boostt marketplace",
+          description: "Jobs, proposals and messages on Boostt, as the signed-in member.",
           tools: [
             {
               name: "get_notifications",

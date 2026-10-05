@@ -780,6 +780,9 @@ function createServerMcpRuntime(
           launchSummary: launchDescription,
           pluginId: loaded.pluginIdsByServer?.[serverName],
           title: session.client.getServerVersion()?.title,
+          ...(session.client.getInstructions()
+            ? { instructions: session.client.getInstructions() }
+            : {}),
           icons: readMcpAppIcons(session.client.getServerVersion()?.icons),
           settings: readMcpAppSettingsCapability(session.client.getServerCapabilities()),
           toolCount: exposedTools.length,
