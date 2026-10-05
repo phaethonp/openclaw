@@ -19,4 +19,6 @@ Config (`plugins.entries.urbicana.config`): `railsUrl`, the Boostt API origin; `
 hooks: { internal: { enabled: true, entries: { "bootstrap-extra-files": { enabled: true, paths: ["urbicana/IDENTITY.md"] } } } }
 ```
 
+The Boostt marketplace, as the owner. The manifest declares the MCP server `boostt` (`https://geo.boostt.org/marketplace/mcp`, streamable HTTP). Its connection is bound per requester with the plugin's resolver: when the person asking is the owner, the transport carries the owner's Boostt token, which the marketplace accepts as a bearer; any other requester, including a peer's task on the A2A channel, gets no marketplace for that run. The Gateway's own OAuth sign-in for MCP servers is not used: the member signed in once at Boostt, and that is the account the agent acts in. `marketplaceMcpUrl` in the plugin config points a development Gateway at a local marketplace.
+
 Not done here: the Gateway's own A2A card at `/.well-known/agent-card.json` stays the one the `a2a` extension composes; the owner's card is published to Boostt's registry from the workbench.

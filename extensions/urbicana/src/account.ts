@@ -24,9 +24,13 @@ export type BoosttAccount = {
 export type BoosttSettings = {
   railsUrl: string;
   cardFile: string;
+  /** The Boostt marketplace MCP server, as the Gateway's host reaches it. */
+  marketplaceMcpUrl: string;
 };
 
 export const DEFAULT_CARD_FILE = "urbicana/IDENTITY.md";
+/** The same URL the manifest declares for the `boostt` MCP server. */
+export const DEFAULT_MARKETPLACE_MCP_URL = "https://geo.boostt.org/marketplace/mcp";
 
 const ME_PATH = "/api/v1/auth/me";
 const CARD_PATH = "/api/v1/a2a/card";
@@ -38,13 +42,12 @@ export function resolveBoosttSettings(pluginConfig: unknown): BoosttSettings {
     pluginConfig && typeof pluginConfig === "object"
       ? (pluginConfig as Record<string, unknown>)
       : {};
-  const railsUrl =
-    typeof record.railsUrl === "string" ? record.railsUrl.trim().replace(/\/+$/u, "") : "";
-  const cardFile =
-    typeof record.cardFile === "string" && record.cardFile.trim()
-      ? record.cardFile.trim()
-      : DEFAULT_CARD_FILE;
-  return { railsUrl, cardFile };
+  const text = (key: string) =>
+    typeof record[key] === "string" ? (record[key] as string).trim() : "";
+  const railsUrl = text("railsUrl").replace(/\/+$/u, "");
+  const cardFile = text("cardFile") || DEFAULT_CARD_FILE;
+  const marketplaceMcpUrl = text("marketplaceMcpUrl") || DEFAULT_MARKETPLACE_MCP_URL;
+  return { railsUrl, cardFile, marketplaceMcpUrl };
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {

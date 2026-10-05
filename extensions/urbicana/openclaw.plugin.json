@@ -1,8 +1,10 @@
 {
   "id": "urbicana",
-  "categories": ["infrastructure"],
+  "categories": [
+    "infrastructure"
+  ],
   "name": "Urbicana",
-  "description": "Connects this Gateway to its owner's Boostt account: holds the owner's Boostt user id, and keeps the owner's A2A card in the agent workspace so the agent runs as its owner.",
+  "description": "Connects this Gateway to its owner's Boostt account: holds the owner's Boostt user id, keeps the owner's A2A card in the agent workspace, and binds the Boostt marketplace MCP server to the owner's account.",
   "enabledByDefault": true,
   "activation": {
     "onStartup": true
@@ -15,6 +17,10 @@
     "cardFile": {
       "label": "Card file in the workspace",
       "help": "Where the owner's A2A card is written, relative to the agent workspace. Its basename must be one the bootstrap-extra-files hook loads; the default is urbicana/IDENTITY.md."
+    },
+    "marketplaceMcpUrl": {
+      "label": "Boostt marketplace MCP",
+      "help": "The marketplace MCP server's URL as the Gateway's host reaches it. Default: https://geo.boostt.org/marketplace/mcp."
     }
   },
   "configGroups": [
@@ -22,7 +28,11 @@
       "id": "boostt",
       "title": "Boostt",
       "order": 10,
-      "properties": ["railsUrl", "cardFile"]
+      "properties": [
+        "railsUrl",
+        "cardFile",
+        "marketplaceMcpUrl"
+      ]
     }
   ],
   "configSchema": {
@@ -34,7 +44,16 @@
       },
       "cardFile": {
         "type": "string"
+      },
+      "marketplaceMcpUrl": {
+        "type": "string"
       }
+    }
+  },
+  "mcpServers": {
+    "boostt": {
+      "transport": "streamable-http",
+      "url": "https://geo.boostt.org/marketplace/mcp"
     }
   }
 }

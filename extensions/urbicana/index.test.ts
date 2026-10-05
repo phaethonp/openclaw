@@ -3,6 +3,7 @@ import os from "node:os";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { handleOf, resolveBoosttSettings, whoIs, type BoosttAccount } from "./src/account.js";
+import { createMarketplaceConnectionResolver } from "./src/marketplace.js";
 import { createUrbicanaRouteHandler } from "./src/routes.js";
 import { createUrbicanaService, OWNER_KEY, type OwnerStore } from "./src/service.js";
 import { assertCardFileName, writeCardFile } from "./src/workspace.js";
@@ -83,11 +84,17 @@ describe("settings", () => {
     expect(resolveBoosttSettings({ railsUrl: "https://boostt.test/" })).toEqual({
       railsUrl: "https://boostt.test",
       cardFile: "urbicana/IDENTITY.md",
+      marketplaceMcpUrl: "https://geo.boostt.org/marketplace/mcp",
     });
     expect(resolveBoosttSettings(undefined)).toEqual({
       railsUrl: "",
       cardFile: "urbicana/IDENTITY.md",
+      marketplaceMcpUrl: "https://geo.boostt.org/marketplace/mcp",
     });
+    expect(
+      resolveBoosttSettings({ marketplaceMcpUrl: "http://host.docker.internal:4110/mcp" })
+        .marketplaceMcpUrl,
+    ).toBe("http://host.docker.internal:4110/mcp");
   });
 });
 
@@ -335,5 +342,43 @@ describe("routes", () => {
       handled: false,
       sent: null,
     });
+  });
+});
+
+describe("the marketplace MCP server, bound to the owner", () => {
+  const settings = { marketplaceMcpUrl: "http://host.docker.internal:4110/mcp" };
+
+  it("carries the owner's token for the owner, and nothing for anyone else or before a sign-in", async () => {
+    const store = memoryStore();
+    const resolver = createMarketplaceConnectionResolver({ settings, store });
+    expect(resolver.serverName).toBe("boostt");
+    expect(await resolver.resolve({ requesterSenderId: "phae@example.com" })).toBeNull();
+
+    const service = createUrbicanaService({
+      settings: {
+        railsUrl: RAILS,
+        cardFile: "urbicana/IDENTITY.md",
+        marketplaceMcpUrl: settings.marketplaceMcpUrl,
+      },
+      store,
+      workspaceDir: () => workspace,
+      fetchImpl: stubBoostt().fetchImpl,
+    });
+    await service.connect("tok-1");
+
+    expect(
+      await resolver.resolve({ requesterSenderId: "Phae@Example.com", messageChannel: "webchat" }),
+    ).toEqual({
+      url: "http://host.docker.internal:4110/mcp",
+      headers: { Authorization: "Bearer tok-1" },
+    });
+    // A peer's task on the A2A channel is not the owner asking.
+    expect(
+      await resolver.resolve({ requesterSenderId: "boostt", messageChannel: "a2a" }),
+    ).toBeNull();
+    expect(await resolver.resolve({ requesterSenderId: "other@example.com" })).toBeNull();
+
+    await service.disconnect();
+    expect(await resolver.resolve({ requesterSenderId: "phae@example.com" })).toBeNull();
   });
 });
