@@ -43,6 +43,10 @@ export default definePluginEntry({
         await service.reconcile();
       },
     });
+    // A skill the owner authored here (Skill Workshop) is carried to Boostt on commit.
+    api.on("skill_changed", async (event) => {
+      await service.skillChanged(event);
+    });
     api.registerHttpRoute({
       path: "/plugins/urbicana",
       auth: "gateway",

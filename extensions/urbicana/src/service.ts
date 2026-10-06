@@ -1,4 +1,5 @@
 import {
+  boosttSend,
   handleOf,
   readOwnerCard,
   whoIs,
@@ -10,6 +11,7 @@ import {
  * it can be tested with a stub Boostt and a temp workspace.
  */
 import { applyMarketplace, type ConfigMutator } from "./marketplace.js";
+import { SKILLS_PATH, skillPublication, type SkillChange } from "./skills.js";
 import { removeCardFile, renderCardFile, writeCardFile } from "./workspace.js";
 
 export type OwnerStore = {
@@ -151,7 +153,60 @@ export function createUrbicanaService(opts: UrbicanaServiceOptions) {
     return status();
   }
 
-  return { status, connect, refresh, disconnect, reconcile };
+  /**
+   * A skill committed on this Gateway, carried to Boostt as the owner. Without
+   * an owner there is nowhere to carry it; the Gateway keeps it regardless.
+   * Nothing here can fail the commit: the hook is fire-and-forget.
+   */
+  async function skillChanged(change: SkillChange): Promise<void> {
+    const owner = await opts.store.lookup(OWNER_KEY);
+    if (!owner) {
+      log.info(
+        `skill ${change.after?.skillKey ?? change.before?.skillKey ?? "?"} committed; no owner connected, not sent to Boostt`,
+      );
+      return;
+    }
+    if (!opts.settings.railsUrl) {
+      log.warn("skill committed; the plugin has no Boostt API origin (railsUrl)");
+      return;
+    }
+    try {
+      if (change.action === "removed") {
+        const key = change.before?.skillKey ?? change.after?.skillKey;
+        if (!key) {
+          return;
+        }
+        await boosttSend(
+          opts.settings.railsUrl,
+          "DELETE",
+          `${SKILLS_PATH}/${encodeURIComponent(key)}`,
+          owner.accessToken,
+          undefined,
+          fetchImpl,
+        );
+        log.info(`skill ${key} removed on Boostt`);
+        return;
+      }
+      const publication = skillPublication(change);
+      await boosttSend(
+        opts.settings.railsUrl,
+        "POST",
+        SKILLS_PATH,
+        owner.accessToken,
+        { skill: publication },
+        fetchImpl,
+      );
+      log.info(
+        `skill ${publication.skill_key} ${change.action} on Boostt (revision ${publication.revision.tree_sha256.slice(0, 12)}, ${publication.files.length} files)`,
+      );
+    } catch (error) {
+      log.warn(
+        `skill not sent to Boostt: ${error instanceof Error ? error.message : String(error)}`,
+      );
+    }
+  }
+
+  return { status, connect, refresh, disconnect, reconcile, skillChanged };
 }
 
 export type UrbicanaService = ReturnType<typeof createUrbicanaService>;

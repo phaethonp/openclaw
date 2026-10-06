@@ -11,6 +11,7 @@ import {
 } from "./src/marketplace.js";
 import { createUrbicanaRouteHandler } from "./src/routes.js";
 import { createUrbicanaService, OWNER_KEY, type OwnerStore } from "./src/service.js";
+import { bundleSkillDir, skillPublication, treeSha256Of, type SkillChange } from "./src/skills.js";
 import { assertCardFileName, writeCardFile } from "./src/workspace.js";
 
 const RAILS = "https://boostt.test";
@@ -55,6 +56,8 @@ function stubBoostt(
 ) {
   const token = opts.token ?? "tok-1";
   const calls: string[] = [];
+  const bodies: unknown[] = [];
+  const methods: string[] = [];
   const fetchImpl: typeof fetch = async (input, init) => {
     const url = String(input);
     const auth = new Headers(init?.headers).get("authorization");
@@ -71,9 +74,43 @@ function stubBoostt(
     if (url === `${RAILS}/api/v1/a2a/card`) {
       return Response.json({ card: opts.card ?? CARD, missing: opts.missing ?? [] });
     }
+    if (url.startsWith(`${RAILS}/api/v1/registry_skills`)) {
+      bodies.push(init?.body ? JSON.parse(String(init.body)) : null);
+      methods.push(init?.method ?? "GET");
+      return Response.json({ skill: { skill_key: "deeds-digest" } }, { status: 201 });
+    }
     return new Response("not found", { status: 404 });
   };
-  return { fetchImpl, calls };
+  return { fetchImpl, calls, bodies, methods };
+}
+
+/** A committed skill tree on disk, as Skill Workshop leaves it. */
+function committedSkill(dir: string, opts: { binary?: boolean } = {}) {
+  fs.mkdirSync(path.join(dir, "scripts"), { recursive: true });
+  fs.mkdirSync(path.join(dir, ".clawhub"), { recursive: true });
+  fs.writeFileSync(path.join(dir, ".clawhub", "origin.json"), "{}");
+  fs.writeFileSync(
+    path.join(dir, "SKILL.md"),
+    "---\nname: deeds-digest\ndescription: Summarise the deeds.\nversion: v1\n---\n# deeds-digest\n",
+  );
+  fs.writeFileSync(path.join(dir, "scripts", "run.sh"), "#!/bin/sh\necho hi\n", { mode: 0o755 });
+  if (opts.binary) {
+    fs.writeFileSync(path.join(dir, "seal.bin"), Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x00]));
+  }
+  const after = {
+    name: "deeds-digest",
+    skillKey: "deeds-digest",
+    description: "Summarise the deeds.",
+    skillFile: path.join(dir, "SKILL.md"),
+    skillDir: dir,
+    source: "workshop",
+    revision: {
+      declaredVersion: "v1",
+      contentSha256: "sha256:" + "b".repeat(64),
+      treeSha256: "sha256:" + "a".repeat(64),
+    },
+  };
+  return after;
 }
 
 let workspace: string;
@@ -463,5 +500,118 @@ describe("the marketplace, a config entry the extension owns", () => {
     expect(warn).toHaveBeenCalledWith(
       expect.stringContaining("marketplace entry not written: config locked"),
     );
+  });
+});
+
+describe("a skill authored here goes to Boostt", () => {
+  it("bundles the committed tree with the Gateway's rules", () => {
+    const dir = path.join(workspace, "workshop-skills", "deeds-digest");
+    committedSkill(dir, { binary: true });
+    const files = bundleSkillDir(dir);
+    expect(files.map((f) => f.path)).toEqual(["SKILL.md", "scripts/run.sh", "seal.bin"]);
+    expect(files.find((f) => f.path === "scripts/run.sh")?.executable).toBe(true);
+    expect(files.find((f) => f.path === "SKILL.md")?.executable).toBe(false);
+    const bin = files.find((f) => f.path === "seal.bin");
+    expect(bin?.encoding).toBe("base64");
+    expect(Buffer.from(bin?.content ?? "", "base64")).toEqual(
+      Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x00]),
+    );
+    expect(treeSha256Of(files)).toMatch(/^[0-9a-f]{64}$/u);
+  });
+
+  it("refuses a tree without SKILL.md and a symlink inside it", () => {
+    const empty = path.join(workspace, "empty");
+    fs.mkdirSync(empty, { recursive: true });
+    fs.writeFileSync(path.join(empty, "README.md"), "x");
+    expect(() => bundleSkillDir(empty)).toThrow(/no SKILL.md/);
+    const linked = path.join(workspace, "linked");
+    committedSkill(linked);
+    fs.symlinkSync("/etc/hosts", path.join(linked, "hosts"));
+    expect(() => bundleSkillDir(linked)).toThrow(/unsupported entry/);
+  });
+
+  it("posts the publication as the owner, hashes bare", async () => {
+    const dir = path.join(workspace, "workshop-skills", "deeds-digest");
+    const after = committedSkill(dir);
+    const { fetchImpl, bodies, methods, calls } = stubBoostt();
+    const store = memoryStore();
+    const service = createUrbicanaService({
+      settings: {
+        railsUrl: RAILS,
+        cardFile: "urbicana/IDENTITY.md",
+        marketplaceMcpUrl: "https://geo.boostt.org/marketplace/mcp",
+      },
+      store,
+      workspaceDir: () => workspace,
+      fetchImpl,
+      mutateConfig,
+    });
+    await service.connect("tok-1");
+    const change: SkillChange = { action: "created", source: "workshop", after };
+    await service.skillChanged(change);
+    expect(methods.at(-1)).toBe("POST");
+    expect(calls.at(-1)).toBe(`${RAILS}/api/v1/registry_skills Bearer tok-1`);
+    const body = bodies.at(-1) as { skill: ReturnType<typeof skillPublication> };
+    expect(body.skill.skill_key).toBe("deeds-digest");
+    expect(body.skill.action).toBe("created");
+    expect(body.skill.revision).toEqual({
+      tree_sha256: "a".repeat(64),
+      content_sha256: "b".repeat(64),
+      declared_version: "v1",
+    });
+    expect(body.skill.files.map((f) => f.path)).toEqual(["SKILL.md", "scripts/run.sh"]);
+
+    await service.skillChanged({ action: "removed", source: "workshop", before: after });
+    expect(methods.at(-1)).toBe("DELETE");
+    expect(calls.at(-1)).toBe(`${RAILS}/api/v1/registry_skills/deeds-digest Bearer tok-1`);
+  });
+
+  it("sends nothing without an owner, and a refusal does not throw", async () => {
+    const dir = path.join(workspace, "workshop-skills", "deeds-digest");
+    const after = committedSkill(dir);
+    const { fetchImpl, methods } = stubBoostt();
+    const warnings: string[] = [];
+    const service = createUrbicanaService({
+      settings: {
+        railsUrl: RAILS,
+        cardFile: "urbicana/IDENTITY.md",
+        marketplaceMcpUrl: "https://geo.boostt.org/marketplace/mcp",
+      },
+      store: memoryStore(),
+      workspaceDir: () => workspace,
+      fetchImpl,
+      mutateConfig,
+      log: { info: () => undefined, warn: (m) => warnings.push(m) },
+    });
+    await service.skillChanged({ action: "created", source: "workshop", after });
+    expect(methods).toEqual([]);
+
+    const refusing: typeof fetch = async () => new Response("no", { status: 422 });
+    const refused = createUrbicanaService({
+      settings: {
+        railsUrl: RAILS,
+        cardFile: "urbicana/IDENTITY.md",
+        marketplaceMcpUrl: "https://geo.boostt.org/marketplace/mcp",
+      },
+      store: {
+        ...memoryStore(),
+        lookup: async () => ({
+          userId: 42,
+          email: "p@x",
+          handle: null,
+          displayName: null,
+          accessToken: "tok-1",
+          connectedAt: "now",
+        }),
+      },
+      workspaceDir: () => workspace,
+      fetchImpl: refusing,
+      mutateConfig,
+      log: { info: () => undefined, warn: (m) => warnings.push(m) },
+    });
+    await expect(
+      refused.skillChanged({ action: "created", source: "workshop", after }),
+    ).resolves.toBeUndefined();
+    expect(warnings.at(-1)).toMatch(/refused POST \/api\/v1\/registry_skills \(422\)/);
   });
 });

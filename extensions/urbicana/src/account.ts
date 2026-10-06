@@ -100,6 +100,40 @@ async function boosttGet(
   return JSON.parse(await readBounded(response)) as unknown;
 }
 
+/** Sends a JSON body to Boostt as the owner; the answer is read bounded, like a GET. */
+export async function boosttSend(
+  railsUrl: string,
+  method: "POST" | "PUT" | "DELETE",
+  path: string,
+  accessToken: string,
+  body: unknown,
+  fetchImpl: typeof fetch,
+): Promise<unknown> {
+  let response: Response;
+  try {
+    response = await fetchImpl(`${railsUrl}${path}`, {
+      method,
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        Accept: "application/json",
+        ...(body === undefined ? {} : { "Content-Type": "application/json" }),
+      },
+      ...(body === undefined ? {} : { body: JSON.stringify(body) }),
+      redirect: "manual",
+      signal: AbortSignal.timeout(TIMEOUT_MS),
+    });
+  } catch {
+    // Never attach the underlying error: it may carry the bearer.
+    throw new Error(`Boostt did not answer ${method} ${path}`);
+  }
+  if (!response.ok) {
+    await response.body?.cancel().catch(() => undefined);
+    throw new Error(`Boostt refused ${method} ${path} (${response.status})`);
+  }
+  const text = await readBounded(response);
+  return text ? (JSON.parse(text) as unknown) : null;
+}
+
 /** Asks Boostt whose token this is. */
 export async function whoIs(
   settings: Pick<BoosttSettings, "railsUrl">,
