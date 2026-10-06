@@ -19,6 +19,8 @@ The card is written to the agent workspace, verbatim, at `urbicana/IDENTITY.md`,
 
 The Boostt marketplace is written into the agent's config as the MCP server `boostt` (`mcp.servers.boostt`, Streamable HTTP, `https://geo.boostt.org/marketplace/mcp`), authenticated with the owner's token. The entry is written at sign-in, restored at start, and disabled when the owner is forgotten.
 
+A skill the owner authors here is carried to Urbicana. Skill Workshop commits a skill under the agent's state directory and the Gateway fires `skill_changed`; the plugin reads the committed tree (`SKILL.md` and its support files, with the Gateway's skill-library caps) and posts it to `POST /api/v1/registry_skills` as the owner, with the Gateway's tree hash as the revision. A removal is reported to `DELETE /api/v1/registry_skills/<skill_key>`. Without a connected owner nothing is sent; the Gateway keeps the skill either way. Urbicana is the store of record, this agent holds the copy.
+
 ## Configuration
 
 `plugins.entries.urbicana.config`:
