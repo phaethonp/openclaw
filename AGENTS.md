@@ -106,6 +106,7 @@ Read matching guides in full; commands and details stay with them.
 - **Channels/message actions:** [channel boundary](src/channels/AGENTS.md), [channel responsibilities](docs/plugins/sdk-channel-plugins.md).
 - **Agent tools, prompts, admission, lifecycle:** [agents](src/agents/AGENTS.md), [Gateway](src/gateway/AGENTS.md).
 - **Control UI:** [UI guide](ui/AGENTS.md), including state shared with other Gateway clients.
+- **Control UI design, any page or component:** carapace's skills, installed here from `phaethonp/carapace`: start with [openclaw-design](.agents/skills/openclaw-design/SKILL.md), build product UI under [openclaw-carapace](.agents/skills/openclaw-carapace/SKILL.md) (named anatomies in its `references/application-surfaces.md`; compose carapace classes inside the existing Lit views; information architecture unchanged unless the task says otherwise), and run [openclaw-design-audit](.agents/skills/openclaw-design-audit/SKILL.md) on the touched files before reporting.
 - **Storage:** [database schemas](docs/reference/database-schemas.md) and its subpages; read its approval checkpoint before schema, transaction, retention, or recovery changes.
 - **Config migration:** [Doctor transforms](docs/gateway/doctor/config-migrations.md), never new runtime compatibility readers.
 - **Audit/identity:** [audit doctrine](docs/gateway/audit.md); provenance is opt-in, never authorization; changes to collection, reader scope, retained fields, bounds, or contracts need approval.
