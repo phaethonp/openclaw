@@ -128,6 +128,13 @@
       "replace": "<span class=\"profile-hero__badge\">Urbicana</span>"
     },
     {
+      "id": "chat-message-prompt",
+      "why": "The main chat box says Message Assistant when the agent has no name of its own. The other box already says Message Urbicana.",
+      "file": "ui/src/pages/chat/components/chat-composer-view.ts",
+      "find": "t(\"chat.composer.placeholder\", { name: props.assistantName || \"agent\" })",
+      "replace": "t(\"chat.composer.placeholder\", { name: !props.assistantName || props.assistantName === \"Assistant\" || props.assistantName === \"agent\" ? \"Urbicana\" : props.assistantName })"
+    },
+    {
       "id": "chat-heartbeat-title",
       "why": "The chat header names a heartbeat session from its OpenClaw heartbeat title. The visible title says Urbicana.",
       "file": "ui/src/lib/session-display.ts",
