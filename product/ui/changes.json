@@ -140,6 +140,27 @@
       "file": "ui/src/lib/session-display.ts",
       "find": "  const name = resolveNamedOrFallback();",
       "replace": "  const name = resolveNamedOrFallback().replaceAll(\"OpenClaw heartbeat\", \"Urbicana heartbeat\");"
+    },
+    {
+      "id": "narrow-screen-name",
+      "why": "On a narrow screen the top bar shows the product name. Desktop hides this bar.",
+      "file": "ui/src/components/app-topbar.ts",
+      "find": "<span class=\"topbar-brand__title\">OpenClaw</span>",
+      "replace": "<span class=\"topbar-brand__title\">Urbicana</span>"
+    },
+    {
+      "id": "narrow-screen-label",
+      "why": "The same top bar names the product for screen readers.",
+      "file": "ui/src/components/app-topbar.ts",
+      "find": "<div class=\"topbar-brand\" aria-label=\"OpenClaw\">",
+      "replace": "<div class=\"topbar-brand\" aria-label=\"Urbicana\">"
+    },
+    {
+      "id": "plugins-subtitle",
+      "why": "The Plugins page subtitle uses the Claw name.",
+      "file": "ui/src/i18n/locales/en.ts",
+      "find": "plugins: \"Extend your Claw with tools\",",
+      "replace": "plugins: \"Extend Urbicana with tools\","
     }
   ]
 }
